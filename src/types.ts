@@ -7,6 +7,10 @@ export type OmneoClassOptions = {
 }
 
 export type Identity = {
+  id: string
+  merged_from: string | null
+  is_primary: boolean
+  is_active: boolean
   namespace: string,
   identifier: string,
   handle: string,
@@ -133,11 +137,189 @@ export type ProfileComms = {
   created_at: Date,
   updated_at: Date
 }
+
+export type ProfileAppearance = {
+  profile_id: string,
+  hair_colour: string | null,
+  hair_length: string | null,
+  shape_body: string | null,
+  shape_face: string | null,
+  size_cup: string | null,
+  size_hat: string | null,
+  size_formal_jacket: string | null,
+  size_formal_jacket_length: string | null,
+  size_formal_shirt: string | null,
+  size_formal_shirt_fit: string | null,
+  size_formal_trouser: string | null,
+  size_formal_trouser_drop: string | null,
+  size_formal_trouser_leg: string | null,
+  size_jacket: string | null,
+  size_pant: string | null,
+  size_shoe: string | null,
+  size_type_age: string | null,
+  size_type_region: string | null,
+  size_top: string | null,
+  size_gloves: string | null,
+  size_swimwear_top: string | null,
+  size_swimwear_bottom: string | null,
+  size_swimwear_cup: string | null,
+  size_dress: string | null,
+  skin_type: string | null,
+  measurement_arm: string | null,
+  measurement_arm_inside: string | null,
+  measurement_bust: string | null,
+  measurement_chest: string | null,
+  measurement_foot_length: string | null,
+  measurement_head: string | null,
+  measurement_height: string | null,
+  measurement_hip: string | null,
+  measurement_leg_inside: string | null,
+  measurement_leg_outside: string | null,
+  measurement_neck: string | null,
+  measurement_neck_to_wrist: string | null,
+  measurement_shoulders: string | null,
+  measurement_waist: string | null,
+  measurement_weight: string | null,
+  brow_colour: string | null,
+  eye_colour: string | null,
+  measurement_hand_right_thumb: string | null,
+  measurement_hand_right_index: string | null,
+  measurement_hand_right_middle: string | null,
+  measurement_hand_right_ring: string | null,
+  measurement_hand_right_pinky: string | null,
+  measurement_hand_left_thumb: string | null,
+  measurement_hand_left_index: string | null,
+  measurement_hand_left_middle: string | null,
+  measurement_hand_left_ring: string | null,
+  measurement_hand_left_pinky: string | null,
+  measurement_ear_helix: string | null,
+  measurement_ear_forward_helix: string | null,
+  measurement_ear_flat: string | null,
+  measurement_ear_conch: string | null,
+  measurement_ear_tragus: string | null,
+  measurement_ear_lobe: string | null,
+  created_at: Date,
+  updated_at: Date
+}
+
+export type ProfileDates = {}
+
+export type NormalHour = {
+  id: number
+  location_id: number
+  day_of_week: 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN'
+  open_at: string
+  close_at: string
+  created_at: Date
+  updated_at: Date
+}
+
+export type SpecialHour = {
+  id: number
+  location_id: number
+  name: string
+  is_repeating: boolean
+  open_at: string
+  close_at: string
+  start_at: Date
+  end_at: Date
+  created_at: Date
+  updated_at: Date
+}
+
+export type Location = {
+  id: number
+  type: string
+  name: string
+  description: string
+  phone: string
+  email: string
+  timezone: string
+  external_id: string
+  external_code: string
+  is_published: boolean
+  is_permanently_closed: boolean
+  address: Address
+  normal_hours: Array<NormalHour>
+  special_hours: Array<SpecialHour>
+}
+export type Tier = {
+  id: number
+  profile_id: string
+  name: string
+  handle: string
+  anniversary_at: Date
+  maintained_at: Date
+  assigned_at: Date | null
+  achieved_at: Date
+}
+export type Region = {
+  id: number
+  name: string
+  handle: string
+  is_active: boolean
+  country: string | null
+  state: string | null
+  created_at: Date
+  updated_at: Date
+}
+
+export type CustomAttribute = {}
+
 export type Profile = {
+  id: string
+  title: string
+  first_name: string
+  last_name: string
+  email: string
+  gender: 'male' | 'female' | 'witheld' | 'other'
+  currency: 'string'
+  joined_at: Date
+  mobile_phone: string | null
+  mobile_phone_country: string | null
+  mobile_phone_national: string | null
+  mobile_phone_national_prefix: string | null
+  mobile_phone_e164: string | null
+  secondary_phone: string
+  birth_day: number
+  birth_month: number
+  birth_year: number
+  company: string
+  occupation: string
+  avatar_url: string
+  is_completed: boolean
+  joined_location_id: number
+  joined_location: Location
+  custom_fields: {[key: string]: any}
+  preferred_location_id: number
+  preferred_location: Location
+  tier_handle: string | null
+  tier: Tier | null
+  birth_date: string
+  birth_days: number
+  birth_days_past: number
+  next_birthday: Date
   identities: Array<Identity>
+  tags: Array<string>
   attributes: {
     comms: ProfileComms
+    appearance: ProfileAppearance
+    dates: ProfileDates
   }
+  statuses: Array<string>
+  statuses_original: Array<string>
+  custom_attributes: Array<CustomAttribute>
+  address: Address
+  addresses: Array<Address>
+  reward_balance: number,
+  point_balance: number,
+  combined_balance_dollars: number
+  point_balance_dollars: number
+  profile_type: 'pending' | 'temporary' | 'active' | 'deleted'
+  region: Region
+  regions: Array<Region>
+  updated_at: Date
+  created_at: Date
 }
 
 export type RequestParams = {[key: string]: any}
