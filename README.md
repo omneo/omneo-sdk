@@ -72,5 +72,5 @@ Here are some examples using the sdk
   const isSubscribed = client.isSubscribed(profile.attributes.comms, 'email')
 
   // Check if a profile is unsubscribed from a platform
-  const isUnsubscribed = client.isSubscribed(profile.attributes.comms, 'phone')
+  const isUnsubscribed = client.isUnsubscribed(profile.attributes.comms, 'phone')
 ```
