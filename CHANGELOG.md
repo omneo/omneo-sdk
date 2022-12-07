@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/omneo/omneo-sdk/compare/v1.1.0...v1.2.0) (2022-12-07)
+
+
+### Features
+
+* add profile lists ([1ec421a](https://github.com/omneo/omneo-sdk/commit/1ec421af2b1fd78181e13b8e4c6444e6f8b0eabe))
+
 # [1.1.0](https://github.com/omneo/omneo-sdk/compare/v1.0.0...v1.1.0) (2022-12-07)
 
 
