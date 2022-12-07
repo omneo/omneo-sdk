@@ -1,5 +1,11 @@
 export type OmneoConfig = {}
 
+export type OmneoClassOptions = {
+  config?: OmneoConfig,
+  tenant: string,
+  token: string
+}
+
 export type Identity = {
   namespace: string,
   identifier: string,

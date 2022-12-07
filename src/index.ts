@@ -1,4 +1,4 @@
-import { OmneoConfig, OmneoRequest, Profile, Identity, RequestParams, ProfileComms, Transaction, IdentityRequest, Address, AddressUpdateRequest, AddressRequest } from './types'
+import { OmneoConfig, OmneoRequest, Profile, Identity, RequestParams, ProfileComms, Transaction, IdentityRequest, Address, AddressUpdateRequest, AddressRequest, OmneoClassOptions } from './types'
 import axios, { AxiosResponse } from 'axios'
 
 export class Omneo {
@@ -6,11 +6,13 @@ export class Omneo {
   token: string
   config: OmneoConfig
   baseURL: string
-  constructor (tenant: string, token: string, config?: OmneoConfig) {
+  constructor (options: OmneoClassOptions) {
+    const { config, tenant, token } = options
+
     this.tenant = tenant
     this.config = config || {}
     this.token = token
-    this.baseURL = `https://api.${tenant}.getomneo.com`
+    this.baseURL = `https://api.${tenant}.getomneo.com/api/v3`
   }
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
@@ -18,15 +20,15 @@ export class Omneo {
     const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()
     return axios({
       method,
+      url: `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`,
       headers: {
-        url: `${this.baseURL}${endpoint}${queryParams && `?${queryParams}`}`,
         Authorization: `Bearer ${this.token}`
       },
       data: body
     })
   }
 
-  async getProfileByEmail (email: string, params: RequestParams): Promise<Profile|undefined> {
+  async getProfileByEmail (email: string, params?: RequestParams): Promise<Profile|undefined> {
     return this.call({
       method: 'get',
       endpoint: '/profiles',
@@ -36,7 +38,7 @@ export class Omneo {
     })
   }
 
-  async getProfileByID (id: string, params: RequestParams): Promise<Profile|undefined> {
+  async getProfileByID (id: string, params?: RequestParams): Promise<Profile> {
     return this.call({
       method: 'get',
       endpoint: `/profiles/${id}`,
@@ -95,17 +97,7 @@ export class Omneo {
     return false
   }
 
-  async getProfile (id: string, params: RequestParams): Promise<Profile> {
-    return this.call({
-      method: 'get',
-      endpoint: `/profiles/${id}`,
-      params
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  async createProfile (body: any, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile|undefined> {
+  async createProfile (body: any, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
     return this.call({
       method: 'post',
       endpoint: '/profiles',
@@ -129,7 +121,7 @@ export class Omneo {
     })
   }
 
-  async updateProfile (id: string, body: any, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile|undefined> {
+  async updateProfile (id: string, body: any, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
     return this.call({
       method: 'put',
       endpoint: `/profiles/${id}`,
