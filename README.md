@@ -41,8 +41,8 @@ import with ES6 like this:
 import omneo from '@omneo/omneo-sdk'
 
 const client = new Omneo({
-  token: 'your token',
-  tenant: 'your omneo tenant'
+  token: 'Your token',
+  tenant: 'Your omneo tenant'
 })
 ```
 
