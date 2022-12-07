@@ -240,4 +240,14 @@ export class Omneo {
       return response.data
     })
   }
+
+  async getProfileLists (profileID: string, params: RequestParams): Promise<any> {
+    return this.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/lists`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
 }
