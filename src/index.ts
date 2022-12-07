@@ -211,6 +211,15 @@ export class Omneo {
     })
   }
 
+  async deleteProfileIdentity (profileID: string, identityID: string): Promise<Identity> {
+    return this.call({
+      method: 'delete',
+      endpoint: `/profiles/${profileID}/identities/${identityID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   async createProfileAddress (profileID: string, body: AddressRequest): Promise<Address> {
     return this.call({
       method: 'post',
