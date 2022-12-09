@@ -20,7 +20,7 @@ import updateProfileAddress from './updateProfileAddress'
 import updateTransaction from './updateTransaction'
 import subscribe from './subscribe'
 import unsubscribe from './unsubscribe'
-import createProfileInteraction from './createProfileInteraction'
+import createInteraction from './createProfileInteraction'
 import getProfileInteractions from './getProfileInteractions'
 import getProfileRewards from './getProfileRewards'
 
@@ -47,7 +47,7 @@ export = {
   updateTransaction,
   subscribe,
   unsubscribe,
-  createProfileInteraction,
+  createInteraction,
   getProfileInteractions,
   getProfileRewards
 }
