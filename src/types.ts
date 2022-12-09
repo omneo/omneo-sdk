@@ -370,29 +370,29 @@ export type Interaction = {
 }
 
 export type InteractionRequest = {
-  identifier: string | {
+  identifier?: string | {
     id: string
     handle: string
   }
-  profile_id: string
+  profile_id?: string
   action: InteractionAction
   channel: InteractionChannel
   signal: -1 | 0 | 1
   name: string
   namespace: string
-  latitude: string | null
-  longitude: string | null
-  description: string | null
-  url: string | null
-  duration: string | null
-  location_id: number | null
-  location: Location | null
-  product_id: number | null
-  staff_id: number | null
-  product_category_id: number | null
-  product_variant_id: number | null
-  tags: Array<string>
-  interacted_at: Date | null
+  latitude?: string | null
+  longitude?: string | null
+  description?: string | null
+  url?: string | null
+  duration?: string | null
+  location_id?: number | null
+  location?: Location | null
+  product_id?: number | null
+  staff_id?: number | null
+  product_category_id?: number | null
+  product_variant_id?: number | null
+  tags?: Array<string>
+  interacted_at?: Date | null
 }
 
 export type RewardDefinition = {
