@@ -50,17 +50,20 @@ const client = new Omneo({
 
 Here are some examples using the sdk
 
-### Profile Functions
+### Profiles
 
 ```typescript
   // Retrieve a single profile
   const profile = await client.getProfileByID('97e9c263-0f79-4e73-b734-bb19fb453d5d')
   
+  // Search for an identity in a profile object
+  const shopifyIdentity = client.findIdentityInProfile(profile, { namespace: 'shopify' })
+
   // Retrieve a profile by email
   const profileByEmail = await client.getProfileByEmail('john@example.com')
 
   // Retrieve a profile by identity
-  const profileByEmail = await client.getProfileByIdentity('399142', 'shopify')
+  const profileByIdentity = await client.getProfileByIdentity('399142', 'shopify')
 
   // Check if mobile is available
   const mobileAvailability = await client.checkAvailability({mobile_phone: '0404113331'})
@@ -71,6 +74,51 @@ Here are some examples using the sdk
   // Check if a profile is subscribed from a platform
   const isSubscribed = client.isSubscribed(profile.attributes.comms, 'email')
 
+  // A quick way to subscribe a profile
+  const subscribe = client.subscribe(profile.id, 'email')
+
   // Check if a profile is unsubscribed from a platform
   const isUnsubscribed = client.isUnsubscribed(profile.attributes.comms, 'phone')
+
+  // A quick way to unsubscribe a profile
+  const unsubscribe = client.unsubscribe(profile.id, 'email', { toggleOptOut: false })
+```
+
+## Profile Address
+
+```typescript
+  const profile = await client.getProfileByID('97e9c263-0f79-4e73-b734-bb19fb453d5d')
+  const address = {
+    address_line_1: '123 George St',
+    city: 'Melbourne',
+    state: 'VIC',
+    iso: 'AU',
+    country: 'Australia',
+    iso_state: 'VIC',
+    postcode: '3000'
+  }
+
+  const newAddress = await client.createProfileAddress(profile.id, address)
+
+  // Delete the address
+  await client.deleteProfileAddress(profile.id, newAddress.id)
+```
+
+## Interactions
+
+```typescript
+  const interaction = {
+    action: 'broadcast',
+    channel: 'email',
+    signal: 1,
+    name: 'Subscribed to campaign',
+    namespace: 'mailchimp',
+    profile_id: '97e9c263-0f79-4e73-b734-bb19fb453d5d'
+  }
+
+  // Create an Interaction
+  const interactionResponse = await client.createProfileInteraction(interaction)
+  
+  // Get a profiles interactions
+  const interactions = await client.getProfileInteractions(profile.id)
 ```
