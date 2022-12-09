@@ -18,6 +18,11 @@ import isUnsubscribed from './isUnsubscribed'
 import updateProfile from './updateProfile'
 import updateProfileAddress from './updateProfileAddress'
 import updateTransaction from './updateTransaction'
+import subscribe from './subscribe'
+import unsubscribe from './unsubscribe'
+import createProfileInteraction from './createProfileInteraction'
+import getProfileInteractions from './getProfileInteractions'
+import getProfileRewards from './getProfileRewards'
 
 export = {
   checkAvailability,
@@ -39,5 +44,10 @@ export = {
   isUnsubscribed,
   updateProfile,
   updateProfileAddress,
-  updateTransaction
+  updateTransaction,
+  subscribe,
+  unsubscribe,
+  createProfileInteraction,
+  getProfileInteractions,
+  getProfileRewards
 }

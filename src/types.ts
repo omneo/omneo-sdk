@@ -322,6 +322,13 @@ export type Profile = {
   created_at: Date
 }
 
+export type ProfileBalances = {
+  reward_balance: number
+  point_balance: number
+  point_balance_dollars: number
+  combined_balance_dollars: number
+}
+
 export type RequestParams = {[key: string]: any}
 
 export type RequestBody = {[key: string]: any}
@@ -331,4 +338,110 @@ export type OmneoRequest = {
   endpoint: string,
   params?: RequestParams,
   body?: RequestBody
+}
+
+export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
+
+export type InteractionChannel= 'app' | 'email' | 'location' | 'push' | 'sms' | 'social' | 'support' | 'website'
+export type InteractionAction = 'broadcast' | 'disclose' | 'feedback' | 'product' | 'reach' | 'refer' | 'service' | 'visit' | 'view'
+export type Interaction = {
+  id: number
+  identity: string | null
+  action: InteractionAction
+  channel: InteractionChannel
+  signal: -1 | 0 | 1
+  name: string
+  namespace: string
+  latitude: string | null
+  longitude: string | null
+  description: string | null
+  url: string | null
+  duration: string | null
+  location_id: number | null
+  location: Location | null
+  product_id: number | null
+  staff_id: number | null
+  product_category_id: number | null
+  product_variant_id: number | null
+  tags: Array<string>
+  created_at: Date
+  updated_at: Date
+  interacted_at: Date | null
+}
+
+export type InteractionRequest = {
+  identifier: string | {
+    id: string
+    handle: string
+  }
+  profile_id: string
+  action: InteractionAction
+  channel: InteractionChannel
+  signal: -1 | 0 | 1
+  name: string
+  namespace: string
+  latitude: string | null
+  longitude: string | null
+  description: string | null
+  url: string | null
+  duration: string | null
+  location_id: number | null
+  location: Location | null
+  product_id: number | null
+  staff_id: number | null
+  product_category_id: number | null
+  product_variant_id: number | null
+  tags: Array<string>
+  interacted_at: Date | null
+}
+
+export type RewardDefinition = {
+  id: number
+  name: string
+  handle: string
+  period: number
+  description: string | null
+  short_description: string | null
+  long_description: string | null
+  terms_conditions: string | null
+  earn_instructions: string | null
+  icon: string | null
+  image_url: string | null
+  issue_target_id: number
+  expiry_target_id: number
+  notify_issue_offset: number | null
+  notify_expiry_offset: number | null
+  internal_notes: string | null
+  type: 'activation' | 'anniversary' | 'birthday' | 'bonus' | 'campaign' | 'customer-service' | 'reactivation' | 'spend' | 'staff' | 'system-adjustment' | 'tier' | 'achievement' | 'status' | 'points' | 'referral' | 'other'
+  value: number
+  is_extendable: boolean
+  is_assignable: boolean
+  is_reassignable: boolean
+  is_published: boolean
+  tags: Array<string>
+  created_at: Date
+  updated_at: Date
+}
+
+export type Reward = {
+  id: number
+  profile_id: string
+  timezone: string
+  value_initial: number
+  value_remaining: number
+  has_notified_issue: boolean
+  has_notified_expiry: boolean
+  expires_at: Date
+  issued_at: Date
+  is_expired: boolean
+  is_active: boolean
+  issued_local_at: Date
+  expires_local_at: Date | null
+  notify_issue_at: Date | null
+  notify_expiry_at: Date | null
+  extended_at: Date | null
+  definition: RewardDefinition
+  meta: {[key: string]: any} | null
+  created_at: Date
+  updated_at: Date
 }
