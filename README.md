@@ -121,4 +121,13 @@ Here are some examples using the sdk
   
   // Get a profiles interactions
   const interactions = await client.getProfileInteractions(profile.id)
+
+  const searchParams = {
+    'filter[namespace]': 'mailchimp',
+    'filter[signal]': 0,
+    'filter[channel]': 'service'
+  }
+  
+  const filteredInteractions = await client.getProfileInteractions(profile.id, searchParams)
+
 ```
