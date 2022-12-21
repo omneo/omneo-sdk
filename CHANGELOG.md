@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/omneo/omneo-sdk/compare/v1.6.0...v1.6.1) (2022-12-21)
+
+
+### Bug Fixes
+
+* return full body in listTransactions/Profiles ([4cc06fb](https://github.com/omneo/omneo-sdk/commit/4cc06fbb950f3106025803e5e79499e25074cd55))
+
 # [1.6.0](https://github.com/omneo/omneo-sdk/compare/v1.5.0...v1.6.0) (2022-12-21)
 
 
