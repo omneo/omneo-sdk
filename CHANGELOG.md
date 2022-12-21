@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/omneo/omneo-sdk/compare/v1.3.0...v1.4.0) (2022-12-21)
+
+
+### Features
+
+* Add List profiles/transactions ([d5c2037](https://github.com/omneo/omneo-sdk/commit/d5c2037585462b3776850ac3d66c8535a12341a5))
+
 # [1.3.0](https://github.com/omneo/omneo-sdk/compare/v1.2.0...v1.3.0) (2022-12-09)
 
 
