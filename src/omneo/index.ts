@@ -23,6 +23,8 @@ import unsubscribe from './unsubscribe'
 import createInteraction from './createProfileInteraction'
 import getProfileInteractions from './getProfileInteractions'
 import getProfileRewards from './getProfileRewards'
+import listProfiles from './listProfiles'
+import listTransactions from './listTransactions'
 
 export = {
   checkAvailability,
@@ -49,5 +51,7 @@ export = {
   unsubscribe,
   createInteraction,
   getProfileInteractions,
-  getProfileRewards
+  getProfileRewards,
+  listProfiles,
+  listTransactions
 }
