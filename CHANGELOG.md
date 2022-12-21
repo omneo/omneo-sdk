@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/omneo/omneo-sdk/compare/v1.5.0...v1.6.0) (2022-12-21)
+
+
+### Features
+
+* add profile points ([574294a](https://github.com/omneo/omneo-sdk/commit/574294a509bf0d1c334981d704dcb8726e827b78))
+
 # [1.5.0](https://github.com/omneo/omneo-sdk/compare/v1.4.0...v1.5.0) (2022-12-21)
 
 
