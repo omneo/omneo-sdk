@@ -1,12 +1,12 @@
 import { Omneo } from '..'
 import { Profile, RequestParams } from '../types'
 
-async function listProfiles (this: Omneo, params?: RequestParams): Promise<Array<Profile>> {
+async function listProfiles (this: Omneo, params?: RequestParams): Promise<{data: Array<Profile>, links: any, meta: any}> {
   return this.call({
     method: 'get',
     endpoint: '/profiles',
     params
-  }).then((response) => {
+  }).then((response: any) => {
     return response.data
   })
 }
