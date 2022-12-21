@@ -25,6 +25,7 @@ import getProfileInteractions from './getProfileInteractions'
 import getProfileRewards from './getProfileRewards'
 import listProfiles from './listProfiles'
 import listTransactions from './listTransactions'
+import getProfilePoints from './getProfilePoints'
 
 export = {
   checkAvailability,
@@ -53,5 +54,6 @@ export = {
   getProfileInteractions,
   getProfileRewards,
   listProfiles,
-  listTransactions
+  listTransactions,
+  getProfilePoints
 }

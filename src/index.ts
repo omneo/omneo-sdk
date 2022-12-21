@@ -39,6 +39,7 @@ export class Omneo {
   public updateTransaction = omneoFunctions.updateTransaction.bind(this)
   public listProfiles = omneoFunctions.listProfiles.bind(this)
   public listTransactions = omneoFunctions.listTransactions.bind(this)
+  public getProfilePoints = omneoFunctions.getProfilePoints.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams
