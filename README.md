@@ -38,7 +38,7 @@ Please review the [Authentication Docs](https://omneo.readme.io/docs/authenticat
 import with ES6 like this:
 
 ```typescript
-import omneo from '@omneo/omneo-sdk'
+import { Omneo } from '@omneo/omneo-sdk'
 
 const client = new Omneo({
   token: 'Your token',
