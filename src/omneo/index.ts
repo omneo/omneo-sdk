@@ -26,6 +26,7 @@ import getProfileRewards from './getProfileRewards'
 import listProfiles from './listProfiles'
 import listTransactions from './listTransactions'
 import getProfilePoints from './getProfilePoints'
+import queueTransaction from './queueTransaction'
 
 export = {
   checkAvailability,
@@ -55,5 +56,6 @@ export = {
   getProfileRewards,
   listProfiles,
   listTransactions,
-  getProfilePoints
+  getProfilePoints,
+  queueTransaction
 }
