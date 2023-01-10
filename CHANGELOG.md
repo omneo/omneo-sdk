@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/omneo/omneo-sdk/compare/v1.6.1...v1.7.0) (2023-01-10)
+
+
+### Features
+
+* Add queue transaction ([782184f](https://github.com/omneo/omneo-sdk/commit/782184f01d274c5e48c5af74637d2d9b5a04554d))
+
 ## [1.6.1](https://github.com/omneo/omneo-sdk/compare/v1.6.0...v1.6.1) (2022-12-21)
 
 
