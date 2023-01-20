@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/omneo/omneo-sdk/compare/v1.8.0...v1.9.0) (2023-01-20)
+
+
+### Features
+
+* add getProducts ([9324636](https://github.com/omneo/omneo-sdk/commit/932463697c07bd887c9dc5e3f56d942e9a262db1))
+
 # [1.8.0](https://github.com/omneo/omneo-sdk/compare/v1.7.0...v1.8.0) (2023-01-20)
 
 
