@@ -27,6 +27,7 @@ import listProfiles from './listProfiles'
 import listTransactions from './listTransactions'
 import getProfilePoints from './getProfilePoints'
 import queueTransaction from './queueTransaction'
+import getTenantCustomFields from './getTenantCustomFields'
 
 export = {
   checkAvailability,
@@ -57,5 +58,6 @@ export = {
   listProfiles,
   listTransactions,
   getProfilePoints,
-  queueTransaction
+  queueTransaction,
+  getTenantCustomFields
 }
