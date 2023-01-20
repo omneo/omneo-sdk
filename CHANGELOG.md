@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/omneo/omneo-sdk/compare/v1.7.0...v1.8.0) (2023-01-20)
+
+
+### Features
+
+* getTenantCustomFields ([3cbbec3](https://github.com/omneo/omneo-sdk/commit/3cbbec3ee8152d294764474427e4d8236c1428dc))
+
 # [1.7.0](https://github.com/omneo/omneo-sdk/compare/v1.6.1...v1.7.0) (2023-01-10)
 
 
