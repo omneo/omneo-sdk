@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/omneo/omneo-sdk/compare/v1.9.0...v1.9.1) (2023-01-22)
+
+
+### Bug Fixes
+
+* Remove namespace from identity types ([4f3f02c](https://github.com/omneo/omneo-sdk/commit/4f3f02c1f63eb7c5655ef295a2d4b65991c669a8))
+
 # [1.9.0](https://github.com/omneo/omneo-sdk/compare/v1.8.0...v1.9.0) (2023-01-20)
 
 
