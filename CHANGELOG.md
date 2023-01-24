@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/omneo/omneo-sdk/compare/v1.10.0...v1.10.1) (2023-01-24)
+
+
+### Bug Fixes
+
+* Remove data property from createAPIToken response ([e28395b](https://github.com/omneo/omneo-sdk/commit/e28395be0c0d5fd1544bf7bb370796b596cd259c))
+
 # [1.10.0](https://github.com/omneo/omneo-sdk/compare/v1.9.1...v1.10.0) (2023-01-24)
 
 
