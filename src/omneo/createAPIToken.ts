@@ -7,7 +7,7 @@ async function createAPIToken (this: Omneo, body: APITokenRequest): Promise<any>
     endpoint: '/auth/api-tokens',
     body
   }).then((response) => {
-    return response.data
+    return response
   })
 }
 
