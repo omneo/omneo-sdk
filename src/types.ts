@@ -476,3 +476,18 @@ export type Point = {
   description: string | null,
   meta: object | null
 }
+
+export type TenantCustomFieldTypes = 'string' | 'integer' | 'float' | 'boolean' | 'json' | 'array'
+
+export type TenantCustomFieldRequest = {
+  name: string,
+  handle: string,
+  namespace: string,
+  value: any,
+  type: TenantCustomFieldTypes
+}
+
+export type APITokenRequest = {
+  name: string,
+  scopes: Array<string>
+}

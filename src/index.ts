@@ -41,8 +41,12 @@ export class Omneo {
   public listTransactions = omneoFunctions.listTransactions.bind(this)
   public getProfilePoints = omneoFunctions.getProfilePoints.bind(this)
   public queueTransaction = omneoFunctions.queueTransaction.bind(this)
-  public getTenantCustomFields = omneoFunctions.getTenantCustomFields.bind(this)
   public getProducts = omneoFunctions.getProducts.bind(this)
+  public getTenantCustomFields = omneoFunctions.getTenantCustomFields.bind(this)
+  public createTenantCustomField = omneoFunctions.createTenantCustomField.bind(this)
+  public updateTenantCustomField = omneoFunctions.updateTenantCustomField.bind(this)
+  public createAPIToken = omneoFunctions.createAPIToken.bind(this)
+  public getEnvironmentSettings = omneoFunctions.getEnvironmentSettings.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams

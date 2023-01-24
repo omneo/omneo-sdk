@@ -27,8 +27,12 @@ import listProfiles from './listProfiles'
 import listTransactions from './listTransactions'
 import getProfilePoints from './getProfilePoints'
 import queueTransaction from './queueTransaction'
-import getTenantCustomFields from './getTenantCustomFields'
 import getProducts from './getProducts'
+import getTenantCustomFields from './getTenantCustomFields'
+import createTenantCustomField from './createTenantCustomField'
+import updateTenantCustomField from './updateTenantCustomField'
+import createAPIToken from './createAPIToken'
+import getEnvironmentSettings from './getEnvironmentSettings'
 
 export = {
   checkAvailability,
@@ -45,6 +49,7 @@ export = {
   getProfileByID,
   getProfileByIdentity,
   getProfileLists,
+  getProducts,
   getTransaction,
   isSubscribed,
   isUnsubscribed,
@@ -61,5 +66,8 @@ export = {
   getProfilePoints,
   queueTransaction,
   getTenantCustomFields,
-  getProducts
+  createTenantCustomField,
+  updateTenantCustomField,
+  createAPIToken,
+  getEnvironmentSettings
 }
