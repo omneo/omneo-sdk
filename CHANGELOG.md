@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/omneo/omneo-sdk/compare/v1.9.1...v1.10.0) (2023-01-24)
+
+
+### Features
+
+* Add createAPITokens, getEnvironmentSettings, updateTenantCustomField, createTenantCustomField ([e68ab26](https://github.com/omneo/omneo-sdk/commit/e68ab265f45adacd8b934b21b22dd85cde988b81))
+
 ## [1.9.1](https://github.com/omneo/omneo-sdk/compare/v1.9.0...v1.9.1) (2023-01-22)
 
 
