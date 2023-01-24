@@ -33,6 +33,7 @@ import createTenantCustomField from './createTenantCustomField'
 import updateTenantCustomField from './updateTenantCustomField'
 import createAPIToken from './createAPIToken'
 import getEnvironmentSettings from './getEnvironmentSettings'
+import deleteTenantCustomField from './deleteTenantCustomField'
 
 export = {
   checkAvailability,
@@ -68,6 +69,7 @@ export = {
   getTenantCustomFields,
   createTenantCustomField,
   updateTenantCustomField,
+  deleteTenantCustomField,
   createAPIToken,
   getEnvironmentSettings
 }

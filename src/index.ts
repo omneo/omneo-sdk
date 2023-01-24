@@ -45,6 +45,7 @@ export class Omneo {
   public getTenantCustomFields = omneoFunctions.getTenantCustomFields.bind(this)
   public createTenantCustomField = omneoFunctions.createTenantCustomField.bind(this)
   public updateTenantCustomField = omneoFunctions.updateTenantCustomField.bind(this)
+  public deleteTenantCustomField = omneoFunctions.deleteTenantCustomField.bind(this)
   public createAPIToken = omneoFunctions.createAPIToken.bind(this)
   public getEnvironmentSettings = omneoFunctions.getEnvironmentSettings.bind(this)
 
