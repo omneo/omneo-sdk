@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/omneo/omneo-sdk/compare/v1.10.1...v1.11.0) (2023-01-24)
+
+
+### Features
+
+* Add deleteTenantCustomField ([7ff9106](https://github.com/omneo/omneo-sdk/commit/7ff9106448fb2dd444189d296a9b5b6aba313ba7))
+
 ## [1.10.1](https://github.com/omneo/omneo-sdk/compare/v1.10.0...v1.10.1) (2023-01-24)
 
 
