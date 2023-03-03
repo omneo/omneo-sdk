@@ -34,6 +34,8 @@ import updateTenantCustomField from './updateTenantCustomField'
 import createAPIToken from './createAPIToken'
 import getEnvironmentSettings from './getEnvironmentSettings'
 import deleteTenantCustomField from './deleteTenantCustomField'
+import getProfileComms from './getProfileComms'
+import getProfileAppearance from './getProfileAppearance'
 
 export = {
   checkAvailability,
@@ -71,5 +73,7 @@ export = {
   updateTenantCustomField,
   deleteTenantCustomField,
   createAPIToken,
-  getEnvironmentSettings
+  getEnvironmentSettings,
+  getProfileComms,
+  getProfileAppearance
 }
