@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/omneo/omneo-sdk/compare/v1.11.0...v1.12.0) (2023-03-03)
+
+
+### Features
+
+* add profile comms and appearance ([1419b4a](https://github.com/omneo/omneo-sdk/commit/1419b4a20fe1d159f4b284f7276e7be1a36ab0b2))
+
 # [1.11.0](https://github.com/omneo/omneo-sdk/compare/v1.10.1...v1.11.0) (2023-01-24)
 
 
