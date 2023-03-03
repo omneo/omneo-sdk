@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/omneo/omneo-sdk/compare/v1.13.1...v1.13.2) (2023-03-03)
+
+
+### Bug Fixes
+
+* Return correct type for profile comms/appearance ([7992966](https://github.com/omneo/omneo-sdk/commit/7992966b277f1ab845fbe01aa462bf8508f42bf8))
+
 ## [1.13.1](https://github.com/omneo/omneo-sdk/compare/v1.13.0...v1.13.1) (2023-03-03)
 
 
