@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/omneo/omneo-sdk/compare/v1.13.0...v1.13.1) (2023-03-03)
+
+
+### Bug Fixes
+
+* Add location to transaction item and fix build step ([912497f](https://github.com/omneo/omneo-sdk/commit/912497f1e4ddbc67cd308b1445f1904f77b873d9))
+
 # [1.13.0](https://github.com/omneo/omneo-sdk/compare/v1.12.0...v1.13.0) (2023-03-03)
 
 
