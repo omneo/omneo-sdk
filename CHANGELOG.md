@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/omneo/omneo-sdk/compare/v1.12.0...v1.13.0) (2023-03-03)
+
+
+### Features
+
+* add transaction types ([74ece45](https://github.com/omneo/omneo-sdk/commit/74ece4539740f755cb24c849228f6a127a5b8144))
+
 # [1.12.0](https://github.com/omneo/omneo-sdk/compare/v1.11.0...v1.12.0) (2023-03-03)
 
 
