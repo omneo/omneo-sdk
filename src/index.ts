@@ -48,6 +48,8 @@ export class Omneo {
   public deleteTenantCustomField = omneoFunctions.deleteTenantCustomField.bind(this)
   public createAPIToken = omneoFunctions.createAPIToken.bind(this)
   public getEnvironmentSettings = omneoFunctions.getEnvironmentSettings.bind(this)
+  public getProfileComms = omneoFunctions.getProfileComms.bind(this)
+  public getProfileAppearance = omneoFunctions.getProfileAppearance.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams
