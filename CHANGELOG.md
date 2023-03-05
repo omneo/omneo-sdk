@@ -1,3 +1,10 @@
+## [1.13.3](https://github.com/omneo/omneo-sdk/compare/v1.13.2...v1.13.3) (2023-03-05)
+
+
+### Bug Fixes
+
+* remove commas in types ([a3a940c](https://github.com/omneo/omneo-sdk/commit/a3a940cdc4eef2515150941dd61104b2038a1adb))
+
 ## [1.13.2](https://github.com/omneo/omneo-sdk/compare/v1.13.1...v1.13.2) (2023-03-03)
 
 
