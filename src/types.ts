@@ -1,3 +1,7 @@
+import omneo from './omneo'
+
+export type Omneo = typeof omneo
+
 export type OmneoConfig = {}
 
 export type OmneoClassOptions = {
