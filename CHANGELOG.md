@@ -1,3 +1,10 @@
+## [1.13.4](https://github.com/omneo/omneo-sdk/compare/v1.13.3...v1.13.4) (2023-03-06)
+
+
+### Bug Fixes
+
+* Add omneo type to types export ([17e720e](https://github.com/omneo/omneo-sdk/commit/17e720e218f7bf6a47c35e5ca786e8491a2051cc))
+
 ## [1.13.3](https://github.com/omneo/omneo-sdk/compare/v1.13.2...v1.13.3) (2023-03-05)
 
 
