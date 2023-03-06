@@ -1,3 +1,10 @@
+## [1.13.5](https://github.com/omneo/omneo-sdk/compare/v1.13.4...v1.13.5) (2023-03-06)
+
+
+### Bug Fixes
+
+* Add nulls to location ([448d820](https://github.com/omneo/omneo-sdk/commit/448d820dfa121c89b4b8f7a5cdb4f7ec4ccd8217))
+
 ## [1.13.4](https://github.com/omneo/omneo-sdk/compare/v1.13.3...v1.13.4) (2023-03-06)
 
 
