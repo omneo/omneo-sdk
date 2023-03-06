@@ -226,10 +226,10 @@ export type SpecialHour = {
 
 export type Location = {
   id: number
-  type: string
-  name: string
-  description: string
-  phone: string
+  type: string | null
+  name: string | null
+  description: string | null
+  phone: string | null
   email: string
   timezone: string
   external_id: string
