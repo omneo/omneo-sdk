@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/omneo/omneo-sdk/compare/v1.13.5...v1.14.0) (2023-03-07)
+
+
+### Features
+
+* add getLocationByID ([082f37e](https://github.com/omneo/omneo-sdk/commit/082f37ed8ba7d4d4aee326d6edc2c8eedf997ee7))
+
 ## [1.13.5](https://github.com/omneo/omneo-sdk/compare/v1.13.4...v1.13.5) (2023-03-06)
 
 
