@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/omneo/omneo-sdk/compare/v1.14.0...v1.14.1) (2023-03-07)
+
+
+### Bug Fixes
+
+*  change type of ID in location ([0fc1bf1](https://github.com/omneo/omneo-sdk/commit/0fc1bf1d6cbeeddda337e22143492a793a587ad6))
+
 # [1.14.0](https://github.com/omneo/omneo-sdk/compare/v1.13.5...v1.14.0) (2023-03-07)
 
 
