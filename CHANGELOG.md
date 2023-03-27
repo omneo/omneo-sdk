@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/omneo/omneo-sdk/compare/v1.14.1...v1.14.2) (2023-03-27)
+
+
+### Bug Fixes
+
+* Fix status and error check in createProfile for retryMobileSecondary ([44eab48](https://github.com/omneo/omneo-sdk/commit/44eab489c29dc40b42359d56c543e443cf8285d3))
+
 ## [1.14.1](https://github.com/omneo/omneo-sdk/compare/v1.14.0...v1.14.1) (2023-03-07)
 
 
