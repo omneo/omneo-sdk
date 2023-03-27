@@ -9,7 +9,7 @@ async function createProfile (this: Omneo, body: any, options: { retryMobileSeco
   }).then((response) => {
     return response.data
   }).catch(async (error) => {
-    if (error?.status !== 422 || !error?.body?.errors?.mobile_phone) {
+    if (error?.response?.status !== 422 || !error?.response?.data?.errors?.mobile_phone) {
       return Promise.reject(error)
     }
     if (!options.retryMobileSecondary) return
