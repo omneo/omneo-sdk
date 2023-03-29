@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/omneo/omneo-sdk/compare/v1.14.2...v1.14.3) (2023-03-29)
+
+
+### Bug Fixes
+
+* add createInteraction to sdk class ([f95385f](https://github.com/omneo/omneo-sdk/commit/f95385f93744412b73f4a4399a0fc5dc2d226014))
+
 ## [1.14.2](https://github.com/omneo/omneo-sdk/compare/v1.14.1...v1.14.2) (2023-03-27)
 
 
