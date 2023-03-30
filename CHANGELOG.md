@@ -1,3 +1,10 @@
+## [1.14.4](https://github.com/omneo/omneo-sdk/compare/v1.14.3...v1.14.4) (2023-03-30)
+
+
+### Bug Fixes
+
+* Fix bug where response data not returned in correct format when retryMobileSecondary is true ([d691fd7](https://github.com/omneo/omneo-sdk/commit/d691fd74a3fb9d77173ce313859459939a4e9cfa))
+
 ## [1.14.3](https://github.com/omneo/omneo-sdk/compare/v1.14.2...v1.14.3) (2023-03-29)
 
 
