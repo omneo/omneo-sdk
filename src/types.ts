@@ -339,7 +339,7 @@ export type OmneoRequest = {
 
 export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
 
-export type InteractionChannel= 'app' | 'email' | 'location' | 'push' | 'sms' | 'social' | 'support' | 'website'
+export type InteractionChannel = 'app' | 'email' | 'location' | 'push' | 'sms' | 'social' | 'support' | 'website'
 export type InteractionAction = 'broadcast' | 'disclose' | 'feedback' | 'product' | 'reach' | 'refer' | 'service' | 'visit' | 'view'
 export type Interaction = {
   id: number

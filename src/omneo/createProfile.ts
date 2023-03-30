@@ -21,6 +21,8 @@ async function createProfile (this: Omneo, body: any, options: { retryMobileSeco
       method: 'post',
       endpoint: '/profiles',
       body: payload
+    }).then((response) => {
+      return response.data
     })
   })
 }
