@@ -37,6 +37,8 @@ import deleteTenantCustomField from './deleteTenantCustomField'
 import getProfileComms from './getProfileComms'
 import getProfileAppearance from './getProfileAppearance'
 import getLocationByID from './getLocationByID'
+import createProduct from './createProduct'
+import updateProduct from './updateProduct'
 
 export = {
   checkAvailability,
@@ -77,5 +79,7 @@ export = {
   getEnvironmentSettings,
   getProfileComms,
   getProfileAppearance,
-  getLocationByID
+  getLocationByID,
+  createProduct,
+  updateProduct
 }
