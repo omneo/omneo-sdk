@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/omneo/omneo-sdk/compare/v1.14.4...v1.15.0) (2023-04-13)
+
+
+### Features
+
+* Add Create/Update products ([ad684f0](https://github.com/omneo/omneo-sdk/commit/ad684f021cad2859017ca0b09f0bbb8b6881fed1))
+
 ## [1.14.4](https://github.com/omneo/omneo-sdk/compare/v1.14.3...v1.14.4) (2023-03-30)
 
 
