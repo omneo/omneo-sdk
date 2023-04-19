@@ -54,6 +54,7 @@ export class Omneo {
   public getLocationByID = omneoFunctions.getLocationByID.bind(this)
   public createProduct = omneoFunctions.createProduct.bind(this)
   public updateProduct = omneoFunctions.updateProduct.bind(this)
+  public queueProduct = omneoFunctions.queueProduct.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams

@@ -39,6 +39,7 @@ import getProfileAppearance from './getProfileAppearance'
 import getLocationByID from './getLocationByID'
 import createProduct from './createProduct'
 import updateProduct from './updateProduct'
+import queueProduct from './queueProduct'
 
 export = {
   checkAvailability,
@@ -81,5 +82,6 @@ export = {
   getProfileAppearance,
   getLocationByID,
   createProduct,
-  updateProduct
+  updateProduct,
+  queueProduct
 }
