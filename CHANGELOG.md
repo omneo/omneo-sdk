@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/omneo/omneo-sdk/compare/v1.15.0...v1.16.0) (2023-04-19)
+
+
+### Features
+
+* Queue Product ([0b63d7c](https://github.com/omneo/omneo-sdk/commit/0b63d7cd6f4df0869f8c4f17d43fbfbd29dc4dad))
+
 # [1.15.0](https://github.com/omneo/omneo-sdk/compare/v1.14.4...v1.15.0) (2023-04-13)
 
 
