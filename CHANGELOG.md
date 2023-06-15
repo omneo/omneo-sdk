@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/omneo/omneo-sdk/compare/v1.16.0...v1.17.0) (2023-06-15)
+
+
+### Features
+
+* Add profile interaction ([34f79ad](https://github.com/omneo/omneo-sdk/commit/34f79ad5217cc5c23dbfe418ea363c7a5c2dc8e4))
+
 # [1.16.0](https://github.com/omneo/omneo-sdk/compare/v1.15.0...v1.16.0) (2023-04-19)
 
 
