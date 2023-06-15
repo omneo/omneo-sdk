@@ -21,7 +21,7 @@ export class Omneo {
   public createProfile = omneoFunctions.createProfile.bind(this)
   public createProfileAddress = omneoFunctions.createProfileAddress.bind(this)
   public createProfileIdentity = omneoFunctions.createProfileIdentity.bind(this)
-  public createInteraction = omneoFunctions.createInteraction.bind(this)
+  public createProfileInteraction = omneoFunctions.createProfileInteraction.bind(this)
   public createTransaction = omneoFunctions.createTransaction.bind(this)
   public deleteProfile = omneoFunctions.deleteProfile.bind(this)
   public deleteProfileAddress = omneoFunctions.deleteProfileAddress.bind(this)
