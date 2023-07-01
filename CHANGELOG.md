@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/omneo/omneo-sdk/compare/v1.17.0...v1.18.0) (2023-07-01)
+
+
+### Features
+
+* Add orders ([b6e6714](https://github.com/omneo/omneo-sdk/commit/b6e6714b5cf8d0990ee7dae1e6342f49637403a4))
+
 # [1.17.0](https://github.com/omneo/omneo-sdk/compare/v1.16.0...v1.17.0) (2023-06-15)
 
 
