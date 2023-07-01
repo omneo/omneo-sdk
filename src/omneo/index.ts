@@ -40,6 +40,8 @@ import getLocationByID from './getLocationByID'
 import createProduct from './createProduct'
 import updateProduct from './updateProduct'
 import queueProduct from './queueProduct'
+import listOrders from './listOrders'
+import getOrder from './getOrder'
 
 export = {
   checkAvailability,
@@ -83,5 +85,7 @@ export = {
   getLocationByID,
   createProduct,
   updateProduct,
-  queueProduct
+  queueProduct,
+  getOrder,
+  listOrders
 }

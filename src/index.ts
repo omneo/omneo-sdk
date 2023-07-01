@@ -55,7 +55,8 @@ export class Omneo {
   public createProduct = omneoFunctions.createProduct.bind(this)
   public updateProduct = omneoFunctions.updateProduct.bind(this)
   public queueProduct = omneoFunctions.queueProduct.bind(this)
-
+  public getOrder = omneoFunctions.getOrder.bind(this)
+  public listOrders = omneoFunctions.listOrders.bind(this)
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams
     const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()
