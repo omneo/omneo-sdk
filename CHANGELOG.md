@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/omneo/omneo-sdk/compare/v1.18.0...v1.19.0) (2023-07-03)
+
+
+### Features
+
+* Add createProfileByDelegation ([a052777](https://github.com/omneo/omneo-sdk/commit/a0527771e96c9eea9fcd9c3d49fdcc26b9003754))
+
 # [1.18.0](https://github.com/omneo/omneo-sdk/compare/v1.17.0...v1.18.0) (2023-07-01)
 
 
