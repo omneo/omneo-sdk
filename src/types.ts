@@ -552,3 +552,9 @@ export type Transaction = {
   created_at: Date
   updated_at: Date
 }
+
+export type DelegationData = {
+  type: string
+  url: string
+  enabled: boolean
+}

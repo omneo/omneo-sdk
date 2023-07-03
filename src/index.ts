@@ -19,6 +19,7 @@ export class Omneo {
 
   public checkAvailability = omneoFunctions.checkAvailability.bind(this)
   public createProfile = omneoFunctions.createProfile.bind(this)
+  public createProfileByDelegation = omneoFunctions.createProfileByDelegation.bind(this)
   public createProfileAddress = omneoFunctions.createProfileAddress.bind(this)
   public createProfileIdentity = omneoFunctions.createProfileIdentity.bind(this)
   public createProfileInteraction = omneoFunctions.createProfileInteraction.bind(this)
@@ -57,6 +58,7 @@ export class Omneo {
   public queueProduct = omneoFunctions.queueProduct.bind(this)
   public getOrder = omneoFunctions.getOrder.bind(this)
   public listOrders = omneoFunctions.listOrders.bind(this)
+
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams
     const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()

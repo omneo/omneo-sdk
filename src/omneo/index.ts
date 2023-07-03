@@ -1,5 +1,6 @@
 import checkAvailability from './checkAvailability'
 import createProfile from './createProfile'
+import createProfileByDelegation from './createProfileByDelegation'
 import createProfileAddress from './createProfileAddress'
 import createProfileIdentity from './createProfileIdentity'
 import createTransaction from './createTransaction'
@@ -46,6 +47,7 @@ import getOrder from './getOrder'
 export = {
   checkAvailability,
   createProfile,
+  createProfileByDelegation,
   createProfileAddress,
   createProfileIdentity,
   createTransaction,
