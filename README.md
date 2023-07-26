@@ -133,7 +133,7 @@ Here are some examples using the sdk
 ```
 
 # Using `call` directly
-If the SDK does not support and endpoint you are trying to use, you can always call the `call` method directly
+If the SDK does not support and endpoint you are trying to use, you can always use the `call` method directly
 All other functions use this method to call omneo. 
 
 
@@ -143,7 +143,7 @@ const client = new Omneo({
   tenant: 'Your omneo tenant'
 })
 
-const existingVariant = await omneoClient.call({
+const existingVariant = await client.call({
       method: 'get',
       endpoint: `/products/variants?filter[sku]=1234`
 })
