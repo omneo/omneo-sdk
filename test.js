@@ -1,1 +1,0 @@
-import { Omneo } from './src'
