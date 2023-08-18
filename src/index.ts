@@ -1,6 +1,15 @@
-import { OmneoConfig, OmneoRequest, OmneoClassOptions } from './types'
+import { OmneoConfig, OmneoRequest, OmneoClassOptions } from './types/omneo'
 import axios, { AxiosResponse } from 'axios'
-import omneoFunctions from './omneo'
+import Profile from './omneo/resources/profiles/index.js'
+import Orders from './omneo/resources/orders/index.js'
+import Transactions from './omneo/resources/transactions/index.js'
+import Products from './omneo/resources/products/index.js'
+import Settings from './omneo/resources/settings/index.js'
+import Locations from './omneo/resources/locations/index.js'
+import Auth from './omneo/resources/auth/index.js'
+import Tenants from './omneo/resources/tenants/index.js'
+
+export * from './types'
 
 export class Omneo {
   tenant: string
@@ -17,47 +26,14 @@ export class Omneo {
     this.baseURL = `https://api.${tenant}.getomneo.com/api/v3`
   }
 
-  public checkAvailability = omneoFunctions.checkAvailability.bind(this)
-  public createProfile = omneoFunctions.createProfile.bind(this)
-  public createProfileByDelegation = omneoFunctions.createProfileByDelegation.bind(this)
-  public createProfileAddress = omneoFunctions.createProfileAddress.bind(this)
-  public createProfileIdentity = omneoFunctions.createProfileIdentity.bind(this)
-  public createProfileInteraction = omneoFunctions.createProfileInteraction.bind(this)
-  public createTransaction = omneoFunctions.createTransaction.bind(this)
-  public deleteProfile = omneoFunctions.deleteProfile.bind(this)
-  public deleteProfileAddress = omneoFunctions.deleteProfileAddress.bind(this)
-  public deleteProfileIdentity = omneoFunctions.deleteProfileIdentity.bind(this)
-  public deleteTransaction = omneoFunctions.deleteTransaction.bind(this)
-  public findIdentityInProfile = omneoFunctions.findIdentityInProfile.bind(this)
-  public getProfileByEmail = omneoFunctions.getProfileByEmail.bind(this)
-  public getProfileByID = omneoFunctions.getProfileByID.bind(this)
-  public getProfileByIdentity = omneoFunctions.getProfileByIdentity.bind(this)
-  public getProfileLists = omneoFunctions.getProfileLists.bind(this)
-  public getTransaction = omneoFunctions.getTransaction.bind(this)
-  public isSubscribed = omneoFunctions.isSubscribed.bind(this)
-  public isUnsubscribed = omneoFunctions.isUnsubscribed.bind(this)
-  public updateProfile = omneoFunctions.updateProfile.bind(this)
-  public updateProfileAddress = omneoFunctions.updateProfileAddress.bind(this)
-  public updateTransaction = omneoFunctions.updateTransaction.bind(this)
-  public listProfiles = omneoFunctions.listProfiles.bind(this)
-  public listTransactions = omneoFunctions.listTransactions.bind(this)
-  public getProfilePoints = omneoFunctions.getProfilePoints.bind(this)
-  public queueTransaction = omneoFunctions.queueTransaction.bind(this)
-  public getProducts = omneoFunctions.getProducts.bind(this)
-  public getTenantCustomFields = omneoFunctions.getTenantCustomFields.bind(this)
-  public createTenantCustomField = omneoFunctions.createTenantCustomField.bind(this)
-  public updateTenantCustomField = omneoFunctions.updateTenantCustomField.bind(this)
-  public deleteTenantCustomField = omneoFunctions.deleteTenantCustomField.bind(this)
-  public createAPIToken = omneoFunctions.createAPIToken.bind(this)
-  public getEnvironmentSettings = omneoFunctions.getEnvironmentSettings.bind(this)
-  public getProfileComms = omneoFunctions.getProfileComms.bind(this)
-  public getProfileAppearance = omneoFunctions.getProfileAppearance.bind(this)
-  public getLocationByID = omneoFunctions.getLocationByID.bind(this)
-  public createProduct = omneoFunctions.createProduct.bind(this)
-  public updateProduct = omneoFunctions.updateProduct.bind(this)
-  public queueProduct = omneoFunctions.queueProduct.bind(this)
-  public getOrder = omneoFunctions.getOrder.bind(this)
-  public listOrders = omneoFunctions.listOrders.bind(this)
+  public profiles = new Profile(this)
+  public orders = new Orders(this)
+  public transactions = new Transactions(this)
+  public products = new Products(this)
+  public settings = new Settings(this)
+  public locations = new Locations(this)
+  public auth = new Auth(this)
+  public tenants = new Tenants(this)
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams
