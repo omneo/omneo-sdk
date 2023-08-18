@@ -1,5 +1,6 @@
 
 export type Address = {
+  id: string
   address_line_1: string
   address_line_2: string
   address_line_3: string
