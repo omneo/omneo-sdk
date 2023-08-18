@@ -177,3 +177,89 @@
   await omneoClient.profiles.deleteAddress(myProfile.id, myAddress.id)
 ```
 </details>
+
+
+## Rewards
+
+<details>
+<summary>Get rewards</summary>
+<br />
+
+```javascript
+  // Find a profile ID, then add an interaction to it
+  const myProfile = await omneoClient.profiles.findByEmail('johndoe@example.com')
+  await omneoClient.profiles.getRewards(myProfile.id)
+```
+</details>
+
+## Rewards, Points and Balances
+
+<details>
+<summary>Get rewards, points or balances</summary>
+<br />
+
+```javascript
+  // Find a profile ID, then add an interaction to it
+  const myProfile = await omneoClient.profiles.findByEmail('johndoe@example.com')
+  const rewards = await omneoClient.profiles.getRewards(myProfile.id)
+  const points = await omneoClient.profiles.getPoints(myProfile.id)
+  const balances = await omneoClient.profiles.getBalances(myProfile.id)
+
+```
+</details>
+
+## Appearance and Comms
+
+<details>
+<summary>get Appearances or Comms</summary>
+<br />
+
+```javascript
+  // Find a profile ID, then add an interaction to it
+  const myProfile = await omneoClient.profiles.findByEmail('johndoe@example.com')
+  const appearances = omneoClient.profiles.getAppearances(myProfile.id)
+  const comms = omneoClient.profiles.getComms(myProfile.id)
+```
+</details>
+
+## Subscribe, or Unsubscribe a profile
+
+<details>
+<summary>Quickly Subscribe or Unsubscribe a profile</summary>
+<br />
+
+```javascript
+  // Find a profile ID, then add an interaction to it
+  const myProfile = await omneoClient.profiles.findByEmail('johndoe@example.com')
+
+  const { attributes: { comms }} = myProfile
+
+  // isSubscribed/isUnsubscribed opposites and can be used in whichever way is easier to read in context
+
+  // The quick way to check subscription to a platform
+  const isSubscribedToEmail = await omneoClient.profiles.isSubscribed(comms, 'email')
+  // The quick way to check if the profile is unsubscribed from a platform
+  const isUnsubscribedFromEmail = await omneoClient.profiles.isUnsubscribed(comms, 'email')
+
+  // The quick way to subscribe a profile to a platform
+  await omneoClient.profiles.subscribe(myProfile.id, 'email')
+
+  // The quick way to unsubscribe a profile to a platform (without triggering email_optout)
+    await omneoClient.profiles.unsubscribe(myProfile.id, 'email')
+  // The above can also be unsubscribed using the heavy handed master opt_out flag `[platform]_optout`
+  await omneoClient.profiles.unsubscribe(myProfile.id, 'email', { toggleOptOut: true })
+```
+</details>
+
+## Profile Lists
+
+<details>
+<summary>Get profile lists</summary>
+<br />
+
+```javascript
+  // Find a profile ID, then add an interaction to it
+  const myProfile = await omneoClient.profiles.findByEmail('johndoe@example.com')
+  const profileLists = omneoClient.profiles.getLists(myProfile.id)
+```
+</details>

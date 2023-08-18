@@ -48,5 +48,5 @@ const client = new Omneo({
 
 # Documentation and Examples
 
-[Profiles](./src/omneo/resources/profiles/README.md)
+Using [Profiles](./src/omneo/resources/profiles/README.md)
 
