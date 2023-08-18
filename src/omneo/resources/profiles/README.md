@@ -76,7 +76,7 @@
 ### Check Availability
 
 <details>
-<summary>How to check a profile is availably</summary>
+<summary>How to check a profile is available</summary>
 <br />
 
 ```javascript
