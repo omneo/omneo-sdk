@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/omneo/omneo-sdk/compare/v1.19.0...v1.19.1) (2023-08-18)
+
+
+### Bug Fixes
+
+* Correct AddressRequest partial typings ([bf2c186](https://github.com/omneo/omneo-sdk/commit/bf2c186d9353f34ae7fa7fb4a1ee089638fe2cad))
+
 # [1.19.0](https://github.com/omneo/omneo-sdk/compare/v1.18.0...v1.19.0) (2023-07-03)
 
 
