@@ -160,7 +160,7 @@ export type OrderWebhook = {
   systems: Array<any> // TODO add systems type
   items: Array<OrderItemWebhook>
   transactions: Array<Transaction>
-  payload: Array<any> // TODO add payments type
+  payment: Array<any> // TODO add payments type
   receipt_is_email: boolean
   receipt_ref: string
   receipt_email: string
