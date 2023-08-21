@@ -1,7 +1,7 @@
 ### Create
 
 <details>
-<summary>How to create an Profile</summary>
+<summary>How to create a Profile</summary>
 <br />
 
 ```javascript
@@ -18,7 +18,7 @@
 ### Get
 
 <details>
-<summary>How to find an Profile</summary>
+<summary>How to find a Profile</summary>
 <br />
 
 ```javascript
@@ -40,7 +40,7 @@
 ### Update
 
 <details>
-<summary>How to update an Profile</summary>
+<summary>How to update a Profile</summary>
 <br />
 
 ```javascript
@@ -75,17 +75,12 @@
 
 ### Check Availability
 
-<details>
-<summary>How to check a profile is available</summary>
-<br />
-
 ```javascript
   // Check availability by Mobile
   const existingByMobile = await omneoClient.profiles.checkAvailability({ mobile_phone: '0404113331'})
     // Check availability by Email
   const existingByEmail = await omneoClient.profiles.checkAvailability({ email: 'johndoe@example.com'})
 ```
-</details>
 
 ### Resync
 
@@ -211,7 +206,7 @@
 ## Appearance and Comms
 
 <details>
-<summary>get Appearances or Comms</summary>
+<summary>Get Appearances or Comms</summary>
 <br />
 
 ```javascript
