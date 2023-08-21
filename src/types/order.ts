@@ -32,7 +32,7 @@ export type OrderItem = {
 }
 
 export type Order = {
-  id: string
+  id: number
   external_id: string
   redemption: {
     id: number
