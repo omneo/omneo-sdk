@@ -138,7 +138,7 @@ export default class Profiles extends Resource {
   deleteIdentity (profileID: string, identityID: string) {
     return this.client.call({
       method: 'delete',
-      endpoint: `/profiles/${profileID}/identities/${identityID}`
+      endpoint: `/profiles/${profileID}/identities/id/${identityID}`
     }).then((response) => {
       return response.data
     })
@@ -147,7 +147,7 @@ export default class Profiles extends Resource {
   updateIdentity (profileID: string, identityID: string, payload: any) {
     return this.client.call({
       method: 'put',
-      endpoint: `/profiles/${profileID}/identities/${identityID}`
+      endpoint: `/profiles/${profileID}/identities/id/${identityID}`
     }).then((response) => {
       return response.data
     })
