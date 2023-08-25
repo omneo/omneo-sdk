@@ -17,7 +17,10 @@ export type TransactionItem = {
   price_original: number
   price_margin: number | null
   price_tax: number | null
-  discounts: Array<any>
+  discounts: Array<{
+    amount: number
+    reason_desc: string
+  }>
   department: string | null
   product_images: Array<any>
   created_at: Date
@@ -48,7 +51,7 @@ export type Transaction = {
   timezone: string
   tags: Array<string>
   items: Array<TransactionItem>
-  payments: Array<any>
+  payments: Array<string>
   receipt_is_email: boolean
   receipt_ref: string | null
   claimed_at: Date | null

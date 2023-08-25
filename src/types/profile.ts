@@ -155,7 +155,7 @@ export type Profile = {
   last_name: string
   email: string
   gender: 'male' | 'female' | 'witheld' | 'other'
-  currency: 'string'
+  currency: 'string' | null
   joined_at: Date
   mobile_phone: string | null
   mobile_phone_country: string | null
@@ -202,4 +202,9 @@ export type Profile = {
   regions: Array<Region>
   updated_at: Date
   created_at: Date
+}
+
+export type ProfileWebhook = Profile & {
+  flattened_statuses: Array<string>
+  flattened_tags: Array<string>
 }

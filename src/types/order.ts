@@ -1,6 +1,6 @@
-import { Identity } from './identities'
 import { Location } from './location'
-import { Profile } from './profile'
+import { Profile, ProfileWebhook } from './profile'
+import { Redemption } from './redemption'
 import { Transaction } from './transaction'
 
 export type OrderItem = {
@@ -19,31 +19,23 @@ export type OrderItem = {
   price_original: number
   price_margin: number | null
   price_tax: number | null
-  discounts: Array<any>
+  discounts: Array<{
+    amount: number
+    reason_desc: string
+  }>
   department: string | null
   product_images: Array<any>
   created_at: Date
   updated_at: Date
-  transaction: {
-    transacted_at: Date
-    receipt_ref: string | null
-    external_id: string | null
-  }
+  transaction: Pick<Transaction, 'transacted_at' | 'receipt_ref' | 'external_id'>
 }
 
 export type Order = {
   id: number
   external_id: string
-  redemption: {
-    id: number
-    type: string
-    total: number
-    total_localised: number
-  } | null
+  redemption: Pick<Redemption, 'id' | 'type' | 'total' | 'total_localised'> | null
   profile_id?: string
-  profile?: {
-    email: string
-  }
+  profile?: Pick<Profile, 'email'>
   location?: Location
   meta?: {[key: string]: any}
   total: number
@@ -62,14 +54,11 @@ export type Order = {
   receipt_ref: string | null
   claimed_at: Date | null
   receipt_email: string | null
-  staff: {
-    id: string
+  staff: Pick<Profile, 'id' | 'email' | 'identities'> & {
     full_name: string
-    email: string
-    identities: Array<Identity>
   } | null
-  currency_id: string | null
-  currency_rate: number | null
+  currency_id: number | null
+  currency_rate: string | null
   currency: string | null
   type: string
   status: string
@@ -82,10 +71,7 @@ export type Order = {
 export type OrderItemWebhook = {
   id: number
   profile_id: string
-  profile: {
-    flattened_statuses: Array<string>
-    email: string
-  }
+  profile: Pick<ProfileWebhook, 'flattened_statuses' | 'email'>
   order_id: string
   order: {
     meta: { [key: string]: any }
@@ -126,7 +112,10 @@ export type OrderItemWebhook = {
     height: string | null
     sort_order: string | null
   }> | null
-  discounts: Array<any> // TODO Add discount type
+  discounts: Array<{
+    amount: number
+    reason_desc: string
+  }>
   custom_fields: { [key: string]: any }
   department: string
   created_at: Date
@@ -137,30 +126,30 @@ export type OrderWebhook = {
   id: number
   external_id: string | null
   redemption_id: number
-  redemption: any // TODO Add Redemption type
+  redemption: Redemption
   profile_id: string
   staff_id: string
   staff: Profile
   profile: Profile
   location_id: number
   location: Location
-  currency_id: number
-  currency: any // #TODO add Currency type
+  currency_id: number | null
+  currency: string | null
   total: number
   is_void: boolean
   total_original: number
-  currency_rate: number
+  currency_rate: number | null
   rounding: number
   margin: number
   deliver_at: Date | null
   claimed_at: Date | null
   transacted_at: Date
   meta: { [key: string]: any }
-  tags: Array<any> // TODO add tag type
-  systems: Array<any> // TODO add systems type
+  tags: Array<string>
+  systems: Array<string>
   items: Array<OrderItemWebhook>
   transactions: Array<Transaction>
-  payment: Array<any> // TODO add payments type
+  payment: Array<string>
   receipt_is_email: boolean
   receipt_ref: string
   receipt_email: string
