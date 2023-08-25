@@ -21,6 +21,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Setup Git
+        run: |
+          git config --local user.name "Oliver Arkade"
+          git config --local user.email "oliver@arkade.com.au"
+
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACTION_DEPLOY_KEY }}
