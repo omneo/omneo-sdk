@@ -1,3 +1,13 @@
+## [1.19.2](https://github.com/omneo/omneo-sdk/compare/v1.19.1...v1.19.2) (2023-08-25)
+
+
+### Bug Fixes
+
+* Add order fields and Order Webhook Context ([2edd1d4](https://github.com/omneo/omneo-sdk/commit/2edd1d46dabb511992263b3840c441cfa114101b))
+* fix typo in payment ([8c9e52c](https://github.com/omneo/omneo-sdk/commit/8c9e52c5d69822a4eedea92da2e2532581a4e045))
+* Update identities endpoints to match api ([5223f47](https://github.com/omneo/omneo-sdk/commit/5223f475b1a152444df959082f60f8cbe351866f))
+* Update types for profile, order, redemption and transaction ([8b7fb29](https://github.com/omneo/omneo-sdk/commit/8b7fb2947402505d05af9ae73f8f3f781a4675b3))
+
 ## [1.19.1](https://github.com/omneo/omneo-sdk/compare/v1.19.0...v1.19.1) (2023-08-18)
 
 
