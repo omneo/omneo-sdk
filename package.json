@@ -7,7 +7,9 @@
   "repository": "github:omneo/omneo-sdk",
   "scripts": {
     "eslint": "eslint index.ts",
-    "semantic-release": "tsc && npx semantic-release --no-ci"
+    "semantic-release": "tsc && npx semantic-release --no-ci",
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix"
   },
   "author": "",
   "license": "ISC",
