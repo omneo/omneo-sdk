@@ -26,6 +26,7 @@ export type Interaction = {
   created_at: Date
   updated_at: Date
   interacted_at: Date | null
+  meta: {[key: string]: any}
 }
 
 export type InteractionRequest = {
@@ -52,4 +53,5 @@ export type InteractionRequest = {
   product_variant_id?: number | null
   tags?: Array<string>
   interacted_at?: Date | null
+  meta: {[key: string]: any}
 }
