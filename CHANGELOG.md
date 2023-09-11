@@ -1,3 +1,10 @@
+## [1.19.3](https://github.com/omneo/omneo-sdk/compare/v1.19.2...v1.19.3) (2023-09-11)
+
+
+### Bug Fixes
+
+* Make profile_id required on interaction request ([025cd75](https://github.com/omneo/omneo-sdk/commit/025cd759b2074bdef7e021891eaaf5bfb50940fe))
+
 ## [1.19.2](https://github.com/omneo/omneo-sdk/compare/v1.19.1...v1.19.2) (2023-08-25)
 
 
