@@ -34,7 +34,7 @@ export type InteractionRequest = {
     id: string
     handle: string
   }
-  profile_id?: string
+  profile_id: string
   action: InteractionAction
   channel: InteractionChannel
   signal: -1 | 0 | 1
