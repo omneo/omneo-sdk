@@ -208,3 +208,14 @@ export type ProfileWebhook = Profile & {
   flattened_statuses: Array<string>
   flattened_tags: Array<string>
 }
+
+export type RedeemResponse = {
+    id: number
+    profile_id: string
+    total_localised: number
+    total: number
+    balances: ProfileBalances
+    meta: { [key: string]: any }
+    created_at: Date
+    updated_at: Date
+}

@@ -1,4 +1,4 @@
-import { Address, AddressRequest, AddressUpdateRequest, CommsChannel, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance, ProfileBalances, ProfileComms, RequestParams, Reward } from '../../../types'
+import { Address, AddressRequest, AddressUpdateRequest, CommsChannel, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance, ProfileBalances, ProfileComms, RedeemResponse, RequestParams, Reward } from '../../../types'
 import Resource from '../resource'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 
@@ -316,6 +316,16 @@ export default class Profiles extends Resource {
       body
     }).then((response: any) => {
       return response.data?.[0]
+    })
+  }
+
+  async redeem (profileID: string, amount: number): Promise<RedeemResponse> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/${profileID}/redeem`,
+      body: { amount }
+    }).then((response) => {
+      return response.data
     })
   }
 }
