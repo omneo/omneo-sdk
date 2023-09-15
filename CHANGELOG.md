@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/omneo/omneo-sdk/compare/v1.19.3...v1.20.0) (2023-09-15)
+
+
+### Features
+
+* add profile redeem ([457ccb6](https://github.com/omneo/omneo-sdk/commit/457ccb6b07036ab07b662b9d038f233653399766))
+
 ## [1.19.3](https://github.com/omneo/omneo-sdk/compare/v1.19.2...v1.19.3) (2023-09-11)
 
 
