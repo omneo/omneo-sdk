@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/omneo/omneo-sdk/compare/v1.20.0...v1.21.0) (2023-09-18)
+
+
+### Features
+
+* Add profile connections ([1733b8b](https://github.com/omneo/omneo-sdk/commit/1733b8bc2a9c06de8dd417eeaabcf9a49a64f1e4))
+
 # [1.20.0](https://github.com/omneo/omneo-sdk/compare/v1.19.3...v1.20.0) (2023-09-15)
 
 
