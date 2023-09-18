@@ -359,24 +359,4 @@ export default class Profiles extends Resource {
       return response.data
     })
   }
-
-  async updateConnection (profileID: string, connectionID: number, body: Partial<Connection>): Promise<Partial<Connection>> {
-    return this.client.call({
-      method: 'put',
-      endpoint: `/profiles/${profileID}/connections/${connectionID}`,
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  async createConnection (profileID: string, connectionID: number, body: Connection): Promise<Partial<Connection>> {
-    return this.client.call({
-      method: 'post',
-      endpoint: `/profiles/${profileID}/connections/${connectionID}`,
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
 }
