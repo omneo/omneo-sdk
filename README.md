@@ -50,3 +50,17 @@ const client = new Omneo({
 
 Using [Profiles](./src/omneo/resources/profiles/README.md)
 
+# Using Call
+You can make calls manually to omneo using the `call` method. 
+All API functions in this SDK use this method to call the API. 
+This will cover any new API functionality not yet supported by the SDK. 
+
+Make your own custom authenticated request like the below:
+
+```
+ client.call({
+    method: 'post',
+    endpoint: '/profiles',
+    body: { first_name: 'test', last_name: 'test', email: 'test@test.com' }
+  })
+```
