@@ -1,4 +1,8 @@
-import { Address, AddressRequest, AddressUpdateRequest, CommsChannel, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance, ProfileBalances, ProfileComms, RedeemResponse, RequestParams, Reward } from '../../../types'
+import {
+  Address, AddressRequest, AddressUpdateRequest, CommsChannel,
+  Connection, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance,
+  ProfileBalances, ProfileComms, Redeem, RequestParams, Reward
+} from '../../../types'
 import Resource from '../resource'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 
@@ -319,11 +323,58 @@ export default class Profiles extends Resource {
     })
   }
 
-  async redeem (profileID: string, amount: number): Promise<RedeemResponse> {
+  async redeem (profileID: string, amount: number): Promise<Redeem> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/redeem`,
       body: { amount }
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async getConnections (profileID: string): Promise<Connection> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/connections`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async getConnectionByID (profileID: string, connectionID: number): Promise<Connection> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/connections/${connectionID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async getConnectedProfileData (profileID: string, connectionID: number): Promise<Partial<Profile>> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/connections/${connectionID}/profileInfo`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async updateConnection (profileID: string, connectionID: number, body: Partial<Connection>): Promise<Partial<Connection>> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/${profileID}/connections/${connectionID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async createConnection (profileID: string, connectionID: number, body: Connection): Promise<Partial<Connection>> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/${profileID}/connections/${connectionID}`,
+      body
     }).then((response) => {
       return response.data
     })
