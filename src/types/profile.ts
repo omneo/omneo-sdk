@@ -209,7 +209,7 @@ export type ProfileWebhook = Profile & {
   flattened_tags: Array<string>
 }
 
-export type RedeemResponse = {
+export type Redeem = {
     id: number
     profile_id: string
     total_localised: number
