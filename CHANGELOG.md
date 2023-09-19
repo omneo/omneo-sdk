@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/omneo/omneo-sdk/compare/v1.21.0...v1.21.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* Change getConnectionProfileData to getConnectionProfileInfo ([f039132](https://github.com/omneo/omneo-sdk/commit/f03913276471e4731056aad75393d8e32147b2c3))
+
 # [1.21.0](https://github.com/omneo/omneo-sdk/compare/v1.20.0...v1.21.0) (2023-09-18)
 
 
