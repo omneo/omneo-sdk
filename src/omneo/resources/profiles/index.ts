@@ -351,7 +351,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  async getConnectedProfileData (profileID: string, connectionID: number): Promise<Partial<Profile>> {
+  async getConnectionProfileInfo (profileID: string, connectionID: number): Promise<Partial<Profile>> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/connections/${connectionID}/profileInfo`
