@@ -1,5 +1,5 @@
 import {
-  Address, AddressRequest, AddressUpdateRequest, CommsChannel,
+  Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
   Connection, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance,
   ProfileBalances, ProfileComms, Redeem, RequestParams, Reward
 } from '../../../types'
@@ -272,6 +272,16 @@ export default class Profiles extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${id}/attributes/appearance`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getAggregations (id: string, params?: RequestParams): Promise<Aggregations> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${id}/aggregations`,
       params
     }).then((response) => {
       return response.data

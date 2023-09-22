@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix"
   },
-  "author": "",
+  "author": "Omneo",
   "license": "ISC",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.2",
