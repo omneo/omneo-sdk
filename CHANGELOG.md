@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/omneo/omneo-sdk/compare/v1.21.1...v1.22.0) (2023-09-22)
+
+
+### Features
+
+* Add Aggregation types and profile handler ([ca7ad7d](https://github.com/omneo/omneo-sdk/commit/ca7ad7df862d38f74534234c7b387ea52ced947d))
+
 ## [1.21.1](https://github.com/omneo/omneo-sdk/compare/v1.21.0...v1.21.1) (2023-09-19)
 
 
