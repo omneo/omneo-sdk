@@ -1,6 +1,6 @@
 import {
   Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
-  Connection, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance,
+  Connection, CustomAttribute, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance,
   ProfileBalances, ProfileComms, Redeem, RequestParams, Reward
 } from '../../../types'
 import Resource from '../resource'
@@ -365,6 +365,25 @@ export default class Profiles extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/connections/${connectionID}/profileInfo`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async getCustomAttribute (profileID: string, namespace: string, handle: string): Promise<CustomAttribute> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async updateCustomAttribute (profileID: string, namespace: string, handle: string, body: { value?: any, type: string }): Promise<CustomAttribute> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`,
+      body
     }).then((response) => {
       return response.data
     })
