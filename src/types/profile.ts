@@ -6,7 +6,16 @@ import { Tier } from './tier'
 
 export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
 
-export type CustomAttribute = {}
+export type CustomAttribute = {
+  id: number,
+  profile_id: string
+  namespace: string
+  handle: string
+  type: 'json' | 'integer' | 'string'
+  value: any,
+  created_at: Date
+  updated_at: Date
+}
 
 export type ProfileBalances = {
   reward_balance: number
