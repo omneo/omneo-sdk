@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/omneo/omneo-sdk/compare/v1.22.0...v1.23.0) (2023-09-25)
+
+
+### Features
+
+* add profile dates ([a3f2f93](https://github.com/omneo/omneo-sdk/commit/a3f2f93bfb0d85ba193a44f21075ba6bee82f83d))
+
 # [1.22.0](https://github.com/omneo/omneo-sdk/compare/v1.21.1...v1.22.0) (2023-09-22)
 
 
