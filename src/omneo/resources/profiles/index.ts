@@ -388,4 +388,13 @@ export default class Profiles extends Resource {
       return response.data
     })
   }
+
+  async getProfileDates (profileID: string): Promise<any> { // TODO Add Profile Dates Type
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/attributes/dates`
+    }).then((response) => {
+      return response.data
+    })
+  }
 }
