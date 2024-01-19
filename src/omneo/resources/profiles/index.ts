@@ -196,16 +196,21 @@ export default class Profiles extends Resource {
     })
   }
 
-  findIdentityInProfile (profile: Profile, options: { handle?: string, identifier?: string }): Identity|undefined {
-    const { handle, identifier } = options
+  findIdentityInProfile (profile: Profile, options: { handle?: string, identifier?: string, findLatest?: boolean }): Identity|undefined {
+    const { handle, identifier, findLatest } = options
     const identities = profile?.identities
     if (!identities?.length) return
 
-    return identities.find((identity: Identity) => {
+    const filteredIdentities = identities.filter((identity: Identity) => {
       if (handle && identity.handle !== handle) return false
       if (identifier && identity.identifier !== identifier) return false
       return true
     })
+
+    if (!findLatest) return filteredIdentities?.[0]
+    return filteredIdentities.sort((identityA, identityB) => {
+      return new Date(identityB.created_at).getTime() - new Date(identityA.created_at).getTime()
+    })?.[0]
   }
 
   getRewards (profileID: string, params: object): Promise<Reward> {
