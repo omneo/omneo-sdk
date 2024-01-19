@@ -1,3 +1,11 @@
+# [1.24.0](https://github.com/omneo/omneo-sdk/compare/v1.23.0...v1.24.0) (2024-01-19)
+
+
+### Features
+
+* Add option findLatest to findIdentityInProfile ([e2842b7](https://github.com/omneo/omneo-sdk/commit/e2842b7371925c41fa93d85055a3f9cde89b46a5))
+* Add option findLatest to findIdentityInProfile ([b94992b](https://github.com/omneo/omneo-sdk/commit/b94992b2862ec58f16f7f8049a99761180daf8fa))
+
 # [1.23.0](https://github.com/omneo/omneo-sdk/compare/v1.22.0...v1.23.0) (2023-09-25)
 
 
