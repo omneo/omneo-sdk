@@ -303,7 +303,7 @@ export type Aggregations = {
   likely_region_score: number | null
 }
 
-export type List = {
+export type ProfileList = {
   id: number
   profile_id: Profile['id']
   name: string
