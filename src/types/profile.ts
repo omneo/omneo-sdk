@@ -3,6 +3,8 @@ import { Identity } from './identities'
 import { Location } from './location'
 import { Region } from './region'
 import { Tier } from './tier'
+import { CustomFields } from './custom-fields';
+import { ListDefinition } from './list-definition';
 
 export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
 
@@ -299,4 +301,45 @@ export type Aggregations = {
   likely_state_iso_score: number | null
   likely_region: string | null
   likely_region_score: number | null
+}
+
+export type List = {
+  id: number
+  profile_id: Profile['id']
+  name: string
+  description: string | null
+  meta: CustomFields | null
+  handle: string
+  sort_order: string | null
+  items: Array<ProfileListItem>
+  id_shared: boolean
+  shares: ProfileListShare[]
+  tags: Array<string>
+  custom_fields: CustomFields
+  definition: ListDefinition
+  custom_date: Date
+  location: Location
+  staff: Profile
+  created_at: Date
+  updated_at: Date
+}
+
+export type ProfileListShare = {
+  id: number
+  handle: string
+  profile_id: Profile['id']
+  product_list_id: List['id']
+  created_at: Date
+  updated_at: Date
+}
+
+export type ProfileListItem = { // TODO: Is this a generic list item?
+  product_variant_sku: string | null,
+  product_variant_barcode: string | null
+  product_category_id: number | null
+  product_variant_id: number | null
+  product_id: number | null
+  external_id: string | null
+  quantity: number | null
+  position: number
 }
