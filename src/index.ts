@@ -19,12 +19,12 @@ export class Omneo {
   baseURL: string
 
   constructor (options: OmneoClassOptions) {
-    const { config, tenant, token } = options
+    const { config, tenant, token, baseURL } = options
 
     this.tenant = tenant
     this.config = config || {}
     this.token = token
-    this.baseURL = `https://api.${tenant}.getomneo.com/api/v3`
+    this.baseURL = baseURL || `https://api.${tenant}.getomneo.com/api/v3`
   }
 
   public profiles = new Profile(this)

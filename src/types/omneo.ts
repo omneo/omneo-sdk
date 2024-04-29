@@ -4,6 +4,7 @@ export type OmneoClassOptions = {
   config?: OmneoConfig
   tenant: string
   token: string
+  baseURL?: string
 }
 
 export type RequestParams = {[key: string]: any}
