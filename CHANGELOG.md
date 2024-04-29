@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/omneo/omneo-sdk/compare/v1.24.0...v1.25.0) (2024-04-29)
+
+
+### Features
+
+* Allow override baseURL in omneo class ([2369754](https://github.com/omneo/omneo-sdk/commit/2369754d62f917dedb3cdc8c00ff605496081a9a))
+
 # [1.24.0](https://github.com/omneo/omneo-sdk/compare/v1.23.0...v1.24.0) (2024-01-19)
 
 
