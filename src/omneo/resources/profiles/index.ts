@@ -1,7 +1,8 @@
 import {
   Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
   Connection, CustomAttribute, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance,
-  ProfileBalances, ProfileComms, Redeem, RequestParams, Reward
+  ProfileBalances, ProfileComms, Redeem, RequestParams, Reward,
+  Transaction
 } from '../../../types'
 import Resource from '../resource'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
@@ -398,6 +399,16 @@ export default class Profiles extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/attributes/dates`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getTransactions (profileID: string, params: object): Promise<Transaction> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/transactions`,
+      params
     }).then((response) => {
       return response.data
     })
