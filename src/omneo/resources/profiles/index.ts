@@ -214,7 +214,7 @@ export default class Profiles extends Resource {
     })?.[0]
   }
 
-  getRewards (profileID: string, params: object): Promise<Reward> {
+  getRewards (profileID: string, params: object): Promise<Array<Reward> | []> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/rewards`,
@@ -404,7 +404,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  getTransactions (profileID: string, params: object): Promise<Transaction> {
+  getTransactions (profileID: string, params: object): Promise<Array<Transaction> | []> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/transactions`,
