@@ -1,3 +1,10 @@
+## [1.26.1](https://github.com/omneo/omneo-sdk/compare/v1.26.0...v1.26.1) (2024-07-02)
+
+
+### Bug Fixes
+
+* Fix profile rewards and transaction types ([604cb82](https://github.com/omneo/omneo-sdk/commit/604cb820c19b021d24015f060d8d50f23c73d20c))
+
 # [1.26.0](https://github.com/omneo/omneo-sdk/compare/v1.25.0...v1.26.0) (2024-07-01)
 
 
