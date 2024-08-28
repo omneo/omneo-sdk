@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/omneo/omneo-sdk/compare/v1.26.1...v1.27.0) (2024-08-28)
+
+
+### Features
+
+* Add Interactions ([e9ae4dd](https://github.com/omneo/omneo-sdk/commit/e9ae4dd63e92426d090487236121905f953fdaa2))
+
 ## [1.26.1](https://github.com/omneo/omneo-sdk/compare/v1.26.0...v1.26.1) (2024-07-02)
 
 
