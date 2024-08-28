@@ -9,6 +9,7 @@ import Locations from './omneo/resources/locations/index.js'
 import Auth from './omneo/resources/auth/index.js'
 import Tenants from './omneo/resources/tenants/index.js'
 import Connections from './omneo/resources/connections'
+import Interactions from './omneo/resources/interactions'
 
 export * from './types'
 
@@ -36,6 +37,7 @@ export class Omneo {
   public auth = new Auth(this)
   public tenants = new Tenants(this)
   public connections = new Connections(this)
+  public interactions = new Interactions(this)
 
   async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
     const { endpoint, params = {}, method, body = {} } = requestParams
