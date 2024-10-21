@@ -79,7 +79,7 @@ This is the quickest way to start with development
 Modify sample.ts and run:
 `npm run sample.ts`
 
-Alternitivly, you can link the SDK repo to your own external projects with NPM below. 
+Alternitively, you can link the SDK repo to your own external projects with NPM below. 
 This is useful if you'd like to test the SDK in a specific scenareo.
 
 npm link:
