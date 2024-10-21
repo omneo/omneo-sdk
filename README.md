@@ -15,6 +15,7 @@ To get started with the Omneo SDK, follow the instructions below
 - [Installation](#installation)
 - [Authentication](#authentication)
 - [Import](#import)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -64,3 +65,25 @@ Make your own custom authenticated request like the below:
     body: { first_name: 'test', last_name: 'test', email: 'test@test.com' }
   })
 ```
+
+# Contributing
+
+## Commit Validation
+This repo requires specific commit formatting (Angular) to automate the deployment and versioning. 
+Refer to the Angular commit message formatting guidelines [here](https://gist.github.com/brianclements/841ea7bffdb01346392c)
+
+The easest way to get started is to use the [sample.ts]('/sample/sample.ts') file
+You can modify this file and add any additional calls to the SDK, including any changes you've made. 
+This is the quickest way to start with development
+
+Modify sample.ts and run:
+`npm run sample.ts`
+
+Alternitivly, you can link the SDK repo to your own external projects with NPM below. 
+This is useful if you'd like to test the SDK in a specific scenareo.
+
+npm link:
+
+run npm link in your local copy of this repo's directory
+
+run npm link <"path to this repo"> first in your consuming app's directory
