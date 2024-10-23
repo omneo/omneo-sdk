@@ -1,5 +1,4 @@
 import { OmneoConfig, OmneoRequest, OmneoClassOptions } from '../types/omneo'
-import axios, { AxiosResponse } from 'axios'
 import Profile from './resources/profiles/index.js'
 import Orders from './resources/orders/index.js'
 import Transactions from './resources/transactions/index.js'
@@ -37,16 +36,27 @@ export class Omneo {
   public connections = new Connections(this)
   public interactions = new Interactions(this)
 
-  async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
-    const { endpoint, params = {}, method, body = {} } = requestParams
+  async call (requestParams: OmneoRequest): Promise<any> {
+    const { endpoint, params = {}, method, body } = requestParams
     const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()
-    return axios({
+    const url = `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`
+    })
+
+    const response = await fetch(url, {
       method,
-      url: `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`,
-      headers: {
-        Authorization: `Bearer ${this.token}`
-      },
-      data: body
-    }).then((response) => response?.data)
+      headers,
+      ...(body && { body: JSON.stringify(body) })
+    })
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data
   }
 }

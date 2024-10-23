@@ -1,21 +1,22 @@
-import axios from 'axios'
 import IDResource from '../resource'
 
 export default class Auth extends IDResource {
 // Id could be an omneo ID, or and identity (identifier) when id_handle is present
   requestAuthToken (body: { id: string, id_handle?: string }): Promise<any> {
-    return axios({
+    return fetch(`${this.client.baseURL}/auth/token`, {
       method: 'POST',
-      url: `${this.client.baseURL}/auth/token`,
       headers: {
-        Authorization: `Bearer ${this.client.omneoAPIToken}`
+        Authorization: `Bearer ${this.client.omneoAPIToken}`,
+        'Content-Type': 'application/json'
       },
-      data: body
-    }).then((response) => {
-      this.client.IDToken = response?.data?.data?.token
-      this.client.IDTokenExp = response?.data?.data?.exp
-      return response?.data?.data
+      body: JSON.stringify(body)
     })
+      .then((response) => response.json())
+      .then(({ data }) => {
+        this.client.IDToken = data?.token
+        this.client.IDTokenExp = data?.exp
+        return data
+      })
   }
 
   isTokenExpired () {

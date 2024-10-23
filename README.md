@@ -29,6 +29,22 @@ npm install @omneo/omneo-sdk
 yarn add @omneo/omneo-sdk
 ```
 
+// browser
+```html
+    <script type="module">
+        import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.28.0/dist/index.js'; // replace version as needed
+        async function run () {
+            const IDClient = new ID({ tenant: 'sandbox', omneoAPIToken: 'YOUR TOKEN', config: {}})
+            const omneoClient = new Omneo({ tenant: 'sandbox', token: 'YOUR TOKEN', config: {}})
+            const token  = await IDClient.auth.requestAuthToken({ id: 'PROFILE ID' })
+
+            console.log(await IDClient.profile.get('PROFILE ID'))
+            console.log(await omneoClient.profiles.me())
+        }
+
+        run()
+    </script>
+```
 ## Authentication
 
 All requests to the Omneo API must be authenticated with an [OAuth2](https://oauth.net/2/) bearer token.
