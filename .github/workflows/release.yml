@@ -30,4 +30,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACTION_DEPLOY_KEY }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: tsc && npx semantic-release
+        run: npm run build && npx semantic-release
