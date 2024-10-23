@@ -1,6 +1,7 @@
 import { Identity } from './identities'
 import { Location } from './location'
 
+export type TransactionFilters = 'profile_id' | 'total' | 'rounding' | 'total_original' | 'margin' | 'external_id' | 'deliver_at' | 'transacted_at' | 'timezone' | 'receipt_is_email' | 'receipt_ref' | 'location_id' | 'systems.handle' | 'type' | 'status' | 'order_number' | 'tags.handle' | 'location.name' | 'profile.identities.identifier' | 'need_action'
 export type TransactionItem = {
   id: number
   external_id: string | null
@@ -67,4 +68,42 @@ export type Transaction = {
   currency: string | null
   created_at: Date
   updated_at: Date
+}
+
+export type GroupedTransaction = {
+  order_number: string | null
+  transaction_id: number
+  number_transactions: number
+  latest_updated_at: string
+  latest_transacted_at: string
+}
+
+export type GroupedTransactionsResponse = {
+  current_page: number
+  data: GroupedTransaction[]
+  first_page_url: string
+  from: number
+  last_page: number
+  last_page_url: string
+  links: Array<{
+    url: string | null
+    label: string | null
+    active: boolean
+  }>
+  next_page_url: string | null
+  path: string
+  per_page: number
+  prev_page_url: string | null
+  to: number
+  total: number
+}
+
+export type TransactionLedger = {
+  id: number
+  profile: {
+    id: string
+    email: string
+  }
+  type: 'transaction'
+  type_attributes: Transaction
 }

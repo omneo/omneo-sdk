@@ -160,3 +160,13 @@ export type OrderWebhook = {
   created_at: Date
   updated_at: Date
 }
+
+export type OrderLedger = {
+  id: number
+  profile: {
+    id: string
+    email: string
+  }
+  type: 'order'
+  type_attributes: Order
+}

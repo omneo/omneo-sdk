@@ -1,8 +1,11 @@
 import {
   Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
-  Connection, CustomAttribute, DelegationData, Identity, IdentityRequest, Interaction, InteractionRequest, Profile, ProfileAppearance,
-  ProfileBalances, ProfileComms, Redeem, RequestParams, Reward,
-  Transaction
+  Connection, CustomAttribute, DelegationData, GroupedTransactionsResponse, Identity, IdentityRequest, Interaction, InteractionRequest, OrderLedger, Profile, ProfileAppearance,
+  ProfileBalances, ProfileComms, Redeem, Region, RequestParams, Reward,
+  TierProgress,
+  Transaction,
+  TransactionFilters,
+  TransactionLedger
 } from '../../../types'
 import Resource from '../resource'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
@@ -81,6 +84,13 @@ export default class Profiles extends Resource {
     })
   }
 
+  purge (id: string) {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/${id}/purge`
+    })
+  }
+
   resync (id: string): Promise<Profile> {
     return this.client.call({
       method: 'get',
@@ -140,18 +150,38 @@ export default class Profiles extends Resource {
     })
   }
 
-  deleteIdentity (profileID: string, identityID: string) {
+  getIdentities (profileID: string, params: RequestParams): Promise<any> {
     return this.client.call({
-      method: 'delete',
-      endpoint: `/profiles/${profileID}/identities/id/${identityID}`
+      method: 'get',
+      endpoint: `/profiles/${profileID}/identities`,
+      params
     }).then((response) => {
       return response.data
     })
   }
 
-  updateIdentity (profileID: string, identityID: string, payload: any) {
+  getIdentityById (profileID: string, identityID: string) {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/identities/${identityID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateIdentity (profileID: string, identityID: string, body: any) {
     return this.client.call({
       method: 'put',
+      endpoint: `/profiles/${profileID}/identities/id/${identityID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  deleteIdentity (profileID: string, identityID: string) {
+    return this.client.call({
+      method: 'delete',
       endpoint: `/profiles/${profileID}/identities/id/${identityID}`
     }).then((response) => {
       return response.data
@@ -214,7 +244,7 @@ export default class Profiles extends Resource {
     })?.[0]
   }
 
-  getRewards (profileID: string, params: object): Promise<Array<Reward> | []> {
+  getRewards (profileID: string, params: object): Promise<Reward[] | []> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/rewards`,
@@ -254,16 +284,6 @@ export default class Profiles extends Resource {
     })
   }
 
-  getLists (profileID: string, params: RequestParams): Promise<any> {
-    return this.client.call({
-      method: 'get',
-      endpoint: `/profiles/${profileID}/lists`,
-      params
-    }).then((response) => {
-      return response.data
-    })
-  }
-
   getBalances (profileID: string, params: object): Promise<ProfileBalances> {
     return this.client.call({
       method: 'get',
@@ -288,6 +308,16 @@ export default class Profiles extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${id}/aggregations`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  calculateAggregations (id: string, params?: RequestParams): Promise<Aggregations> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${id}/aggregations/calculate`,
       params
     }).then((response) => {
       return response.data
@@ -385,6 +415,15 @@ export default class Profiles extends Resource {
     })
   }
 
+  getCustomAttributes (id: string): Promise<CustomAttribute> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${id}/attributes/custom`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   async updateCustomAttribute (profileID: string, namespace: string, handle: string, body: { value?: any, type: string }): Promise<CustomAttribute> {
     return this.client.call({
       method: 'put',
@@ -409,6 +448,87 @@ export default class Profiles extends Resource {
       method: 'get',
       endpoint: `/profiles/${profileID}/transactions`,
       params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getTransactionByID (profileID: string, transactionID: string): Promise<Transaction> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/transactions/${transactionID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  findTransactions (profileID: string, filter: { field: TransactionFilters, value: string }) {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/find-transactions`,
+      params: {
+        [`filter[${filter.field}]`]: filter.value
+      }
+    }).then((response) => {
+      return response?.data
+    }).catch((error) => {
+      if (error?.response?.status === 404) return null
+      return error
+    })
+  }
+
+  async getGroupedTransactions (profileID: string, params?: { pageSize?: number, pageNumber?: number }): Promise<GroupedTransactionsResponse> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/group_transactions`,
+      ...(params?.pageSize && { 'page[size]': params?.pageSize }),
+      ...(params?.pageNumber && { 'page[number]': params?.pageNumber })
+    }) as unknown as GroupedTransactionsResponse
+  }
+
+  getLedgers (profileID: string): Promise<(TransactionLedger | OrderLedger)[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/ledgers`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getLedgerById (profileID: string, ledgerID: string): Promise<(TransactionLedger | OrderLedger)> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/ledgers/${ledgerID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getRegions (id: string): Promise<Region[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${id}/regions`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  calculateTiers (id: string): Promise<TierProgress> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${id}/tiers/calculate`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  assignTier (profileID: string, tierDefinitionHandle: string): Promise<TierProgress> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/${profileID}/tiers/assign`,
+      body: {
+        tier: tierDefinitionHandle
+      }
     }).then((response) => {
       return response.data
     })

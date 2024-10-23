@@ -87,3 +87,17 @@ npm link:
 run npm link in your local copy of this repo's directory
 
 run npm link <"path to this repo"> first in your consuming app's directory
+
+### Hot Reloading an external project
+
+To include your local version of the omneo SDK in your project,
+and have it hot reload when changes are made to any SDK files 
+you can include the below in your package.json
+
+```json
+  "dependencies": {
+    "@omneo/omneo-sdk": "file:../omneo-sdk", // Reference to your local version of the omneo-sdk
+  },
+```
+
+Following this run `npm run watch` in your omneo-sdk directory, to automatically rebuild on changes. 
