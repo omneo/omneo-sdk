@@ -1,3 +1,10 @@
+## [1.28.1](https://github.com/omneo/omneo-sdk/compare/v1.28.0...v1.28.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* update docs and force deploy ([c7d0b5b](https://github.com/omneo/omneo-sdk/commit/c7d0b5b9f03e44192571ca4e4ea8a7ef9997c820))
+
 # [1.28.0](https://github.com/omneo/omneo-sdk/compare/v1.27.0...v1.28.0) (2024-10-23)
 
 
