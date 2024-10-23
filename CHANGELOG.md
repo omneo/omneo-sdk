@@ -19,6 +19,13 @@
 
 * add ID Proxy and update multiple functions ([125117f](https://github.com/omneo/omneo-sdk/commit/125117f3e936e2d7f595692d25cad795c7b118ef))
 
+# [1.28.0](https://github.com/omneo/omneo-sdk/compare/v1.27.0...v1.28.0) (2024-10-23)
+
+
+### Features
+
+* add ID Proxy and update multiple functions ([125117f](https://github.com/omneo/omneo-sdk/commit/125117f3e936e2d7f595692d25cad795c7b118ef))
+
 # [1.27.0](https://github.com/omneo/omneo-sdk/compare/v1.26.1...v1.27.0) (2024-08-28)
 
 
