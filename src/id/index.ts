@@ -1,4 +1,3 @@
-import axios, { AxiosResponse } from 'axios'
 import { OmneoRequest } from '../types'
 import Auth from '../id/resources/auth'
 import Profile from '../id/resources/profile'
@@ -23,17 +22,28 @@ export class ID {
   public auth = new Auth(this)
   public profile = new Profile(this)
 
-  async call (requestParams: OmneoRequest): Promise<AxiosResponse> {
-    const { endpoint, params = {}, method, body = {} } = requestParams
+  async call (requestParams: OmneoRequest): Promise<any> {
+    const { endpoint, params = {}, method, body } = requestParams
     const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()
-    return axios({
+    const url = `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.IDToken}`
+    })
+
+    const response = await fetch(url, {
       method,
-      url: `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`,
-      headers: {
-        Authorization: `Bearer ${this.IDToken}`
-      },
-      data: body
-    }).then((response) => response?.data)
+      headers,
+      ...(body && { body: JSON.stringify(body) })
+    })
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data
   }
 
   reset () {
