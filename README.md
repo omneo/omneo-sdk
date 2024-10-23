@@ -31,7 +31,7 @@ yarn add @omneo/omneo-sdk
 
 ```html
     <script type="module">
-        import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.29.0/dist/index.js'; // replace version as needed
+        import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.28.1/dist/index.js'; // replace version as needed
         async function run () {
             const IDClient = new ID({ tenant: 'sandbox', omneoAPIToken: 'YOUR TOKEN', config: {}})
             const omneoClient = new Omneo({ tenant: 'sandbox', token: 'YOUR TOKEN', config: {}})
