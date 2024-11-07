@@ -1,3 +1,10 @@
+## [1.28.2](https://github.com/omneo/omneo-sdk/compare/v1.28.1...v1.28.2) (2024-11-07)
+
+
+### Bug Fixes
+
+* issue where call handler fails on endpoints without response body ([972e8d9](https://github.com/omneo/omneo-sdk/commit/972e8d92e805905a3eb9175580f3053bdc2415f8))
+
 ## [1.28.1](https://github.com/omneo/omneo-sdk/compare/v1.28.0...v1.28.1) (2024-10-23)
 
 
