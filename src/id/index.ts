@@ -42,8 +42,12 @@ export class ID {
       throw new Error(`Request failed with status ${response.status}`)
     }
 
-    const data = await response.json()
-    return data
+    try {
+      const data = await response.json()
+      return data
+    } catch {
+      return null
+    }
   }
 
   reset () {

@@ -31,14 +31,10 @@ yarn add @omneo/omneo-sdk
 
 ```html
     <script type="module">
-        import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.29.0/dist/index.js'; // replace version as needed
+        import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.28.1/dist/index.js'; // replace version as needed
         async function run () {
-            const IDClient = new ID({ tenant: 'sandbox', omneoAPIToken: 'YOUR TOKEN', config: {}})
-            const omneoClient = new Omneo({ tenant: 'sandbox', token: 'YOUR TOKEN', config: {}})
-            const token  = await IDClient.auth.requestAuthToken({ id: 'PROFILE ID' })
-
-            console.log(await IDClient.profile.get('PROFILE ID'))
-            console.log(await omneoClient.profiles.me())
+            const IDClient = new ID({ tenant: 'sandbox', IDToken: 'YOUR TOKEN', config: {}})
+            console.log(await IDClient.profiles.me())
         }
 
         run()
