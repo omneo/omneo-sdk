@@ -300,8 +300,3 @@ export type Aggregations = {
   likely_region: string | null
   likely_region_score: number | null
 }
-
-export type Merge = {
-  source_profile_id: string,
-  destination_profile_id: string
-}
