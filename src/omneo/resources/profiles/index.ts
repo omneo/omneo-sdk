@@ -5,7 +5,8 @@ import {
   TierProgress,
   Transaction,
   TransactionFilters,
-  TransactionLedger
+  TransactionLedger,
+  Merge
 } from '../../../types'
 import Resource from '../resource'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
@@ -534,13 +535,13 @@ export default class Profiles extends Resource {
     })
   }
 
-  merge (profileID: string, destinationId: string): Promise<Profile> {
+  merge (sourceProfileID: string, destinationProfileId: string): Promise<Merge> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/merge',
       body: {
-        destination_profile_id: destinationId,
-        source_profile_id: profileID
+        source_profile_id: sourceProfileID,
+        destination_profile_id: destinationProfileId
       }
     }).then((response) => {
       return response.data
