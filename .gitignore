@@ -126,6 +126,7 @@ dist
 .vscode-test
 
 # Stores InteliJ IDEA configuration
+.idea
 
 # yarn v2
 .yarn/cache
