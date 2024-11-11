@@ -32,6 +32,26 @@ export default class Transactions extends Resource {
     })
   }
 
+  update (id: string, body: any): Promise<Transaction> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/transactions/${id}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateCreate (body: any): Promise<Transaction> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/transactions/update-create`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   delete (id: string): Promise<Transaction> {
     return this.client.call({
       method: 'delete',
@@ -48,16 +68,6 @@ export default class Transactions extends Resource {
       params
     }).then((response: any) => {
       return response
-    })
-  }
-
-  update (id: string, body: any): Promise<Transaction> {
-    return this.client.call({
-      method: 'put',
-      endpoint: `/transactions/${id}`,
-      body
-    }).then((response) => {
-      return response.data
     })
   }
 
