@@ -1,5 +1,8 @@
 import { Identity } from './identities'
 import { Location } from './location'
+import {Redemption} from "./redemption";
+import {Payment} from "./payment";
+import {ProductVariant} from "./productVariant";
 
 export type TransactionFilters = 'profile_id' | 'total' | 'rounding' | 'total_original' | 'margin' | 'external_id' | 'deliver_at' | 'transacted_at' | 'timezone' | 'receipt_is_email' | 'receipt_ref' | 'location_id' | 'systems.handle' | 'type' | 'status' | 'order_number' | 'tags.handle' | 'location.name' | 'profile.identities.identifier' | 'need_action'
 export type TransactionItem = {
@@ -8,7 +11,13 @@ export type TransactionItem = {
   name: string
   transaction_id: number
   product_id: number
+  product: {
+    title: string
+    department: string | null
+    brand: string | null
+  }
   product_variant_id: number | null
+  product_variant: ProductVariant
   sku: string | null
   variant_external_id: string | null
   is_void: boolean
@@ -21,41 +30,46 @@ export type TransactionItem = {
   discounts: Array<{
     amount: number
     reason_desc: string
-  }>
+  }> | null
   department: string | null
   product_images: Array<any>
-  created_at: Date
-  updated_at: Date
+  order_id: number | null
+  created_at: string
+  updated_at: string
+  pivot: any[]
   transaction: {
-    transacted_at: Date
+    transacted_at: string
     receipt_ref: string | null
     external_id: string | null
   }
+  meta: {[key: string]: any}
 }
 
 export type Transaction = {
-  id: string
+  id: number
   external_id: string
   profile_id?: string
   profile?: {
     email: string
   }
+  redemption: Redemption | null
   location?: Location
   meta: {[key: string]: any}
   total: number
   total_original: number | null
-  systems: Array<any>
+  total_converted: number | null
+  systems: Array<string>
   rounding: number | null
   margin: number | null
   is_void: boolean
-  transacted_at: Date
+  transacted_at: string
   timezone: string
   tags: Array<string>
   items: Array<TransactionItem>
-  payments: Array<string>
+  payments: Array<Payment>
   receipt_is_email: boolean
   receipt_ref: string | null
-  claimed_at: Date | null
+  claimed_at: string | null
   receipt_email: string | null
   staff: {
     id: string
@@ -63,11 +77,19 @@ export type Transaction = {
     email: string
     identities: Array<Identity>
   } | null
-  currency_id: string | null
+  currency_id: number | null
   currency_rate: number | null
   currency: string | null
-  created_at: Date
-  updated_at: Date
+  currency_values: any[]
+  type: string | null
+  status: string | null
+  order_number: string | null
+  order_id: string | null
+  external_order_id: string | null
+  need_action: boolean | null
+  custom_fields: { [key: string]: any }
+  created_at: string
+  updated_at: string
 }
 
 export type GroupedTransaction = {

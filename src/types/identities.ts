@@ -1,13 +1,13 @@
 export type Identity = {
-  id: string
+  id: number
   merged_from: string | null
   profile_id: string
   is_primary: boolean
   is_active: boolean
   identifier: string
   handle: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type IdentityRequest = {
