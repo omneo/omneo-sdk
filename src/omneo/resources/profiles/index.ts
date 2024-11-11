@@ -533,4 +533,17 @@ export default class Profiles extends Resource {
       return response.data
     })
   }
+
+  merge (sourceProfileID: string, destinationProfileId: string): Promise<Profile> {
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/merge',
+      body: {
+        source_profile_id: sourceProfileID,
+        destination_profile_id: destinationProfileId
+      }
+    }).then((response) => {
+      return response.data
+    })
+  }
 }
