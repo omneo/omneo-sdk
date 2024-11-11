@@ -15,6 +15,7 @@ To get started with the Omneo SDK, follow the instructions below
 - [Installation](#installation)
 - [Authentication](#authentication)
 - [Import](#import)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -28,6 +29,17 @@ npm install @omneo/omneo-sdk
 yarn add @omneo/omneo-sdk
 ```
 
+```html
+    <script type="module">
+        import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.28.1/dist/index.js'; // replace version as needed
+        async function run () {
+            const IDClient = new ID({ tenant: 'sandbox', IDToken: 'YOUR TOKEN', config: {}})
+            console.log(await IDClient.profiles.me())
+        }
+
+        run()
+    </script>
+```
 ## Authentication
 
 All requests to the Omneo API must be authenticated with an [OAuth2](https://oauth.net/2/) bearer token.
@@ -38,7 +50,7 @@ Please review the [Authentication Docs](https://omneo.readme.io/docs/authenticat
 import with ES6 like this:
 
 ```typescript
-import omneo from '@omneo/omneo-sdk'
+import { Omneo } from '@omneo/omneo-sdk'
 
 const client = new Omneo({
   token: 'Your token',
@@ -46,31 +58,57 @@ const client = new Omneo({
 })
 ```
 
-# Usage
+# Documentation and Examples
 
-Here are some examples using the sdk
+Using [Profiles](./src/omneo/resources/profiles/README.md)
 
-### Profile Functions
+# Using Call
+You can make calls manually to omneo using the `call` method. 
+All API functions in this SDK use this method to call the API. 
+This will cover any new API functionality not yet supported by the SDK. 
 
-```typescript
-  // Retrieve a single profile
-  const profile = await client.getProfileByID('97e9c263-0f79-4e73-b734-bb19fb453d5d')
-  
-  // Retrieve a profile by email
-  const profileByEmail = await client.getProfileByEmail('john@example.com')
+Make your own custom authenticated request like the below:
 
-  // Retrieve a profile by identity
-  const profileByEmail = await client.getProfileByIdentity('399142', 'shopify')
-
-  // Check if mobile is available
-  const mobileAvailability = await client.checkAvailability({mobile_phone: '0404113331'})
-
-  // Check if email is available
-  const mobileAvailability = await client.checkAvailability({email: 'john@example.com'})
-
-  // Check if a profile is subscribed from a platform
-  const isSubscribed = client.isSubscribed(profile.attributes.comms, 'email')
-
-  // Check if a profile is unsubscribed from a platform
-  const isUnsubscribed = client.isUnsubscribed(profile.attributes.comms, 'phone')
 ```
+ client.call({
+    method: 'post',
+    endpoint: '/profiles',
+    body: { first_name: 'test', last_name: 'test', email: 'test@test.com' }
+  })
+```
+
+# Contributing
+
+## Commit Validation
+This repo requires specific commit formatting (Angular) to automate the deployment and versioning. 
+Refer to the Angular commit message formatting guidelines [here](https://gist.github.com/brianclements/841ea7bffdb01346392c)
+
+The easest way to get started is to use the [sample.ts]('/sample/sample.ts') file
+You can modify this file and add any additional calls to the SDK, including any changes you've made. 
+This is the quickest way to start with development
+
+Modify sample.ts and run:
+`npm run sample.ts`
+
+Alternitively, you can link the SDK repo to your own external projects with NPM below. 
+This is useful if you'd like to test the SDK in a specific scenareo.
+
+npm link:
+
+run npm link in your local copy of this repo's directory
+
+run npm link <"path to this repo"> first in your consuming app's directory
+
+### Hot Reloading an external project
+
+To include your local version of the omneo SDK in your project,
+and have it hot reload when changes are made to any SDK files 
+you can include the below in your package.json
+
+```json
+  "dependencies": {
+    "@omneo/omneo-sdk": "file:../omneo-sdk", // Reference to your local version of the omneo-sdk
+  },
+```
+
+Following this run `npm run watch` in your omneo-sdk directory, to automatically rebuild on changes. 
