@@ -137,6 +137,7 @@ export type TransactionInput = {
   updated_at?: string;
   meta?: { [key: string ] : any };
   delete_existing_items?: boolean;
+  receipt_is_email?: boolean;
 }
 
 export type GroupedTransaction = {
