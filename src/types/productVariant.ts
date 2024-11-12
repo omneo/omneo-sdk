@@ -2,7 +2,7 @@ export type ProductVariant = {
     id: number
     product_id: number
     sku: string
-    external_id: string | null
+    external_id: number | null
     barcode: string | null
     web_url: string | null
     handle: string | null

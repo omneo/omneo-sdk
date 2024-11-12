@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "watch": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest run",
     "eslint": "eslint index.ts",
     "semantic-release": "npm run build && npx semantic-release --no-ci",
     "lint": "eslint . --ext .ts",
@@ -37,7 +38,8 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@types/node": "^18.11.11"
+    "@types/node": "^18.11.11",
+    "vitest": "^2.1.4"
   },
   "files": [
     "dist/*"

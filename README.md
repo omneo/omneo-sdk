@@ -10,7 +10,7 @@ A JavaScript Library to interface with the [Omneo API](https://omneo.readme.io/r
 
 # Getting started
 
-To get started with the Omneo SDK, follow the instructions below
+To get started with the Omneo SDK, follow the instructions below:
 
 - [Installation](#installation)
 - [Authentication](#authentication)

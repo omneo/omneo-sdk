@@ -92,6 +92,53 @@ export type Transaction = {
   updated_at: string
 }
 
+export type TransactionLineItemProductVariantInput = {
+  product_id: number;
+  sku: string;
+  barcode?: string;
+  title: string;
+  brand: string;
+  category: string;
+  subcategory?: string;
+  price: number;
+}
+
+export interface TransactionLineItemDiscount {
+  amount: number;
+  reason_desc: string;
+}
+
+export interface TransactionLineItemInput {
+  name: string;
+  quantity: number;
+  price_current: number;
+  price_sell: number;
+  price_tax: number;
+  price_original: number;
+  product_variant_id?: number;
+  product_variant?: TransactionLineItemProductVariantInput;
+  discounts?: TransactionLineItemDiscount[];
+}
+
+export type TransactionInput =  {
+  profile_id: string;
+  external_id: string;
+  receipt_ref: string;
+  location_id: string;
+  total: number;
+  total_original: number;
+  systems?: string[];
+  timezone: string;
+  tags: string[];
+  items: TransactionLineItemInput[];
+  payments?: any[];
+  transacted_at: string;
+  created_at?: string;
+  updated_at?: string;
+  meta?: { [key: string ] : any };
+  delete_existing_items?: boolean;
+}
+
 export type GroupedTransaction = {
   order_number: string | null
   transaction_id: number
