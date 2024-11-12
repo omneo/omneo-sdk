@@ -7,8 +7,8 @@ import {
   TransactionFilters,
   TransactionLedger
 } from '../../../types'
-import Resource from '../resource'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
+import Resource from '../resource'
 
 export default class Profiles extends Resource {
   get (id: string, params?: RequestParams): Promise<Profile> {
@@ -379,10 +379,11 @@ export default class Profiles extends Resource {
     })
   }
 
-  async getConnections (profileID: string): Promise<Connection> {
+  async getConnections (profileID: string, params?: object): Promise<Connection> {
     return this.client.call({
       method: 'get',
-      endpoint: `/profiles/${profileID}/connections`
+      endpoint: `/profiles/${profileID}/connections`,
+      params
     }).then((response) => {
       return response.data
     })
