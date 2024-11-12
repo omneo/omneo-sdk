@@ -1,4 +1,4 @@
-import {RequestParams, Transaction, TransactionInput} from '../../../types'
+import { RequestParams, Transaction, TransactionInput } from '../../../types'
 import Resource from '../resource'
 
 export default class Transactions extends Resource {
@@ -45,7 +45,7 @@ export default class Transactions extends Resource {
   updateCreate (body: TransactionInput): Promise<Transaction> {
     return this.client.call({
       method: 'post',
-      endpoint: `/transactions/update-create`,
+      endpoint: '/transactions/update-create',
       body
     }).then((response) => {
       return response.data

@@ -1,8 +1,8 @@
 import { Identity } from './identities'
 import { Location } from './location'
-import {Redemption} from "./redemption";
-import {Payment} from "./payment";
-import {ProductVariant} from "./productVariant";
+import { Redemption } from './redemption'
+import { Payment } from './payment'
+import { ProductVariant } from './productVariant'
 
 export type TransactionFilters = 'profile_id' | 'total' | 'rounding' | 'total_original' | 'margin' | 'external_id' | 'deliver_at' | 'transacted_at' | 'timezone' | 'receipt_is_email' | 'receipt_ref' | 'location_id' | 'systems.handle' | 'type' | 'status' | 'order_number' | 'tags.handle' | 'location.name' | 'profile.identities.identifier' | 'need_action'
 export type TransactionItem = {
@@ -120,7 +120,7 @@ export interface TransactionLineItemInput {
   discounts?: TransactionLineItemDiscount[];
 }
 
-export type TransactionInput =  {
+export type TransactionInput = {
   profile_id: string;
   external_id: string;
   receipt_ref: string;

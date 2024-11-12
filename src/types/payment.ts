@@ -1,4 +1,4 @@
-export type PaymentCode = "CASH"
+export type PaymentCode = 'CASH'
 
 export type Payment = {
   id: string
