@@ -1,3 +1,17 @@
+# [1.29.0](https://github.com/omneo/omneo-sdk/compare/v1.28.2...v1.29.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* removed unnecessary Merge type ([c3390b1](https://github.com/omneo/omneo-sdk/commit/c3390b1eb4934d53c2d124978cb02ca80b453604))
+
+
+### Features
+
+* add params to getConnections. ([e4c6c34](https://github.com/omneo/omneo-sdk/commit/e4c6c34fafd2125764e7b6267921b6cd9a4fb7c5))
+* merge profile endpoint added ([71fdcc5](https://github.com/omneo/omneo-sdk/commit/71fdcc596b2ab0efd1eb6b35262e1c6db24a5a35))
+* updated with Merge types ([c8ec62b](https://github.com/omneo/omneo-sdk/commit/c8ec62bd877480ddfd44752d13ad2f5b1faef200))
+
 ## [1.28.2](https://github.com/omneo/omneo-sdk/compare/v1.28.1...v1.28.2) (2024-11-07)
 
 
