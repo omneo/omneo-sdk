@@ -1,5 +1,5 @@
 import { afterEach, expect, test } from 'vitest'
-import {writeTransactionWithVariant, writeTransactionWithVariantID} from '../../mocks/transactions/transaction'
+import { writeTransactionWithVariant, writeTransactionWithVariantID } from '../../mocks/transactions/transaction'
 import simpleOmneoRequest from '../../lib/simple-omneo-request'
 import { Omneo } from '../../../omneo'
 import randomString from '../../lib/string/random'
