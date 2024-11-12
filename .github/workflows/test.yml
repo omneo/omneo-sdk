@@ -6,7 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     environment: test
-    needs: build
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
