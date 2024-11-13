@@ -30,12 +30,12 @@ export type Location = {
   description: string | null
   phone: string | null
   email: string
-  timezone: string
+  timezone?: string
   external_id: string
-  external_code: string
+  external_code?: string
   is_published: boolean
   is_permanently_closed: boolean
-  address: Address
-  normal_hours: Array<NormalHour>
-  special_hours: Array<SpecialHour>
+  address: Address | null
+  normal_hours?: Array<NormalHour>
+  special_hours?: Array<SpecialHour>
 }
