@@ -1,4 +1,4 @@
-import { describe, test, afterAll, beforeEach, expect } from 'vitest'
+import { describe, test, beforeEach, expect } from 'vitest'
 import simpleOmneoRequest from '../../lib/simple-omneo-request'
 import { ID } from '../../../id'
 import jwt from 'jsonwebtoken'
