@@ -9,14 +9,15 @@ export class ID {
   IDTokenExp?: number
   config: { [key: string]: any }
   baseURL: string
-  constructor (options: { tenant: string, config: { [key: string]: any }, omneoAPIToken?: string, IDToken?: string}) {
-    const { config, tenant, IDToken, omneoAPIToken } = options
+  constructor (options: { tenant: string, config: { [key: string]: any }, omneoAPIToken?: string, IDToken?: string, IDTokenExpiry?: number}) {
+    const { config, tenant, IDToken, IDTokenExpiry, omneoAPIToken } = options
 
     this.tenant = tenant
     this.config = config
     this.omneoAPIToken = omneoAPIToken || ''
     this.IDToken = IDToken || ''
     this.baseURL = `https://api.${tenant}.getomneo.com/id/api/v1`
+    if (IDTokenExpiry) this.IDTokenExp = IDTokenExpiry
   }
 
   public auth = new Auth(this)
@@ -52,5 +53,6 @@ export class ID {
 
   reset () {
     this.IDToken = ''
+    this.IDTokenExp = undefined
   }
 }

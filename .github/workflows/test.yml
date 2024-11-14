@@ -1,0 +1,30 @@
+name: Node.js CI
+
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - run: npm install
+      - run: npm run build --if-present
+      - run: npm test
+        env:
+          OMNEO_TENANT: ${{secrets.OMNEO_SANDBOX_TENANT}}
+          OMNEO_TOKEN: ${{secrets.OMNEO_SANDBOX_GH_ACTIONS_TOKEN}}
+          OMNEO_TEST_PROFILE_ID: ${{secrets.OMNEO_TEST_PROFILE_ID}}
+          OMNEO_TEST_LOCATION_ID: ${{secrets.OMNEO_TEST_LOCATION_ID}}
+          OMNEO_TEST_PRODUCT_ID: ${{secrets.OMNEO_TEST_PRODUCT_ID}}
+          OMNEO_TEST_PRODUCT_VARIANT_ID: ${{secrets.OMNEO_TEST_PRODUCT_VARIANT_ID}}
