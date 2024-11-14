@@ -40,7 +40,7 @@ export class ID {
     })
 
     if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`)
+      return Promise.reject(response)
     }
 
     try {

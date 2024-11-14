@@ -1,8 +1,8 @@
 import { describe, test, afterAll, expect } from 'vitest'
-import { writeTransactionWithVariant, writeTransactionWithVariantID } from '../../mocks/transactions/transaction'
-import simpleOmneoRequest from '../../lib/simple-omneo-request'
-import { Omneo } from '../../../omneo'
-import randomString from '../../lib/string/random'
+import { writeTransactionWithVariant, writeTransactionWithVariantID } from '../../../mocks/transactions/transaction'
+import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { Omneo } from '../../../../omneo'
+import randomString from '../../../lib/string/random'
 
 const CREATED_TRANSACTION_IDS : number[] = []
 

@@ -36,7 +36,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  getBalances (params: object): Promise<ProfileBalances> {
+  getBalances (params?: object): Promise<ProfileBalances> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/balances',
