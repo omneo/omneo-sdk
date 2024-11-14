@@ -107,16 +107,3 @@ describe('ID Class Tests', async () => {
 beforeEach(async () => {
   IDClient.reset()
 })
-
-afterAll(async () => {
-  // Delete the test transaction.
-//   if (CREATED_TRANSACTION_IDS.length > 0) {
-//     for (const transactionId of CREATED_TRANSACTION_IDS) {
-//       console.log('Cleaning up transaction', transactionId)
-//       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${transactionId}`)
-//       if (deleteResponse.status === 204) {
-//         console.log(`Transaction ${transactionId} deleted`)
-//       }
-//     }
-//   }
-})
