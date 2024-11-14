@@ -1,3 +1,17 @@
+# [1.30.0](https://github.com/omneo/omneo-sdk/compare/v1.29.0...v1.30.0) (2024-11-14)
+
+
+### Features
+
+* added test for TXN with product_variant_id ([c617df7](https://github.com/omneo/omneo-sdk/commit/c617df7079ebae405e37b5011c6c65da8ea6862e))
+* added transaction create integration test ([4f233f8](https://github.com/omneo/omneo-sdk/commit/4f233f849db88c352232f04b993bf8dce4f68a2f))
+* added TXN update-create ([66692b3](https://github.com/omneo/omneo-sdk/commit/66692b34f596e65dad60022ddb3f87a34205a965))
+* added update transaction test ([9652a36](https://github.com/omneo/omneo-sdk/commit/9652a3612de690abe8f9ce9415cb86cf5c6cf74e))
+* allow set IDTokenExp when constructing the ID class ([5be8d3a](https://github.com/omneo/omneo-sdk/commit/5be8d3a0172ab795c750bd8253eb7629672cbfc5))
+* reenable api fix for update txn ([d677cda](https://github.com/omneo/omneo-sdk/commit/d677cda58abe29e6145ef4fb91f31f9ffda26488))
+* updated transaction types ([5a454f5](https://github.com/omneo/omneo-sdk/commit/5a454f51640b0316ebf1aaf72848c11cc8bad162))
+* updated types for is_void and receipt_is_email to be optional ([a718f38](https://github.com/omneo/omneo-sdk/commit/a718f38befbbcff84576b8ada69eafd908161bcb))
+
 # [1.29.0](https://github.com/omneo/omneo-sdk/compare/v1.28.2...v1.29.0) (2024-11-12)
 
 
