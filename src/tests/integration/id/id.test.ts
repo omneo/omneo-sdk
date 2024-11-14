@@ -1,6 +1,6 @@
 import { describe, test, afterAll, beforeEach, expect } from 'vitest'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { ID } from '../../../../id'
+import simpleOmneoRequest from '../../lib/simple-omneo-request'
+import { ID } from '../../../id'
 import jwt from 'jsonwebtoken'
 
 const IDClient = new ID({
@@ -9,7 +9,7 @@ const IDClient = new ID({
   omneoAPIToken: process.env.OMNEO_TOKEN as string
 })
 
-describe('Auth request token', async () => {
+describe('ID Class Tests', async () => {
   const exampleProfile = await simpleOmneoRequest('GET', '/profiles').then(({ data }) => data[0])
 
   test('ID SDK can be reset', async () => {
@@ -77,6 +77,25 @@ describe('Auth request token', async () => {
     expect(typeof balances.point_balance_dollars).toBe('number')
     expect(typeof balances.benefit_balance).toBe('number')
     expect(typeof balances.combined_balance_dollars).toBe('number')
+  })
+
+  test('ID SDK can find transactions', async () => {
+    const allTransactions = await simpleOmneoRequest('GET', '/transactions').then(({ data }) => data)
+    const transaction = allTransactions.find((txn: any) => txn.profile_id && txn.external_id)
+
+    await IDClient.auth.requestAuthToken({ id: transaction.profile_id })
+    const foundTransaction = await IDClient.profile.findTransactions({ field: 'external_id', value: transaction.external_id })
+    expect(foundTransaction?.id).toBe(transaction.id)
+  })
+
+  test('ID SDK can get grouped transactions', async () => {
+    const allTransactions = await simpleOmneoRequest('GET', '/transactions').then(({ data }) => data)
+    const transaction = allTransactions.find((txn: any) => txn.profile_id && txn.external_id)
+
+    await IDClient.auth.requestAuthToken({ id: transaction.profile_id })
+    const { data: groupedTrans } = await IDClient.profile.getGroupedTransactions()
+    expect(Array.isArray(groupedTrans)).toBe(true)
+    expect(groupedTrans.length).toBeGreaterThanOrEqual(1)
   })
 
   test('ID SDK cannot get me with anon token', async () => {

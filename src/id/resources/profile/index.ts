@@ -46,7 +46,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  findTransactions (filter: { field: TransactionFilters, value: string }) {
+  findTransactions (filter: { field: TransactionFilters, value: string }): Promise<Transaction | null> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/find-transactions',
@@ -56,7 +56,7 @@ export default class Profile extends IDResource {
     }).then((response) => {
       return response?.data
     }).catch((error) => {
-      if (error?.response?.status === 404) return null
+      if (error?.status === 404) return null
       return error
     })
   }
