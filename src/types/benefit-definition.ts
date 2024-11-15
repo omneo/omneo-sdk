@@ -1,5 +1,5 @@
 export type BenefitDefinition = {
-    id: number,
+    id: string,
     name: string,
     handle: string,
     period: number,
@@ -26,9 +26,9 @@ export type BenefitDefinition = {
     is_archived: boolean,
     tags: Array<string>,
     is_claimable: boolean,
-    max_global_redemptions: number,
-    total_global_redemptions: number,
-    total_global_redemptions_remaining: number,
+    max_global_redemptions: number | null,
+    total_global_redemptions: number| null,
+    total_global_redemptions_remaining: number| null,
     total_global_created: number,
     claim_period_start_at: string | null,
     claim_period_end_at: string | null,
@@ -52,7 +52,7 @@ export type BenefitDefinition = {
     updated_at: string | null,
     claim_timeframe: string | null,
     view_condition: string | null,
-    allow_user_redeem: string | null,
+    allow_user_redeem: boolean | null,
     value: string | null,
     type: string | null,
 }
