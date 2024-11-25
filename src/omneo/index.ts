@@ -53,6 +53,7 @@ export class Omneo {
     })
 
     if (!response.ok) {
+      if (response?.json) return Promise.reject(await response.json())
       return Promise.reject(response)
     }
     try {
