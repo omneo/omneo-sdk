@@ -129,3 +129,286 @@ Example usage:
 const queueResponse = await omneoClient.products.queue({ productID: '12345' });
 console.log(queueResponse.data);
 ```
+## get
+```typescript
+get(): Promise<ProfileType>
+```
+Retrieves the profile of the current user.
+
+Example usage:
+```typescript
+const profile = await omneoClient.profile.get();
+console.log(profile);
+```
+
+## update
+```typescript
+update(body: Profile): Promise<ProfileType>
+```
+Updates the profile of the current user.
+
+Example usage:
+```typescript
+const updatedProfile = await omneoClient.profile.update({ name: 'New Name' });
+console.log(updatedProfile);
+```
+
+## delete
+```typescript
+delete(): Promise<ProfileType>
+```
+Deletes the profile of the current user.
+
+Example usage:
+```typescript
+await omneoClient.profile.delete();
+console.log('Profile deleted successfully');
+```
+
+## purge
+```typescript
+purge(): Promise<void>
+```
+Permanently deletes the profile of the current user.
+
+Example usage:
+```typescript
+await omneoClient.profile.purge();
+console.log('Profile purged successfully');
+```
+
+## getInteractions
+```typescript
+getInteractions(params?: object): Promise<Interaction[]>
+```
+Retrieves interactions of the current user.
+
+Example usage:
+```typescript
+const interactions = await omneoClient.profile.getInteractions({ type: 'purchase' });
+console.log(interactions);
+```
+
+## getInteractionById
+```typescript
+getInteractionById(id: string): Promise<Interaction>
+```
+Retrieves a specific interaction by its ID.
+
+Example usage:
+```typescript
+const interaction = await omneoClient.profile.getInteractionById('12345');
+console.log(interaction);
+```
+
+## updateInteraction
+```typescript
+updateInteraction(id: string): Promise<Interaction>
+```
+Updates a specific interaction by its ID.
+
+Example usage:
+```typescript
+const updatedInteraction = await omneoClient.profile.updateInteraction('12345');
+console.log(updatedInteraction);
+```
+
+## createInteraction
+```typescript
+createInteraction(body: InteractionInput): Promise<Interaction>
+```
+Creates a new interaction.
+
+Example usage:
+```typescript
+const newInteraction = await omneoClient.profile.createInteraction({ type: 'purchase', details: '...' });
+console.log(newInteraction);
+```
+
+## deleteInteraction
+```typescript
+deleteInteraction(id: string): Promise<void>
+```
+Deletes a specific interaction by its ID.
+
+Example usage:
+```typescript
+await omneoClient.profile.deleteInteraction('12345');
+console.log('Interaction deleted successfully');
+```
+
+## getAggregations
+```typescript
+getAggregations(params?: RequestParams): Promise<Aggregations>
+```
+Retrieves aggregations for the current user.
+
+Example usage:
+```typescript
+const aggregations = await omneoClient.profile.getAggregations({ type: 'purchase' });
+console.log(aggregations);
+```
+
+## calculateAggregations
+```typescript
+calculateAggregations(params?: RequestParams): Promise<Aggregations>
+```
+Calculates aggregations for the current user.
+
+Example usage:
+```typescript
+const calculatedAggregations = await omneoClient.profile.calculateAggregations({ type: 'purchase' });
+console.log(calculatedAggregations);
+```
+
+## getBalances
+```typescript
+getBalances(params?: object): Promise<ProfileBalances>
+```
+Retrieves balances for the current user.
+
+Example usage:
+```typescript
+const balances = await omneoClient.profile.getBalances();
+console.log(balances);
+```
+
+## findTransactions
+```typescript
+findTransactions(filter: { field: TransactionFilters, value: string }): Promise<Transaction | null>
+```
+Finds transactions based on a filter.
+
+Example usage:
+```typescript
+const transaction = await omneoClient.profile.findTransactions({ field: 'status', value: 'completed' });
+console.log(transaction);
+```
+
+## getGroupedTransactions
+```typescript
+getGroupedTransactions(params?: { pageSize?: number, pageNumber?: number }): Promise<GroupedTransactionsResponse>
+```
+Retrieves grouped transactions for the current user.
+
+Example usage:
+```typescript
+const groupedTransactions = await omneoClient.profile.getGroupedTransactions({ pageSize: 10, pageNumber: 1 });
+console.log(groupedTransactions);
+```
+
+## createIdentity
+```typescript
+createIdentity(body: IdentityRequest): Promise<void>
+```
+Creates a new identity for the current user.
+
+Example usage:
+```typescript
+await omneoClient.profile.createIdentity({ type: 'email', value: 'user@example.com' });
+console.log('Identity created successfully');
+```
+
+## getIdentities
+```typescript
+getIdentities(): Promise<Identity[]>
+```
+Retrieves identities for the current user.
+
+Example usage:
+```typescript
+const identities = await omneoClient.profile.getIdentities();
+console.log(identities);
+```
+
+## getIdentityById
+```typescript
+getIdentityById(identityID: string): Promise<Identity>
+```
+Retrieves a specific identity by its ID.
+
+Example usage:
+```typescript
+const identity = await omneoClient.profile.getIdentityById('12345');
+console.log(identity);
+```
+
+## updateIdentity
+```typescript
+updateIdentity(identityID: string, body: any): Promise<Identity>
+```
+Updates a specific identity by its ID.
+
+Example usage:
+```typescript
+const updatedIdentity = await omneoClient.profile.updateIdentity('12345', { value: 'new@example.com' });
+console.log(updatedIdentity);
+```
+
+## deleteIdentity
+```typescript
+deleteIdentity(identityID: string): Promise<void>
+```
+Deletes a specific identity by its ID.
+
+Example usage:
+```typescript
+await omneoClient.profile.deleteIdentity('12345');
+console.log('Identity deleted successfully');
+```
+
+## getLedgers
+```typescript
+getLedgers(): Promise<(TransactionLedger | OrderLedger)[]>
+```
+Retrieves ledgers for the current user.
+
+Example usage:
+```typescript
+const ledgers = await omneoClient.profile.getLedgers();
+console.log(ledgers);
+```
+
+## getLedgerById
+```typescript
+getLedgerById(id: string): Promise<(TransactionLedger | OrderLedger)>
+```
+Retrieves a specific ledger by its ID.
+
+Example usage:
+```typescript
+const ledger = await omneoClient.profile.getLedgerById('12345');
+console.log(ledger);
+```
+
+## getRegions
+```typescript
+getRegions(): Promise<Region[]>
+```
+Retrieves regions for the current user.
+
+Example usage:
+```typescript
+const regions = await omneoClient.profile.getRegions();
+console.log(regions);
+```
+
+## resync
+```typescript
+resync(): Promise<void>
+```
+Resyncs the profile of the current user.
+
+Example usage:
+```typescript
+await omneoClient.profile.resync();
+console.log('Profile resynced successfully');
+```
+
+## getRewards
+```typescript
+getRewards(params?: object): Promise<Reward[]>
+```
+Retrieves rewards for the current user.
+
+Example

@@ -12,7 +12,7 @@ export default class Interactions extends Resource {
     })
   }
 
-  list (params: RequestParams): Promise<Interaction[]> {
+  list (params?: RequestParams): Promise<Interaction[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/interactions',

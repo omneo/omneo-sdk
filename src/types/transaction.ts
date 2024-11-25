@@ -138,7 +138,7 @@ export type TransactionInput = {
   meta?: { [key: string ] : any };
   delete_existing_items?: boolean;
   receipt_is_email?: boolean;
-  is_void?: boolean | null;
+  is_void?: boolean;
 }
 
 export type GroupedTransaction = {

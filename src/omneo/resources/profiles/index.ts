@@ -1,6 +1,6 @@
 import {
   Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
-  Connection, CustomAttribute, DelegationData, GroupedTransactionsResponse, Identity, IdentityRequest, Interaction, InteractionRequest, OrderLedger, Profile, ProfileAppearance,
+  Connection, CustomAttribute, DelegationData, GetConnectionInputParams, GroupedTransactionsResponse, Identity, IdentityRequest, Interaction, InteractionInput, List, ListInput, ListItem, ListItemInput, OrderLedger, Profile, ProfileAppearance,
   ProfileBalances, ProfileComms, Redeem, Region, RequestParams, Reward,
   TierProgress,
   Transaction,
@@ -188,7 +188,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  createInteraction (body: InteractionRequest) {
+  createInteraction (body: InteractionInput) {
     return this.client.call({
       method: 'post',
       endpoint: '/interactions',
@@ -379,7 +379,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  async getConnections (profileID: string, params?: object): Promise<Connection> {
+  async getConnections (profileID: string, params?: GetConnectionInputParams): Promise<Connection> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/connections`,
@@ -543,6 +543,102 @@ export default class Profiles extends Resource {
         source_profile_id: sourceProfileID,
         destination_profile_id: destinationProfileId
       }
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getLists (profileID: string, params?: object): Promise<List[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/lists`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getListByID (profileID: string, listID: string): Promise<List> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/lists/${listID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  deleteList (profileID: string, listID: string) {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/${profileID}/lists/${listID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getListItems (profileID: string, listID: number, params?: object): Promise<ListItem[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/lists/${listID}/items`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getListItemByID (profileID: string, listID: number, listItemID: number): Promise<ListItem> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/lists/${listID}/items/${listItemID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateListItem (profileID: string, listID: number, listItemID: number, body: ListItemInput): Promise<ListItem> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/${profileID}/lists/${listID}/items/${listItemID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  createListItem (profileID: string, listID: number, listItemID: number, body: ListItemInput): Promise<ListItem> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/${profileID}/lists/${listID}/items/${listItemID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  deleteListItem (profileID: string, listID: number, listItemID: number): Promise<ListItem> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/${profileID}/lists/${listID}/items/${listItemID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateList (profileID: string, listID: string, body: Partial<ListInput>): Promise<List> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/${profileID}/lists/${listID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getUnassignedTransactionItems (profileID: string, params?: { include_list_item: 1 | 0}) {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/transactionitems/list/unassigned`,
+      params
     }).then((response) => {
       return response.data
     })

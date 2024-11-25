@@ -12,7 +12,7 @@ export default class Orders extends Resource {
     })
   }
 
-  list (params: RequestParams): Promise<any> {
+  list (params?: RequestParams): Promise<any> {
     return this.client.call({
       method: 'get',
       endpoint: '/orders',

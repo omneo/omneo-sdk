@@ -23,8 +23,8 @@ export type RewardDefinition = {
   is_reassignable: boolean
   is_published: boolean
   tags: Array<string>
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type Reward = {
@@ -35,17 +35,17 @@ export type Reward = {
   value_remaining: number
   has_notified_issue: boolean
   has_notified_expiry: boolean
-  expires_at: Date
-  issued_at: Date
+  expires_at: string
+  issued_at: string
   is_expired: boolean
   is_active: boolean
-  issued_local_at: Date
-  expires_local_at: Date | null
-  notify_issue_at: Date | null
-  notify_expiry_at: Date | null
-  extended_at: Date | null
+  issued_local_at: string
+  expires_local_at: string | null
+  notify_issue_at: string | null
+  notify_expiry_at: string | null
+  extended_at: string | null
   definition: RewardDefinition
   meta: {[key: string]: any} | null
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }

@@ -1,8 +1,8 @@
-### createAPIToken(body: APITokenRequest): Promise<any>
+### createAPIToken(body: APITokenInput): Promise<any>
 
 This method creates an API token.
 
-- `body`: An object of type `APITokenRequest` containing the necessary information to create the API token.
+- `body`: An object of type `APITokenInput` containing the necessary information to create the API token.
 
 Returns a promise that resolves to the response from the server.
 

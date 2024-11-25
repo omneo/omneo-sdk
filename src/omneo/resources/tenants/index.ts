@@ -3,7 +3,7 @@ import { TenantCustomFieldRequest } from '../../../types/tenant.js'
 import Resource from '../resource.js'
 
 export default class Tenants extends Resource {
-  getCustomFields (params: RequestParams): Promise<any> {
+  getCustomFields (params?: RequestParams): Promise<any> {
     return this.client.call({
       method: 'get',
       endpoint: '/tenants/custom-fields',
@@ -23,12 +23,10 @@ export default class Tenants extends Resource {
     })
   }
 
-  deleteCustomField (namespace: string, handle: string): Promise<any> {
+  deleteCustomField (namespace: string, handle: string): Promise<void> {
     return this.client.call({
       method: 'delete',
       endpoint: `/tenants/custom-fields/${namespace}:${handle}`
-    }).then((response) => {
-      return response.data
     })
   }
 
