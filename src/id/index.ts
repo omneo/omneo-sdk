@@ -39,7 +39,7 @@ export class ID {
       ...(body && { body: JSON.stringify(body) })
     })
 
-    if (!response.ok) {
+    if (!response.ok || response.status < 200 || response.status >= 300) {
       return Promise.reject(response)
     }
 
