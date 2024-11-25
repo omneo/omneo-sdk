@@ -23,12 +23,10 @@ export default class Tenants extends Resource {
     })
   }
 
-  deleteCustomField (namespace: string, handle: string): Promise<any> {
+  deleteCustomField (namespace: string, handle: string): Promise<void> {
     return this.client.call({
       method: 'delete',
       endpoint: `/tenants/custom-fields/${namespace}:${handle}`
-    }).then((response) => {
-      return response.data
     })
   }
 
