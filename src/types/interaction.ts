@@ -23,13 +23,13 @@ export type Interaction = {
   product_category_id: number | null
   product_variant_id: number | null
   tags: Array<string>
-  created_at: Date
-  updated_at: Date
-  interacted_at: Date | null
+  created_at: string
+  updated_at: string
+  interacted_at: string | null
   meta: {[key: string]: any}
 }
 
-export type InteractionRequest = {
+export type InteractionInput = {
   identifier?: string | {
     id: string
     handle: string
@@ -52,6 +52,6 @@ export type InteractionRequest = {
   product_category_id?: number | null
   product_variant_id?: number | null
   tags?: Array<string>
-  interacted_at?: Date | null
+  interacted_at?: string | null
   meta: {[key: string]: any}
 }

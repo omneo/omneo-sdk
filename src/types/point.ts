@@ -6,8 +6,8 @@ export type PointDefinition = {
   notes: string | null
   is_reassignable: boolean
   tags: Array<string>
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type Point = {
@@ -16,11 +16,11 @@ export type Point = {
   linked_profile_id: string | null
   value_initial: number
   value_remaining: number
-  issued_at: Date
-  expires_at: Date
+  issued_at: string
+  expires_at: string
   definition: PointDefinition
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
   source_type: string
   source: object // Add Point sources type transaction_item
   rate: number | null

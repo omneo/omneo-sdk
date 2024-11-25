@@ -249,12 +249,12 @@ Example usage:
 await omneoClient.profiles.deleteIdentity('profile_id', 'identity_id');
 ```
 
-### `createInteraction(body: InteractionRequest)`
+### `createInteraction(body: InteractionInput)`
 
 Creates a new interaction.
 
 Parameters:
-- `body` (InteractionRequest): The data for the new interaction.
+- `body` (InteractionInput): The data for the new interaction.
 
 Example usage:
 
@@ -715,3 +715,328 @@ console.log(transactions);
 ```
 
 ### `getTransactionByID(profileID: string, transactionID: string): Promise<Transaction>`
+
+### `findTransactions(profileID: string, filter: { field: TransactionFilters, value: string }): Promise<Transaction[]>`
+
+Finds transactions for a profile based on a filter.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `filter` (object): The filter criteria containing a field and value.
+
+Returns:
+- A Promise that resolves to an array of transactions.
+
+Example usage:
+
+```javascript
+const transactions = await omneoClient.profiles.findTransactions('profile_id', { field: 'status', value: 'completed' });
+console.log(transactions);
+```
+
+### `getGroupedTransactions(profileID: string, params?: { pageSize?: number, pageNumber?: number }): Promise<GroupedTransactionsResponse>`
+
+Retrieves grouped transactions for a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `params` (optional): Pagination parameters.
+
+Returns:
+- A Promise that resolves to the grouped transactions.
+
+Example usage:
+
+```javascript
+const groupedTransactions = await omneoClient.profiles.getGroupedTransactions('profile_id', { pageSize: 10, pageNumber: 1 });
+console.log(groupedTransactions);
+```
+
+### `getLedgers(profileID: string): Promise<(TransactionLedger | OrderLedger)[]>`
+
+Retrieves the ledgers associated with a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+
+Returns:
+- A Promise that resolves to an array of ledgers.
+
+Example usage:
+
+```javascript
+const ledgers = await omneoClient.profiles.getLedgers('profile_id');
+console.log(ledgers);
+```
+
+### `getLedgerById(profileID: string, ledgerID: string): Promise<(TransactionLedger | OrderLedger)>`
+
+Retrieves a ledger by its ID.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `ledgerID` (string): The ID of the ledger.
+
+Returns:
+- A Promise that resolves to the retrieved ledger.
+
+Example usage:
+
+```javascript
+const ledger = await omneoClient.profiles.getLedgerById('profile_id', 'ledger_id');
+console.log(ledger);
+```
+
+### `getRegions(id: string): Promise<Region[]>`
+
+Retrieves the regions associated with a profile.
+
+Parameters:
+- `id` (string): The ID of the profile.
+
+Returns:
+- A Promise that resolves to an array of regions.
+
+Example usage:
+
+```javascript
+const regions = await omneoClient.profiles.getRegions('profile_id');
+console.log(regions);
+```
+
+### `calculateTiers(id: string): Promise<TierProgress>`
+
+Calculates the tier progress for a profile.
+
+Parameters:
+- `id` (string): The ID of the profile.
+
+Returns:
+- A Promise that resolves to the tier progress.
+
+Example usage:
+
+```javascript
+const tierProgress = await omneoClient.profiles.calculateTiers('profile_id');
+console.log(tierProgress);
+```
+
+### `assignTier(profileID: string, tierDefinitionHandle: string): Promise<TierProgress>`
+
+Assigns a tier to a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `tierDefinitionHandle` (string): The handle of the tier definition.
+
+Returns:
+- A Promise that resolves to the tier progress.
+
+Example usage:
+
+```javascript
+const tierProgress = await omneoClient.profiles.assignTier('profile_id', 'gold');
+console.log(tierProgress);
+```
+
+### `merge(sourceProfileID: string, destinationProfileId: string): Promise<Profile>`
+
+Merges two profiles.
+
+Parameters:
+- `sourceProfileID` (string): The ID of the source profile.
+- `destinationProfileId` (string): The ID of the destination profile.
+
+Returns:
+- A Promise that resolves to the merged profile.
+
+Example usage:
+
+```javascript
+const mergedProfile = await omneoClient.profiles.merge('source_profile_id', 'destination_profile_id');
+console.log(mergedProfile);
+```
+
+### `getLists(profileID: string, params?: object): Promise<List[]>`
+
+Retrieves the lists associated with a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `params` (optional): Additional request parameters.
+
+Returns:
+- A Promise that resolves to an array of lists.
+
+Example usage:
+
+```javascript
+const lists = await omneoClient.profiles.getLists('profile_id');
+console.log(lists);
+```
+
+### `getListByID(profileID: string, listID: string): Promise<List>`
+
+Retrieves a list by its ID.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (string): The ID of the list.
+
+Returns:
+- A Promise that resolves to the retrieved list.
+
+Example usage:
+
+```javascript
+const list = await omneoClient.profiles.getListByID('profile_id', 'list_id');
+console.log(list);
+```
+
+### `deleteList(profileID: string, listID: string)`
+
+Deletes a list from a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (string): The ID of the list.
+
+Example usage:
+
+```javascript
+await omneoClient.profiles.deleteList('profile_id', 'list_id');
+```
+
+### `getListItems(profileID: string, listID: number, params?: object): Promise<ListItem[]>`
+
+Retrieves the items in a list.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (number): The ID of the list.
+- `params` (optional): Additional request parameters.
+
+Returns:
+- A Promise that resolves to an array of list items.
+
+Example usage:
+
+```javascript
+const listItems = await omneoClient.profiles.getListItems('profile_id', 1);
+console.log(listItems);
+```
+
+### `getListItemByID(profileID: string, listID: number, listItemID: number): Promise<ListItem>`
+
+Retrieves a list item by its ID.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (number): The ID of the list.
+- `listItemID` (number): The ID of the list item.
+
+Returns:
+- A Promise that resolves to the retrieved list item.
+
+Example usage:
+
+```javascript
+const listItem = await omneoClient.profiles.getListItemByID('profile_id', 1, 1);
+console.log(listItem);
+```
+
+### `updateListItem(profileID: string, listID: number, listItemID: number, body: ListItemInput): Promise<ListItem>`
+
+Updates a list item.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (number): The ID of the list.
+- `listItemID` (number): The ID of the list item.
+- `body` (ListItemInput): The updated list item data.
+
+Returns:
+- A Promise that resolves to the updated list item.
+
+Example usage:
+
+```javascript
+const updatedListItem = await omneoClient.profiles.updateListItem('profile_id', 1, 1, { name: 'New Item' });
+console.log(updatedListItem);
+```
+
+### `createListItem(profileID: string, listID: number, listItemID: number, body: ListItemInput): Promise<ListItem>`
+
+Creates a new list item.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (number): The ID of the list.
+- `listItemID` (number): The ID of the list item.
+- `body` (ListItemInput): The data for the new list item.
+
+Returns:
+- A Promise that resolves to the created list item.
+
+Example usage:
+
+```javascript
+const newListItem = await omneoClient.profiles.createListItem('profile_id', 1, 1, { name: 'New Item' });
+console.log(newListItem);
+```
+
+### `deleteListItem(profileID: string, listID: number, listItemID: number): Promise<ListItem>`
+
+Deletes a list item.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (number): The ID of the list.
+- `listItemID` (number): The ID of the list item.
+
+Returns:
+- A Promise that resolves to the deleted list item.
+
+Example usage:
+
+```javascript
+const deletedListItem = await omneoClient.profiles.deleteListItem('profile_id', 1, 1);
+console.log(deletedListItem);
+```
+
+### `updateList(profileID: string, listID: string, body: Partial<ListInput>): Promise<List>`
+
+Updates a list.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `listID` (string): The ID of the list.
+- `body` (Partial<ListInput>): The updated list data.
+
+Returns:
+- A Promise that resolves to the updated list.
+
+Example usage:
+
+```javascript
+const updatedList = await omneoClient.profiles.updateList('profile_id', 'list_id', { name: 'Updated List' });
+console.log(updatedList);
+```
+
+### `getUnassignedTransactionItems(profileID: string, params?: { include_list_item: 1 | 0 }): Promise<any>`
+
+Retrieves unassigned transaction items for a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `params` (optional): Additional request parameters.
+
+Returns:
+- A Promise that resolves to the unassigned transaction items.
+
+Example usage:
+
+```javascript
+const unassignedItems = await omneoClient.profiles.getUnassignedTransactionItems('profile_id', { include_list_item: 1 });
+console.log(unassignedItems);
+```

@@ -53,7 +53,7 @@ export class Omneo {
     })
 
     if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}. ${response.statusText}`)
+      return Promise.reject(response)
     }
     try {
       const data = await response.json()

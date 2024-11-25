@@ -42,7 +42,7 @@ export default class Products extends Resource {
     })
   }
 
-  listVariants (params: RequestParams) {
+  listVariants (params?: RequestParams) {
     return this.client.call({
       method: 'get',
       endpoint: '/products/variants',

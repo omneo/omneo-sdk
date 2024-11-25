@@ -1,8 +1,8 @@
 import { describe, test, afterAll, expect } from 'vitest'
-import { writeTransactionWithVariant, writeTransactionWithVariantID } from '../../mocks/transactions/transaction'
-import simpleOmneoRequest from '../../lib/simple-omneo-request'
-import { Omneo } from '../../../omneo'
-import randomString from '../../lib/string/random'
+import { writeTransactionWithVariant, writeTransactionWithVariantID } from '../../../mocks/transactions/transaction'
+import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { Omneo } from '../../../../omneo'
+import randomString from '../../../lib/string/random'
 
 const CREATED_TRANSACTION_IDS : number[] = []
 
@@ -50,10 +50,6 @@ describe('Transactions update-create', () => {
       'updated'
     ]
     newTransaction.total = 200
-
-    // TODO: Find out why these is required for a TXN update but not create.
-    newTransaction.receipt_is_email = true
-    newTransaction.is_void = false
 
     const sdkCreateTransaction = await omneo.transactions.updateCreate(newTransaction)
     expect(sdkCreateTransaction.tags).toStrictEqual(newTransaction.tags)

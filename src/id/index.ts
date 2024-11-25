@@ -9,11 +9,11 @@ export class ID {
   IDTokenExp?: number
   config: { [key: string]: any }
   baseURL: string
-  constructor (options: { tenant: string, config: { [key: string]: any }, omneoAPIToken?: string, IDToken?: string, IDTokenExpiry?: number}) {
+  constructor (options: { tenant: string, config?: { [key: string]: any }, omneoAPIToken?: string, IDToken?: string, IDTokenExpiry?: number}) {
     const { config, tenant, IDToken, IDTokenExpiry, omneoAPIToken } = options
 
     this.tenant = tenant
-    this.config = config
+    this.config = config || {}
     this.omneoAPIToken = omneoAPIToken || ''
     this.IDToken = IDToken || ''
     this.baseURL = `https://api.${tenant}.getomneo.com/id/api/v1`
@@ -40,7 +40,7 @@ export class ID {
     })
 
     if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`)
+      return Promise.reject(response)
     }
 
     try {

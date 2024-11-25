@@ -1,10 +1,24 @@
-import { Aggregations, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, Tier, TierProgress, Transaction, TransactionFilters, TransactionLedger } from '../../../types'
+import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, Tier, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput } from '../../../types'
 import IDResource from '../resource'
-
 export default class Profile extends IDResource {
-  me () {
+  get (): Promise<ProfileType> {
     return this.client.call({
       method: 'get',
+      endpoint: '/profiles/me'
+    }).then(({ data }) => data)
+  }
+
+  update (body: Profile): Promise<ProfileType> {
+    return this.client.call({
+      method: 'put',
+      endpoint: '/profiles/me',
+      body
+    }).then(({ data }) => data)
+  }
+
+  delete (): Promise<ProfileType> {
+    return this.client.call({
+      method: 'delete',
       endpoint: '/profiles/me'
     })
   }
@@ -13,6 +27,43 @@ export default class Profile extends IDResource {
     return this.client.call({
       method: 'delete',
       endpoint: '/profiles/me/purge'
+    })
+  }
+
+  getInteractions (params?: object): Promise<Interaction[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/interactions',
+      params
+    })
+  }
+
+  getInteractionById (id: string): Promise<Interaction> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/me/interactions/${id}`
+    })
+  }
+
+  updateInteraction (id: string): Promise<Interaction> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/me/interactions/${id}`
+    })
+  }
+
+  createInteraction (body: InteractionInput): Promise<Interaction> {
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/me/interactions',
+      body
+    })
+  }
+
+  deleteInteraction (id: string): Promise<Interaction> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/me/interactions/${id}`
     })
   }
 
@@ -36,7 +87,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  getBalances (params: object): Promise<ProfileBalances> {
+  getBalances (params?: object): Promise<ProfileBalances> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/balances',
@@ -46,7 +97,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  findTransactions (filter: { field: TransactionFilters, value: string }) {
+  findTransactions (filter: { field: TransactionFilters, value: string }): Promise<Transaction | null> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/find-transactions',
@@ -56,7 +107,7 @@ export default class Profile extends IDResource {
     }).then((response) => {
       return response?.data
     }).catch((error) => {
-      if (error?.response?.status === 404) return null
+      if (error?.status === 404) return null
       return error
     })
   }
@@ -175,19 +226,21 @@ export default class Profile extends IDResource {
     })
   }
 
-  getRewards (): Promise<Reward[] | []> {
+  getRewards (params?: object): Promise<Reward[] | []> {
     return this.client.call({
       method: 'get',
-      endpoint: '/profiles/me/rewards'
+      endpoint: '/profiles/me/rewards',
+      params
     }).then((response) => {
       return response.data
     })
   }
 
-  getTiers (): Promise<Tier[] | []> {
+  getTiers (params?: object): Promise<Tier[] | []> {
     return this.client.call({
       method: 'get',
-      endpoint: '/profiles/me/tiers'
+      endpoint: '/profiles/me/tiers',
+      params
     }).then((response) => {
       return response.data
     })
@@ -321,6 +374,179 @@ export default class Profile extends IDResource {
   // redeem () {
   //   console.log('redeem')
   // }
+
+  getConnections (params?: GetConnectionInputParams): Promise<Connection[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/connections',
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getConnectionByID (connectionID: string): Promise<Connection> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/me/connections/${connectionID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  createList (body: ListInput): Promise<List> {
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/me/lists',
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getLists (params?: object): Promise<List[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/lists',
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getListByID (listID: string): Promise<List> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/me/lists/${listID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  deleteList (listID: string) {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/me/lists/${listID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getListItems (listID: number, params?: object): Promise<ListItem[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/me/lists/${listID}/items`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getListItemByID (listID: number, listItemID: number): Promise<ListItem> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateListItem (listID: number, listItemID: number, body: ListItemInput): Promise<ListItem> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  linkTransactionItemToList (transactionItemID: number, body: { product_list_item_id: number, type: 'link' }): Promise<ListItem> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profile/transactions/items/${transactionItemID}/list-item`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  createListItem (listID: number, body: ListItemInput): Promise<ListItem> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/me/lists/${listID}/items`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  deleteListItem (listID: number, listItemID: number): Promise<ListItem> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateList (listID: string, body: Partial<ListInput>): Promise<List> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/me/lists/${listID}`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  createConnection (body: ConnectionInput): Promise<Connection> {
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/me/connections',
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateConnection (connectionID: string): Promise<Connection> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/me/connections/${connectionID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  deleteConnection (connectionID: string): Promise<Connection> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/me/connections/${connectionID}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  Connection (connectionID: number): Profile {
+    const Conn = new Profile(this.client)
+    const clonedCall = Conn.client.call.bind(this.client)
+    Conn.client.call = async (options) => {
+      options.endpoint = options.endpoint.replace('/profiles/me', `/profiles/connection/${connectionID}`)
+      return clonedCall(options)
+    }
+    return Conn
+  }
+
+  getUnassignedTransactionItems (params?: { include_list_item: 1 | 0}) {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/transactionitems/list/unassigned',
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
 
   // TODO Add Get Connection Profile Info
   // getConnectionProfileInfo () {

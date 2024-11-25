@@ -34,7 +34,7 @@ yarn add @omneo/omneo-sdk
         import { Omneo, ID } from 'https://unpkg.com/@omneo/omneo-sdk@1.28.1/dist/index.js'; // replace version as needed
         async function run () {
             const IDClient = new ID({ tenant: 'sandbox', IDToken: 'YOUR TOKEN', config: {}})
-            console.log(await IDClient.profiles.me())
+            console.log(await IDClient.profiles.get())
         }
 
         run()

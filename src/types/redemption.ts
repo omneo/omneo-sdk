@@ -8,8 +8,8 @@ export type Redemptionitem = {
   value: number
   count: number
   type_attributes: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type Redemption = {
@@ -24,9 +24,9 @@ export type Redemption = {
   meta: {[key: string]: any}
   transaction_id?: number
   items: Redemptionitem[]
-  created_at: Date
-  updated_at: Date
-  redeem_at?: Date
+  created_at: string
+  updated_at: string
+  redeem_at?: string
   transaction?: Pick<Transaction, 'external_id' | 'receipt_ref' | 'transacted_at' | 'total'> & {
     location?: Pick<Location, 'id' | 'name' | 'external_id'>
   }
