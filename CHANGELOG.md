@@ -1,3 +1,19 @@
+# [1.31.0](https://github.com/omneo/omneo-sdk/compare/v1.30.0...v1.31.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* check for failed status in call ([a5e3ddf](https://github.com/omneo/omneo-sdk/commit/a5e3ddfee52bd7e68a13869f4b62dabe1749bfa7))
+* custom field delete now returns void ([d46ab92](https://github.com/omneo/omneo-sdk/commit/d46ab923d7f1071d7852e9db50a7f8b67a552705))
+* fix method on getAPITokens ([ba29e0d](https://github.com/omneo/omneo-sdk/commit/ba29e0df2d4c910de4f6aaa64f381b67de67a229))
+* if response has json return json ([0a410fe](https://github.com/omneo/omneo-sdk/commit/0a410fe5e122a2f3f23728f658c912d49dfe6ca8))
+
+
+### Features
+
+* add API token Get, Get ID, Delete ([bb9c4af](https://github.com/omneo/omneo-sdk/commit/bb9c4af76e5897037b0af0cc4c197548d2d35773))
+* add various missing endpoints, docs and types ([1a32585](https://github.com/omneo/omneo-sdk/commit/1a3258571352703e956ae7780a549dfe7a81c184))
+
 # [1.30.0](https://github.com/omneo/omneo-sdk/compare/v1.29.0...v1.30.0) (2024-11-14)
 
 
