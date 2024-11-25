@@ -34,7 +34,7 @@ describe('ID Auth Request', () => {
 
   test('ID SDK cannot get me with anon token', async () => {
     await IDClient.auth.requestAuthToken({ id: '' })
-    await expect(IDClient.profile.me()).rejects.toThrow(expect.objectContaining({ status: 404, ok: false }))
+    await expect(IDClient.profile.get()).rejects.toThrow(expect.objectContaining({ status: 404, ok: false }))
   })
 })
 

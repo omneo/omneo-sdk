@@ -15,7 +15,7 @@ describe('ID me', () => {
       IDToken: tokenData.token,
       IDTokenExpiry: tokenData.exp
     })
-    const { data: profile } = await IDClient.profile.me()
+    const profile = await IDClient.profile.get()
 
     expect(profile.id).toBe(decodedProfileID)
     expect(typeof profile.email).toBe('string')

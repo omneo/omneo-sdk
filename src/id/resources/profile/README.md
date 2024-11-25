@@ -12,7 +12,7 @@ Example usage:
 
 ```javascript
 const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {}})
-IDClient.profile.me().then((profile) => {
+IDClient.profile.get().then((profile) => {
     console.log(profile)
 })
 ```
