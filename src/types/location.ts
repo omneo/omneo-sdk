@@ -6,8 +6,8 @@ export type NormalHour = {
   day_of_week: 'MON' | 'TUE' | 'WED' | 'THU' | 'FRI' | 'SAT' | 'SUN'
   open_at: string
   close_at: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type SpecialHour = {
@@ -17,10 +17,10 @@ export type SpecialHour = {
   is_repeating: boolean
   open_at: string
   close_at: string
-  start_at: Date
-  end_at: Date
-  created_at: Date
-  updated_at: Date
+  start_at: string
+  end_at: string
+  created_at: string
+  updated_at: string
 }
 
 export type Location = {

@@ -3,7 +3,7 @@ import { TenantCustomFieldRequest } from '../../../types/tenant.js'
 import Resource from '../resource.js'
 
 export default class Tenants extends Resource {
-  getCustomFields (params: RequestParams): Promise<any> {
+  getCustomFields (params?: RequestParams): Promise<any> {
     return this.client.call({
       method: 'get',
       endpoint: '/tenants/custom-fields',

@@ -424,5 +424,177 @@ Example usage:
 const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {}})
 IDClient.profile.updateCustomAttribute('namespace', 'handle', { value: 'new value', type: 'string' }).then((customAttribute) => {
     console.log(customAttribute);
+
+### `getInteractions(): Promise<Interaction[]>`
+
+Retrieves the interactions associated with the current authenticated profile.
+
+Returns a promise that resolves to an array of interactions.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.getInteractions().then((interactions) => {
+    console.log(interactions);
 });
+```
+
+### `getInteractionById(id: string): Promise<Interaction>`
+
+Retrieves an interaction by its ID.
+
+Parameters:
+- `id`: The ID of the interaction.
+
+Returns a promise that resolves to the interaction data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.getInteractionById('12345').then((interaction) => {
+    console.log(interaction);
+});
+```
+
+### `updateInteraction(id: string): Promise<Interaction>`
+
+Updates an interaction with the specified ID.
+
+Parameters:
+- `id`: The ID of the interaction.
+
+Returns a promise that resolves to the updated interaction data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.updateInteraction('12345').then((interaction) => {
+    console.log(interaction);
+});
+```
+
+### `createInteraction(): Promise<Interaction>`
+
+Creates a new interaction for the current authenticated profile.
+
+Returns a promise that resolves to the created interaction data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.createInteraction().then((interaction) => {
+    console.log(interaction);
+});
+```
+
+### `deleteInteraction(id: string): Promise<Interaction>`
+
+Deletes an interaction with the specified ID.
+
+Parameters:
+- `id`: The ID of the interaction.
+
+Returns a promise that resolves to the deleted interaction data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.deleteInteraction('12345').then((interaction) => {
+    console.log(interaction);
+});
+```
+
+### `Connection(connectionID: number): Profile`
+
+Creates a new instance of the `Profile` class with a specific connection ID.
+This will be similar to new Profile() but all the requests, instead of requesting /profiles/me/*,
+They will instead request /profile/connection/{connectionID}/*
+
+Parameters:
+- `connectionID`: The ID of the connection.
+
+Returns a new `Profile` instance with the specified connection ID.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const connectionProfile = new IDClient.profile.Connection(12345);
+const profileData = await connectionProfile.get()
+await connectionProfile.update({ first_name: 'New_First_Name' })
+```
+
+### `getConnections(): Promise<Connection[]>`
+
+Retrieves the connections associated with the current authenticated profile.
+
+Returns a promise that resolves to an array of connections.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.getConnections().then((connections) => {
+    console.log(connections);
+});
+```
+
+### `getConnectionByID(connectionID: string): Promise<Connection>`
+
+Retrieves a connection by its ID.
+
+Parameters:
+- `connectionID`: The ID of the connection.
+
+Returns a promise that resolves to the connection data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.getConnectionByID('12345').then((connection) => {
+    console.log(connection);
+});
+```
+
+### `updateConnection(connectionID: string): Promise<Connection>`
+
+Updates a connection with the specified ID.
+
+Parameters:
+- `connectionID`: The ID of the connection.
+
+Returns a promise that resolves to the updated connection data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.updateConnection('12345').then((connection) => {
+    console.log(connection);
+});
+```
+
+### `deleteConnection(connectionID: string): Promise<Connection>`
+
+Deletes a connection with the specified ID.
+
+Parameters:
+- `connectionID`: The ID of the connection.
+
+Returns a promise that resolves to the deleted connection data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.deleteConnection('12345').then((connection) => {
+    console.log(connection);
+});
+```
 ```

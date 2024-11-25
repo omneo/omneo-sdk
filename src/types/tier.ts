@@ -4,10 +4,10 @@ export type Tier = {
   profile_id: string
   name: string
   handle: string
-  anniversary_at: Date
-  maintained_at: Date
-  assigned_at: Date | null
-  achieved_at: Date
+  anniversary_at: string
+  maintained_at: string
+  assigned_at: string | null
+  achieved_at: string
 }
 
 export type TierDefinition = {
@@ -29,8 +29,8 @@ export type TierDefinition = {
   disable_credit: boolean
   tags: Array<string> | []
   meta: { [key: string]: any } | null
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type TierProgress = {
@@ -47,11 +47,11 @@ export type TierProgress = {
   next_remain: number
   total_points_12m: number
   total_points_achievement: number
-  next_progress_change_at: Date
-  anniversary_at: Date
-  maintained_at: Date | null
-  assigned_at: Date | null
-  achieved_at: Date
-  created_at: Date
-  updated_at: Date
+  next_progress_change_at: string
+  anniversary_at: string
+  maintained_at: string | null
+  assigned_at: string | null
+  achieved_at: string
+  created_at: string
+  updated_at: string
 }

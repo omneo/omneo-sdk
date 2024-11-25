@@ -13,8 +13,8 @@ export type CustomAttribute = {
   handle: string
   type: 'json' | 'integer' | 'string'
   value: any,
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type ProfileBalances = {
@@ -88,8 +88,8 @@ export type ProfileComms = {
   post_verification: 'sent' | 'not_sent'
   terms_accepted_at: Boolean | null | null
   terms_accepted_version: Boolean | null | null
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type ProfileAppearance = {
@@ -152,8 +152,8 @@ export type ProfileAppearance = {
   measurement_ear_conch: string | null
   measurement_ear_tragus: string | null
   measurement_ear_lobe: string | null
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type ProfileDates = {}
@@ -166,7 +166,7 @@ export type Profile = {
   email: string
   gender: 'male' | 'female' | 'witheld' | 'other'
   currency: 'string' | null
-  joined_at: Date
+  joined_at: string
   mobile_phone: string | null
   mobile_phone_country: string | null
   mobile_phone_national: string | null
@@ -190,7 +190,7 @@ export type Profile = {
   birth_date: string
   birth_days: number
   birth_days_past: number
-  next_birthday: Date
+  next_birthday: string
   identities: Array<Identity>
   tags: Array<string>
   attributes: {
@@ -210,8 +210,8 @@ export type Profile = {
   profile_type: 'pending' | 'temporary' | 'active' | 'deleted'
   region: Region
   regions: Array<Region>
-  updated_at: Date
-  created_at: Date
+  updated_at: string
+  created_at: string
 }
 
 export type ProfileWebhook = Profile & {
@@ -226,21 +226,21 @@ export type Redeem = {
     total: number
     balances: ProfileBalances
     meta: { [key: string]: any }
-    created_at: Date
-    updated_at: Date
+    created_at: string
+    updated_at: string
 }
 
 export type Aggregations = {
   profile_id: string
   shop_days: number
   spend_12m: number
-  spend_12m_now: Date | null
+  spend_12m_now: string | null
   spend_all: number
   spend_atv_12m: number
   spend_atv_all: number
   discount_avg: number
-  spend_first_date: Date | null
-  spend_last_date: Date | null
+  spend_first_date: string | null
+  spend_last_date: string | null
   dimension_frequency: 'F0' | 'F1' | 'F2' | 'FL' | 'FH'
   /*
     dimension_frequency
@@ -263,10 +263,10 @@ export type Aggregations = {
   dimension_join: 'JN' | 'JC' | `J${number}`
   /*
     dimension_join
-      * JN Join New (where join date is less than or equal to 90 days ago)
-      * JC Join Current (where join date is less than or equal to 365 days ago)
-      * J1 (effectively represents 1 year, where join date is greater than 365 days [1yr] but less or equal to 730 days
-      * [2yrs]) J2 (effectively represents 2 years, where join date is greater than 730 days [2yrs] but less or equal to
+      * JN Join New (where join string is less than or equal to 90 days ago)
+      * JC Join Current (where join string is less than or equal to 365 days ago)
+      * J1 (effectively represents 1 year, where join string is greater than 365 days [1yr] but less or equal to 730 days
+      * [2yrs]) J2 (effectively represents 2 years, where join string is greater than 730 days [2yrs] but less or equal to
       * 1095 days [3yrs] etc per year anniversary
   */
   channel: 'CO' | 'CF' | 'CM'
@@ -288,7 +288,7 @@ export type Aggregations = {
   average_shop_days: number | null
   second_shop_date: number | null
   previous_shop_date: number | null
-  at_risk_date: Date | null
+  at_risk_date: string | null
   most_transacted_location: Location | null
   latest_shop_spend: number | null
   latest_shop_currency: string | null

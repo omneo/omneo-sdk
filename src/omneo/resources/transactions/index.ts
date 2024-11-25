@@ -43,6 +43,9 @@ export default class Transactions extends Resource {
   }
 
   updateCreate (body: TransactionInput): Promise<Transaction> {
+    if (body.receipt_is_email === null) delete body.receipt_is_email // Omneo API bug cannot accept null
+    if (body.is_void === null) delete body.is_void // Omneo API bug cannot accept null
+
     return this.client.call({
       method: 'post',
       endpoint: '/transactions/update-create',
@@ -61,7 +64,7 @@ export default class Transactions extends Resource {
     })
   }
 
-  list (params: RequestParams): Promise<{data: Array<Transaction>, links: any, meta: any}> {
+  list (params?: RequestParams): Promise<{data: Array<Transaction>, links: any, meta: any}> {
     return this.client.call({
       method: 'get',
       endpoint: '/transactions',

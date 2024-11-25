@@ -51,10 +51,6 @@ describe('Transactions update-create', () => {
     ]
     newTransaction.total = 200
 
-    // TODO: Find out why these is required for a TXN update but not create.
-    newTransaction.receipt_is_email = true
-    newTransaction.is_void = false
-
     const sdkCreateTransaction = await omneo.transactions.updateCreate(newTransaction)
     expect(sdkCreateTransaction.tags).toStrictEqual(newTransaction.tags)
     expect(sdkCreateTransaction.total).toBe(200)

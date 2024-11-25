@@ -25,8 +25,8 @@ export type OrderItem = {
   }>
   department: string | null
   product_images: Array<any>
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
   transaction: Pick<Transaction, 'transacted_at' | 'receipt_ref' | 'external_id'>
 }
 
@@ -44,7 +44,7 @@ export type Order = {
   rounding: number | null
   margin: number | null
   is_void: boolean
-  transacted_at: Date
+  transacted_at: string
   timezone: string
   tags: Array<string>
   transactions: Array<Transaction>
@@ -52,7 +52,7 @@ export type Order = {
   payments: Array<any>
   receipt_is_email: boolean
   receipt_ref: string | null
-  claimed_at: Date | null
+  claimed_at: string | null
   receipt_email: string | null
   staff: Pick<Profile, 'id' | 'email' | 'identities'> & {
     full_name: string
@@ -63,9 +63,9 @@ export type Order = {
   type: string
   status: string
   order_number: string
-  due_date: Date
-  created_at: Date
-  updated_at: Date
+  due_date: string
+  created_at: string
+  updated_at: string
 }
 
 export type OrderItemWebhook = {
@@ -76,7 +76,7 @@ export type OrderItemWebhook = {
   order: {
     meta: { [key: string]: any }
     location: Location
-    transacted_at: Date
+    transacted_at: string
   }
   is_void: boolean
   is_order_void: boolean
@@ -118,8 +118,8 @@ export type OrderItemWebhook = {
   }>
   custom_fields: { [key: string]: any }
   department: string
-  created_at: Date
-  updated_at: Date
+  created_at: string
+  updated_at: string
 }
 
 export type OrderWebhook = {
@@ -141,9 +141,9 @@ export type OrderWebhook = {
   currency_rate: number | null
   rounding: number
   margin: number
-  deliver_at: Date | null
-  claimed_at: Date | null
-  transacted_at: Date
+  deliver_at: string | null
+  claimed_at: string | null
+  transacted_at: string
   meta: { [key: string]: any }
   tags: Array<string>
   systems: Array<string>
@@ -156,9 +156,9 @@ export type OrderWebhook = {
   type: string
   status: string
   order_number: string
-  due_date: Date | null
-  created_at: Date
-  updated_at: Date
+  due_date: string | null
+  created_at: string
+  updated_at: string
 }
 
 export type OrderLedger = {
