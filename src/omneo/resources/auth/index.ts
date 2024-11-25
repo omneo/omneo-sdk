@@ -2,7 +2,7 @@ import { APIToken, APITokenInput } from '../../../types'
 import Resource from '../resource.js'
 
 export default class Auth extends Resource {
-  createAPIToken (body: APITokenInput): Promise<Omit<APIToken, 'client' | 'user'>> {
+  createAPIToken (body: APITokenInput): Promise<{ accessToken: string, token: Omit<APIToken, 'client' | 'user'>}> {
     return this.client.call({
       method: 'post',
       endpoint: '/auth/api-tokens',
@@ -15,18 +15,9 @@ export default class Auth extends Resource {
 
   getAPITokens (params: object): Promise<APIToken[]> {
     return this.client.call({
-      method: 'post',
-      endpoint: '/auth/api-tokens',
-      params
-    }).then((response) => {
-      return response
-    })
-  }
-
-  getAPITokenByID (id: string): Promise<APIToken> {
-    return this.client.call({
       method: 'get',
-      endpoint: `/auth/api-tokens/${id}`
+      endpoint: '/auth/access-tokens',
+      params
     }).then((response) => {
       return response
     })
