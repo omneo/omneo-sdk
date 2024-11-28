@@ -1,8 +1,8 @@
-import { IdentityWithProfile, RequestParams } from '../../../types'
+import { IdentityResponse, RequestParams } from '../../../types'
 import Resource from '../resource.js'
 
 export default class Identities extends Resource {
-  list (params?: RequestParams): Promise<Array<IdentityWithProfile>> {
+  list (params?: RequestParams): Promise<IdentityResponse> {
     const { withPagination, ...reqParams }: RequestParams = params || {}
     return this.client.call({
       method: 'get',

@@ -1,4 +1,5 @@
 import { Profile } from './profile'
+import { PaginationLink, PaginationMeta } from './pagination'
 
 export type Identity = {
   id: number
@@ -21,4 +22,10 @@ export type IdentityRequest = {
 
 export type IdentityWithProfile = Identity & {
     profile: Profile
+}
+
+export type IdentityResponse = Array<IdentityWithProfile> | {
+    data: Array<IdentityWithProfile>
+    links: PaginationLink
+    meta: PaginationMeta
 }
