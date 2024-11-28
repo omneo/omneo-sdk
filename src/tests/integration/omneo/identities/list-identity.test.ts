@@ -41,6 +41,7 @@ describe('Identities list', () => {
     expect(sdkIdentity.id).toBeTypeOf('number')
     expect(sdkIdentity.profile_id).toBeTypeOf('string')
     expect(sdkIdentity.identifier).toBeTypeOf('string')
+    expect(sdkIdentity).toHaveProperty('profile')
     expect(sdkIdentity).toEqual(expect.objectContaining({
       handle: identityHandleName,
       is_active: true
@@ -60,12 +61,16 @@ describe('Identities list', () => {
     CREATED_IDENTITIES.push(id)
 
     const params: RequestParams = {
-      'filter[handle]': 'apple_device_id',
+      'filter[handle]': identityHandleName,
       include: 'profile',
       withPagination: true
     }
-    const { links, meta }: IdentityResponse = await omneo.identities.list(params)
-
+    const { links, meta, data }: IdentityResponse = await omneo.identities.list(params)
+    const sdkIdentity = data[0]
+    expect(sdkIdentity).toEqual(expect.objectContaining({
+      handle: identityHandleName,
+      is_active: true
+    }))
     // links
     expect(links.first).toBeTypeOf('string')
     expect(links.last).toBeTypeOf('string')
