@@ -1,3 +1,5 @@
+import { Profile } from './profile'
+
 export type Identity = {
   id: number
   merged_from: string | null
@@ -15,4 +17,8 @@ export type IdentityRequest = {
   identifier: string
   is_active?: boolean
   is_primary?: boolean
+}
+
+export type IdentityWithProfile = Identity & {
+    profile: Profile
 }
