@@ -1,6 +1,4 @@
-import { describe, test, afterAll, expect } from 'vitest'
-import { writeTransactionWithVariant } from '../../../mocks/transactions/transaction'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { describe, test, expect } from 'vitest'
 
 import { IdentityResponse, RequestParams } from '../../../../types'
 import { Omneo } from '../../../../omneo'
