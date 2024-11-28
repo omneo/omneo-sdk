@@ -567,6 +567,15 @@ export default class Profiles extends Resource {
     })
   }
 
+  createList (profileID: ListInput) {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/${profileID}/lists`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   deleteList (profileID: string, listID: string) {
     return this.client.call({
       method: 'delete',

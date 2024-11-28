@@ -26,6 +26,7 @@ export type ListInput = {
   custom_date?: string | null
   staff_id?: string | null
   location_id?: any | null
+  update_items_only?: boolean | null // When set, specified list items will not ovwerwrite existing items, only update existing
   items?: ListItemInput[] | null
   tags?: string[] | null
   custom_fields?: CustomFieldInput | null

@@ -893,6 +893,26 @@ const list = await omneoClient.profiles.getListByID('profile_id', 'list_id');
 console.log(list);
 ```
 
+
+### `createList(profileID: string, body: ListInput): Promise<List>`
+
+Creates a new list for a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `body` (ListInput): The data for the new list.
+
+Returns:
+- A Promise that resolves to the created list.
+
+Example usage:
+
+```javascript
+const newList = await omneoClient.profiles.createList('profile_id', { name: 'New List' });
+console.log(newList);
+```
+
+
 ### `deleteList(profileID: string, listID: string)`
 
 Deletes a list from a profile.
