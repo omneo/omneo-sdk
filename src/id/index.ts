@@ -38,21 +38,28 @@ export class ID {
       headers,
       ...(body && { body: JSON.stringify(body) })
     })
+    const data = await this.returnResponse(response)
 
     if (!response.ok || response.status < 200 || response.status >= 300) {
       return Promise.reject(response)
     }
 
-    try {
-      const data = await response.json()
-      return data
-    } catch {
-      return null
-    }
+    return data || null
   }
 
   reset () {
     this.IDToken = ''
     this.IDTokenExp = undefined
+  }
+
+  private async returnResponse (response: any) {
+    if (typeof response.json === 'function') {
+      try {
+        return await response.json()
+      } catch {
+        return response
+      }
+    }
+    return response
   }
 }
