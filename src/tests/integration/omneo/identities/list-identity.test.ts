@@ -1,5 +1,4 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import jwt from 'jsonwebtoken'
 import { IdentityResponse, RequestParams } from '../../../../types'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
@@ -50,14 +49,12 @@ describe('Identities list', () => {
     }))
   })
   test('SDK can get identities with pagination', async () => {
-    const { tokenData } = IDData
-    const { pid: decodedProfileID } = jwt.decode(tokenData.token)
     const payload = {
       handle: identityHandleName,
       identifier: randomString(11)
     }
-    const { id, handle, profile_id: profileID } = await omneo.profiles.createIdentity(decodedProfileID, payload)
-    expect(profileID).toBe(decodedProfileID)
+    const { id, handle, profile_id: profileID } = await omneo.profiles.createIdentity(testProfileID, payload)
+    expect(profileID).toBe(testProfileID)
     expect(handle).toBe(identityHandleName)
     CREATED_IDENTITIES.push(id)
 

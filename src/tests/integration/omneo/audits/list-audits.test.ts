@@ -9,7 +9,6 @@ const omneo = new Omneo({
 describe('Audits get', () => {
   test('SDK can list audits.', async () => {
     const { data } = await omneo.audits.list()
-    console.log(data)
     expect(Array.isArray(data)).toBe(true)
     expect(data.length).toBeGreaterThan(0)
     const dataIsValid = data.every(({ old_values, new_values, auditable_type, auditable_id }) => {
