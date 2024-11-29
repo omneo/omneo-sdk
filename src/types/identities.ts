@@ -1,3 +1,6 @@
+import { Profile } from './profile'
+import { PaginationLink, PaginationMeta } from './pagination'
+
 export type Identity = {
   id: number
   merged_from: string | null
@@ -15,4 +18,14 @@ export type IdentityRequest = {
   identifier: string
   is_active?: boolean
   is_primary?: boolean
+}
+
+export type IdentityWithProfile = Identity & {
+    profile: Profile
+}
+
+export type IdentityResponse = Array<IdentityWithProfile> | {
+    data: Array<IdentityWithProfile>
+    links: PaginationLink
+    meta: PaginationMeta
 }

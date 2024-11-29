@@ -1,3 +1,47 @@
+# [1.31.0](https://github.com/omneo/omneo-sdk/compare/v1.30.0...v1.31.0) (2024-11-25)
+
+
+### Bug Fixes
+
+* check for failed status in call ([a5e3ddf](https://github.com/omneo/omneo-sdk/commit/a5e3ddfee52bd7e68a13869f4b62dabe1749bfa7))
+* custom field delete now returns void ([d46ab92](https://github.com/omneo/omneo-sdk/commit/d46ab923d7f1071d7852e9db50a7f8b67a552705))
+* fix method on getAPITokens ([ba29e0d](https://github.com/omneo/omneo-sdk/commit/ba29e0df2d4c910de4f6aaa64f381b67de67a229))
+* if response has json return json ([0a410fe](https://github.com/omneo/omneo-sdk/commit/0a410fe5e122a2f3f23728f658c912d49dfe6ca8))
+
+
+### Features
+
+* add API token Get, Get ID, Delete ([bb9c4af](https://github.com/omneo/omneo-sdk/commit/bb9c4af76e5897037b0af0cc4c197548d2d35773))
+* add various missing endpoints, docs and types ([1a32585](https://github.com/omneo/omneo-sdk/commit/1a3258571352703e956ae7780a549dfe7a81c184))
+
+# [1.30.0](https://github.com/omneo/omneo-sdk/compare/v1.29.0...v1.30.0) (2024-11-14)
+
+
+### Features
+
+* added test for TXN with product_variant_id ([c617df7](https://github.com/omneo/omneo-sdk/commit/c617df7079ebae405e37b5011c6c65da8ea6862e))
+* added transaction create integration test ([4f233f8](https://github.com/omneo/omneo-sdk/commit/4f233f849db88c352232f04b993bf8dce4f68a2f))
+* added TXN update-create ([66692b3](https://github.com/omneo/omneo-sdk/commit/66692b34f596e65dad60022ddb3f87a34205a965))
+* added update transaction test ([9652a36](https://github.com/omneo/omneo-sdk/commit/9652a3612de690abe8f9ce9415cb86cf5c6cf74e))
+* allow set IDTokenExp when constructing the ID class ([5be8d3a](https://github.com/omneo/omneo-sdk/commit/5be8d3a0172ab795c750bd8253eb7629672cbfc5))
+* reenable api fix for update txn ([d677cda](https://github.com/omneo/omneo-sdk/commit/d677cda58abe29e6145ef4fb91f31f9ffda26488))
+* updated transaction types ([5a454f5](https://github.com/omneo/omneo-sdk/commit/5a454f51640b0316ebf1aaf72848c11cc8bad162))
+* updated types for is_void and receipt_is_email to be optional ([a718f38](https://github.com/omneo/omneo-sdk/commit/a718f38befbbcff84576b8ada69eafd908161bcb))
+
+# [1.29.0](https://github.com/omneo/omneo-sdk/compare/v1.28.2...v1.29.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* removed unnecessary Merge type ([c3390b1](https://github.com/omneo/omneo-sdk/commit/c3390b1eb4934d53c2d124978cb02ca80b453604))
+
+
+### Features
+
+* add params to getConnections. ([e4c6c34](https://github.com/omneo/omneo-sdk/commit/e4c6c34fafd2125764e7b6267921b6cd9a4fb7c5))
+* merge profile endpoint added ([71fdcc5](https://github.com/omneo/omneo-sdk/commit/71fdcc596b2ab0efd1eb6b35262e1c6db24a5a35))
+* updated with Merge types ([c8ec62b](https://github.com/omneo/omneo-sdk/commit/c8ec62bd877480ddfd44752d13ad2f5b1faef200))
+
 ## [1.28.2](https://github.com/omneo/omneo-sdk/compare/v1.28.1...v1.28.2) (2024-11-07)
 
 
