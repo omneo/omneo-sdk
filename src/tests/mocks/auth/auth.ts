@@ -105,11 +105,3 @@ export const allOmneoScopes = [
   'create-webhooks',
   'delete-webhooks'
 ]
-
-// read-reactions
-// extend-rewards
-// redeem
-//   'delete-reactions',
-
-// 'update-reactions',
-// 'create-reactions',
