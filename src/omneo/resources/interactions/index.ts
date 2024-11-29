@@ -1,4 +1,4 @@
-import { Interaction, RequestParams } from '../../../types'
+import { Interaction, InteractionResponse, RequestParams } from '../../../types'
 import Resource from '../resource'
 
 export default class Interactions extends Resource {
@@ -12,13 +12,11 @@ export default class Interactions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<Interaction[]> {
+  list (params?: RequestParams): Promise<InteractionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/interactions',
       params
-    }).then((response) => {
-      return response.data
     })
   }
 

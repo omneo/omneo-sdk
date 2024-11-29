@@ -1,4 +1,4 @@
-import { Location, RequestParams } from '../../../types'
+import { Location, LocationResponse, RequestParams } from '../../../types'
 import Resource from '../resource.js'
 
 export default class Locations extends Resource {
@@ -12,13 +12,13 @@ export default class Locations extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<Location> {
+  list (params?: RequestParams): Promise<LocationResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/locations',
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 

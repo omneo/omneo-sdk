@@ -1,3 +1,4 @@
+import { PaginationResponse } from './pagination'
 import { Profile } from './profile'
 
 export type ConnectionStatuses = 'draft' | 'pending' | 'accepted' | 'rejected' | 'hold' | 'archived' | 'break'
@@ -83,4 +84,8 @@ export type Connection = {
   notes: string | null
   created_at: string
   updated_at: string
+}
+
+export type ConnectionResponse = PaginationResponse & {
+  data: Connection[]
 }

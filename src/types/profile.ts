@@ -1,6 +1,7 @@
 import { Address } from './address'
 import { Identity } from './identities'
 import { Location } from './location'
+import { PaginationResponse } from './pagination'
 import { Region } from './region'
 import { Tier } from './tier'
 
@@ -160,37 +161,37 @@ export type ProfileDates = {}
 
 export type Profile = {
   id: string
-  title: string
+  title: string | null
   first_name: string
   last_name: string
   email: string
-  gender: 'male' | 'female' | 'witheld' | 'other'
+  gender: 'male' | 'female' | 'witheld' | 'other' | null
   currency: 'string' | null
-  joined_at: string
+  joined_at: string | null
   mobile_phone: string | null
   mobile_phone_country: string | null
   mobile_phone_national: string | null
   mobile_phone_national_prefix: string | null
   mobile_phone_e164: string | null
   secondary_phone: string
-  birth_day: number
-  birth_month: number
-  birth_year: number
-  company: string
-  occupation: string
-  avatar_url: string
+  birth_day: number | null
+  birth_month: number | null
+  birth_year: number | null
+  company: string | null
+  occupation: string | null
+  avatar_url: string | null
   is_completed: boolean
   joined_location_id: number
   joined_location: Location
   custom_fields: {[key: string]: any}
-  preferred_location_id: number
-  preferred_location: Location
+  preferred_location_id: number | null
+  preferred_location: Location | null
   tier_handle: string | null
   tier: Tier | null
-  birth_date: string
-  birth_days: number
-  birth_days_past: number
-  next_birthday: string
+  birth_date: string | null
+  birth_days: number | null
+  birth_days_past: number | null
+  next_birthday: string | null
   identities: Array<Identity>
   tags: Array<string>
   attributes: {
@@ -207,8 +208,8 @@ export type Profile = {
   point_balance: number
   combined_balance_dollars: number
   point_balance_dollars: number
-  profile_type: 'pending' | 'temporary' | 'active' | 'deleted'
-  region: Region
+  profile_type: 'pending' | 'temporary' | 'active' | 'deleted' | null
+  region: Region | null
   regions: Array<Region>
   updated_at: string
   created_at: string
@@ -300,4 +301,8 @@ export type Aggregations = {
   likely_state_iso_score: number | null
   likely_region: string | null
   likely_region_score: number | null
+}
+
+export type ProfileResponse = PaginationResponse & {
+  data: Profile[]
 }

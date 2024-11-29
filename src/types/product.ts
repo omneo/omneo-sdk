@@ -1,4 +1,5 @@
 import { CustomField } from './general'
+import { PaginationResponse } from './pagination'
 import { ProductVariant } from './productVariant'
 
 export type Product = {
@@ -24,4 +25,8 @@ export type Product = {
     variants: ProductVariant[]
     created_at: string
     updated_at: string
+}
+
+export type ProductResponse = PaginationResponse & {
+    data: Product[]
 }

@@ -1,4 +1,5 @@
 import { Location } from './location'
+import { PaginationResponse } from './pagination'
 import { Profile, ProfileWebhook } from './profile'
 import { Redemption } from './redemption'
 import { Transaction } from './transaction'
@@ -169,4 +170,8 @@ export type OrderLedger = {
   }
   type: 'order'
   type_attributes: Order
+}
+
+export type OrderResponse = PaginationResponse & {
+  data: Order[]
 }
