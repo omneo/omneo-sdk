@@ -12,7 +12,7 @@ const omneo = new Omneo({
 
 const tokenName = 'SDK Tokens Delete Test API Token'
 
-describe('API Tokens create', () => {
+describe('API Tokens delete', () => {
   test('SDK can delete an API Token', async () => {
     const testAPIToken = await simpleOmneoRequest('POST', '/auth/api-tokens', {
       name: tokenName,
