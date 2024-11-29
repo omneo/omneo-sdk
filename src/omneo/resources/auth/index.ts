@@ -29,4 +29,11 @@ export default class Auth extends Resource {
       endpoint: `/auth/api-tokens/${id}`
     })
   }
+
+  verifyToken () {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/auth/verify'
+    })
+  }
 }

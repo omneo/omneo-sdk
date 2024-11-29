@@ -47,13 +47,14 @@ export class Omneo {
   public points = new Points(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
-    const { endpoint, params = {}, method, body } = requestParams
+    const { endpoint, params = {}, method, body, headers: requestHeaders } = requestParams
     const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()
     const url = `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`
 
     const headers = new Headers({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.token}`
+      Authorization: `Bearer ${this.token}`,
+      ...(requestHeaders && { ...requestHeaders })
     })
 
     const response = await fetch(url, {
@@ -62,14 +63,22 @@ export class Omneo {
       ...(body && { body: JSON.stringify(body) })
     })
 
+    const data = await this.returnResponse(response)
     if (!response.ok || response.status < 200 || response.status >= 300) {
-      return Promise.reject(response)
+      return Promise.reject(data)
     }
-    try {
-      const data = await response.json()
-      return data
-    } catch {
-      return null
+
+    return data || null
+  }
+
+  private async returnResponse (response: any) {
+    if (typeof response.json === 'function') {
+      try {
+        return await response.json()
+      } catch {
+        return response
+      }
     }
+    return response
   }
 }
