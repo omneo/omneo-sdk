@@ -38,6 +38,7 @@ describe('Transactions update-create', () => {
     writeTransactionWithVariantID.external_id = randomString(9)
 
     const testTransactionResponse = await simpleOmneoRequest('POST', '/transactions', writeTransactionWithVariantID)
+    CREATED_TRANSACTION_IDS.push(testTransactionResponse.data.id)
 
     const newTransaction = testTransactionResponse.data
 
@@ -63,6 +64,7 @@ afterAll(async () => {
     for (const transactionId of CREATED_TRANSACTION_IDS) {
       console.log('Cleaning up transaction', transactionId)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${transactionId}`)
+      console.log(deleteResponse, 'HERE')
       if (deleteResponse.status === 204) {
         console.log(`Transaction ${transactionId} deleted`)
       }
