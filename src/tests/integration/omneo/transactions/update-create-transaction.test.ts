@@ -64,7 +64,6 @@ afterAll(async () => {
     for (const transactionId of CREATED_TRANSACTION_IDS) {
       console.log('Cleaning up transaction', transactionId)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${transactionId}`)
-      console.log(deleteResponse, 'HERE')
       if (deleteResponse.status === 204) {
         console.log(`Transaction ${transactionId} deleted`)
       }
