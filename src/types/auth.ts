@@ -1,6 +1,8 @@
+export type APIScopes = ''
+
 export type APITokenInput = {
   name: string
-  scopes: Array<string>
+  scopes: Array<APIScopes>
 }
 
 export type Client = {

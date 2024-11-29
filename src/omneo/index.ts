@@ -12,6 +12,9 @@ import Identities from './resources/identities'
 import Interactions from './resources/interactions'
 import Audits from './resources/audits'
 import Currency from './resources/currencies'
+import Permission from './resources/permissions'
+import Points from './resources/points'
+
 export class Omneo {
   tenant: string
   token: string
@@ -40,6 +43,8 @@ export class Omneo {
   public identities = new Identities(this)
   public audits = new Audits(this)
   public currencies = new Currency(this)
+  public permissions = new Permission(this)
+  public points = new Points(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
     const { endpoint, params = {}, method, body } = requestParams
