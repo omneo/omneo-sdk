@@ -1,4 +1,4 @@
-import { Connection, RequestParams } from '../../../types'
+import { Connection, ConnectionResponse, RequestParams } from '../../../types'
 import Resource from '../resource.js'
 
 export default class Connections extends Resource {
@@ -12,13 +12,11 @@ export default class Connections extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<Array<Connection>> {
+  list (params?: RequestParams): Promise<ConnectionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/connections',
       params
-    }).then((response) => {
-      return response.data
     })
   }
 

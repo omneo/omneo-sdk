@@ -10,7 +10,7 @@ import Tenants from './resources/tenants/index.js'
 import Connections from './resources/connections'
 import Identities from './resources/identities'
 import Interactions from './resources/interactions'
-
+import Audits from './resources/audits'
 export class Omneo {
   tenant: string
   token: string
@@ -37,6 +37,7 @@ export class Omneo {
   public connections = new Connections(this)
   public interactions = new Interactions(this)
   public identities = new Identities(this)
+  public audits = new Audits(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
     const { endpoint, params = {}, method, body } = requestParams

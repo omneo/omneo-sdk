@@ -1,4 +1,5 @@
 import { Address } from './address'
+import { PaginationResponse } from './pagination'
 
 export type NormalHour = {
   id: number
@@ -38,4 +39,8 @@ export type Location = {
   address: Address | null
   normal_hours?: Array<NormalHour>
   special_hours?: Array<SpecialHour>
+}
+
+export type LocationResponse = PaginationResponse & {
+  data: Location[]
 }

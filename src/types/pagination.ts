@@ -21,3 +21,8 @@ export type PaginationMeta = {
     to: number
     total: number
 }
+
+export type PaginationResponse = {
+    links: PaginationLink
+    meta: PaginationMeta
+}

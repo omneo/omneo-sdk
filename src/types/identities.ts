@@ -1,5 +1,5 @@
 import { Profile } from './profile'
-import { PaginationLink, PaginationMeta } from './pagination'
+import { PaginationLink, PaginationMeta, PaginationResponse } from './pagination'
 
 export type Identity = {
   id: number
@@ -11,6 +11,7 @@ export type Identity = {
   handle: string
   created_at: string
   updated_at: string
+  profile?: Profile
 }
 
 export type IdentityRequest = {
@@ -20,12 +21,8 @@ export type IdentityRequest = {
   is_primary?: boolean
 }
 
-export type IdentityWithProfile = Identity & {
-    profile: Profile
-}
-
-export type IdentityResponse = Array<IdentityWithProfile> | {
-    data: Array<IdentityWithProfile>
-    links: PaginationLink
-    meta: PaginationMeta
+export type IdentityResponse = PaginationResponse &{
+  data: Array<Identity>
+  links: PaginationLink
+  meta: PaginationMeta
 }

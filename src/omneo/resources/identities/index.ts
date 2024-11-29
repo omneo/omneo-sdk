@@ -8,11 +8,6 @@ export default class Identities extends Resource {
       method: 'get',
       endpoint: '/identities',
       params: reqParams
-    }).then((response) => {
-      if (params && params.withPagination) {
-        return response
-      }
-      return response.data
     })
   }
 }
