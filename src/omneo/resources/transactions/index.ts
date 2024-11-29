@@ -1,4 +1,4 @@
-import { RequestParams, Transaction, TransactionInput } from '../../../types'
+import { RequestParams, Transaction, TransactionInput, TransactionResponse } from '../../../types'
 import Resource from '../resource'
 
 export default class Transactions extends Resource {
@@ -64,13 +64,11 @@ export default class Transactions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<{data: Array<Transaction>, links: any, meta: any}> {
+  list (params?: RequestParams): Promise<TransactionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/transactions',
       params
-    }).then((response: any) => {
-      return response
     })
   }
 

@@ -3,6 +3,7 @@ import { Location } from './location'
 import { Redemption } from './redemption'
 import { Payment } from './payment'
 import { ProductVariant } from './productVariant'
+import { PaginationResponse } from './pagination'
 
 export type TransactionFilters = 'profile_id' | 'total' | 'rounding' | 'total_original' | 'margin' | 'external_id' | 'deliver_at' | 'transacted_at' | 'timezone' | 'receipt_is_email' | 'receipt_ref' | 'location_id' | 'systems.handle' | 'type' | 'status' | 'order_number' | 'tags.handle' | 'location.name' | 'profile.identities.identifier' | 'need_action'
 export type TransactionItem = {
@@ -177,4 +178,8 @@ export type TransactionLedger = {
   }
   type: 'transaction'
   type_attributes: Transaction
+}
+
+export type TransactionResponse = PaginationResponse & {
+  data: Transaction[]
 }

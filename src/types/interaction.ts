@@ -1,4 +1,5 @@
 import { Location } from './location'
+import { PaginationResponse } from './pagination'
 
 export type InteractionChannel = 'app' | 'email' | 'location' | 'push' | 'sms' | 'social' | 'support' | 'website'
 export type InteractionAction = 'broadcast' | 'disclose' | 'feedback' | 'product' | 'reach' | 'refer' | 'service' | 'visit' | 'view'
@@ -54,4 +55,8 @@ export type InteractionInput = {
   tags?: Array<string>
   interacted_at?: string | null
   meta: {[key: string]: any}
+}
+
+export type InteractionResponse = PaginationResponse & {
+  data: Interaction[]
 }

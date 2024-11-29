@@ -1,4 +1,4 @@
-import { RequestParams } from '../../../types'
+import { OrderResponse, RequestParams } from '../../../types'
 import Resource from '../resource'
 
 export default class Orders extends Resource {
@@ -12,13 +12,13 @@ export default class Orders extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<any> {
+  list (params?: RequestParams): Promise<OrderResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/orders',
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 

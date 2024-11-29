@@ -1,6 +1,7 @@
 import { Address } from './address'
 import { Identity } from './identities'
 import { Location } from './location'
+import { PaginationResponse } from './pagination'
 import { Region } from './region'
 import { Tier } from './tier'
 
@@ -300,4 +301,8 @@ export type Aggregations = {
   likely_state_iso_score: number | null
   likely_region: string | null
   likely_region_score: number | null
+}
+
+export type ProfileResponse = PaginationResponse & {
+  data: Profile[]
 }
