@@ -3,7 +3,10 @@ import { Profile } from './profile'
 
 export type ConnectionStatuses = 'draft' | 'pending' | 'accepted' | 'rejected' | 'hold' | 'archived' | 'break'
 
-export type GetConnectionInputParams = { type: 'connected' | 'connector' }
+export type GetConnectionInputParams = {
+  type?: 'connected' | 'connector',
+  [key: string]: any
+}
 
 export type ConnectionInput = {
     name: string
