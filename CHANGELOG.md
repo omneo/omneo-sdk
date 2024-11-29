@@ -1,3 +1,20 @@
+# [1.32.0](https://github.com/omneo/omneo-sdk/compare/v1.31.0...v1.32.0) (2024-11-29)
+
+
+### Bug Fixes
+
+* remove unused import ([c6662e4](https://github.com/omneo/omneo-sdk/commit/c6662e4785411b2a301bfdd8edba1d3cf04691a7))
+* update profile types to add nullable attributes ([f0c3951](https://github.com/omneo/omneo-sdk/commit/f0c39516d8d60177de55cc084cdf7fbc5e060489))
+* update readme doc and with pagination ([590f887](https://github.com/omneo/omneo-sdk/commit/590f887c7373f2c5344d63e45cc771c44b5450db))
+
+
+### Features
+
+* add audits to omneo ([4517521](https://github.com/omneo/omneo-sdk/commit/4517521de38449d8c64378de2c04ef0d511dce8e))
+* add identities list endpoint and support params for it ([28c4226](https://github.com/omneo/omneo-sdk/commit/28c422668dd3384e6c9aa214e700a7be8d5419bb))
+* add profiles createList ([1dbaaf5](https://github.com/omneo/omneo-sdk/commit/1dbaaf59835e36f14e1f074ef4b84a2bbb687b0d))
+* breaking change: list() endpoints return pagination response body ([01e46d2](https://github.com/omneo/omneo-sdk/commit/01e46d23962508d5abf45f09a9818990a8f54ad2))
+
 # [1.31.0](https://github.com/omneo/omneo-sdk/compare/v1.30.0...v1.31.0) (2024-11-25)
 
 
