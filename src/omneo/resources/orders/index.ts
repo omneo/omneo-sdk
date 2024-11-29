@@ -2,7 +2,7 @@ import { OrderResponse, RequestParams } from '../../../types'
 import Resource from '../resource'
 
 export default class Orders extends Resource {
-  get (id: string, params: RequestParams): Promise<any> {
+  get (id: string, params?: RequestParams): Promise<any> {
     return this.client.call({
       method: 'get',
       endpoint: `/orders/${id}`,

@@ -2,7 +2,7 @@ import { Interaction, InteractionResponse, RequestParams } from '../../../types'
 import Resource from '../resource'
 
 export default class Interactions extends Resource {
-  get (id: string, params: RequestParams): Promise<Interaction> {
+  get (id: string, params?: RequestParams): Promise<Interaction> {
     return this.client.call({
       method: 'get',
       endpoint: `/interactions/${id}`,

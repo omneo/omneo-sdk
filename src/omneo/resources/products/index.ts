@@ -2,10 +2,11 @@ import { ProductResponse, RequestParams } from '../../../types'
 import Resource from '../resource'
 
 export default class Products extends Resource {
-  get (id: string): Promise<any> {
+  get (id: string, params?: RequestParams): Promise<any> {
     return this.client.call({
       method: 'get',
-      endpoint: `/products/${id}`
+      endpoint: `/products/${id}`,
+      params
     }).then((response) => {
       return response.data
     })
