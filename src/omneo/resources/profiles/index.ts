@@ -1,7 +1,7 @@
 import {
   Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
   Connection, CustomAttribute, DelegationData, GetConnectionInputParams, GroupedTransactionsResponse, Identity, IdentityRequest, Interaction, InteractionInput, List, ListInput, ListItem, ListItemInput, OrderLedger, Profile, ProfileAppearance,
-  ProfileBalances, ProfileComms, Redeem, Region, RequestParams, Reward,
+  ProfileBalances, ProfileComms, ProfileResponse, Redeem, Region, RequestParams, Reward,
   TierProgress,
   Transaction,
   TransactionFilters,
@@ -41,13 +41,13 @@ export default class Profiles extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<Profile[]> {
+  list (params?: RequestParams): Promise<ProfileResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles',
       params
     }).then((response: any) => {
-      return response.data
+      return response
     })
   }
 
