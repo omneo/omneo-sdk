@@ -1,4 +1,4 @@
-import { Address } from './address'
+import { Address, AddressInput } from './address'
 import { PaginationResponse } from './pagination'
 
 export type NormalHour = {
@@ -41,6 +41,21 @@ export type Location = {
   special_hours?: Array<SpecialHour>
 }
 
+export type LocationInput = Omit<Location, 'id' | 'created_at' | 'updated_at'> & {
+  type?: Location['type']
+  name: Location['name']
+  phone: Location['phone']
+  email: Location['email']
+  is_published: Location['is_published']
+  description?: Location['description']
+  timezone?: Location['timezone']
+  external_id?: Location['external_id']
+  external_code?: Location['external_code']
+  is_permanently_closed?: Location['is_permanently_closed']
+  address?: AddressInput
+  normal_hours?: Array<Omit<NormalHour, 'id' | 'created_at' | 'updated_at'>>
+  special_hours?: Array<Omit<SpecialHour, 'id' | 'created_at' | 'updated_at'>>
+}
 export type LocationResponse = PaginationResponse & {
   data: Location[]
 }

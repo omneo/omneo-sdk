@@ -1,3 +1,5 @@
+import { PaginationResponse } from './pagination'
+
 export type PointDefinition = {
   id: number
   name: string
@@ -26,4 +28,19 @@ export type Point = {
   rate: number | null
   description: string | null
   meta: object | null
+}
+
+export type PointResponse = PaginationResponse & {
+  data: Point[]
+}
+
+export type PointInput = {
+  profile_id: string
+  point_definition_id: number
+  value_initial: number
+  value_remaining?: number
+  issued_at: string
+  expires_at?: string
+  description?: string
+  meta?: object
 }

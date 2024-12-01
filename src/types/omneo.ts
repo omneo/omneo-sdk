@@ -13,7 +13,8 @@ export type OmneoRequest = {
   method: string
   endpoint: string
   params?: RequestParams
-  body?: RequestBody
+  body?: RequestBody,
+  headers?: {[key: string]: string}
 }
 
 export type DelegationData = {

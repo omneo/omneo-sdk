@@ -262,13 +262,13 @@ Example usage:
 await omneoClient.profiles.createInteraction({ type: 'click', timestamp: '2022-01-01T00:00:00Z' });
 ```
 
-### `createAddress(profileID: string, body: AddressRequest): Promise<Address>`
+### `createAddress(profileID: string, body: AddressInput): Promise<Address>`
 
 Creates a new address for a profile.
 
 Parameters:
 - `profileID` (string): The ID of the profile.
-- `body` (AddressRequest): The data for the new address.
+- `body` (AddressInput): The data for the new address.
 
 Returns:
 - A Promise that resolves to the created address.
@@ -298,14 +298,14 @@ const deletedAddress = await omneoClient.profiles.deleteAddress('profile_id', 'a
 console.log(deletedAddress);
 ```
 
-### `updateAddress(profileID: string, addressID: string, body: AddressUpdateRequest): Promise<Address>`
+### `updateAddress(profileID: string, addressID: string, body: AddressUpdateInput): Promise<Address>`
 
 Updates an address.
 
 Parameters:
 - `profileID` (string): The ID of the profile.
 - `addressID` (string): The ID of the address.
-- `body` (AddressUpdateRequest): The updated address data.
+- `body` (AddressUpdateInput): The updated address data.
 
 Returns:
 - A Promise that resolves to the updated address.

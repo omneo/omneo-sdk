@@ -2,7 +2,7 @@ import { RequestParams, Transaction, TransactionInput, TransactionResponse } fro
 import Resource from '../resource'
 
 export default class Transactions extends Resource {
-  get (id: string, params: RequestParams): Promise<Transaction> {
+  get (id: string, params?: RequestParams): Promise<Transaction> {
     return this.client.call({
       method: 'get',
       endpoint: `/transactions/${id}`,

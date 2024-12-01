@@ -4,8 +4,8 @@ import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import randomString from '../../../lib/string/random'
 
-const CREATED_IDENTITIES : string[] = []
-const identityHandleName = 'sdk_unit_test_identity'
+const CREATED_IDENTITY_HANDLES : string[] = []
+const getHandle = () => `sdk_unit_test_identity_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}`
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -20,23 +20,24 @@ describe('Identities list', () => {
     expect(Array.isArray(sdkIdentityList.data)).toBe(true)
   })
   test('SDK can get identities with filters', async () => {
+    const testHandle = getHandle()
     const payload = {
-      handle: identityHandleName,
+      handle: testHandle,
       identifier: randomString(11)
     }
-    const { id, handle, profile_id: profileID } = await omneo.profiles.createIdentity(testProfileID, payload)
+    const { handle, profile_id: profileID } = await omneo.profiles.createIdentity(testProfileID, payload)
+    CREATED_IDENTITY_HANDLES.push(handle)
     expect(profileID).toBe(testProfileID)
-    expect(handle).toBe(identityHandleName)
-    CREATED_IDENTITIES.push(id)
+    expect(handle).toBe(testHandle)
 
     const params: RequestParams = {
-      'filter[handle]': identityHandleName,
+      'filter[handle]': testHandle,
       include: 'profile'
     }
     const { data } = await omneo.identities.list(params)
     expect(data.length).toBeGreaterThan(0)
 
-    const arrayIsFiltered = data.every((identity) => identity.handle === identityHandleName && identity.is_active === true)
+    const arrayIsFiltered = data.every((identity) => identity.handle === testHandle && identity.is_active === true)
     const sdkIdentity = data[0]
     expect(arrayIsFiltered).toBe(true)
     expect(sdkIdentity.id).toBeTypeOf('number')
@@ -44,22 +45,24 @@ describe('Identities list', () => {
     expect(sdkIdentity.identifier).toBeTypeOf('string')
     expect(sdkIdentity).toHaveProperty('profile')
     expect(sdkIdentity).toEqual(expect.objectContaining({
-      handle: identityHandleName,
+      handle: testHandle,
       is_active: true
     }))
   })
   test('SDK can get identities with pagination', async () => {
+    const testHandle = getHandle()
     const payload = {
-      handle: identityHandleName,
+      handle: testHandle,
       identifier: randomString(11)
     }
-    const { id, handle, profile_id: profileID } = await omneo.profiles.createIdentity(testProfileID, payload)
+    const { handle, profile_id: profileID } = await omneo.profiles.createIdentity(testProfileID, payload)
+    CREATED_IDENTITY_HANDLES.push(handle)
+
     expect(profileID).toBe(testProfileID)
-    expect(handle).toBe(identityHandleName)
-    CREATED_IDENTITIES.push(id)
+    expect(handle).toBe(testHandle)
 
     const params: RequestParams = {
-      'filter[handle]': identityHandleName,
+      'filter[handle]': testHandle,
       include: 'profile',
       withPagination: true
     }
@@ -84,12 +87,14 @@ describe('Identities list', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_IDENTITIES.length > 0) {
-    for (const identityId of CREATED_IDENTITIES) {
-      console.log('Cleaning up SDK Identity with ID', identityId)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/identities/${identityId}`)
+  if (CREATED_IDENTITY_HANDLES.length > 0) {
+    for (const identityHandle of CREATED_IDENTITY_HANDLES) {
+      console.log('Cleaning up SDK Identity with ID', identityHandle)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/identities/${identityHandle}`)
       if (deleteResponse.status === 204) {
-        console.log(`SDK Identity ID ${identityId} deleted`)
+        console.log(`SDK Identity ID ${identityHandle} deleted`)
+      } else {
+        console.log(`Failed to delete Identity ID ${identityHandle}`, deleteResponse)
       }
     }
   }

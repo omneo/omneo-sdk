@@ -38,6 +38,7 @@ describe('Transactions update-create', () => {
     writeTransactionWithVariantID.external_id = randomString(9)
 
     const testTransactionResponse = await simpleOmneoRequest('POST', '/transactions', writeTransactionWithVariantID)
+    CREATED_TRANSACTION_IDS.push(testTransactionResponse.data.id)
 
     const newTransaction = testTransactionResponse.data
 
