@@ -1,3 +1,24 @@
+# [1.33.0](https://github.com/omneo/omneo-sdk/compare/v1.32.0...v1.33.0) (2024-12-01)
+
+
+### Bug Fixes
+
+* parms are not optional in all get endpoints ([34cd79c](https://github.com/omneo/omneo-sdk/commit/34cd79c7653d1ba6b2eaef437012e932f8348de4))
+* update AddressRequest to AddressInput for consistency ([b875479](https://github.com/omneo/omneo-sdk/commit/b8754797089f4252ac7f32da5f111346113d36c8))
+* update Currencies class name ([81284c6](https://github.com/omneo/omneo-sdk/commit/81284c687e1c10d99985798845203c2678318b69))
+
+
+### Features
+
+* add APIScopes type ([69d597b](https://github.com/omneo/omneo-sdk/commit/69d597b5747fed9815ff732787b0200dafa75862))
+* add currencies ([2426a69](https://github.com/omneo/omneo-sdk/commit/2426a696bf115a93412f9df6c8ce8032cf204edf))
+* add more input types to getConnectionInputParams ([862af8e](https://github.com/omneo/omneo-sdk/commit/862af8e82f0b503d994cb50c0fbbda207e21cc29))
+* add omneo webhooks ([05b6d83](https://github.com/omneo/omneo-sdk/commit/05b6d83d2a219c4a79577e6cb60ba7c499eef0d8))
+* add permissions ([fa57ea9](https://github.com/omneo/omneo-sdk/commit/fa57ea9e72a9e4e03fb07ecc10114fecca2ecd1a))
+* add points ([ba96a07](https://github.com/omneo/omneo-sdk/commit/ba96a0729f56cbb441130ad6382c33df98886492))
+* add verifyToken to omneoClient auth ([ebd8b62](https://github.com/omneo/omneo-sdk/commit/ebd8b62bfe934b36453f5a22546204fc3742c03c))
+* improve call parsing of HTTP responses ([4bccc13](https://github.com/omneo/omneo-sdk/commit/4bccc134894d99f778522a52ba03f5f69939ca08))
+
 # [1.32.0](https://github.com/omneo/omneo-sdk/compare/v1.31.0...v1.32.0) (2024-11-29)
 
 
