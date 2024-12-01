@@ -1,3 +1,10 @@
+## [1.33.1](https://github.com/omneo/omneo-sdk/compare/v1.33.0...v1.33.1) (2024-12-01)
+
+
+### Bug Fixes
+
+* update API scopes type to all scopes ([6bbea41](https://github.com/omneo/omneo-sdk/commit/6bbea411dc84edc264921bcdc90dfb94cf8e66d3))
+
 # [1.33.0](https://github.com/omneo/omneo-sdk/compare/v1.32.0...v1.33.0) (2024-12-01)
 
 
