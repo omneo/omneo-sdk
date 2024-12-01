@@ -1,5 +1,5 @@
 import {
-  Address, AddressRequest, AddressUpdateRequest, Aggregations, CommsChannel,
+  Address, AddressInput, AddressUpdateInput, Aggregations, CommsChannel,
   Connection, CustomAttribute, DelegationData, GetConnectionInputParams, GroupedTransactionsResponse, Identity, IdentityRequest, Interaction, InteractionInput, List, ListInput, ListItem, ListItemInput, OrderLedger, Profile, ProfileAppearance,
   ProfileBalances, ProfileComms, ProfileResponse, Redeem, Region, RequestParams, Reward,
   TierProgress,
@@ -198,7 +198,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  createAddress (profileID: string, body: AddressRequest): Promise<Address> {
+  createAddress (profileID: string, body: AddressInput): Promise<Address> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/addresses`,
@@ -217,7 +217,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  updateAddress (profileID: string, addressID: string, body: AddressUpdateRequest): Promise<Address> {
+  updateAddress (profileID: string, addressID: string, body: AddressUpdateInput): Promise<Address> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/addresses/${addressID}`,
