@@ -18,7 +18,7 @@ export type Address = {
   meta?: {[key: string]: any}
 }
 
-export type AddressRequest = Partial<Address> & {
+export type AddressInput = Partial<Address> & {
   address_line_1: string
   city: string,
   postcode: string,
@@ -26,7 +26,7 @@ export type AddressRequest = Partial<Address> & {
   state: string
 }
 
-export type AddressUpdateRequest = {
+export type AddressUpdateInput = {
   address_line_1?: string
   address_line_2?: string
   address_line_3?: string
