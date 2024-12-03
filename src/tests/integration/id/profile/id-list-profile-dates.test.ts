@@ -18,9 +18,9 @@ describe('ID Dates', () => {
       handle: getHandle(),
       is_recurring: true,
       recurring_schedule: 'Yearly',
-      note: 'test notes',
+      note: 'test notes for id',
       relationship: 'Me',
-      description: 'test description'
+      description: 'test description for id'
     }
     await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
       dates_attributes: [payload]
@@ -54,7 +54,7 @@ afterAll(async () => {
   if (CREATED_DATES_HANDLES.length > 0) {
     for (const handle of CREATED_DATES_HANDLES) {
       console.log('Cleaning up SDK Profile Dates with ID', handle)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/${handle}`)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/dates/${handle}`)
       if (deleteResponse.status === 204) {
         console.log(`SDK Profile Dates ID ${handle} deleted`)
       } else {
