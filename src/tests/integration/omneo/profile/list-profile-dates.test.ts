@@ -13,8 +13,8 @@ const CREATED_DATES_HANDLES : string[] = []
 const getHandle = () => { return `sdk_unit_test_dates_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
-describe('Profile dates get', () => {
-  test('SDK can get profile dates', async () => {
+describe('Profile Dates Get', () => {
+  test('SDK Get Dates', async () => {
     const payload: ProfileDatesAttribute = {
       name: 'Wedding',
       date: '2024-12-02',
@@ -25,11 +25,14 @@ describe('Profile dates get', () => {
       relationship: 'Me',
       description: 'test description for omneo'
     }
-    await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
+    const response = await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
       dates_attributes: [payload]
     })
+    const profileDates: ProfileDatesAttribute[] = response.data.attributes.dates
+    const profileFilterDates = profileDates.filter(d => d.handle === payload.handle)
+    CREATED_DATES_HANDLES.push(profileFilterDates[0].id as string)
 
-    const dates: Array<ProfileDatesAttribute> = await omneo.profiles.getProfileDates(testProfileID)
+    const dates: ProfileDatesAttribute[] = await omneo.profiles.getProfileDates(testProfileID)
     const filterDates = dates.filter(d => d.handle === payload.handle)
     expect(filterDates.length).toBeGreaterThan(0)
 

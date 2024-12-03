@@ -13,7 +13,7 @@ const getHandle = () => { return `sdk_unit_test_dates_${randomString(5).toLowerC
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Date Delete', () => {
-  test('SDK delete profile date', async () => {
+  test('SDK Delete Date', async () => {
     const payload: ProfileDatesAttribute = {
       name: 'Wedding',
       date: '2024-12-02',
@@ -25,16 +25,18 @@ describe('Profile Date Delete', () => {
       description: 'test description for delete'
     }
 
-    await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
+    const response = await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
       dates_attributes: [payload]
     })
+    const profileDates: ProfileDatesAttribute[] = response.data.attributes.dates
+    const profileFilterDates = profileDates.filter(d => d.handle === payload.handle)
+    const deleteDateId = profileFilterDates[0].id as string
 
-    const dates: Array<ProfileDatesAttribute> = await omneo.profiles.getProfileDates(testProfileID)
+    const dates: ProfileDatesAttribute[] = await omneo.profiles.getProfileDates(testProfileID)
     const filterDates = dates.filter(d => d.handle === payload.handle)
     expect(filterDates.length).toBeGreaterThan(0)
 
-    const targetDate = filterDates[0]
-    const deleteDates: Array<ProfileDatesAttribute> = await omneo.profiles.deleteProfileDate(testProfileID, targetDate.id as string)
+    const deleteDates: ProfileDatesAttribute[] = await omneo.profiles.deleteProfileDate(testProfileID, deleteDateId)
     const filterDeleteDates = deleteDates.filter(d => d.handle === payload.handle)
     expect(filterDeleteDates.length).toBe(0)
   })

@@ -15,5 +15,5 @@ export type ProfileDatesAttribute = {
 }
 
 export type ProfileDatesAttributesResponse = {
-  data: Array<ProfileDatesAttribute>
+  data: ProfileDatesAttribute[]
 }

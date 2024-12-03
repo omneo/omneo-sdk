@@ -436,7 +436,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  async getProfileDates (profileID: string): Promise<Array<ProfileDatesAttribute>> {
+  async getProfileDates (profileID: string): Promise<ProfileDatesAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/attributes/dates`
@@ -445,7 +445,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  async deleteProfileDate (profileID: string, dateId: string): Promise<Array<ProfileDatesAttribute>> {
+  async deleteProfileDate (profileID: string, dateId: string): Promise<ProfileDatesAttribute[]> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/${profileID}/attributes/dates/${dateId}`

@@ -319,7 +319,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  getDates (): Promise<Array<ProfileDatesAttribute>> {
+  getDates (): Promise<ProfileDatesAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/attributes/dates'
@@ -328,7 +328,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  deleteDate (dateId: string): Promise<Array<ProfileDatesAttribute>> {
+  deleteDate (dateId: string): Promise<ProfileDatesAttribute[]> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/attributes/dates/${dateId}`

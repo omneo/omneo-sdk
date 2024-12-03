@@ -10,7 +10,7 @@ const getHandle = () => { return `sdk_unit_test_dates_${randomString(5).toLowerC
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('ID Dates', () => {
-  testWithIDData('ID SDK can get dates', async ({ IDData }) => {
+  testWithIDData('ID SDK Get Dates', async ({ IDData }) => {
     const { tokenData } = IDData
     const payload: ProfileDatesAttribute = {
       name: 'Wedding',
@@ -22,23 +22,24 @@ describe('ID Dates', () => {
       relationship: 'Me',
       description: 'test description for id'
     }
-    await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
+    const response = await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
       dates_attributes: [payload]
     })
+    const profileDates: ProfileDatesAttribute[] = response.data.attributes.dates
+    const profileFilterDates = profileDates.filter(d => d.handle === payload.handle)
+    CREATED_DATES_HANDLES.push(profileFilterDates[0].id as string)
 
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
       IDToken: tokenData.token,
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
-    const dates: Array<ProfileDatesAttribute> = await IDClient.profile.getDates()
+    const dates: ProfileDatesAttribute[] = await IDClient.profile.getDates()
 
     const filterDates = dates.filter(d => d.handle === payload.handle)
     expect(filterDates.length).toBeGreaterThan(0)
 
     const targetDate = filterDates[0]
-    CREATED_DATES_HANDLES.push(targetDate.id as string)
-
     expect(targetDate.handle).toBe(payload.handle)
     expect(targetDate.profile_id).toBe(testProfileID)
     expect(targetDate.date).toBeTypeOf('string')
