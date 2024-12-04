@@ -16,7 +16,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 describe('Profile Date Delete', () => {
   test('SDK Delete Date', async () => {
     const payload: ProfileDatesAttribute = {
-      name: 'Wedding',
+      name: 'Omneo SDK Delete Date',
       date: '2024-12-02',
       handle: getHandle(),
       is_recurring: true,

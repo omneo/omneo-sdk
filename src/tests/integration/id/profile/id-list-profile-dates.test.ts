@@ -13,7 +13,7 @@ describe('ID Dates', () => {
   testWithIDData('ID SDK Get Dates', async ({ IDData }) => {
     const { tokenData } = IDData
     const payload: ProfileDatesAttribute = {
-      name: 'Wedding',
+      name: 'ID SDK Get Dates',
       date: '2024-12-02',
       handle: getHandle(),
       is_recurring: true,
