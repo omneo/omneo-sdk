@@ -417,7 +417,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  getCustomAttributes (id: string): Promise<CustomAttribute> {
+  getCustomAttributes (id: string): Promise<CustomAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${id}/attributes/custom`

@@ -1,9 +1,9 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { Omneo } from '../../../../../omneo'
+import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 
-import { ProfileDatesAttribute } from '../../../../types'
-import randomString from '../../../lib/string/random'
+import { ProfileDatesAttribute } from '../../../../../types'
+import randomString from '../../../../lib/string/random'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -37,8 +37,6 @@ describe('Profile Dates Get', () => {
     expect(filterDates.length).toBeGreaterThan(0)
 
     const targetDate = filterDates[0]
-    CREATED_DATES_HANDLES.push(targetDate.id as string)
-
     expect(targetDate.handle).toBe(payload.handle)
     expect(targetDate.profile_id).toBe(testProfileID)
     expect(targetDate.date).toBeTypeOf('string')

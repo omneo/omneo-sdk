@@ -355,7 +355,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  getCustomAttributes (): Promise<CustomAttribute> {
+  getCustomAttributes (): Promise<CustomAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/attributes/custom'
