@@ -27,25 +27,26 @@ describe('Countries list', () => {
     })
     const { data: countries } = countriesRes
     const filterCountries = countries.filter(d => d.name === payload.name)
-    expect(filterCountries.length).toBeGreaterThan(0)
+    expect(filterCountries.length).toBe(1)
 
-    const targetAttribute = filterCountries[0]
-    expect(targetAttribute.name).toBe(payload.name)
-    expect(targetAttribute.iso_2).toBe(payload.iso_2)
-    expect(targetAttribute.iso_3).toBe(payload.iso_3)
-    expect(targetAttribute.iso_numeric).toBe(payload.iso_numeric)
+    const targetCountry = filterCountries[0]
+    expect(targetCountry.id).toBe(response.data.id)
+    expect(targetCountry.name).toBe(payload.name)
+    expect(targetCountry.iso_2).toBe(payload.iso_2)
+    expect(targetCountry.iso_3).toBe(payload.iso_3)
+    expect(targetCountry.iso_numeric).toBe(payload.iso_numeric)
   })
 })
 
 afterAll(async () => {
   if (CREATED_COUNTRIES_HANDLES.length > 0) {
-    for (const handle of CREATED_COUNTRIES_HANDLES) {
-      console.log('Cleaning up SDK Countries with ID', handle)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/countries/${handle}`)
+    for (const id of CREATED_COUNTRIES_HANDLES) {
+      console.log('Cleaning up SDK Countries with ID', id)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/countries/${id}`)
       if (deleteResponse.status === 204) {
-        console.log(`SDK Country ID ${handle} deleted`)
+        console.log(`SDK Country ID ${id} deleted`)
       } else {
-        console.log(`Failed to delete Country ID ${handle}`, deleteResponse)
+        console.log(`Failed to delete Country ID ${id}`, deleteResponse)
       }
     }
   }

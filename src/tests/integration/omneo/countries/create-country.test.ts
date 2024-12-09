@@ -35,13 +35,13 @@ describe('Countries create', () => {
 
 afterAll(async () => {
   if (CREATED_COUNTRIES_HANDLES.length > 0) {
-    for (const handle of CREATED_COUNTRIES_HANDLES) {
-      console.log('Cleaning up SDK Country with ID', handle)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/countries/${handle}`)
+    for (const id of CREATED_COUNTRIES_HANDLES) {
+      console.log('Cleaning up SDK Country with ID', id)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/countries/${id}`)
       if (deleteResponse.status === 204) {
-        console.log(`SDK Country ID ${handle} deleted`)
+        console.log(`SDK Country ID ${id} deleted`)
       } else {
-        console.log(`Failed to delete Country ID ${handle}`, deleteResponse)
+        console.log(`Failed to delete Country ID ${id}`, deleteResponse)
       }
     }
   }
