@@ -20,5 +20,7 @@ export type RegionResponse = PaginationResponse & {
 
 export type RegionInput = {
   name?: string
+  handle?: string
+  is_default?: boolean
   countries?: { iso_2: string } []
 }
