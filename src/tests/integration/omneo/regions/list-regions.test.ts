@@ -35,13 +35,13 @@ describe('Regions list', () => {
 
 afterAll(async () => {
   if (CREATED_REGIONS_HANDLES.length > 0) {
-    for (const handle of CREATED_REGIONS_HANDLES) {
-      console.log('Cleaning up SDK Regions with ID', handle)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/regions/${handle}`)
+    for (const id of CREATED_REGIONS_HANDLES) {
+      console.log('Cleaning up SDK Regions with ID', id)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/regions/${id}`)
       if (deleteResponse.status === 204) {
-        console.log(`SDK Region ID ${handle} deleted`)
+        console.log(`SDK Region ID ${id} deleted`)
       } else {
-        console.log(`Failed to delete Region ID ${handle}`, deleteResponse)
+        console.log(`Failed to delete Region ID ${id}`, deleteResponse)
       }
     }
   }
