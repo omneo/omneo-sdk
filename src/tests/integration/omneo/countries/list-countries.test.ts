@@ -19,9 +19,7 @@ describe('Countries list', () => {
       iso_numeric: getIsoNumeric(),
       sort_order: null
     }
-    console.log('list create: payload', payload)
     const response = await simpleOmneoRequest('POST', '/countries', payload)
-    console.log('list create: payload', response.data)
     CREATED_COUNTRIES_HANDLES.push(response.data.id)
 
     const countriesRes: CountryResponse = await omneo.countries.list({

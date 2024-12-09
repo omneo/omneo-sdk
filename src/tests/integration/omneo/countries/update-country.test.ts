@@ -21,7 +21,6 @@ describe('Countries update', () => {
       sort_order: null
     }
     const response = await simpleOmneoRequest('POST', '/countries', payload)
-    console.log('response update:', payload, response.data)
     CREATED_COUNTRIES_HANDLES.push(response.data.id)
 
     const targetCountry: Country = await omneo.countries.update(response.data.id, {

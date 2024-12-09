@@ -20,7 +20,6 @@ describe('Countries create', () => {
       sort_order: null
     }
 
-    console.log('country create payload:', payload)
     const targetCountry: Country = await omneo.countries.create(payload).catch((err) => {
       console.error('SDK Country created failed:', err)
       throw new Error('SDK Country created failed')

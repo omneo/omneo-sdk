@@ -20,7 +20,6 @@ describe('Countries delete', () => {
       sort_order: null
     }
     const response = await simpleOmneoRequest('POST', '/countries', payload)
-    console.log('response delete:', payload, response.data)
     await omneo.countries.delete(response.data.id).catch((err) => {
       console.error(`SDK Country delete failed with id:${response.data.id}`, err)
       FAILED_DELETE_COUNTRIES.push(response.data.id)

@@ -19,12 +19,10 @@ describe('Countries get', () => {
       iso_numeric: getIsoNumeric(),
       sort_order: null
     }
-    console.log('get create: payload', payload)
     const response = await simpleOmneoRequest('POST', '/countries', payload).catch((err) => {
       console.error('SDK Country created failed:', err)
       throw new Error('SDK Country created failed')
     })
-    console.log('get create: payload', response.data)
     CREATED_COUNTRIES_HANDLES.push(response.data.id)
 
     const targetCountry: Country = await omneo.countries.get(response.data.id)
