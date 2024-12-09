@@ -1,7 +1,7 @@
 import { CountryInput, RequestParams, Country, CountryResponse } from '../../../types'
 import Resource from '../resource.js'
 
-export default class Rewards extends Resource {
+export default class Countries extends Resource {
   get (id: number, params?: RequestParams): Promise<Country> {
     return this.client.call({
       method: 'get',
