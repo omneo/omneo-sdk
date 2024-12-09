@@ -2,7 +2,7 @@ import { CountryInput, RequestParams, Country, CountryResponse } from '../../../
 import Resource from '../resource.js'
 
 export default class Rewards extends Resource {
-  get (id: string, params?: RequestParams): Promise<Country> {
+  get (id: number, params?: RequestParams): Promise<Country> {
     return this.client.call({
       method: 'get',
       endpoint: `/countries/${id}`,
@@ -30,7 +30,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  update (id: string, body: CountryInput): Promise<Country> {
+  update (id: number, body: CountryInput): Promise<Country> {
     return this.client.call({
       method: 'put',
       endpoint: `/countries/${id}`,
@@ -40,7 +40,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  delete (id: string): Promise<void> {
+  delete (id: number): Promise<void> {
     return this.client.call({
       method: 'delete',
       endpoint: `/countries/${id}`
