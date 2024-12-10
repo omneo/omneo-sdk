@@ -23,10 +23,9 @@ describe('Regions list', () => {
       'filter[handle]': payload.handle
     })
     const { data: regions } = regionsRes
-    const filterRegions = regions.filter(d => d.handle === payload.handle)
-    expect(filterRegions.length).toBeGreaterThan(0)
+    expect(regions.length).toBe(1)
 
-    const targetRegion = filterRegions[0]
+    const targetRegion = regions[0]
     expect(targetRegion.name).toBe(payload.name)
     expect(targetRegion.handle).toBe(payload.handle)
     expect(targetRegion.is_default).toBeFalsy()

@@ -10,7 +10,7 @@ const omneo = new Omneo({
 })
 const CREATED_REGIONS_IDS : number[] = []
 
-describe('Regions created', () => {
+describe('Region created', () => {
   test('SDK created Region', async () => {
     const payload: RegionInput = {
       name: getName(),

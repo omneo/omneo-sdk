@@ -11,8 +11,8 @@ const omneo = new Omneo({
 const CREATED_COUNTRIES_IDS : number[] = []
 const CREATED_REGIONS_IDS : number[] = []
 
-describe('Regions update', () => {
-  test('SDK Regions update', async () => {
+describe('Region update', () => {
+  test('SDK Region update', async () => {
     const updatedName = getName()
     const payload: RegionInput = {
       name: getName(),

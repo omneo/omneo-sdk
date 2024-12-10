@@ -10,8 +10,8 @@ const omneo = new Omneo({
 })
 const FAILED_DELETE_REGIONS : number[] = []
 
-describe('Regions delete', () => {
-  test('SDK Regions delete', async () => {
+describe('Region delete', () => {
+  test('SDK Region delete', async () => {
     const payload: RegionInput = {
       name: getName(),
       handle: getHandle()
