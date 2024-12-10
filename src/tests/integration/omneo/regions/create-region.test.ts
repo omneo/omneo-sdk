@@ -17,8 +17,8 @@ describe('Region created', () => {
       handle: getHandle()
     }
     const targetRegion: Region = await omneo.regions.create(payload).catch((err) => {
-      console.error('SDK Country created failed:', err)
-      throw new Error('SDK Country created failed')
+      console.error('SDK Region created failed:', err)
+      throw new Error('SDK Region created failed')
     })
     CREATED_REGIONS_IDS.push(targetRegion.id)
 
