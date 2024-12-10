@@ -8,7 +8,7 @@ const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_REGIONS_HANDLES : number[] = []
+const CREATED_REGIONS_IDS : number[] = []
 
 describe('Regions get', () => {
   test('SDK Get Region', async () => {
@@ -20,7 +20,7 @@ describe('Regions get', () => {
       console.error('SDK get Region created failed:', err)
       throw new Error('SDK get Region created failed')
     })
-    CREATED_REGIONS_HANDLES.push(response.data.id)
+    CREATED_REGIONS_IDS.push(response.data.id)
 
     const targetRegion: Region = await omneo.regions.get(response.data.id)
     expect(targetRegion.name).toBe(payload.name)
@@ -30,8 +30,8 @@ describe('Regions get', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_REGIONS_HANDLES.length > 0) {
-    for (const id of CREATED_REGIONS_HANDLES) {
+  if (CREATED_REGIONS_IDS.length > 0) {
+    for (const id of CREATED_REGIONS_IDS) {
       console.log('Cleaning up SDK Regions with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/regions/${id}`)
       if (deleteResponse.status === 204) {

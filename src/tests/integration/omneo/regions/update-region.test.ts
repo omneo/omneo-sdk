@@ -8,8 +8,8 @@ const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_COUNTRIES_HANDLES : number[] = []
-const CREATED_REGIONS_HANDLES : number[] = []
+const CREATED_COUNTRIES_IDS : number[] = []
+const CREATED_REGIONS_IDS : number[] = []
 
 describe('Regions update', () => {
   test('SDK Regions update', async () => {
@@ -22,7 +22,7 @@ describe('Regions update', () => {
       console.error('SDK get Region created failed:', err)
       throw new Error('SDK get Region created failed')
     })
-    CREATED_REGIONS_HANDLES.push(response.data.id)
+    CREATED_REGIONS_IDS.push(response.data.id)
 
     const targetRegion: Region = await omneo.regions.update(response.data.id, {
       name: updatedName
@@ -44,7 +44,7 @@ describe('Regions update', () => {
       console.error('SDK get Region created failed:', err)
       throw new Error('SDK get Region created failed')
     })
-    CREATED_REGIONS_HANDLES.push(response.data.id)
+    CREATED_REGIONS_IDS.push(response.data.id)
 
     const payload2: CountryInput = {
       name: getName(),
@@ -57,7 +57,7 @@ describe('Regions update', () => {
       console.error('SDK Country created failed:', err)
       throw new Error('SDK Country created failed')
     })
-    CREATED_COUNTRIES_HANDLES.push(response2.data.id)
+    CREATED_COUNTRIES_IDS.push(response2.data.id)
 
     const targetRegion: Region = await omneo.regions.update(response.data.id, {
       name: updatedName,
@@ -81,8 +81,8 @@ describe('Regions update', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_REGIONS_HANDLES.length > 0) {
-    for (const id of CREATED_REGIONS_HANDLES) {
+  if (CREATED_REGIONS_IDS.length > 0) {
+    for (const id of CREATED_REGIONS_IDS) {
       console.log('Cleaning up SDK Region with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/regions/${id}`)
       if (deleteResponse.status === 204) {
