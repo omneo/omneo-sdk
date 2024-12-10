@@ -8,7 +8,7 @@ const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_COUNTRIES_HANDLES : number[] = []
+const CREATED_COUNTRIES_IDS : number[] = []
 
 describe('Countries update', () => {
   test('SDK Countries update', async () => {
@@ -21,7 +21,7 @@ describe('Countries update', () => {
       sort_order: null
     }
     const response = await simpleOmneoRequest('POST', '/countries', payload)
-    CREATED_COUNTRIES_HANDLES.push(response.data.id)
+    CREATED_COUNTRIES_IDS.push(response.data.id)
 
     const updateOrder = Math.floor(Math.random() * 100)
     const targetCountry: Country = await omneo.countries.update(response.data.id, {
@@ -41,8 +41,8 @@ describe('Countries update', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_COUNTRIES_HANDLES.length > 0) {
-    for (const id of CREATED_COUNTRIES_HANDLES) {
+  if (CREATED_COUNTRIES_IDS.length > 0) {
+    for (const id of CREATED_COUNTRIES_IDS) {
       console.log('Cleaning up SDK Country with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/countries/${id}`)
       if (deleteResponse.status === 204) {

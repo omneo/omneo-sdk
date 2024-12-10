@@ -8,7 +8,7 @@ const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_COUNTRIES_HANDLES : number[] = []
+const CREATED_COUNTRIES_IDS : number[] = []
 
 describe('Countries create', () => {
   test('SDK Countries create', async () => {
@@ -24,7 +24,7 @@ describe('Countries create', () => {
       console.error('SDK Country created failed:', err)
       throw new Error('SDK Country created failed')
     })
-    CREATED_COUNTRIES_HANDLES.push(targetCountry.id)
+    CREATED_COUNTRIES_IDS.push(targetCountry.id)
 
     expect(targetCountry.name).toBe(payload.name)
     expect(targetCountry.iso_2).toBe(payload.iso_2)
@@ -34,8 +34,8 @@ describe('Countries create', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_COUNTRIES_HANDLES.length > 0) {
-    for (const id of CREATED_COUNTRIES_HANDLES) {
+  if (CREATED_COUNTRIES_IDS.length > 0) {
+    for (const id of CREATED_COUNTRIES_IDS) {
       console.log('Cleaning up SDK Country with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/countries/${id}`)
       if (deleteResponse.status === 204) {
