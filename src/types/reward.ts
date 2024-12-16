@@ -1,11 +1,13 @@
 import { PaginationResponse } from './pagination'
 
+export type RewardDefinitonPeriodType = 'days' | 'weeks' | 'months' | 'years' | 'absolute_date' | 'absolute_week' |'absolute_month'
+
 export type RewardDefinition = {
   id: number
   name: string
   handle: string
   period: number
-  period_type: string
+  period_type: RewardDefinitonPeriodType
   absolute_expiry: string | null
   description: string | null
   short_description: string | null
@@ -75,10 +77,11 @@ export type RewardResponse = PaginationResponse & {
 export type RewardDefinitionInput = {
   name: string
   handle: string
-  value: string
+  value: number
+  max_value: number | null
   type: string
-  period: string
-  period_type: string
+  period: number
+  period_type: RewardDefinitonPeriodType
   is_assignable: boolean
   is_reassignable: boolean
   is_extendable: boolean

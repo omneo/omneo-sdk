@@ -36,8 +36,8 @@ To create a new reward definition, use the `create` method:
 const payload = {
     name: 'Test Reward',
     handle: 'test-reward',
-    value: '10',
-    period: '30',
+    value: 10,
+    period: 30,
     period_type: 'days',
     type: 'spend'
 }
