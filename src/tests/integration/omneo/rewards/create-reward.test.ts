@@ -1,4 +1,4 @@
-import { describe, expect, test, afterAll } from 'vitest'
+import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { RewardDefinitionCreateInput, Reward } from '../../../../types'
@@ -12,6 +12,9 @@ const CREATED_REWARDS_DEFINITION_IDS : number[] = []
 const CREATED_REWARDS_IDS : number[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
+beforeAll(() => {
+  process.env.TZ = 'Australia/Melbourne'
+})
 describe('Reward created', () => {
   test('SDK created Reward', async () => {
     const payload: RewardDefinitionCreateInput = {
