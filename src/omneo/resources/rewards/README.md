@@ -38,7 +38,7 @@ const payload = {
     profile_id: '9d99d6e8-8181-4a74-a121-a85de2e8a516',
     value_initial: 5,
     value_remaining: 5,
-    expires_at: '2024-12-19 08:30:00',
+    expires_at: '2024-12-06 08:30:00',
     issued_at: '2024-12-05 08:30:00',
     timezone: 'Australia/Melbourne',
     external_id: 'sdk_unit_test_135678'

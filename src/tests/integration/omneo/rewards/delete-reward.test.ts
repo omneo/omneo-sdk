@@ -35,7 +35,7 @@ describe('Reward delete', () => {
       profile_id: testProfileID,
       value_initial: 5,
       value_remaining: 5,
-      expires_at: '2024-12-19 08:30:00',
+      expires_at: '2024-12-06 08:30:00',
       issued_at: '2024-12-05 08:30:00',
       timezone: 'Australia/Melbourne',
       external_id: getExternalId()
@@ -66,17 +66,6 @@ describe('Reward delete', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_REWARDS_DEFINITION_IDS.length > 0) {
-    for (const id of CREATED_REWARDS_DEFINITION_IDS) {
-      console.log('Cleaning up SDK Reward Definition with ID', id)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/rewards/definitions/${id}`)
-      if (deleteResponse.status === 204) {
-        console.log(`SDK Reward Definition ID ${id} deleted`)
-      } else {
-        console.log(`Failed to delete Reward Definition ID ${id}`, deleteResponse)
-      }
-    }
-  }
   if (FAILED_REWARDS_IDS.length > 0) {
     for (const id of FAILED_REWARDS_IDS) {
       console.log('Cleaning up SDK Reward with ID', id)
@@ -85,6 +74,17 @@ afterAll(async () => {
         console.log(`SDK Reward ID ${id} deleted`)
       } else {
         console.log(`Failed to delete Reward ID ${id}`, deleteResponse)
+      }
+    }
+  }
+  if (CREATED_REWARDS_DEFINITION_IDS.length > 0) {
+    for (const id of CREATED_REWARDS_DEFINITION_IDS) {
+      console.log('Cleaning up SDK Reward Definition with ID', id)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/rewards/definitions/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Reward Definition ID ${id} deleted`)
+      } else {
+        console.log(`Failed to delete Reward Definition ID ${id}`, deleteResponse)
       }
     }
   }
