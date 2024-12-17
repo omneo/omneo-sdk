@@ -2,7 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { RewardDefinition, RewardDefinitionCreateInput } from '../../../../types'
-import { getName, getHandle } from './util'
+import { getRandomString } from './util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -13,8 +13,8 @@ const CREATED_REWARDS_DEFINITION_IDS : number[] = []
 describe('Reward Definition get', () => {
   test('SDK Get Reward Definition', async () => {
     const payload: RewardDefinitionCreateInput = {
-      name: getName(),
-      handle: getHandle(),
+      name: getRandomString('sdk_unit_test_reward_definition_name'),
+      handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,
       period: 30,
       period_type: 'days',
