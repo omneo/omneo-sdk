@@ -83,6 +83,7 @@ export type RewardDefinitionInput = {
   period: number
   period_type: RewardDefinitonPeriodType
   is_assignable: boolean
+  is_published: boolean
   is_reassignable: boolean
   is_extendable: boolean
 }
@@ -92,13 +93,22 @@ export type RewardDefinitionCreateInput = Required<Pick<RewardDefinitionInput, R
   Partial<Omit<RewardDefinitionInput, RewardDefinitionRequireField>>
 export type RewardDefinitionUpdateInput = Partial<RewardDefinitionInput>
 
-export type RewardInput = {
-  profile_id: string
-  point_definition_id: number
+export type RewardCreateInput = {
   value_initial: number
+  value_remaining: number
+  timezone: string
+  expires_at: string
+  issued_at?: string
+  reward_definition_id?: number
+  reward_definition_handle?: number
+  profile_id: string
+  external_id?: string | null
+  meta?: object
+}
+
+export type RewardUpdateInput = {
+  value_initial?: number
   value_remaining?: number
-  issued_at: string
   expires_at?: string
-  description?: string
   meta?: object
 }

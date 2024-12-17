@@ -1,8 +1,8 @@
-import { RewardInput, RequestParams, Reward, RewardResponse } from '../../../types'
+import { RewardCreateInput, RewardUpdateInput, RequestParams, Reward, RewardResponse } from '../../../types'
 import Resource from '../resource.js'
 
 export default class Rewards extends Resource {
-  get (id: string, params?: RequestParams): Promise<Reward> {
+  get (id: number, params?: RequestParams): Promise<Reward> {
     return this.client.call({
       method: 'get',
       endpoint: `/rewards/${id}`,
@@ -20,7 +20,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  create (body: RewardInput): Promise<Reward> {
+  create (body: RewardCreateInput): Promise<Reward> {
     return this.client.call({
       method: 'post',
       endpoint: '/rewards',
@@ -30,7 +30,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  update (id: string, body: RewardInput): Promise<Reward> {
+  update (id: number, body: RewardUpdateInput): Promise<Reward> {
     return this.client.call({
       method: 'put',
       endpoint: `/rewards/${id}`,
@@ -40,7 +40,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  delete (id: string): Promise<void> {
+  delete (id: number): Promise<void> {
     return this.client.call({
       method: 'delete',
       endpoint: `/rewards/${id}`

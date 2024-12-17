@@ -16,6 +16,7 @@ import Permission from './resources/permissions'
 import Points from './resources/points'
 import Countries from './resources/countries'
 import Regions from './resources/regions'
+import Rewards from './resources/rewards'
 import RewardsDefinition from './resources/rewards-definition'
 import Webhooks from './resources/webhooks'
 
@@ -51,6 +52,7 @@ export class Omneo {
   public points = new Points(this)
   public countries = new Countries(this)
   public regions = new Regions(this)
+  public rewards = new Rewards(this)
   public rewardsDefinition = new RewardsDefinition(this)
   public webhooks = new Webhooks(this)
 
