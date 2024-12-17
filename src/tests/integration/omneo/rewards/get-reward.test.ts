@@ -2,8 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { Reward, RewardDefinitionCreateInput } from '../../../../types'
-import { getName, getHandle } from './util'
-import { DateTime } from 'luxon'
+import { getRandomString, convertToUTC } from './util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -16,8 +15,8 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 describe('Reward get', () => {
   test('SDK Get Reward', async () => {
     const payload: RewardDefinitionCreateInput = {
-      name: getName(),
-      handle: getHandle(),
+      name: getRandomString('sdk_unit_test_reward_definition_name'),
+      handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,
       period: 30,
       period_type: 'days',
@@ -51,7 +50,8 @@ describe('Reward get', () => {
     expect(targetReward.profile_id).toBe(rewardPayload.profile_id)
     expect(targetReward.value_initial).toBe(rewardPayload.value_initial)
     expect(targetReward.value_remaining).toBe(rewardPayload.value_remaining)
-    expect(targetReward.issued_at).toBe(DateTime.fromFormat(rewardPayload.issued_at, 'yyyy-MM-dd HH:mm:ss', { zone: rewardPayload.timezone }).toUTC().toFormat('yyyy-MM-dd HH:mm:ss'))
+
+    expect(targetReward.issued_at).toBe(convertToUTC(rewardPayload.issued_at))
     expect(targetReward.timezone).toBe(rewardPayload.timezone)
   })
 })

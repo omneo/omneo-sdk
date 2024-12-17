@@ -2,7 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { RewardDefinitionCreateInput } from '../../../../types'
-import { getName, getHandle, getExternalId } from './util'
+import { getRandomString } from './util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -15,8 +15,8 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 describe('Reward delete', () => {
   test('SDK Reward delete', async () => {
     const payload: RewardDefinitionCreateInput = {
-      name: getName(),
-      handle: getHandle(),
+      name: getRandomString('sdk_unit_test_reward_definition_name'),
+      handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,
       period: 30,
       period_type: 'days',
@@ -38,7 +38,7 @@ describe('Reward delete', () => {
       expires_at: '2024-12-06 08:30:00',
       issued_at: '2024-12-05 08:30:00',
       timezone: 'Australia/Melbourne',
-      external_id: getExternalId()
+      external_id: getRandomString('sdk_unit_test_reward_external_id')
     }
     const rewardResponse = await simpleOmneoRequest('POST', '/rewards', rewardPayload).catch((err) => {
       console.error('SDK list rewards created failed:', err)
