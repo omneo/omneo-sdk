@@ -39,7 +39,9 @@ const payload = {
     value: 10,
     period: 30,
     period_type: 'days',
-    type: 'spend'
+    type: 'spend',
+    is_assignable: true,
+    is_published: true
 }
 
 omneoClient.rewardDefinitions.create(payload)

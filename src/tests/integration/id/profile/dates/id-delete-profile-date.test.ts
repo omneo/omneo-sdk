@@ -6,7 +6,7 @@ import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 import randomString from '../../../../lib/string/random'
 
 const FAILED_DELETE_DATES : string[] = []
-const getHandle = () => { return `sdk_unit_test_dates_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
+const getHandle = () => { return `sdk_unit_test_delete_dates_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('ID Delete Date', () => {

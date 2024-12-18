@@ -7,7 +7,8 @@ export default defineConfig(({ command, mode }) => {
   return {
     // vite config
     test: {
-      env
+      env,
+      testTimeout: 10000
     }
   }
 })
