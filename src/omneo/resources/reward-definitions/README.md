@@ -4,7 +4,7 @@
 To retrieve a specific reward definition, use the `get` method:
 
 ```javascript
-omneoClient.rewardsDefinition.get(1423)
+omneoClient.rewardDefinitions.get(1423)
     .then((rewardDefinition) => {
         console.log(rewardDefinition)
     })
@@ -18,7 +18,7 @@ omneoClient.rewardsDefinition.get(1423)
 To retrieve a list of rewards definitions, use the `list` method:
 
 ```javascript
-omneoClient.rewardsDefinition.list()
+omneoClient.rewardDefinitions.list()
     .then((rewardDefinitions) => {
         console.log(rewardDefinitions)
     })
@@ -42,7 +42,7 @@ const payload = {
     type: 'spend'
 }
 
-omneoClient.rewardsDefinition.create(payload)
+omneoClient.rewardDefinitions.create(payload)
     .then((rewardDefinition) => {
         console.log(rewardDefinition)
     })
@@ -60,7 +60,7 @@ const payload = {
     name: 'Test reward2'
 }
 
-omneoClient.rewardsDefinition.update(1342, payload)
+omneoClient.rewardDefinitions.update(1342, payload)
     .then((rewardDefinition) => {
         console.log(rewardDefinition)
     })
@@ -74,7 +74,7 @@ omneoClient.rewardsDefinition.update(1342, payload)
 To delete a reward definition, use the `delete` method:
 
 ```javascript
-omneoClient.rewardsDefinition.delete(1342)
+omneoClient.rewardDefinitions.delete(1342)
     .then(() => {
         console.log('reward definition deleted successfully')
     })

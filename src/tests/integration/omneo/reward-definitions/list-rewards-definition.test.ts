@@ -10,8 +10,8 @@ const omneo = new Omneo({
 })
 const CREATED_REWARDS_DEFINITION_IDS : number[] = []
 
-describe('Rewards Definition list', () => {
-  test('SDK Get Rewards Definition', async () => {
+describe('Reward Definitions list', () => {
+  test('SDK List Reward Definitions', async () => {
     const payload: RewardDefinitionCreateInput = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
@@ -23,7 +23,7 @@ describe('Rewards Definition list', () => {
     const response = await simpleOmneoRequest('POST', '/rewards/definitions', payload)
     CREATED_REWARDS_DEFINITION_IDS.push(response.data.id)
 
-    const rewardDefinitionsRes: RewardDefinitionResponse = await omneo.rewardsDefinition.list({
+    const rewardDefinitionsRes: RewardDefinitionResponse = await omneo.rewardDefinitions.list({
       'filter[handle]': payload.handle
     })
     const { data: rewardDefinitions } = rewardDefinitionsRes

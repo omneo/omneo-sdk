@@ -1,7 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { RewardDefinition, RewardDefinitionCreateInput, RewardDefinitionUpdateInput } from '../../../../types'
+import { RewardDefinition, RewardDefinitionCreateInput } from '../../../../types'
 import { getRandomString } from './util'
 
 const omneo = new Omneo({
@@ -10,8 +10,8 @@ const omneo = new Omneo({
 })
 const CREATED_REWARDS_DEFINITION_IDS : number[] = []
 
-describe('Reward Definition update', () => {
-  test('SDK Reward Definition update', async () => {
+describe('Reward Definition get', () => {
+  test('SDK Get Reward Definition', async () => {
     const payload: RewardDefinitionCreateInput = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
@@ -21,29 +21,18 @@ describe('Reward Definition update', () => {
       type: 'spend'
     }
     const response = await simpleOmneoRequest('POST', '/rewards/definitions', payload).catch((err) => {
-      console.error('SDK update reward definition created failed:', err)
-      throw new Error('SDK update reward definition created failed')
+      console.error('SDK get reward definition created failed:', err)
+      throw new Error('SDK get reward definition created failed')
     })
     CREATED_REWARDS_DEFINITION_IDS.push(response.data.id)
-    const updatedPayload: RewardDefinitionUpdateInput = {
-      name: getRandomString('sdk_unit_test_reward_definition_name'),
-      handle: payload.handle,
-      value: 100,
-      period: 300,
-      period_type: 'weeks',
-      type: 'spend'
-    }
-    const targetRewardDefinition: RewardDefinition = await omneo.rewardsDefinition.update(response.data.id, updatedPayload).catch((err) => {
-      console.error('SDK Reward definition created failed:', err)
-      throw new Error('SDK Reward definition created failed')
-    })
 
-    expect(targetRewardDefinition.name).toBe(updatedPayload.name)
-    expect(targetRewardDefinition.handle).toBe(updatedPayload.handle)
-    expect(targetRewardDefinition.value).toBe(updatedPayload.value)
-    expect(targetRewardDefinition.period).toBe(updatedPayload.period)
-    expect(targetRewardDefinition.period_type).toBe(updatedPayload.period_type)
-    expect(targetRewardDefinition.type).toBe(updatedPayload.type)
+    const targetRewardDefinition: RewardDefinition = await omneo.rewardDefinitions.get(response.data.id)
+    expect(targetRewardDefinition.name).toBe(payload.name)
+    expect(targetRewardDefinition.handle).toBe(payload.handle)
+    expect(targetRewardDefinition.value).toBe(payload.value)
+    expect(targetRewardDefinition.period).toBe(payload.period)
+    expect(targetRewardDefinition.period_type).toBe(payload.period_type)
+    expect(targetRewardDefinition.type).toBe(payload.type)
   })
 })
 
