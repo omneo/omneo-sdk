@@ -45,23 +45,14 @@ describe('Reward delete', () => {
       throw new Error('SDK list rewards created failed')
     })
 
-    const rewardsRes = await omneo.rewards.list({
-      'filter[external_id]': rewardPayload.external_id
-    })
-    const { data: rewards } = rewardsRes
-    expect(rewards.length).toBe(1)
-
     await omneo.rewards.delete(rewardResponse.data.id).catch((err) => {
       console.error(`SDK Reward delete failed with id:${rewardResponse.data.id}`, err)
       FAILED_REWARDS_IDS.push(rewardResponse.data.id)
       throw new Error(`SDK Reward delete failed with id:${rewardResponse.data.id}`)
     })
 
-    const rewardsRes2 = await omneo.rewards.list({
-      'filter[external_id]': rewardPayload.external_id
-    })
-    const { data: rewards2 } = rewardsRes2
-    expect(rewards2.length).toBe(0)
+    const rewardResponse2 = await simpleOmneoRequest('GET', `/rewards/${rewardResponse.data.id}`)
+    expect(rewardResponse2).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })
 })
 

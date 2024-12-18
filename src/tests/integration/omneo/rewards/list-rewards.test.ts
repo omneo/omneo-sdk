@@ -17,7 +17,7 @@ beforeAll(() => {
 })
 
 describe('Rewards list', () => {
-  test('SDK Get Rewards', async () => {
+  test('SDK List Rewards', async () => {
     const payload: RewardDefinitionCreateInput = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
