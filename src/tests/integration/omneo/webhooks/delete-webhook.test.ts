@@ -41,7 +41,7 @@ describe('SDK Webhooks Delete', () => {
 
     await omneo.webhooks.delete(webhook.id)
     const fetchedWebhook = await simpleOmneoRequest('GET', `/webhooks/${webhook.id}`)
-    expect(fetchedWebhook.message).toBe(`No query results for model [App\\Models\\Webhook] ${webhook.id}`)
+    expect(fetchedWebhook).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })
 })
 
