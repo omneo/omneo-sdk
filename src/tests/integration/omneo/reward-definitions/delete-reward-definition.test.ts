@@ -24,17 +24,14 @@ describe('Reward Definition delete', () => {
       console.error('SDK update reward definition created failed:', err)
       throw new Error('SDK update reward definition created failed')
     })
-    await omneo.rewardsDefinition.delete(response.data.id).catch((err) => {
+    await omneo.rewardDefinitions.delete(response.data.id).catch((err) => {
       console.error(`SDK Reward definition delete failed with id:${response.data.id}`, err)
       FAILED_DELETE_REWARDS_DEFINITION_IDS.push(response.data.id)
       throw new Error(`SDK Reward definition delete failed with id:${response.data.id}`)
     })
 
-    const rewardDefinitionsRes = await omneo.rewardsDefinition.list({
-      'filter[handle]': payload.handle
-    })
-    const { data: rewardDefinitions } = rewardDefinitionsRes
-    expect(rewardDefinitions.length).toBe(0)
+    const rewardResponse = await simpleOmneoRequest('GET', `/rewards/definitions/${response.data.id}`)
+    expect(rewardResponse).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })
 })
 

@@ -20,7 +20,7 @@ describe('Reward Definition created', () => {
       period_type: 'days',
       type: 'spend'
     }
-    const targetRewardDefinition: RewardDefinition = await omneo.rewardsDefinition.create(payload).catch((err) => {
+    const targetRewardDefinition: RewardDefinition = await omneo.rewardDefinitions.create(payload).catch((err) => {
       console.error('SDK Reward definition created failed:', err)
       throw new Error('SDK Reward definition created failed')
     })

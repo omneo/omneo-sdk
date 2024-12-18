@@ -1,7 +1,7 @@
-import { RewardDefinitionCreateInput, RewardDefinitionUpdateInput, RequestParams, RewardDefinition, RewardDefinitionResponse } from '../../../types'
+import { RewardDefinitionCreateInput, RewardDefinitionUpdateInput, RequestParams, RewardDefinition, RewardDefinitionResponse } from '../../../types/index.js'
 import Resource from '../resource.js'
 
-export default class RewardsDefinition extends Resource {
+export default class RewardDefinitions extends Resource {
   get (id: number, params?: RequestParams): Promise<RewardDefinition> {
     return this.client.call({
       method: 'get',
