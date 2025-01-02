@@ -16,6 +16,7 @@ import Permission from './resources/permissions'
 import Points from './resources/points'
 import Webhooks from './resources/webhooks'
 import Roles from './resources/roles'
+import Targets from './resources/targets'
 
 import health from './resources/health'
 export class Omneo {
@@ -49,8 +50,10 @@ export class Omneo {
   public permissions = new Permission(this)
   public points = new Points(this)
   public webhooks = new Webhooks(this)
-  public health = health.bind(this)
   public roles = new Roles(this)
+  public targets = new Targets(this)
+
+  public health = health.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
     const { endpoint, params = {}, method, body, headers: requestHeaders } = requestParams
