@@ -21,6 +21,24 @@ export default class Profiles extends Resource {
     })
   }
 
+  sync (updatedAt?: string): Promise<{ message: string }> {
+    if (updatedAt) {
+      if (isNaN(Date.parse(updatedAt))) return Promise.reject(new Error('Invalid date format'))
+      const isBeforeTomorrow = new Date(updatedAt) < new Date(new Date().setDate(new Date().getDate() + 1))
+      if (!isBeforeTomorrow) {
+        return Promise.reject(new Error('Date must be before tomorrow'))
+      }
+    }
+
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/sync',
+      body: { updated_at: updatedAt }
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   findByIdentity (identifier: string, handle: string): Promise<Profile> {
     return this.client.call({
       method: 'post',
