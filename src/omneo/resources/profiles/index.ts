@@ -652,4 +652,14 @@ export default class Profiles extends Resource {
       return response.data
     })
   }
+
+  getTiers (profileID: string, params?: RequestParams): Promise<TierProgress> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/tiers`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
 }
