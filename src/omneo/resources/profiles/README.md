@@ -12,7 +12,7 @@ Returns:
 Example usage:
 
 ```javascript
-const profile = await omneoClient.omneoClient.profiles.get('profile_id');
+const profile = await omneoClient.profiles.get('profile_id');
 console.log(profile);
 ```
 
@@ -30,7 +30,7 @@ Returns:
 Example usage:
 
 ```javascript
-const profile = await omneoClient.omneoClient.profiles.findByIdentity('identifier', 'handle');
+const profile = await omneoClient.profiles.findByIdentity('identifier', 'handle');
 console.log(profile);
 ```
 
@@ -48,7 +48,7 @@ Returns:
 Example usage:
 
 ```javascript
-const profile = await omneoClient.omneoClient.profiles.findByEmail('email@example.com');
+const profile = await omneoClient.profiles.findByEmail('email@example.com');
 console.log(profile);
 ```
 
