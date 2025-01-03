@@ -1,4 +1,5 @@
 import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput } from '../../../types'
+
 import IDResource from '../resource'
 export default class Profile extends IDResource {
   get (): Promise<ProfileType> {
@@ -320,15 +321,23 @@ export default class Profile extends IDResource {
     })
   }
 
-  // TODO Add Dates
-  // getDates () {
-  //   console.log('attributes_dates')
-  // }
+  getDates (): Promise<ProfileDatesAttribute[]> {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/attributes/dates'
+    }).then((response) => {
+      return response.data
+    })
+  }
 
-  // TODO Add Dates by Attribute
-  // getDatesByAttribute () {
-  //   console.log('attributes_dates_datesAttribute')
-  // }
+  deleteDate (dateId: string): Promise<ProfileDatesAttribute[]> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/me/attributes/dates/${dateId}`
+    }).then((response) => {
+      return response.data
+    })
+  }
 
   getAppearances (): Promise<ProfileAppearance> {
     return this.client.call({
@@ -348,7 +357,7 @@ export default class Profile extends IDResource {
     })
   }
 
-  getCustomAttributes (): Promise<CustomAttribute> {
+  getCustomAttributes (): Promise<CustomAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/attributes/custom'

@@ -14,6 +14,10 @@ import Audits from './resources/audits'
 import Currency from './resources/currencies'
 import Permission from './resources/permissions'
 import Points from './resources/points'
+import Countries from './resources/countries'
+import Regions from './resources/regions'
+import Rewards from './resources/rewards'
+import RewardDefinitions from './resources/reward-definitions'
 import Webhooks from './resources/webhooks'
 import Roles from './resources/roles'
 import Targets from './resources/targets'
@@ -49,6 +53,10 @@ export class Omneo {
   public currencies = new Currency(this)
   public permissions = new Permission(this)
   public points = new Points(this)
+  public countries = new Countries(this)
+  public regions = new Regions(this)
+  public rewards = new Rewards(this)
+  public rewardDefinitions = new RewardDefinitions(this)
   public webhooks = new Webhooks(this)
   public roles = new Roles(this)
   public targets = new Targets(this)

@@ -5,7 +5,8 @@ import {
   TierProgress,
   Transaction,
   TransactionFilters,
-  TransactionLedger
+  TransactionLedger,
+  ProfileDatesAttribute
 } from '../../../types'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
@@ -434,7 +435,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  getCustomAttributes (id: string): Promise<CustomAttribute> {
+  getCustomAttributes (id: string): Promise<CustomAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${id}/attributes/custom`
@@ -453,10 +454,19 @@ export default class Profiles extends Resource {
     })
   }
 
-  async getProfileDates (profileID: string): Promise<any> { // TODO Add Profile Dates Type
+  async getProfileDates (profileID: string): Promise<ProfileDatesAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/attributes/dates`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  async deleteProfileDate (profileID: string, dateId: string): Promise<ProfileDatesAttribute[]> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/${profileID}/attributes/dates/${dateId}`
     }).then((response) => {
       return response.data
     })
