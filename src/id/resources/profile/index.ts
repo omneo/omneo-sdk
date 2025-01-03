@@ -1,4 +1,4 @@
-import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput } from '../../../types'
+import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput, ProfileDatesAttribute } from '../../../types'
 
 import IDResource from '../resource'
 export default class Profile extends IDResource {
