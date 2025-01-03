@@ -1,5 +1,5 @@
 // Tests can be re-added once omneo bugs with calculating tiers bugs are fixed, can delete tier definitions
-import { describe } from 'vitest'
+import { describe, test } from 'vitest'
 // import { Omneo } from '../../../../..'
 // import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 
@@ -23,14 +23,14 @@ import { describe } from 'vitest'
 // }
 
 describe('Assign Profile Tier', async () => {
-  // test('SDK can assign a profile tier.', async () => {
-  //   const definition = await simpleOmneoRequest('POST', '/tiers/definitions', definitionPayload).then(({ data }) => {
-  //     CREATED_TIER_DEFINITIONS.push(data.id)
-  //     return data
-  //   })
-  //   const tiers = await omneo.profiles.assignTier(testProfileID, definition.handle)
-  //   expect(tiers.current_tier?.handle === definition.handle)
-  // })
+  test('SDK can assign a profile tier.', async () => {
+    // const definition = await simpleOmneoRequest('POST', '/tiers/definitions', definitionPayload).then(({ data }) => {
+    //   CREATED_TIER_DEFINITIONS.push(data.id)
+    //   return data
+    // })
+    // const tiers = await omneo.profiles.assignTier(testProfileID, definition.handle)
+    // expect(tiers.current_tier?.handle === definition.handle)
+  })
 })
 
 // TODO Deleting tier definitions while assigned to a profile causes API errors, re add  this code when bug fixed

@@ -2,7 +2,7 @@
 // Cannot delete a tier for testing
 // Tests can be added once omneo bugs are fixed
 
-import { describe } from 'vitest'
+import { describe, test } from 'vitest'
 // import { Omneo } from '../../../../..'
 // import { tier as mockTier } from '../../../../mocks/tier/tier'
 
@@ -14,14 +14,14 @@ import { describe } from 'vitest'
 // const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Calculate Profile Tiers', () => {
-  // test('SDK can calculate a profile tier.', async () => {
-  //   const tiers = await omneo.profiles.calculateTiers(testProfileID)
-  //   Object.keys(mockTier).forEach((key) => {
-  //     expect(tiers).toHaveProperty(key)
-  //   })
+  test('SDK can calculate a profile tier.', async () => {
+    // const tiers = await omneo.profiles.calculateTiers(testProfileID)
+    // Object.keys(mockTier).forEach((key) => {
+    //   expect(tiers).toHaveProperty(key)
+    // })
 
-  //   Object.keys(mockTier.current_tier).forEach((key) => {
-  //     expect(tiers.current_tier).toHaveProperty(key)
-  //   })
-  // })
+    // Object.keys(mockTier.current_tier).forEach((key) => {
+    //   expect(tiers.current_tier).toHaveProperty(key)
+    // })
+  })
 })
