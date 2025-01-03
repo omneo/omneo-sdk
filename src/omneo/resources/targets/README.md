@@ -1,59 +1,78 @@
 
-### Get Connection
+### Get Target
 
-To retrieve a specific connection, use the `get` method:
+To retrieve a specific target, use the `get` method:
 
 ```javascript
-omneoClient.connections.get(1423)
-    .then((connection) => {
-        console.log(connection);
+omneoClient.targets.get(1423)
+    .then((target) => {
+        console.log(target);
     })
     .catch((error) => {
         console.error(error);
     });
 ```
 
-### List Connections
+### List Targets
 
-To retrieve a list of connections, use the `list` method:
+To retrieve a list of targets, use the `list` method:
 
 ```javascript
-omneoClient.connections.list()
-    .then((connections) => {
-        console.log(connections);
+omneoClient.targets.list()
+    .then((targets) => {
+        console.log(targets);
     })
     .catch((error) => {
         console.error(error);
     });
 ```
 
-### Create Connection
+### Create Target
 
-To create a new connection, use the `create` method:
+To create a new target, use the `create` method:
 
 ```javascript
-const newConnection = {
-    name: 'My Connection',
+const newTarget = {
+    name: 'My Target',
     // other properties
 };
 
-omneoClient.connections.create(newConnection)
-    .then((connection) => {
-        console.log(connection);
+omneoClient.targets.create(newTarget)
+    .then((target) => {
+        console.log(target);
     })
     .catch((error) => {
         console.error(error);
     });
 ```
 
-### Delete Connection
+### Update Target
 
-To delete a connection, use the `delete` method:
+To update an existing target, use the `update` method:
 
 ```javascript
-omneoClient.connections.delete(1432)
+const updatedTarget = {
+    name: 'Updated Target',
+    // other properties
+};
+
+omneoClient.targets.update(1423, updatedTarget)
+    .then((target) => {
+        console.log(target);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+```
+
+### Delete Target
+
+To delete a target, use the `delete` method:
+
+```javascript
+omneoClient.targets.delete(1432)
     .then(() => {
-        console.log('Connection deleted successfully');
+        console.log('Target deleted successfully');
     })
     .catch((error) => {
         console.error(error);
