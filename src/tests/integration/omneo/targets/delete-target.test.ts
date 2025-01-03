@@ -29,8 +29,7 @@ describe('Targets delete', () => {
     if (deleteResponse?.body?.id && !FAILED_DELETED_TARGET_IDS.find((t) => t === createdData.id)) {
       FAILED_DELETED_TARGET_IDS.push(createdData.id)
     }
-
-    expect(deleteResponse.message).toEqual(`No query results for model [App\\Models\\Target] ${createdData.id}`)
+    expect(deleteResponse.status).toEqual(404)
   })
 })
 
