@@ -12,7 +12,7 @@ Returns:
 Example usage:
 
 ```javascript
-const profile = await omneoClient.omneoClient.profiles.get('profile_id');
+const profile = await omneoClient.profiles.get('profile_id');
 console.log(profile);
 ```
 
@@ -30,7 +30,7 @@ Returns:
 Example usage:
 
 ```javascript
-const profile = await omneoClient.omneoClient.profiles.findByIdentity('identifier', 'handle');
+const profile = await omneoClient.profiles.findByIdentity('identifier', 'handle');
 console.log(profile);
 ```
 
@@ -48,7 +48,7 @@ Returns:
 Example usage:
 
 ```javascript
-const profile = await omneoClient.omneoClient.profiles.findByEmail('email@example.com');
+const profile = await omneoClient.profiles.findByEmail('email@example.com');
 console.log(profile);
 ```
 
@@ -1059,4 +1059,38 @@ Example usage:
 ```javascript
 const unassignedItems = await omneoClient.profiles.getUnassignedTransactionItems('profile_id', { include_list_item: 1 });
 console.log(unassignedItems);
+```
+### `sync(updatedAt?: string): Promise<{ message: string }>`
+
+Synchronizes profiles updated from a specific date.
+
+Parameters:
+- `updatedAt` (optional): The date to synchronize profiles from.
+
+Returns:
+- A Promise that resolves to a message indicating the synchronization status.
+
+Example usage:
+
+```javascript
+const syncStatus = await omneoClient.profiles.sync('2023-01-01');
+console.log(syncStatus);
+```
+
+### `getTiers(profileID: string, params?: RequestParams): Promise<TierProgress>`
+
+Retrieves the tiers associated with a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile.
+- `params` (optional): Additional request parameters.
+
+Returns:
+- A Promise that resolves to the tier progress.
+
+Example usage:
+
+```javascript
+const tiers = await omneoClient.profiles.getTiers('profile_id');
+console.log(tiers);
 ```

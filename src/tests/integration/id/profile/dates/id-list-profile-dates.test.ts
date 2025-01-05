@@ -5,7 +5,7 @@ import { ProfileDatesAttribute } from '../../../../../types'
 import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 import randomString from '../../../../lib/string/random'
 
-const CREATED_DATES_HANDLES : string[] = []
+const CREATED_DATES_IDS : string[] = []
 const getHandle = () => { return `sdk_unit_test_list_dates_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
@@ -25,9 +25,13 @@ describe('ID Dates', () => {
     const response = await simpleOmneoRequest('PUT', `/profiles/${testProfileID}`, {
       dates_attributes: [payload]
     })
+
     const profileDates: ProfileDatesAttribute[] = response.data.attributes.dates
-    const profileFilterDates = profileDates.filter(d => d.handle === payload.handle)
-    CREATED_DATES_HANDLES.push(profileFilterDates[0].id as string)
+
+    const profileFilterDates = profileDates.find((d) => d.handle === payload.handle)
+    if (profileFilterDates) {
+      CREATED_DATES_IDS.push(profileFilterDates.id as string)
+    }
 
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
@@ -52,15 +56,10 @@ describe('ID Dates', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_DATES_HANDLES.length > 0) {
-    for (const handle of CREATED_DATES_HANDLES) {
-      console.log('Cleaning up SDK Profile Dates with ID', handle)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/dates/${handle}`)
-      if (deleteResponse.status === 204) {
-        console.log(`SDK Profile Dates ID ${handle} deleted`)
-      } else {
-        console.log(`Failed to delete Profile Dates ID ${handle}`, deleteResponse)
-      }
+  if (CREATED_DATES_IDS.length > 0) {
+    for (const id of CREATED_DATES_IDS) {
+      console.log('Cleaning up SDK Profile Dates with ID', id)
+      await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/dates/${id}`)
     }
   }
 })

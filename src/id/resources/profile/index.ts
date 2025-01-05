@@ -1,4 +1,5 @@
-import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, Tier, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput, ProfileDatesAttribute } from '../../../types'
+import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput, ProfileDatesAttribute } from '../../../types'
+
 import IDResource from '../resource'
 export default class Profile extends IDResource {
   get (): Promise<ProfileType> {
@@ -236,12 +237,13 @@ export default class Profile extends IDResource {
     })
   }
 
-  getTiers (params?: object): Promise<Tier[] | []> {
+  getTiers (params?: object): Promise<TierProgress> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/tiers',
       params
     }).then((response) => {
+      console.log(response)
       return response.data
     })
   }

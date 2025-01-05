@@ -19,7 +19,10 @@ import Regions from './resources/regions'
 import Rewards from './resources/rewards'
 import RewardDefinitions from './resources/reward-definitions'
 import Webhooks from './resources/webhooks'
+import Roles from './resources/roles'
+import Targets from './resources/targets'
 
+import health from './resources/health'
 export class Omneo {
   tenant: string
   token: string
@@ -55,6 +58,10 @@ export class Omneo {
   public rewards = new Rewards(this)
   public rewardDefinitions = new RewardDefinitions(this)
   public webhooks = new Webhooks(this)
+  public roles = new Roles(this)
+  public targets = new Targets(this)
+
+  public health = health.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
     const { endpoint, params = {}, method, body, headers: requestHeaders } = requestParams
