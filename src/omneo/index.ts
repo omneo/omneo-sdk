@@ -21,6 +21,7 @@ import RewardDefinitions from './resources/reward-definitions'
 import Webhooks from './resources/webhooks'
 import Roles from './resources/roles'
 import Targets from './resources/targets'
+import Statuses from './resources/statuses'
 
 import health from './resources/health'
 export class Omneo {
@@ -60,6 +61,7 @@ export class Omneo {
   public webhooks = new Webhooks(this)
   public roles = new Roles(this)
   public targets = new Targets(this)
+  public statuses = new Statuses(this)
 
   public health = health.bind(this)
 
