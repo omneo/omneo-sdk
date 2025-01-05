@@ -22,6 +22,7 @@ import Webhooks from './resources/webhooks'
 import Roles from './resources/roles'
 import Targets from './resources/targets'
 import Statuses from './resources/statuses'
+import Systems from './resources/systems'
 
 import health from './resources/health'
 export class Omneo {
@@ -62,6 +63,7 @@ export class Omneo {
   public roles = new Roles(this)
   public targets = new Targets(this)
   public statuses = new Statuses(this)
+  public systems = new Systems(this)
 
   public health = health.bind(this)
 
