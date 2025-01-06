@@ -7,7 +7,9 @@ import {
   TransactionFilters,
   TransactionLedger,
   ProfileDatesAttribute,
-  ProfileType
+  ProfileType,
+  ProfileBatchMatchCriteria,
+  ProfileInput
 } from '../../../types'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
@@ -699,6 +701,14 @@ export default class Profiles extends Resource {
       body: { profile_type: type }
     }).then((response) => {
       return response.data
+    })
+  }
+
+  batch (matchCriteria: ProfileBatchMatchCriteria, profiles: Partial<ProfileInput>[]) {
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/batch',
+      body: { match_criteria: matchCriteria, profiles }
     })
   }
 }

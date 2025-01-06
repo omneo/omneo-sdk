@@ -16,6 +16,9 @@ export * from './comms'
 export * from './custom-attribute'
 export * from './dates-attribute'
 export * from './redeem'
+export * from './batch'
+
+export type ProfileType = 'temporary' | 'dependant' | 'incomplete' | 'pending' | 'system' | 'active' | 'deleted'
 
 export type Profile = {
   id: string
@@ -66,7 +69,7 @@ export type Profile = {
   point_balance: number
   combined_balance_dollars: number
   point_balance_dollars: number
-  profile_type: 'pending' | 'temporary' | 'active' | 'deleted' | null
+  profile_type: ProfileType
   region: Region | null
   regions: Array<Region>
   updated_at: string
@@ -82,4 +85,8 @@ export type ProfileResponse = PaginationResponse & {
   data: Profile[]
 }
 
-export type ProfileType = 'temporary' | 'dependant' | 'incomplete' | 'pending' | 'system' | 'active' | 'deleted'
+export type ProfileInput = Partial<Omit<Profile, 'id' & 'created_at' & 'updated_at'>> & {
+  first_name: Profile['first_name']
+  last_name: Profile['last_name']
+  email: Profile['email']
+}
