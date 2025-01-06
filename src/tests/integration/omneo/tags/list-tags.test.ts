@@ -13,10 +13,10 @@ const omneo = new Omneo({
 })
 
 describe('Tags list', () => {
-  // test('SDK can list tags.', async () => {
-  //   const sdkTagList = await omneo.tags.list()
-  //   expect(Array.isArray(sdkTagList)).toBe(true)
-  // })
+  test('SDK can list tags.', async () => {
+    const sdkTagList = await omneo.tags.list()
+    expect(Array.isArray(sdkTagList)).toBe(true)
+  })
 
   test('SDK can get tags with filters', async () => {
     const testHandle = getHandle()
