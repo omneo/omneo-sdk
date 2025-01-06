@@ -38,7 +38,6 @@ describe('Users delete', () => {
 afterAll(async () => {
   if (FAILED_DELETED_USER_IDS.length > 0) {
     for (const userId of FAILED_DELETED_USER_IDS) {
-      console.log('Cleaning up SDK User with ID', userId)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/users/${userId}`)
       if (deleteResponse.status === 204) {
         console.log(`SDK User ID ${userId} deleted`)
