@@ -13,6 +13,15 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
+  getByHandle (handle: string): Promise<BenefitDefinition> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/benefits/definitions/handle/${handle}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   list (params?: RequestParams): Promise<BenefitDefinitionResponse> {
     return this.client.call({
       method: 'get',

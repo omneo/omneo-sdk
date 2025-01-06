@@ -10,24 +10,30 @@ const omneo = new Omneo({
 })
 const CREATED_BENEFIT_DEFINITION_IDS : number[] = []
 
-describe('Benefit Definition get', () => {
+describe('Benefit Definition get', async () => {
+  const payload = {
+    name: getRandomString('sdk_unit_test_benefit_definition_get'),
+    handle: getRandomString('sdk_unit_test_benefit_definition_get'),
+    period: 30
+  }
+
+  const response = await simpleOmneoRequest('POST', '/benefits/definitions', payload).catch((err) => {
+    console.error('SDK get benefit definition created failed:', err)
+    throw new Error('SDK get benefit definition created failed')
+  })
+  CREATED_BENEFIT_DEFINITION_IDS.push(response.data.id)
+
   test('SDK Get Benefit Definition', async () => {
-    const payload = {
-      name: getRandomString('sdk_unit_test_benefit_definition_get'),
-      handle: getRandomString('sdk_unit_test_benefit_definition_get'),
-      period: 30
-    }
-
-    const response = await simpleOmneoRequest('POST', '/benefits/definitions', payload).catch((err) => {
-      console.error('SDK get benefit definition created failed:', err)
-      throw new Error('SDK get benefit definition created failed')
-    })
-    CREATED_BENEFIT_DEFINITION_IDS.push(response.data.id)
-
     const targetBenefitDefinition: BenefitDefinition = await omneo.benefitDefinitions.get(response.data.id)
     expect(targetBenefitDefinition.name).toBe(payload.name)
     expect(targetBenefitDefinition.handle).toBe(payload.handle)
     expect(targetBenefitDefinition.period).toBe(payload.period)
+  })
+
+  test('SDK Get Benefit Definition by handle', async () => {
+    const targetBenefitDefinition: BenefitDefinition = await omneo.benefitDefinitions.getByHandle(payload.handle)
+    expect(targetBenefitDefinition.handle).toBe(payload.handle)
+    expect(targetBenefitDefinition.name).toBe(payload.name)
   })
 })
 

@@ -16,6 +16,20 @@ omneoClient.benefitDefinitions.get(1423)
     })
 ```
 
+## Get Benefit Definition by handle
+
+To retrieve a specific benefit definition by its handle, use the `getByHandle` method:
+
+```javascript
+omneoClient.benefitDefinitions.getByHandle('my-benefit')
+    .then((benefitDefinition) => {
+        console.log(benefitDefinition)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+```
+
 ## List Benefit Definitions
 
 To retrieve a list of benefit definitions, use the `list` method:
