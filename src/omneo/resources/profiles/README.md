@@ -1094,3 +1094,20 @@ Example usage:
 const tiers = await omneoClient.profiles.getTiers('profile_id');
 console.log(tiers);
 ```
+
+### `updateType(profileID: string, type: ProfileType): Promise<Profile>`
+
+Updates the type of a profile.
+
+Parameters:
+- `profileID` (string): The ID of the profile to update.
+- `type` (ProfileType): The new type to assign to the profile.
+
+Returns:
+- A Promise that resolves to the updated profile.
+
+Example usage:
+```javascript
+const updateProfile = await omneoClient.profiles.updateProfileType(profileID, 'active');
+console.log(updateProfile);
+```

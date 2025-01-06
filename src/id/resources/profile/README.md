@@ -597,4 +597,21 @@ IDClient.profile.deleteConnection('12345').then((connection) => {
     console.log(connection);
 });
 ```
+
+### `updateType(type: ProfileType): Promise<Profile>`
+
+Updates the profile type of the current user.
+
+Parameters:
+- `type`: The new profile type to be set.
+
+Returns a promise that resolves to the updated profile data.
+
+Example usage:
+
+```javascript
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.updateType('active').then((profile) => {
+    console.log(profile);
+});
 ```

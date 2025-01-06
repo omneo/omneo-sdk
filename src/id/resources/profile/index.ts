@@ -1,4 +1,4 @@
-import { Profile as ProfileType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput, ProfileDatesAttribute } from '../../../types'
+import { Profile as ProfileType, ProfileType as ProfileTypeType, Aggregations, Connection, CustomAttribute, GroupedTransactionsResponse, IdentityRequest, Interaction, OrderLedger, ProfileAppearance, ProfileBalances, ProfileComms, Region, RequestParams, Reward, TierProgress, Transaction, TransactionFilters, TransactionLedger, ConnectionInput, GetConnectionInputParams, InteractionInput, List, ListInput, ListItem, ListItemInput, ProfileDatesAttribute } from '../../../types'
 
 import IDResource from '../resource'
 export default class Profile extends IDResource {
@@ -302,10 +302,15 @@ export default class Profile extends IDResource {
     })
   }
 
-  // TODO Add Update Type
-  // updateType () {
-  //   console.log('update_type')
-  // }
+  updateType (type: ProfileTypeType): Promise<ProfileType> {
+    return this.client.call({
+      method: 'put',
+      endpoint: '/profiles/me/update-type',
+      body: { profile_type: type }
+    }).then((response) => {
+      return response.data
+    })
+  }
 
   // TODO Ad Custom Event
   // customEvent () {
@@ -553,16 +558,6 @@ export default class Profile extends IDResource {
       method: 'get',
       endpoint: '/profiles/me/transactionitems/list/unassigned',
       params
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  updateType (type: ProfileType): Promise<Profile> {
-    return this.client.call({
-      method: 'put',
-      endpoint: '/profiles/me/update-type',
-      body: { profile_type: type }
     }).then((response) => {
       return response.data
     })
