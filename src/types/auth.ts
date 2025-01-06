@@ -1,3 +1,5 @@
+import { User } from './user'
+
 export type APIScopes =
   | 'read-audits'
   | 'read-identities'
@@ -161,16 +163,6 @@ export type Client = {
   personal_access_client: boolean
   password_client: boolean
   revoked: boolean
-  created_at: string
-  updated_at: string
-}
-
-export type User = {
-  id: number
-  name: string
-  email: string
-  throttle: any | null
-  deleted_at: string | null
   created_at: string
   updated_at: string
 }
