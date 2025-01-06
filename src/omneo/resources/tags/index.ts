@@ -18,8 +18,6 @@ export default class Tags extends Resource {
       method: 'get',
       endpoint: '/tags',
       params
-    }).then((response) => {
-      return response.data
     })
   }
 
