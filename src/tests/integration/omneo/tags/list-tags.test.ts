@@ -32,7 +32,7 @@ describe('Tags list', () => {
       'filter[handle]': payload.handle
     }
 
-    const tags = await omneo.tags.list(params)
+    const { data: tags } = await omneo.tags.list(params)
     expect(tags.length).toBeGreaterThan(0)
 
     const arrayIsFiltered = tags.every((target) => target.handle === payload.handle)

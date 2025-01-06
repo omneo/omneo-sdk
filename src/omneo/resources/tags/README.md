@@ -1,61 +1,62 @@
 
-### Get System
+### Get Tag
 
-To retrieve a specific system, use the `get` method:
+To retrieve a specific tag, use the `get` method:
 
 ```javascript
-systems.get(1423)
-    .then((system) => {
-        console.log(system);
+tags.get(1423)
+    .then((tag) => {
+        console.log(tag);
     })
     .catch((error) => {
         console.error(error);
     });
 ```
 
-### List Systems
+### List Tags
 
-To retrieve a list of systems, use the `list` method:
+To retrieve a list of tags, use the `list` method:
 
 ```javascript
-systems.list()
-    .then((systems) => {
-        console.log(systems);
+tags.list()
+    .then((tags) => {
+        console.log(tags);
     })
     .catch((error) => {
         console.error(error);
     });
 ```
 
-### Create System
+### Create Tag
 
-To create a new system, use the `create` method:
+To create a new tag, use the `create` method:
 
 ```javascript
-const newSystem = {
-    name: 'My System',
+const newTag = {
+    name: 'My Tag',
     // other properties
 };
 
-systems.create(newSystem)
-    .then((system) => {
-        console.log(system);
+tags.create(newTag)
+    .then((tag) => {
+        console.log(tag);
     })
     .catch((error) => {
         console.error(error);
     });
 ```
 
-### Delete System
+### Delete Tag
 
-To delete a system, use the `delete` method:
+To delete a tag, use the `delete` method:
 
 ```javascript
-systems.delete(1432)
+tags.delete(1432)
     .then(() => {
-        console.log('System deleted successfully');
+        console.log('Tag deleted successfully');
     })
     .catch((error) => {
         console.error(error);
     });
 ```
+
