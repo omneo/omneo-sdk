@@ -296,3 +296,5 @@ export type Aggregations = {
 export type ProfileResponse = PaginationResponse & {
   data: Profile[]
 }
+
+export type ProfileType = 'temporary' | 'dependant' | 'incomplete' | 'pending' | 'system' | 'active' | 'deleted'

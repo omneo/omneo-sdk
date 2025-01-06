@@ -558,6 +558,16 @@ export default class Profile extends IDResource {
     })
   }
 
+  updateType (type: ProfileType): Promise<Profile> {
+    return this.client.call({
+      method: 'put',
+      endpoint: '/profiles/me/update-type',
+      body: { profile_type: type }
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   // TODO Add Get Connection Profile Info
   // getConnectionProfileInfo () {
   //   console.log('connections_connection_profileInfo')

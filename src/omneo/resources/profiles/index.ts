@@ -6,7 +6,8 @@ import {
   Transaction,
   TransactionFilters,
   TransactionLedger,
-  ProfileDatesAttribute
+  ProfileDatesAttribute,
+  ProfileType
 } from '../../../types'
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
@@ -686,6 +687,16 @@ export default class Profiles extends Resource {
       method: 'get',
       endpoint: `/profiles/${profileID}/tiers`,
       params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  updateType (profileID: string, type: ProfileType): Promise<Profile> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/${profileID}/update-type`,
+      body: { profile_type: type }
     }).then((response) => {
       return response.data
     })
