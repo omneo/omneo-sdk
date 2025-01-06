@@ -30,3 +30,6 @@ export * from './status'
 export * from './system'
 export * from './tags'
 export * from './user'
+export * from './benefit'
+
+export * from './misc'
