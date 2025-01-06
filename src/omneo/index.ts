@@ -23,6 +23,7 @@ import Roles from './resources/roles'
 import Targets from './resources/targets'
 import Statuses from './resources/statuses'
 import Systems from './resources/systems'
+import Tags from './resources/tags'
 
 import health from './resources/health'
 export class Omneo {
@@ -64,6 +65,7 @@ export class Omneo {
   public targets = new Targets(this)
   public statuses = new Statuses(this)
   public systems = new Systems(this)
+  public tags = new Tags(this)
 
   public health = health.bind(this)
 
