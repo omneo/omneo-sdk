@@ -14,7 +14,7 @@ const omneo = new Omneo({
 
 describe('Tags list', () => {
   test('SDK can list tags.', async () => {
-    const sdkTagList = await omneo.tags.list()
+    const { data: sdkTagList } = await omneo.tags.list()
     expect(Array.isArray(sdkTagList)).toBe(true)
   })
 
