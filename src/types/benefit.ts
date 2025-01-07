@@ -93,9 +93,16 @@ export type BenefitDefinitionInput = Partial<Omit<BenefitDefinition, 'id' | 'cre
   period: BenefitDefinition['period']
 }
 
-export type BenefitInput = Partial<Omit<Benefit, 'id' | 'created_at' | 'updated_at'>> & {
+export type BenefitInput = {
   issued_at: Benefit['issued_at']
   benefit_definition_id: number
   profile_id: string
   timezone: string
+  external_id?: string
+  meta?: { [key: string]: any } | null
+  expires_at?: string
+}
+
+export type BenefitResponse = PaginationResponse & {
+  data: Benefit[]
 }

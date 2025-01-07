@@ -13,6 +13,16 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
+  clone (id: number, body: Partial<BenefitDefinitionInput> & { handle: string }): Promise<BenefitDefinition> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/benefits/definitions/${id}/clone`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   getByHandle (handle: string): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'get',

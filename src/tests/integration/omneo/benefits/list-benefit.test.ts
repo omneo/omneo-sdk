@@ -1,7 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { BenefitInput } from '../../../../types'
+import { Benefit, BenefitInput, BenefitResponse } from '../../../../types'
 import { getRandomString } from './util'
 import randomString from '../../../lib/string/random'
 
@@ -13,10 +13,10 @@ const CREATED_BENEFIT_DEFINITION_IDS : number[] = []
 const CREATED_BENEFITS_IDS : number[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
-describe('Benefits update', async () => {
+describe('Benefits list', async () => {
   const payload = {
-    name: getRandomString('sdk_unit_test_benefit_update'),
-    handle: getRandomString('sdk_unit_test_benefit_update'),
+    name: getRandomString('sdk_unit_test_benefit_list'),
+    handle: getRandomString('sdk_unit_test_benefit_list'),
     period: 30
   }
   const { data: definition } = await simpleOmneoRequest('POST', '/benefits/definitions', payload).catch((err) => {
@@ -26,7 +26,7 @@ describe('Benefits update', async () => {
 
   CREATED_BENEFIT_DEFINITION_IDS.push(definition.id)
 
-  test('SDK Update Benefits', async () => {
+  test('SDK List Benefits', async () => {
     const payload: BenefitInput = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
@@ -43,13 +43,18 @@ describe('Benefits update', async () => {
 
     CREATED_BENEFITS_IDS.push(benefitResponse.data.id)
 
-    const updatedBenefit = await omneo.benefits.update(benefitResponse.data.id, {
-      external_id: `${payload.external_id}-updated`,
-      expires_at: '2024-12-01'
+    const { data: benefits }: BenefitResponse = await omneo.benefits.list({
+      'filter[external_id]': payload.external_id
     })
 
-    expect(updatedBenefit.external_id).toBe(`${payload.external_id}-updated`)
-    expect(updatedBenefit.expires_at).toBe('2024-12-01 00:00:00')
+    expect(benefits.length).toBeGreaterThan(0)
+    const filterBenefits: Benefit[] = benefits.filter((benefit) => benefit.id === benefitResponse.data.id)
+    expect(filterBenefits.length).toBe(1)
+    const targetBenefit = filterBenefits[0]
+    expect(targetBenefit.definition.id).toBe(payload.benefit_definition_id)
+    expect(targetBenefit.profile_id).toBe(payload.profile_id)
+    expect(targetBenefit.issued_at).toBe(payload.issued_at)
+    expect(targetBenefit.timezone).toBe(payload.timezone)
   })
 })
 

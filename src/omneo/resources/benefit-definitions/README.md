@@ -100,3 +100,24 @@ omneoClient.benefitDefinitions.delete(1342)
         console.error(error)
     })
 ```
+
+## Clone Benefit Definition
+
+To create a copy a specific benefit definition, use the `clone` method:
+The handle is required, but you can also add additional parameters to be applied to the newly created definition
+
+```javascript
+const payload = {
+    name: 'Test Benefit 2', // The clone will have use this name
+    handle: 'my-newly-cloned-benefit-definition' // Required
+    // Other benefit definition parameters here
+}
+
+omneoClient.benefitDefinitions.clone(1342, payload)
+    .then((benefitDefinition) => {
+        console.log(benefitDefinition)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+```

@@ -1,83 +1,76 @@
-import { describe, expect, test, beforeAll, afterAll } from 'vitest'
+import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { RewardDefinitionCreateInput, Reward } from '../../../../types'
-import { getRandomString, convertToUTC } from './util'
+import { BenefitInput } from '../../../../types'
+import { getRandomString } from './util'
+import randomString from '../../../lib/string/random'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_REWARDS_DEFINITION_IDS : number[] = []
-const CREATED_REWARDS_IDS : number[] = []
+const CREATED_BENEFIT_DEFINITION_IDS : string[] = []
+const CREATED_BENEFITS_IDS : number[] = []
+
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
-beforeAll(() => {
-  process.env.TZ = 'Australia/Melbourne'
-})
-describe('Reward created', () => {
-  test('SDK created Reward', async () => {
-    const payload: RewardDefinitionCreateInput = {
-      name: getRandomString('sdk_unit_test_reward_definition_name'),
-      handle: getRandomString('sdk_unit_test_reward_definition_handle'),
-      value: 10,
-      period: 30,
-      period_type: 'days',
-      type: 'spend',
-      is_assignable: true,
-      is_published: true
-    }
-    const response = await simpleOmneoRequest('POST', '/rewards/definitions', payload).catch((err) => {
-      console.error('SDK get reward definition created failed:', err)
-      throw new Error('SDK get reward definition created failed')
-    })
-    CREATED_REWARDS_DEFINITION_IDS.push(response.data.id)
+describe('Benefit created', async () => {
+  const payload = {
+    name: getRandomString('sdk_unit_test_benefit_create'),
+    handle: getRandomString('sdk_unit_test_benefit_create'),
+    period: 30
+  }
+  const { data: definition } = await simpleOmneoRequest('POST', '/benefits/definitions', payload).catch((err) => {
+    console.error('SDK create benefit definition failed:', err)
+    throw new Error('SDK create benefit definition failed')
+  })
 
-    const rewardPayload = {
-      reward_definition_id: response.data.id,
+  CREATED_BENEFIT_DEFINITION_IDS.push(definition.id)
+
+  test('SDK created Benefit', async () => {
+    const payload: BenefitInput = {
       profile_id: testProfileID,
-      value_initial: 5,
-      value_remaining: 5,
-      expires_at: '2024-12-06 08:30:00',
-      issued_at: '2024-12-05 08:30:00',
+      benefit_definition_id: definition.id,
+      external_id: randomString(10),
+      expires_at: '2024-12-06',
+      issued_at: '2024-12-06 08:30:00',
       timezone: 'Australia/Melbourne'
     }
-    const targetReward: Reward = await omneo.rewards.create(rewardPayload).catch((err) => {
-      console.error('SDK Reward definition created failed:', err)
-      throw new Error('SDK Reward definition created failed')
+
+    const createdBenefit = await omneo.benefits.create(payload).catch((e) => {
+      console.error('Failed to create benefit', e)
+      throw new Error(e)
     })
-    CREATED_REWARDS_IDS.push(targetReward.id)
+    CREATED_BENEFITS_IDS.push(createdBenefit.id)
 
-    expect(targetReward.definition.id).toBe(rewardPayload.reward_definition_id)
-    expect(targetReward.profile_id).toBe(rewardPayload.profile_id)
-    expect(targetReward.value_initial).toBe(rewardPayload.value_initial)
-    expect(targetReward.value_remaining).toBe(rewardPayload.value_remaining)
-    expect(targetReward.issued_at).toBe(convertToUTC(rewardPayload.issued_at))
-    expect(targetReward.timezone).toBe(rewardPayload.timezone)
+    expect(createdBenefit.profile_id).toBe(payload.profile_id)
+    expect(createdBenefit.definition.id).toBe(payload.benefit_definition_id)
+    expect(createdBenefit.external_id).toBe(payload.external_id)
+    expect(createdBenefit.expires_at).toBe(`${payload.expires_at} 00:00:00`)
+    expect(createdBenefit.issued_at).toBe(payload.issued_at)
+    expect(createdBenefit.timezone).toBe(payload.timezone)
   })
-})
 
-afterAll(async () => {
-  if (CREATED_REWARDS_IDS.length > 0) {
-    for (const id of CREATED_REWARDS_IDS) {
-      console.log('Cleaning up SDK Reward with ID', id)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/rewards/${id}`)
-      if (deleteResponse.status === 204) {
-        console.log(`SDK Reward ID ${id} deleted`)
-      } else {
-        console.log(`Failed to delete Reward ID ${id}`, deleteResponse)
+  afterAll(async () => {
+    if (CREATED_BENEFITS_IDS.length > 0) {
+      for (const id of CREATED_BENEFITS_IDS) {
+        const deleteResponse = await simpleOmneoRequest('DELETE', `/benefits/${id}`)
+        if (deleteResponse.status === 204) {
+          console.log(`SDK Benefit ID ${id} deleted`)
+        } else {
+          console.log(`Failed to delete Benefit ID ${id}`, deleteResponse)
+        }
       }
     }
-  }
-  if (CREATED_REWARDS_DEFINITION_IDS.length > 0) {
-    for (const id of CREATED_REWARDS_DEFINITION_IDS) {
-      console.log('Cleaning up SDK Reward Definition with ID', id)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/rewards/definitions/${id}`)
-      if (deleteResponse.status === 204) {
-        console.log(`SDK Reward Definition ID ${id} deleted`)
-      } else {
-        console.log(`Failed to delete Reward Definition ID ${id}`, deleteResponse)
+    if (CREATED_BENEFIT_DEFINITION_IDS.length > 0) {
+      for (const id of CREATED_BENEFIT_DEFINITION_IDS) {
+        const deleteResponse = await simpleOmneoRequest('DELETE', `/benefits/definitions/${id}`)
+        if (deleteResponse.status === 204) {
+          console.log(`SDK Benefit Definition ID ${id} deleted`)
+        } else {
+          console.log(`Failed to delete Benefit Definition ID ${id}`, deleteResponse)
+        }
       }
     }
-  }
+  })
 })
