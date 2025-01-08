@@ -1,8 +1,8 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { RequestParams } from '../../../../types'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import randomString from '../../../lib/string/random'
+import { RequestParams } from '../../../../types'
 
 const CREATED_USER_IDS : number[] = []
 const getHandle = () => `sdk_unit_test_user_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}`
@@ -32,7 +32,7 @@ describe('Users list', () => {
     const { data: createdData } = await simpleOmneoRequest('POST', '/users', payload)
     CREATED_USER_IDS.push(createdData.id)
 
-    const params?: RequestParams = {
+    const params: RequestParams = {
       'filter[name]': payload.name
     }
 

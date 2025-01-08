@@ -28,7 +28,7 @@ describe('Systems list', () => {
     const { data: createdData } = await simpleOmneoRequest('POST', '/systems', payload)
     CREATED_SYSTEM_IDS.push(createdData.id)
 
-    const params?: RequestParams = {
+    const params: RequestParams = {
       'filter[handle]': payload.handle
     }
 

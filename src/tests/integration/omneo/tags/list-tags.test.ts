@@ -28,7 +28,7 @@ describe('Tags list', () => {
     const { data: createdData } = await simpleOmneoRequest('POST', '/tags', payload)
     CREATED_TAG_IDS.push(createdData.id)
 
-    const params?: RequestParams = {
+    const params: RequestParams = {
       'filter[handle]': payload.handle
     }
 
