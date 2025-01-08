@@ -1,5 +1,5 @@
-import { Interaction, InteractionInput, InteractionResponse, RequestParams } from '../../../types'
-import Resource from '../resource'
+import { Interaction, InteractionInput, InteractionResponse, RequestParams } from '../../../../types'
+import Resource from '../../resource'
 
 export default class ProfileInteractions extends Resource {
   get (profileID: string, interactionID: string): Promise<Interaction> {

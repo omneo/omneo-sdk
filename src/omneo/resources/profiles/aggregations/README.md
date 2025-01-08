@@ -1,9 +1,12 @@
-### Get Permission
+### List Profile Aggregations
 
 ```javascript
-const permissionId = 12345;
+const profileId = 'profile123';
+const params = {
+    // request parameters
+};
 
-omneoClient.permissions.get(permissionId)
+omneoClient.profiles.aggregations.list(profileId, params)
     .then((data) => {
         // handle response data
     })
@@ -12,14 +15,15 @@ omneoClient.permissions.get(permissionId)
     });
 ```
 
-### List Permissions
+### Calculate Profile Aggregations
 
 ```javascript
+const profileId = 'profile123';
 const params = {
     // request parameters
 };
 
-omneoClient.permissions.list(params)
+omneoClient.profiles.aggregations.calculate(profileId, params)
     .then((data) => {
         // handle response data
     })

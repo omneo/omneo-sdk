@@ -1,5 +1,5 @@
-import { Identity, IdentityInput, Profile, RequestParams } from '../../../types'
-import Resource from '../resource'
+import { Identity, IdentityInput, Profile, RequestParams } from '../../../../types'
+import Resource from '../../resource'
 
 export default class ProfileIdentities extends Resource {
   get (profileID: string, handle: string): Promise<Identity> {

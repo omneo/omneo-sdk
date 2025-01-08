@@ -1,5 +1,5 @@
-import { RequestParams, Aggregations } from '../../../types'
-import Resource from '../resource'
+import { RequestParams, Aggregations } from '../../../../types'
+import Resource from '../../resource'
 
 export default class ProfileAggregations extends Resource {
   list (id: string, params?: RequestParams): Promise<Aggregations> {

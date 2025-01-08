@@ -1,5 +1,5 @@
-import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionFilters, TransactionResponse, TransactionUnassignedItemsResponse } from '../../../types'
-import Resource from '../resource'
+import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionFilters, TransactionResponse, TransactionUnassignedItemsResponse } from '../../../../types'
+import Resource from '../../resource'
 
 export default class ProfileTransactions extends Resource {
   get (profileID: string, transactionID: string): Promise<Transaction> {
