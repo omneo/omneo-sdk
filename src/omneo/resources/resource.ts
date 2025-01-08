@@ -1,9 +1,9 @@
-import { ID, Omneo } from '../..'
+import { Omneo } from '../..'
 
 export default class Resource {
-  client: Omneo | ID
+  client: Omneo
   private init?: () => void
-  constructor (client: Omneo | ID) {
+  constructor (client: Omneo) {
     this.client = client
     if (this.init) this.init()
   }
