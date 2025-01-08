@@ -30,7 +30,6 @@ describe('Profile Update Type', () => {
 afterAll(async () => {
   if (CREATED_PROFILE_IDS.length > 0) {
     for (const id of CREATED_PROFILE_IDS) {
-      console.log('Omneo Cleaning up Profile with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`Omneo Profile ID ${id} deleted`)

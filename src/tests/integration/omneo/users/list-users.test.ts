@@ -32,7 +32,7 @@ describe('Users list', () => {
     const { data: createdData } = await simpleOmneoRequest('POST', '/users', payload)
     CREATED_USER_IDS.push(createdData.id)
 
-    const params: RequestParams = {
+    const params?: RequestParams = {
       'filter[name]': payload.name
     }
 

@@ -12,7 +12,7 @@ console.log(product);
 
 ## getProductVariant
 ```typescript
-getProductVariant(productID: string, variantID: string, params: RequestParams)
+getProductVariant(productID: string, variantID: string, params?: RequestParams)
 ```
 Retrieves a specific variant of a product.
 
@@ -48,7 +48,7 @@ console.log(updatedVariant);
 
 ## listProductVariants
 ```typescript
-omneoClient.products.listProductVariants(productID: string, params: RequestParams)
+omneoClient.products.listProductVariants(productID: string, params?: RequestParams)
 ```
 Lists all variants of a specific product.
 
@@ -60,7 +60,7 @@ console.log(variants);
 
 ## listVariants
 ```typescript
-omneoClient.products.listVariants(params: RequestParams)
+omneoClient.products.listVariants(params?: RequestParams)
 ```
 Lists all variants of all omneoClient.products.
 
@@ -299,7 +299,7 @@ console.log(groupedTransactions);
 
 ## createIdentity
 ```typescript
-createIdentity(body: IdentityRequest): Promise<void>
+createIdentity(body: IdentityInput): Promise<void>
 ```
 Creates a new identity for the current user.
 

@@ -30,7 +30,7 @@ describe('Targets list', () => {
     const { data: createdData } = await simpleOmneoRequest('POST', '/targets', payload)
     CREATED_TARGET_IDS.push(createdData.id)
 
-    const params: RequestParams = {
+    const params?: RequestParams = {
       'filter[handle]': payload.handle
     }
 

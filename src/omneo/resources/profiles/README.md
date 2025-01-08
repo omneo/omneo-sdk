@@ -173,13 +173,13 @@ Example usage:
 await omneoClient.profiles.createByDelegation({ name: 'John Doe' }, delegationData);
 ```
 
-### `createIdentity(profileID: string, body: IdentityRequest)`
+### `createIdentity(profileID: string, body: IdentityInput)`
 
 Creates a new identity for a profile.
 
 Parameters:
 - `profileID` (string): The ID of the profile.
-- `body` (IdentityRequest): The data for the new identity.
+- `body` (IdentityInput): The data for the new identity.
 
 Example usage:
 
@@ -187,7 +187,7 @@ Example usage:
 await omneoClient.profiles.createIdentity('profile_id', { type: 'email', identifier: 'john.doe@example.com' });
 ```
 
-### `getIdentities(profileID: string, params: RequestParams): Promise<any>`
+### `getIdentities(profileID: string, params?: RequestParams): Promise<any>`
 
 Retrieves the identities associated with a profile.
 

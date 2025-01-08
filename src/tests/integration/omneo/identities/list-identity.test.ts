@@ -30,7 +30,7 @@ describe('Identities list', () => {
     expect(profileID).toBe(testProfileID)
     expect(handle).toBe(testHandle)
 
-    const params: RequestParams = {
+    const params?: RequestParams = {
       'filter[handle]': testHandle,
       include: 'profile'
     }
@@ -61,7 +61,7 @@ describe('Identities list', () => {
     expect(profileID).toBe(testProfileID)
     expect(handle).toBe(testHandle)
 
-    const params: RequestParams = {
+    const params?: RequestParams = {
       'filter[handle]': testHandle,
       include: 'profile',
       withPagination: true

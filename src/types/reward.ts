@@ -1,7 +1,6 @@
 import { PeriodType } from './misc'
 import { PaginationResponse } from './pagination'
 
-
 export type RewardDefinition = {
   id: number
   name: string
