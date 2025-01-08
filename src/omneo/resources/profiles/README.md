@@ -41,7 +41,7 @@ Lists all profiles.
 
 Example usage:
 ```typescript
-const profiles = await omneoClient.profiles.list({ sort: 'name' });
+const profiles = await omneoClient.profiles.list({ sort: 'first_name' });
 console.log(profiles);
 ```
 
@@ -53,7 +53,7 @@ Updates a specific profile by its ID.
 
 Example usage:
 ```typescript
-const updatedProfile = await omneoClient.profiles.update('12345', { name: 'New Name' });
+const updatedProfile = await omneoClient.profiles.update('12345', { first_name: 'New Name' });
 console.log(updatedProfile);
 ```
 
@@ -89,7 +89,7 @@ Creates a new profile.
 
 Example usage:
 ```typescript
-const newProfile = await omneoClient.profiles.create({ name: 'New Profile' });
+const newProfile = await omneoClient.profiles.create({ first_name: 'New Profile', last_name: 'Test', email: 'test@example.com' });
 console.log(newProfile);
 ```
 
@@ -161,7 +161,7 @@ Creates a profile by delegation.
 
 Example usage:
 ```typescript
-const newProfile = await omneoClient.profiles.createByDelegation({ name: 'New Profile' }, delegationData);
+const newProfile = await omneoClient.profiles.createByDelegation({ first_name: 'New Profile' }, delegationData);
 console.log(newProfile);
 ```
 
