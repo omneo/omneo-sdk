@@ -14,7 +14,7 @@ export type Identity = {
   profile?: Profile
 }
 
-export type IdentityRequest = {
+export type IdentityInput = {
   handle: string
   identifier: string
   is_active?: boolean

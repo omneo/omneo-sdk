@@ -14,3 +14,20 @@ omneoClient.identities.list()
     });
 ```
 
+
+### Search Profile by Identifier
+
+To search for a profile with an identifier, use the `searchProfile` method:
+This will return any profile that has an identity with a matching identifier, regardless of the identity's handle.
+
+```javascript
+omneoClient.identities.searchProfile()
+    .then((profiles) => {
+        console.log(`found ${profiles.length} profiles`);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+```
+
+

@@ -12,3 +12,10 @@ export type CustomAttribute = {
 export type ProfileCustomAttributesResponse = {
   data: CustomAttribute[]
 }
+
+export type CustomAttributeInput = {
+  namespace: string
+  handle: string
+  type: 'string' | 'integer' | 'float' | 'boolean' | 'json' | 'array',
+  value: string | number | boolean | object | any[]
+}

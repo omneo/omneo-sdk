@@ -12,7 +12,7 @@ export default class Products extends Resource {
     })
   }
 
-  getProductVariant (productID: string, variantID: string, params: RequestParams) {
+  getProductVariant (productID: string, variantID: string, params?: RequestParams) {
     return this.client.call({
       method: 'get',
       endpoint: `/products/${productID}/variants/${variantID}`,
@@ -35,7 +35,7 @@ export default class Products extends Resource {
     })
   }
 
-  listProductVariants (productID: string, params: RequestParams) {
+  listProductVariants (productID: string, params?: RequestParams) {
     return this.client.call({
       method: 'get',
       endpoint: `/products/${productID}/variants`,

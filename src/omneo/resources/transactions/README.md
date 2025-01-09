@@ -1,4 +1,4 @@
-### `get(id: string, params: RequestParams): Promise<Transaction>`
+### `get(id: string, params?: RequestParams): Promise<Transaction>`
 
 Retrieves a transaction by its ID.
 
@@ -17,7 +17,7 @@ omneoClient.transactions.get(transactionId, params)
     })
 ```
 
-### `getByExternalID(externalID: string, params: RequestParams): Promise<Transaction>`
+### `getByExternalID(externalID: string, params?: RequestParams): Promise<Transaction>`
 
 Retrieves a transaction by its external ID.
 
@@ -72,7 +72,7 @@ omneoClient.transactions.delete(transactionId)
     })
 ```
 
-### `list(params: RequestParams): Promise<{data: Array<Transaction>, links: any, meta: any}>`
+### `list(params?: RequestParams): Promise<{data: Array<Transaction>, links: any, meta: any}>`
 
 Lists all omneoClient.transactions.
 

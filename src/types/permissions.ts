@@ -1,9 +1,11 @@
 import { PaginationResponse } from './pagination'
 
+export type PermissionType = 'create' | 'read' | 'update' | 'delete'
+
 export type Permission = {
   id: number
   name: string | null
-  handle: 'create' | 'read' | 'update' | 'delete'
+  handle: PermissionType
 }
 
 export type PermissionResponse = PaginationResponse & {

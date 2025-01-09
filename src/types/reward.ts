@@ -1,13 +1,12 @@
+import { PeriodType } from './misc'
 import { PaginationResponse } from './pagination'
-
-export type RewardDefinitonPeriodType = 'days' | 'weeks' | 'months' | 'years' | 'absolute_date' | 'absolute_week' |'absolute_month'
 
 export type RewardDefinition = {
   id: number
   name: string
   handle: string
   period: number
-  period_type: RewardDefinitonPeriodType
+  period_type: PeriodType
   absolute_expiry: string | null
   description: string | null
   short_description: string | null
@@ -81,7 +80,7 @@ export type RewardDefinitionInput = {
   max_value: number | null
   type: string
   period: number
-  period_type: RewardDefinitonPeriodType
+  period_type: PeriodType
   is_assignable: boolean
   is_published: boolean
   is_reassignable: boolean
@@ -89,6 +88,7 @@ export type RewardDefinitionInput = {
 }
 
 type RewardDefinitionRequireField = 'name' | 'handle' | 'value' | 'type' | 'period' | 'period_type'
+
 export type RewardDefinitionCreateInput = Required<Pick<RewardDefinitionInput, RewardDefinitionRequireField >> &
   Partial<Omit<RewardDefinitionInput, RewardDefinitionRequireField>>
 export type RewardDefinitionUpdateInput = Partial<RewardDefinitionInput>

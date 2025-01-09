@@ -55,7 +55,7 @@ describe('Identities list', () => {
       handle: testHandle,
       identifier: randomString(11)
     }
-    const { handle, profile_id: profileID } = await omneo.profiles.createIdentity(testProfileID, payload)
+    const { data: { handle, profile_id: profileID } } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/identities`, payload)
     CREATED_IDENTITY_HANDLES.push(handle)
 
     expect(profileID).toBe(testProfileID)
