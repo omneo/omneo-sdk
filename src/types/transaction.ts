@@ -183,3 +183,7 @@ export type TransactionLedger = {
 export type TransactionResponse = PaginationResponse & {
   data: Transaction[]
 }
+
+export type TransactionUnassignedItemsResponse = PaginationResponse & {
+  data: TransactionItem[]
+}

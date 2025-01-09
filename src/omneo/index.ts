@@ -14,8 +14,21 @@ import Audits from './resources/audits'
 import Currency from './resources/currencies'
 import Permission from './resources/permissions'
 import Points from './resources/points'
+import Countries from './resources/countries'
+import Regions from './resources/regions'
+import Rewards from './resources/rewards'
+import RewardDefinitions from './resources/reward-definitions'
+import Benefits from './resources/benefits'
+import BenefitDefinitions from './resources/benefit-definitions'
 import Webhooks from './resources/webhooks'
+import Roles from './resources/roles'
+import Targets from './resources/targets'
+import Statuses from './resources/statuses'
+import Systems from './resources/systems'
+import Tags from './resources/tags'
+import Users from './resources/users'
 
+import health from './resources/health'
 export class Omneo {
   tenant: string
   token: string
@@ -46,7 +59,21 @@ export class Omneo {
   public currencies = new Currency(this)
   public permissions = new Permission(this)
   public points = new Points(this)
+  public countries = new Countries(this)
+  public regions = new Regions(this)
+  public rewards = new Rewards(this)
+  public rewardDefinitions = new RewardDefinitions(this)
+  public benefits = new Benefits(this)
+  public benefitDefinitions = new BenefitDefinitions(this)
   public webhooks = new Webhooks(this)
+  public roles = new Roles(this)
+  public targets = new Targets(this)
+  public statuses = new Statuses(this)
+  public systems = new Systems(this)
+  public tags = new Tags(this)
+  public users = new Users(this)
+
+  public health = health.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
     const { endpoint, params = {}, method, body, headers: requestHeaders } = requestParams

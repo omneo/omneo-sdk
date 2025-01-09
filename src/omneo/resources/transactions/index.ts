@@ -12,7 +12,7 @@ export default class Transactions extends Resource {
     })
   }
 
-  getByExternalID (externalID: string, params: RequestParams): Promise<Transaction> {
+  getByExternalID (externalID: string, params?: RequestParams): Promise<Transaction> {
     return this.client.call({
       method: 'get',
       endpoint: `/transactions/external/${externalID}`,

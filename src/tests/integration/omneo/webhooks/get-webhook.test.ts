@@ -40,7 +40,6 @@ describe('SDK Webhooks Get', () => {
     CREATED_WEBHOOKS.push(webhook.id)
 
     const sdkWebhook = await omneo.webhooks.get(webhook.id)
-    console.log(sdkWebhook)
     expect(sdkWebhook.id).toBe(webhook.id)
   })
 })

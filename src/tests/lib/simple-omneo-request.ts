@@ -20,7 +20,7 @@ export default function simpleOmneoRequest (method: 'GET' | 'POST' | 'PUT' | 'DE
     options.body = JSON.stringify(body)
   }
   return fetch(`https://api.${TENANT}.getomneo.com/api/v3${endpoint}`, options).then(response => {
-    if (response.status === 204) {
+    if (response.status === 204 || response.status === 404) {
       // Omneo delete operations just return 204 with no body.
       return {
         status: response.status,

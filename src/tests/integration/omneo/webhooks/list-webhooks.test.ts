@@ -63,6 +63,14 @@ describe('SDK Webhooks List', async () => {
     const isDataValid = webhookList.data.every((webhook) => webhook.trigger === 'profiles.create')
     expect(isDataValid).toBe(true)
   })
+
+  test('SDK can list webhooks by namespace', async () => {
+    const webhookList = await omneo.webhooks.list({ 'filter[namespace]': webhookPayload.namespace })
+
+    expect(webhookList.data.length).toBeGreaterThan(0)
+    const isDataValid = webhookList.data.every((webhook) => webhook.namespace === webhookPayload.namespace)
+    expect(isDataValid).toBe(true)
+  })
 })
 
 test('SDK can get webhooks with pagination', async () => {
