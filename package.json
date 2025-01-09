@@ -1,6 +1,6 @@
 {
   "name": "@omneo/omneo-sdk",
-  "version": "1.33.1",
+  "version": "1.34.0",
   "engine": ">=20",
   "description": "",
   "main": "dist/index.js",
