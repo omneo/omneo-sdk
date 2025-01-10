@@ -26,7 +26,7 @@ describe('Brands get', () => {
 
     const targetBrand: Brand = await omneo.brands.get(response.data.id)
     expect(targetBrand.name).toBe(payload.name)
-    expect(targetBrand.description).toBe(payload.description)
+    expect(targetBrand.handle).toBe(payload.handle)
   })
 })
 
