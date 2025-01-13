@@ -15,6 +15,7 @@ import ProfileAddresses from './addresses'
 import ProfileConnections from './connections'
 import ProfileInteractions from './interactions'
 import ProfileRewards from './rewards'
+import ProfileBenefits from './benefits'
 import ProfileTransactions from './transactions'
 import ProfileBalances from './balances'
 import ProfileRegions from './regions'
@@ -30,6 +31,7 @@ export default class OmneoProfile extends Resource {
   interactions = new ProfileInteractions(this.client)
   transactions = new ProfileTransactions(this.client)
   rewards = new ProfileRewards(this.client)
+  benefits = new ProfileBenefits(this.client)
   balances = new ProfileBalances(this.client)
   regions = new ProfileRegions(this.client)
   lists = new ProfileLists(this.client)
