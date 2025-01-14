@@ -241,11 +241,11 @@ export default class Profiles extends Resource {
     })
   }
 
-  redeem (profileID: string, amount: number): Promise<Redeem> {
+  redeem (profileID: string, amount: number, meta?: { [key: string]: unknown }): Promise<Redeem> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/redeem`,
-      body: { amount }
+      body: { amount, ...(meta && { meta }) }
     }).then((response) => {
       return response.data
     })
