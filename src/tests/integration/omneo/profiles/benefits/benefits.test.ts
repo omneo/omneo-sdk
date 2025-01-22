@@ -2,7 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../../omneo'
 import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 import { BenefitInput } from '../../../../../types'
-import { getRandomString } from './util'
+import { getRandomString } from '../../../../lib/string/util'
 import randomString from '../../../../lib/string/random'
 
 const omneo = new Omneo({

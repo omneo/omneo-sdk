@@ -2,7 +2,7 @@ import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { Reward, RewardDefinitionCreateInput, RewardResponse } from '../../../../types'
-import { getRandomString, convertToUTC } from './util'
+import { getRandomString, convertToUTC } from '../../../lib/string/util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -55,6 +55,7 @@ describe('Rewards list', () => {
     const { data: rewards } = rewardsRes
     expect(rewards.length).toBeGreaterThan(0)
     const filterRewards: Reward[] = rewards.filter((reward) => reward.id === rewardResponse.data.id)
+    console.log('filterRewards', filterRewards, rewardResponse.data.id, rewards)
     expect(filterRewards.length).toBe(1)
     const targetReward = filterRewards[0]
     expect(targetReward.definition.id).toBe(rewardPayload.reward_definition_id)

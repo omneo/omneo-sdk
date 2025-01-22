@@ -3,7 +3,7 @@ import { ID } from '../../../../../../id'
 import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
 import { CustomAttribute } from '../../../../../../types'
 import { testWithIDData } from '../../../test-with-id-data'
-import { getRandomString } from './util'
+import { getRandomString } from '../../../../../lib/string/util'
 
 let namespace = ''
 let handle = ''

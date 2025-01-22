@@ -1,7 +1,7 @@
 import { describe, expect, afterAll } from 'vitest'
 import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 import { BenefitInput } from '../../../../../types'
-import { getRandomString } from './util'
+import { getRandomString } from '../../../../lib/string/util'
 import randomString from '../../../../lib/string/random'
 import { testWithIDData } from '../../test-with-id-data'
 import { ID } from '../../../../../id'

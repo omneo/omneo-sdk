@@ -1,7 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { getRandomString } from './util'
+import { getRandomString } from '../../../lib/string/util'
 import { BenefitDefinitionInput } from '../../../../types'
 
 const omneo = new Omneo({

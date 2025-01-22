@@ -2,7 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { RegionInput } from '../../../../types'
-import { getName, getHandle } from './util'
+import { getRandomString } from '../../../lib/string/util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -13,8 +13,8 @@ const FAILED_DELETE_REGIONS : number[] = []
 describe('Region delete', () => {
   test('SDK Region delete', async () => {
     const payload: RegionInput = {
-      name: getName(),
-      handle: getHandle()
+      name: getRandomString('sdk_unit_test_region_name'),
+      handle: getRandomString('sdk_unit_test_region_handle')
     }
     const response = await simpleOmneoRequest('POST', '/regions', payload)
     await omneo.regions.delete(response.data.id).catch((err) => {
