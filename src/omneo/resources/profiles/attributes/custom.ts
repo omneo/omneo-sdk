@@ -24,7 +24,7 @@ export default class ProfileAttributesCustom extends Resource {
   update (profileID: string, namespace: string, handle: string, body: Partial<CustomAttributeInput>): Promise<CustomAttribute> {
     return this.client.call({
       method: 'put',
-      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}/${handle}`,
+      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`,
       body
     }).then((response) => {
       return response.data
@@ -34,7 +34,7 @@ export default class ProfileAttributesCustom extends Resource {
   delete (profileID: string, namespace: string, handle: string): Promise<Address> {
     return this.client.call({
       method: 'delete',
-      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}/${handle}`
+      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`
     }).then((response) => {
       return response.data
     })
