@@ -18,7 +18,7 @@ describe('ID Profile Update Custom Attribute', () => {
       namespace,
       handle,
       type: 'string',
-      value: 'Omneo Sdk Profile custom attribute test value'
+      value: 'Omneo Sdk ID Profile custom attribute for Update'
     }
     const testUpdatedValue = getRandomString('sdk_unit_id_value')
     await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {

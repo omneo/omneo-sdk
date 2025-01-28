@@ -19,7 +19,7 @@ describe('ID Profile Get Custom Attribute', () => {
       namespace,
       handle,
       type: 'string',
-      value: 'Omneo Sdk Profile custom attribute test value'
+      value: 'Omneo Sdk ID Profile custom attribute for Delete'
     }
 
     const response = await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
