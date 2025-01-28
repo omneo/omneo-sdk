@@ -13,8 +13,8 @@ const FAILED_DELETE_CUSTOM_ATTRIBUTES_IDS : number[] = []
 describe('ID Profile Get Custom Attribute', () => {
   testWithIDData('ID SDK Get custom attribute', async ({ IDData }) => {
     const { tokenData } = IDData
-    namespace = getRandomString('sdk_unit_test_namespace_test1')
-    handle = getRandomString('sdk_unit_test_handle_test1')
+    namespace = getRandomString('sdk_unit_test_delete_id_custom_attribute_namespace')
+    handle = getRandomString('sdk_unit_test_delete_id_custom_attribute_handle')
     const payload: CustomAttribute = {
       namespace,
       handle,

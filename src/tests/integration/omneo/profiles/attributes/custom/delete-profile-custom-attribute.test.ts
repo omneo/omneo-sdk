@@ -15,8 +15,8 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Delete Custom Attribute', () => {
   test('SDK Delete custom attribute', async () => {
-    namespace = getRandomString('sdk_unit_test_namespace_test1')
-    handle = getRandomString('sdk_unit_test_handle_test1')
+    namespace = getRandomString('sdk_unit_test_delete_custom_attribute_namespace')
+    handle = getRandomString('sdk_unit_test_delete_custom_attribute_handle')
     const payload: CustomAttribute = {
       namespace,
       handle,
