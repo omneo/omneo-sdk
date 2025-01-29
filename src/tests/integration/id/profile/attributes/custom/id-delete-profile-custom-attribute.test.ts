@@ -8,20 +8,21 @@ import { getRandomString } from '../../../../../lib/string/util'
 let namespace = ''
 let handle = ''
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
+const FAILED_DELETE_CUSTOM_ATTRIBUTES_IDS : number[] = []
 
 describe('ID Profile Get Custom Attribute', () => {
   testWithIDData('ID SDK Get custom attribute', async ({ IDData }) => {
     const { tokenData } = IDData
-    namespace = getRandomString('sdk_unit_test_get_id_custom_attribute_namespace')
-    handle = getRandomString('sdk_unit_test_get_id_custom_attribute_handle')
+    namespace = getRandomString('sdk_unit_test_delete_id_custom_attribute_namespace')
+    handle = getRandomString('sdk_unit_test_delete_id_custom_attribute_handle')
     const payload: CustomAttribute = {
       namespace,
       handle,
       type: 'string',
-      value: 'Omneo Sdk ID Profile custom attribute for Get'
+      value: 'Omneo Sdk ID Profile custom attribute for Delete'
     }
 
-    await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
+    const response = await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
       type: payload.type,
       value: payload.value
     })
@@ -32,17 +33,19 @@ describe('ID Profile Get Custom Attribute', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const targetAttribute: CustomAttribute = await IDClient.profile.attributes.custom.get(payload.namespace, payload.handle)
-    expect(targetAttribute.profile_id).toBe(testProfileID)
-    expect(targetAttribute.handle).toBe(payload.handle)
-    expect(targetAttribute.namespace).toBe(payload.namespace)
-    expect(targetAttribute.type).toBe(payload.type)
-    expect(targetAttribute.value).toBe(payload.value)
+    await IDClient.profile.attributes.custom.delete(payload.namespace, payload.handle).catch((err) => {
+      console.error(`SDK Profile Attirbute delete failed with Namespace:handle ${namespace}:${handle}`, err)
+      FAILED_DELETE_CUSTOM_ATTRIBUTES_IDS.push(response.data.id)
+      throw new Error(`SDK Profile Attirbute delete failed with Namespace:handle:${namespace}:${handle}`)
+    })
+
+    const getResponse = await simpleOmneoRequest('GET', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`)
+    expect(getResponse).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })
 })
 
 afterAll(async () => {
-  if (namespace && handle) {
+  if (namespace && handle && FAILED_DELETE_CUSTOM_ATTRIBUTES_IDS.length > 0) {
     const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/custom/${namespace}:${handle}`)
     if (deleteResponse.status === 204) {
       console.log(`SDK ID Profile Attributes Namespace:Handle ${namespace}:${handle} deleted`)

@@ -1,4 +1,5 @@
-import randomString from '../../../lib/string/random'
+import randomString from './random'
+
 export const getRandomString = (name: string) => { return `${name}_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
 
 export const convertToUTC = (dateStr: string): string => {
@@ -12,3 +13,5 @@ export const convertToUTC = (dateStr: string): string => {
   const seconds = pad(targetDate.getUTCSeconds())
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 }
+
+export const getIsoNumeric = () => { return `${Math.floor(Date.now()) + Math.floor(Math.random() * 1000)}` }

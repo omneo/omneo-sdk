@@ -1,8 +1,8 @@
 import { describe, test, expect, afterAll } from 'vitest'
 import { Omneo } from '../../../../../../omneo'
 import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
-import { CustomAttribute } from '../../../../../../types'
 import { getRandomString } from '../../../../../lib/string/util'
+import { CustomAttribute } from '../../../../../../types'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -12,28 +12,32 @@ let namespace = ''
 let handle = ''
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
-describe('Profile Get Custom Attribute', () => {
-  test('SDK Get custom attribute', async () => {
-    namespace = getRandomString('sdk_unit_test_get_custom_attribute_namespace')
-    handle = getRandomString('sdk_unit_test_get_custom_attribute_handle')
+describe('Profile Update Custom Attribute', () => {
+  test('SDK Update custom attribute', async () => {
+    namespace = getRandomString('sdk_unit_test_update_custom_attribute_namespace')
+    handle = getRandomString('sdk_unit_test_update_custom_attribute_handle')
     const payload: CustomAttribute = {
       namespace,
       handle,
       type: 'string',
-      value: 'Omneo Sdk Profile custom attribute for Get'
+      value: 'Omneo Sdk Profile custom attribute for Update'
     }
 
+    const testUpdatedValue = getRandomString('sdk_unit_test_value')
     await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
       type: payload.type,
       value: payload.value
     })
 
-    const targetAttribute: CustomAttribute = await omneo.profiles.attributes.custom.get(testProfileID, payload.namespace, payload.handle)
+    const targetAttribute: CustomAttribute = await omneo.profiles.attributes.custom.update(testProfileID, payload.namespace, payload.handle, {
+      type: payload.type,
+      value: testUpdatedValue
+    })
     expect(targetAttribute.profile_id).toBe(testProfileID)
     expect(targetAttribute.handle).toBe(payload.handle)
     expect(targetAttribute.namespace).toBe(payload.namespace)
     expect(targetAttribute.type).toBe(payload.type)
-    expect(targetAttribute.value).toBe(payload.value)
+    expect(targetAttribute.value).toBe(testUpdatedValue)
   })
 })
 

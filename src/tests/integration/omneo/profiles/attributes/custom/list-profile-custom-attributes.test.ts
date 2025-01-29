@@ -12,15 +12,15 @@ let namespace = ''
 let handle = ''
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
-describe('Profile Get Custom Attribute', () => {
-  test('SDK Get custom attribute', async () => {
-    namespace = getRandomString('sdk_unit_test_get_custom_attribute_namespace')
-    handle = getRandomString('sdk_unit_test_get_custom_attribute_handle')
+describe('Profile Custom Attributes list', () => {
+  test('SDK Get custom attributes', async () => {
+    namespace = getRandomString('sdk_unit_test_list_custom_attribute_namespace')
+    handle = getRandomString('sdk_unit_test_list_custom_attribute_handle')
     const payload: CustomAttribute = {
       namespace,
       handle,
       type: 'string',
-      value: 'Omneo Sdk Profile custom attribute for Get'
+      value: 'Omneo Sdk Profile custom attribute for List'
     }
 
     await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
@@ -28,7 +28,11 @@ describe('Profile Get Custom Attribute', () => {
       value: payload.value
     })
 
-    const targetAttribute: CustomAttribute = await omneo.profiles.attributes.custom.get(testProfileID, payload.namespace, payload.handle)
+    const customAttributes: CustomAttribute[] = await omneo.profiles.attributes.custom.list(testProfileID)
+    const filterAttributes = customAttributes.filter(d => d.handle === payload.handle)
+    expect(filterAttributes.length).toBeGreaterThan(0)
+
+    const targetAttribute = filterAttributes[0]
     expect(targetAttribute.profile_id).toBe(testProfileID)
     expect(targetAttribute.handle).toBe(payload.handle)
     expect(targetAttribute.namespace).toBe(payload.namespace)

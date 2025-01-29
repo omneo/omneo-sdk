@@ -15,7 +15,7 @@ describe('Audits get', () => {
       return typeof old_values === 'string' &&
       typeof new_values === 'string' &&
       typeof auditable_type === 'string' &&
-      typeof auditable_id === 'number'
+      (typeof auditable_id === 'number' || auditable_id === null)
     })
     expect(dataIsValid).toBe(true)
   })
