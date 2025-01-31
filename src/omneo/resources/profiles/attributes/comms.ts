@@ -11,10 +11,11 @@ export default class ProfileAttributesComms extends Resource {
     })
   }
 
-  update (profileID: string): Promise<ProfileComms> {
+  update (profileID: string, comms: Partial<ProfileComms>): Promise<ProfileComms> {
     return this.client.call({
       method: 'put',
-      endpoint: `/profiles/${profileID}/attributes/comms`
+      endpoint: `/profiles/${profileID}/attributes/comms`,
+      body: comms
     }).then((response) => {
       return response.data
     })
