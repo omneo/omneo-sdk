@@ -148,6 +148,10 @@ export type APIScopes =
   | 'update-connections'
   | 'delete-connections'
   | 'read-connections'
+  | 'create-reactions'
+  | 'read-reactions'
+  | 'update-reactions'
+  | 'delete-reactions'
 
 export type APITokenInput = {
   name: string
