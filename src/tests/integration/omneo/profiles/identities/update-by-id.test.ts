@@ -12,17 +12,17 @@ const omneo = new Omneo({
 
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
-describe('Profile Identity update', () => {
-  test('SDK can update profile identity.', async () => {
+describe('Profile Identity by ID update', () => {
+  test('SDK can update profile identity by ID.', async () => {
     const payload = {
-      handle: `sdk_unit_test_identity_update_${Math.floor(Date.now() / 1000)}`,
+      handle: `sdk_unit_test_identity_update_by_id_${Math.floor(Date.now() / 1000)}`,
       identifier: randomString(10)
     }
     const { data: identity } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/identities`, payload)
     CREATED_IDENTITY_HANDLES.push(identity.handle)
 
     const newIdentifier = randomString(10)
-    const update = await omneo.profiles.identities.update(testProfileID, identity.handle, {
+    const update = await omneo.profiles.identities.updateByID(testProfileID, identity.id, {
       identifier: newIdentifier
     })
     expect(update.id).toEqual(identity.id)
