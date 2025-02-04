@@ -27,6 +27,8 @@ import Statuses from './resources/statuses'
 import Systems from './resources/systems'
 import Tags from './resources/tags'
 import Users from './resources/users'
+import Brands from './resources/brands'
+import Triggers from './resources/triggers'
 
 import health from './resources/health'
 export class Omneo {
@@ -72,6 +74,8 @@ export class Omneo {
   public systems = new Systems(this)
   public tags = new Tags(this)
   public users = new Users(this)
+  public brands = new Brands(this)
+  public triggers = new Triggers(this)
 
   public health = health.bind(this)
 

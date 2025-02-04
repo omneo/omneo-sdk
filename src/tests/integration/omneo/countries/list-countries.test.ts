@@ -2,8 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { CountryInput, CountryResponse } from '../../../../types'
-import { getName, getIso2, getIso3, getIsoNumeric } from './util'
-
+import { getRandomString, getIsoNumeric } from '../../../lib/string/util'
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
@@ -13,9 +12,9 @@ const CREATED_COUNTRIES_IDS : number[] = []
 describe('Countries list', () => {
   test('SDK Get Countries', async () => {
     const payload: CountryInput = {
-      name: getName(),
-      iso_2: getIso2(),
-      iso_3: getIso3(),
+      name: getRandomString('sdk_unit_test_country'),
+      iso_2: getRandomString('sdk_unit_test_iso2'),
+      iso_3: getRandomString('sdk_unit_test_iso3'),
       iso_numeric: getIsoNumeric(),
       sort_order: null
     }

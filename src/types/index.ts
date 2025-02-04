@@ -31,5 +31,8 @@ export * from './system'
 export * from './tags'
 export * from './user'
 export * from './benefit'
+export * from './brands'
+export * from './trigger'
+export * from './automations'
 
 export * from './misc'

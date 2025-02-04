@@ -13,7 +13,7 @@ const omneo = new Omneo({
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Identity update', () => {
-  test('SDK can update   profile identity.', async () => {
+  test('SDK can update profile identity.', async () => {
     const payload = {
       handle: `sdk_unit_test_identity_update_${Math.floor(Date.now() / 1000)}`,
       identifier: randomString(10)

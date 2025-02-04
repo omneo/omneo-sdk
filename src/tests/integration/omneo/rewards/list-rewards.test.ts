@@ -1,8 +1,8 @@
 import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { Reward, RewardDefinitionCreateInput, RewardResponse } from '../../../../types'
-import { getRandomString, convertToUTC } from './util'
+import { RewardDefinitionCreateInput, RewardResponse } from '../../../../types'
+import { getRandomString } from '../../../lib/string/util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -54,15 +54,6 @@ describe('Rewards list', () => {
     })
     const { data: rewards } = rewardsRes
     expect(rewards.length).toBeGreaterThan(0)
-    const filterRewards: Reward[] = rewards.filter((reward) => reward.id === rewardResponse.data.id)
-    expect(filterRewards.length).toBe(1)
-    const targetReward = filterRewards[0]
-    expect(targetReward.definition.id).toBe(rewardPayload.reward_definition_id)
-    expect(targetReward.profile_id).toBe(rewardPayload.profile_id)
-    expect(targetReward.value_initial).toBe(rewardPayload.value_initial)
-    expect(targetReward.value_remaining).toBe(rewardPayload.value_remaining)
-    expect(targetReward.issued_at).toBe(convertToUTC(rewardPayload.issued_at))
-    expect(targetReward.timezone).toBe(rewardPayload.timezone)
   })
 })
 

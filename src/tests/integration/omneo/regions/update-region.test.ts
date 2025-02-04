@@ -2,7 +2,7 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '../../../../omneo'
 import simpleOmneoRequest from '../../../lib/simple-omneo-request'
 import { Region, RegionInput, Country, CountryInput } from '../../../../types'
-import { getName, getHandle, getIso2, getIso3, getIsoNumeric } from './util'
+import { getRandomString, getIsoNumeric } from '../../../lib/string/util'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -13,10 +13,10 @@ const CREATED_REGIONS_IDS : number[] = []
 
 describe('Region update', () => {
   test('SDK Region update', async () => {
-    const updatedName = getName()
+    const updatedName = getRandomString('sdk_unit_test_region_name')
     const payload: RegionInput = {
-      name: getName(),
-      handle: getHandle()
+      name: getRandomString('sdk_unit_test_region_name'),
+      handle: getRandomString('sdk_unit_test_region_handle')
     }
     const response = await simpleOmneoRequest('POST', '/regions', payload).catch((err) => {
       console.error('SDK get Region created failed:', err)
@@ -35,10 +35,10 @@ describe('Region update', () => {
   })
 
   test('SDK Regions update country', async () => {
-    const updatedName = getName()
+    const updatedName = getRandomString('sdk_unit_test_region_name')
     const payload: RegionInput = {
-      name: getName(),
-      handle: getHandle()
+      name: getRandomString('sdk_unit_test_region_name'),
+      handle: getRandomString('sdk_unit_test_region_handle')
     }
     const response = await simpleOmneoRequest('POST', '/regions', payload).catch((err) => {
       console.error('SDK get Region created failed:', err)
@@ -47,9 +47,9 @@ describe('Region update', () => {
     CREATED_REGIONS_IDS.push(response.data.id)
 
     const payload2: CountryInput = {
-      name: getName(),
-      iso_2: getIso2(),
-      iso_3: getIso3(),
+      name: getRandomString('sdk_unit_test_region_name'),
+      iso_2: getRandomString('sdk_unit_test_iso2'),
+      iso_3: getRandomString('sdk_unit_test_iso3'),
       iso_numeric: getIsoNumeric(),
       sort_order: null
     }

@@ -50,6 +50,32 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
+  getByID (profileID: string, id: number): Promise<Identity> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/identities/id/${id}`
+    }).then((response) => {
+      return response?.data
+    })
+  }
+
+  updateByID (profileID: string, id: number, body: Partial<IdentityInput>): Promise<Identity> {
+    return this.client.call({
+      method: 'put',
+      endpoint: `/profiles/${profileID}/identities/id/${id}`,
+      body
+    }).then((response) => {
+      return response?.data
+    }) as unknown as Promise<Identity>
+  }
+
+  deleteByID (profileID: string, id: number): Promise<void> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/${profileID}/identities/id/${id}`
+    })
+  }
+
   findInProfile (profile: Profile, options: { handle?: string, identifier?: string, findLatest?: boolean }): Identity|undefined {
     const { handle, identifier, findLatest } = options
     const identities = profile?.identities

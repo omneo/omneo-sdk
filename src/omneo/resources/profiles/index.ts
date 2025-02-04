@@ -25,6 +25,7 @@ import ProfileBalances from './balances'
 import ProfileRegions from './regions'
 import ProfileLists from './lists'
 import ProfileTiers from './tiers'
+import ProfileBenefits from './benefits'
 
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
@@ -36,6 +37,7 @@ export default class Profiles extends Resource {
   interactions = new ProfileInteractions(this.client)
   transactions = new ProfileTransactions(this.client)
   rewards = new ProfileRewards(this.client)
+  benefits = new ProfileBenefits(this.client)
   balances = new ProfileBalances(this.client)
   regions = new ProfileRegions(this.client)
   lists = new ProfileLists(this.client)
@@ -239,11 +241,11 @@ export default class Profiles extends Resource {
     })
   }
 
-  redeem (profileID: string, amount: number): Promise<Redeem> {
+  redeem (profileID: string, amount: number, meta?: { [key: string]: unknown }): Promise<Redeem> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/redeem`,
-      body: { amount }
+      body: { amount, ...(meta && { meta }) }
     }).then((response) => {
       return response.data
     })
