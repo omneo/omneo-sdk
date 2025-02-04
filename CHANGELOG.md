@@ -1,3 +1,29 @@
+# [1.35.0](https://github.com/omneo/omneo-sdk/compare/v1.34.0...v1.35.0) (2025-02-04)
+
+
+### Bug Fixes
+
+* add missing api scopes ([eb4a550](https://github.com/omneo/omneo-sdk/commit/eb4a550647df2b87ff79221bc84f4fc40418232d))
+* add missing function param for updating profile comms ([e6c66de](https://github.com/omneo/omneo-sdk/commit/e6c66dee709d5cb301c07d3b0e07c81c025dc518))
+* allow meta on profile redeem ([075e6ef](https://github.com/omneo/omneo-sdk/commit/075e6ef5070bd70d18037ee379d14b48c9ab7c54))
+* audits auditable_id null ([19e7769](https://github.com/omneo/omneo-sdk/commit/19e7769eeef700de13f883fa0540f0dae60e932c))
+* list has pagination ([ad7fda4](https://github.com/omneo/omneo-sdk/commit/ad7fda4d5ae0090baa35ee5f9bbf647c2aa60eb4))
+* refactor util file ([83bb1fa](https://github.com/omneo/omneo-sdk/commit/83bb1fae82f68801251a8ec5587d4c0ef8c3ccd9))
+* remove unused import ([1f6ed92](https://github.com/omneo/omneo-sdk/commit/1f6ed92c5216568e5f760991c3f884794be352f2))
+* update namespace and handle for custom attribute ([8073c50](https://github.com/omneo/omneo-sdk/commit/8073c508151097ba274e9f5a7a67b93147fea646))
+* update typo issue and fix test value ([876bdf2](https://github.com/omneo/omneo-sdk/commit/876bdf2964b2699c381b1d58365bb68128764344))
+* update unit test for delete profile custom attributes ([0348084](https://github.com/omneo/omneo-sdk/commit/034808402f608132478f271aa0b0f1fed6ddc07f))
+* update unit test for id delete profile custom attribute ([a8db22b](https://github.com/omneo/omneo-sdk/commit/a8db22b6adcc5dd4915eb5e76e425785bba91a38))
+
+
+### Features
+
+* add automations ([9d69fab](https://github.com/omneo/omneo-sdk/commit/9d69fab832c00a52f3760cda832b1618b2bf33d7))
+* add brands ([d207504](https://github.com/omneo/omneo-sdk/commit/d20750484724b0e30d5ec32e253e6eb5629b1d64))
+* add profile benefits ([78a7e0d](https://github.com/omneo/omneo-sdk/commit/78a7e0dde37376322d75f3fca1c90ff78aca5dfb))
+* add triggers ([307d0f3](https://github.com/omneo/omneo-sdk/commit/307d0f3f1cde5bcb0c9f1269461d49ea309011b6))
+* get profile identities by id ([2c73063](https://github.com/omneo/omneo-sdk/commit/2c7306390b11bfeb5cb775dfe9f486c43287c36b))
+
 # [1.34.0](https://github.com/omneo/omneo-sdk/compare/v1.33.1...v1.34.0) (2025-01-09)
 
 
