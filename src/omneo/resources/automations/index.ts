@@ -1,4 +1,4 @@
-import { Automation, AutomationActionResponse, AutomationInput, AutomationResponse } from '../../../types/automations.js'
+import { Automation, AutomationActionResponse, AutomationInput, AutomationResponse } from '../../../types'
 import { RequestParams } from '../../../types/omneo.js'
 import Resource from '../resource.js'
 
