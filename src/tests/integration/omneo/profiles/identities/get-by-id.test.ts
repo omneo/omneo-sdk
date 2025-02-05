@@ -15,7 +15,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 describe('Profile Identity get by ID', () => {
   test('SDK can get profile identity by ID.', async () => {
     const payload = {
-      handle: `sdk_unit_test_identity_get_${Math.floor(Date.now() / 1000)}`,
+      handle: `sdk_unit_test_identity_get_by_id_${Math.floor(Date.now() / 1000)}`,
       identifier: randomString(10)
     }
     const { data: identity } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/identities`, payload)
