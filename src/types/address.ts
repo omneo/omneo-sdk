@@ -41,4 +41,18 @@ export type AddressUpdateInput = {
   iso?: string
   iso_state?: string
   notes?: string
+  external_id?: string
+}
+
+export type AddressWebhook = Address & {
+  external_id: string
+  resource_owner_id: string
+  resource_owner_type: string
+  name: string
+  type: string
+  phone: string
+  profile: {
+    id: string
+    email: string
+  }
 }
