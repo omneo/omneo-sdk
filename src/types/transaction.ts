@@ -187,3 +187,24 @@ export type TransactionResponse = PaginationResponse & {
 export type TransactionUnassignedItemsResponse = PaginationResponse & {
   data: TransactionItem[]
 }
+
+export type TransactionClaim = {
+  id: number
+  status: string
+  profile_id: string
+  transaction_receipt_ref: string
+  transaction_transacted_at: string
+  transaction_timezone: string
+  transaction_total: number
+  transaction_location_external_code: string
+  attempts: number
+  claimed_transaction_id: number
+  claimed_at: string
+  last_checked_at: string
+  created_at: string
+  updated_at: string
+}
+
+export type TransactionClaimsResponse = PaginationResponse & {
+  data: TransactionClaim[]
+}
