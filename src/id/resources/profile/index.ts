@@ -3,7 +3,9 @@ import {
   Profile,
   ProfileComms,
   Redeem,
-  ProfileType
+  ProfileType,
+  RequestParams,
+  TransactionProductVariantsResponse
 } from '../../../types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
@@ -17,6 +19,7 @@ import ProfileInteractions from './interactions'
 import ProfileRewards from './rewards'
 import ProfileBenefits from './benefits'
 import ProfileTransactions from './transactions'
+import ProfileTransactionClaims from './transaction-claims'
 import ProfileBalances from './balances'
 import ProfileRegions from './regions'
 import ProfileLists from './lists'
@@ -30,6 +33,7 @@ export default class OmneoProfile extends Resource {
   connections = new ProfileConnections(this.client)
   interactions = new ProfileInteractions(this.client)
   transactions = new ProfileTransactions(this.client)
+  transactionClaims = new ProfileTransactionClaims(this.client)
   rewards = new ProfileRewards(this.client)
   benefits = new ProfileBenefits(this.client)
   balances = new ProfileBalances(this.client)
@@ -163,6 +167,14 @@ export default class OmneoProfile extends Resource {
       body: { profile_type: type }
     }).then((response) => {
       return response.data
+    })
+  }
+
+  transactionProducts (params?: RequestParams): Promise<TransactionProductVariantsResponse> {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/transaction-products',
+      params
     })
   }
 }

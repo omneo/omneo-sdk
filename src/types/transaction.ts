@@ -114,8 +114,8 @@ export interface TransactionLineItemInput {
   quantity: number;
   price_current: number;
   price_sell: number;
-  price_tax: number;
-  price_original: number;
+  price_tax?: number;
+  price_original?: number;
   product_variant_id?: number;
   product_variant?: TransactionLineItemProductVariantInput;
   discounts?: TransactionLineItemDiscount[];
@@ -123,14 +123,14 @@ export interface TransactionLineItemInput {
 
 export type TransactionInput = {
   profile_id: string;
-  external_id: string;
-  receipt_ref: string;
+  external_id?: string;
+  receipt_ref?: string;
   location_id: string;
   total: number;
-  total_original: number;
+  total_original?: number;
   systems?: string[];
   timezone: string;
-  tags: string[];
+  tags?: string[];
   items: TransactionLineItemInput[];
   payments?: any[];
   transacted_at: string;
@@ -186,4 +186,25 @@ export type TransactionResponse = PaginationResponse & {
 
 export type TransactionUnassignedItemsResponse = PaginationResponse & {
   data: TransactionItem[]
+}
+
+export type TransactionClaim = {
+  id: number
+  status: string
+  profile_id: string
+  transaction_receipt_ref: string
+  transaction_transacted_at: string
+  transaction_timezone: string
+  transaction_total: number
+  transaction_location_external_code: string
+  attempts: number
+  claimed_transaction_id: number
+  claimed_at: string
+  last_checked_at: string
+  created_at: string
+  updated_at: string
+}
+
+export type TransactionClaimsResponse = PaginationResponse & {
+  data: TransactionClaim[]
 }

@@ -8,7 +8,8 @@ import {
   RequestParams,
   ProfileType,
   ProfileBatchMatchCriteria,
-  ProfileInput
+  ProfileInput,
+  TransactionProductVariantsResponse
 } from '../../../types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
@@ -21,6 +22,7 @@ import ProfileConnections from './connections'
 import ProfileInteractions from './interactions'
 import ProfileRewards from './rewards'
 import ProfileTransactions from './transactions'
+import ProfileTransactionClaims from './transaction-claims'
 import ProfileBalances from './balances'
 import ProfileRegions from './regions'
 import ProfileLists from './lists'
@@ -36,6 +38,7 @@ export default class Profiles extends Resource {
   connections = new ProfileConnections(this.client)
   interactions = new ProfileInteractions(this.client)
   transactions = new ProfileTransactions(this.client)
+  transactionClaims = new ProfileTransactionClaims(this.client)
   rewards = new ProfileRewards(this.client)
   benefits = new ProfileBenefits(this.client)
   balances = new ProfileBalances(this.client)
@@ -279,6 +282,14 @@ export default class Profiles extends Resource {
       method: 'post',
       endpoint: '/profiles/batch',
       body: { match_criteria: matchCriteria, profiles }
+    })
+  }
+
+  transactionProducts (profileID: string, params?: RequestParams): Promise<TransactionProductVariantsResponse> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/profiles/${profileID}/transaction-products`,
+      params
     })
   }
 }
