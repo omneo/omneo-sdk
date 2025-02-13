@@ -6,6 +6,8 @@ export default class ProfileTransactionsClaim extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/transactions/claims/${claimId}`
+    }).then((response) => {
+      return response.data
     })
   }
 
@@ -15,7 +17,7 @@ export default class ProfileTransactionsClaim extends Resource {
       endpoint: `/profiles/${profileID}/transactions/claims`,
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }
