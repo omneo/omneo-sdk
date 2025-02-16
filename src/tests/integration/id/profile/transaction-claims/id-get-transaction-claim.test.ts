@@ -65,7 +65,6 @@ describe('ID Profile Transaction claims list', () => {
 afterAll(async () => {
   if (CREATED_TRANSACTION_IDS.length > 0) {
     for (const id of CREATED_TRANSACTION_IDS) {
-      console.log('Cleaning up SDK Transaction with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`ID SDK Transaction ID ${id} deleted`)
@@ -74,9 +73,10 @@ afterAll(async () => {
       }
     }
   }
+
+  // TODO uncomment this once the delete api supported
   if (CREATED_TRANSACTION_CLAIM_IDS.length > 0) {
     // for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
-    //   console.log('Cleaning up SDK Transaction claim with ID', id)
     //   const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
     //   if (deleteResponse.status === 204) {
     //     console.log(`SDK Transaction claim ID ${id} deleted`)

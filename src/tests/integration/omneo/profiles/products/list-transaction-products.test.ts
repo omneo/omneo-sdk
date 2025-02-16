@@ -57,7 +57,6 @@ describe('Profile Transaction products list', () => {
 afterAll(async () => {
   if (CREATED_TRANSACTION_IDS.length > 0) {
     for (const id of CREATED_TRANSACTION_IDS) {
-      console.log('Cleaning up SDK Transaction with ID', id)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`SDK Transaction ID ${id} deleted`)
