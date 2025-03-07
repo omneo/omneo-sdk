@@ -5,13 +5,13 @@ export type DisplayOptionType = 'visible' | 'hidden' | 'mystery' | 'internal'
 export type AchievementLevel = {
   id: string
   name: string
-  achievement_definition_id: number
+  achievement_definition_id?: number
   display_number: number
   description: string | null
   trigger: number
-  repeats: number
+  repeats: boolean
   repeat_interval: number
-  allow_multiple_earn: number
+  allow_multiple_earn: boolean
   computed_display_number: number
   computed_trigger: number
   meta?: {
@@ -24,7 +24,7 @@ export type AchievementLevel = {
 }
 
 export type AchievementDefinition = {
-  id: string
+  id: number
   name: string
   handle: string
   description: string | null
@@ -43,17 +43,17 @@ export type AchievementDefinition = {
   image_url: string | null
   levels: AchievementLevel[]
   tags: string[]
-  meta: {
+  meta?: {
     period?: string
     timezone?: string
     include_shop_count?: boolean
     [key:string]: any
   } | null
-  timezone: string | null
-  period: number | null
-  created_at: string
-  updated_at: string
-  enable_annual_earn_cycle: boolean
+  timezone?: string | null
+  period?: number | null
+  created_at?: string
+  updated_at?: string
+  enable_annual_earn_cycle?: boolean
 }
 
 export type AchievementDefinitionResponse = PaginationResponse & {
@@ -63,5 +63,4 @@ export type AchievementDefinitionResponse = PaginationResponse & {
 export type AchievementDefinitionInput = Partial<Omit<AchievementDefinition, 'id' | 'created_at' | 'updated_at'>> & {
   name: AchievementDefinition['name']
   handle: AchievementDefinition['handle']
-  period: AchievementDefinition['period']
 }
