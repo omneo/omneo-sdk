@@ -6,6 +6,7 @@ import Products from './resources/products/index.js'
 import Settings from './resources/settings/index.js'
 import Locations from './resources/locations/index.js'
 import Auth from './resources/auth/index.js'
+import AchievementDefinitions from './resources/achievement-definitions/index.js'
 import Tenants from './resources/tenants/index.js'
 import Connections from './resources/connections'
 import Identities from './resources/identities'
@@ -66,6 +67,7 @@ export class Omneo {
   public rewards = new Rewards(this)
   public rewardDefinitions = new RewardDefinitions(this)
   public benefits = new Benefits(this)
+  public achievementDefinitions = new AchievementDefinitions(this)
   public benefitDefinitions = new BenefitDefinitions(this)
   public webhooks = new Webhooks(this)
   public roles = new Roles(this)
