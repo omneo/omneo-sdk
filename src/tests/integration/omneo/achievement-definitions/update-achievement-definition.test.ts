@@ -10,8 +10,8 @@ const omneo = new Omneo({
 })
 const CREATED_ACHIEVEMENT_DEFINITION_IDS : number[] = []
 
-describe('Achievement Definition get', () => {
-  test('SDK Get Achievement Definition', async () => {
+describe('Achievement Definition update', () => {
+  test('SDK Update Achievement Definition', async () => {
     const payload: AchievementDefinitionInput = {
       name: getRandomString('sdk_unit_test_achievement_definition_update'),
       handle: getRandomString('sdk_unit_test_achievement_definition_update'),

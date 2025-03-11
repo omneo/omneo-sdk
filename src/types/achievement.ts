@@ -3,17 +3,17 @@ import { PaginationResponse } from '.'
 export type DisplayOptionType = 'visible' | 'hidden' | 'mystery' | 'internal'
 
 export type AchievementLevel = {
-  id: string
+  id?: string
   name: string
   achievement_definition_id?: number
   display_number: number
-  description: string | null
-  trigger: number
-  repeats: boolean
-  repeat_interval: number
-  allow_multiple_earn: boolean
-  computed_display_number: number
-  computed_trigger: number
+  description?: string | null
+  trigger?: number
+  repeats?: boolean
+  repeat_interval?: number
+  allow_multiple_earn?: boolean
+  computed_display_number?: number
+  computed_trigger?: number
   meta?: {
       unlocks?: {
         type?: string,
