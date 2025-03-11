@@ -1,6 +1,7 @@
 export * from './omneo'
 export * from './address'
 export * from './auth'
+export * from './achievement'
 export * from './transaction'
 export * from './order'
 export * from './identities'
