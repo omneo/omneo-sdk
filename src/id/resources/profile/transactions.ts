@@ -14,8 +14,6 @@ export default class ProfileTransactions extends Resource {
       method: 'get',
       endpoint: '/profiles/me/transactions',
       params
-    }).then((response) => {
-      return response.data
     })
   }
 

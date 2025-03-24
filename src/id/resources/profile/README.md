@@ -1111,3 +1111,23 @@ Example usage:
 const updateProfile = await omneoClient.profiles.updateProfileType(profileID, 'active');
 console.log(updateProfile);
 ```
+
+### `Connection(connectionID: number): Profile`
+ 
+ Creates a new instance of the `Profile` class with a specific connection ID.
+ This will be similar to new Profile() but all the requests, instead of requesting /profiles/me/*,
+ They will instead request /profile/connection/{connectionID}/*
+ 
+ Parameters:
+ - `connectionID`: The ID of the connection.
+ 
+ Returns a new `Profile` instance with the specified connection ID.
+ 
+ Example usage:
+ 
+ ```javascript
+ const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+ const connectionProfile = new IDClient.profile.Connection(12345);
+ const profileData = await connectionProfile.get()
+ await connectionProfile.update({ first_name: 'New_First_Name' })
+ ```

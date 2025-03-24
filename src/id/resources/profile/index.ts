@@ -177,4 +177,14 @@ export default class OmneoProfile extends Resource {
       params
     })
   }
+
+  Connection (connectionID: number): OmneoProfile {
+    const Conn = new OmneoProfile(this.client)
+    const clonedCall = Conn.client.call.bind(this.client)
+    Conn.client.call = async (options) => {
+      options.endpoint = options.endpoint.replace('/profiles/me', `/profiles/connection/${connectionID}`)
+      return clonedCall(options)
+    }
+    return Conn
+  }
 }
