@@ -2,15 +2,6 @@ import { RequestParams, Connection, ConnectionResponse, ConnectionInput, Profile
 import Resource from '../resource'
 
 export default class ProfileConnections extends Resource {
-  get (connectionID: number): Promise<Connection> {
-    return this.client.call({
-      method: 'get',
-      endpoint: `/profiles/me/connections/${connectionID}`
-    }).then((response) => {
-      return response.data
-    })
-  }
-
   list (params?: RequestParams): Promise<ConnectionResponse> {
     return this.client.call({
       method: 'get',

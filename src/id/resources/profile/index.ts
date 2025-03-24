@@ -3,7 +3,9 @@ import {
   Profile,
   ProfileComms,
   Redeem,
-  ProfileType
+  ProfileType,
+  RequestParams,
+  TransactionProductVariantsResponse
 } from '../../../types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
@@ -17,6 +19,7 @@ import ProfileInteractions from './interactions'
 import ProfileRewards from './rewards'
 import ProfileBenefits from './benefits'
 import ProfileTransactions from './transactions'
+import ProfileTransactionClaims from './transaction-claims'
 import ProfileBalances from './balances'
 import ProfileRegions from './regions'
 import ProfileLists from './lists'
@@ -30,6 +33,7 @@ export default class OmneoProfile extends Resource {
   connections = new ProfileConnections(this.client)
   interactions = new ProfileInteractions(this.client)
   transactions = new ProfileTransactions(this.client)
+  transactionClaims = new ProfileTransactionClaims(this.client)
   rewards = new ProfileRewards(this.client)
   benefits = new ProfileBenefits(this.client)
   balances = new ProfileBalances(this.client)
@@ -164,5 +168,23 @@ export default class OmneoProfile extends Resource {
     }).then((response) => {
       return response.data
     })
+  }
+
+  transactionProducts (params?: RequestParams): Promise<TransactionProductVariantsResponse> {
+    return this.client.call({
+      method: 'get',
+      endpoint: '/profiles/me/transaction-products',
+      params
+    })
+  }
+
+  Connection (connectionID: number): OmneoProfile {
+    const Conn = new OmneoProfile(this.client)
+    const clonedCall = Conn.client.call.bind(this.client)
+    Conn.client.call = async (options) => {
+      options.endpoint = options.endpoint.replace('/profiles/me', `/profiles/connection/${connectionID}`)
+      return clonedCall(options)
+    }
+    return Conn
   }
 }
