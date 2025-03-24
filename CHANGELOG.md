@@ -1,3 +1,21 @@
+# [1.36.0](https://github.com/omneo/omneo-sdk/compare/v1.35.0...v1.36.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* add address webhook type ([6fe39cb](https://github.com/omneo/omneo-sdk/commit/6fe39cb3a67f080151c696497d24ebdb61133ec1))
+* add unit test to achievement definition ([670c6a4](https://github.com/omneo/omneo-sdk/commit/670c6a487213b2aa1d087495784111c5f5110575))
+* remove log and add comment ([96f1d30](https://github.com/omneo/omneo-sdk/commit/96f1d304b3a85d87874870d83fa53e6ef91d0ba3))
+* update typo issue and type definition ([e72aa86](https://github.com/omneo/omneo-sdk/commit/e72aa86d753e23a8dbb480e4cf37f51d6264b9f5))
+
+
+### Features
+
+* add achievement definition api support ([fa50144](https://github.com/omneo/omneo-sdk/commit/fa501441d3aa206cbfc6adb83ea4264c0e18b2e9))
+* add connections proxy to id proxy profiles ([f4385f4](https://github.com/omneo/omneo-sdk/commit/f4385f44f7ae7895579bba457fd6413599fedd89))
+* add transaction claim api ([ccb0c3d](https://github.com/omneo/omneo-sdk/commit/ccb0c3dd705dc53f8c58f3d6f2b962fbed3b81b5))
+* add unit test for transaction claims endpoint ([ac93936](https://github.com/omneo/omneo-sdk/commit/ac939360e50469491a20b73ffce78a79413084b0))
+
 # [1.35.0](https://github.com/omneo/omneo-sdk/compare/v1.34.0...v1.35.0) (2025-02-04)
 
 
