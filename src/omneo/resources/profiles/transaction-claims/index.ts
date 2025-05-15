@@ -20,4 +20,13 @@ export default class ProfileTransactionsClaim extends Resource {
       return response
     })
   }
+
+  delete (profileID: string, claimId: number): Promise<void> {
+    return this.client.call({
+      method: 'delete',
+      endpoint: `/profiles/${profileID}/transactions/claims/${claimId}`
+    }).then((response) => {
+      return response.data
+    })
+  }
 }

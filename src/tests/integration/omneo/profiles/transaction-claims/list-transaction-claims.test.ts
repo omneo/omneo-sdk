@@ -79,15 +79,14 @@ afterAll(async () => {
     }
   }
 
-  // TODO uncomment this once the delete api supported
   if (CREATED_TRANSACTION_CLAIM_IDS.length > 0) {
-    // for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
-    //   const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
-    //   if (deleteResponse.status === 204) {
-    //     console.log(`SDK Transaction claim ID ${id} deleted`)
-    //   } else {
-    //     console.log(`Failed to delete Transaction claim ID ${id}`, deleteResponse)
-    //   }
-    // }
+    for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Transaction claim ID ${id} deleted`)
+      } else {
+        console.log(`Failed to delete Transaction claim ID ${id}`, deleteResponse)
+      }
+    }
   }
 })

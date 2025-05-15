@@ -1,5 +1,5 @@
 
-import { TransactionInput, TransactionClaim } from '../../../../../types'
+import { TransactionInput, TransactionClaimsResponse } from '../../../../../types'
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '../../../../../id'
 import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
@@ -57,12 +57,17 @@ describe('ID Profile Transaction claims list', () => {
     })
     CREATED_TRANSACTION_CLAIM_IDS.push(response2.data.id)
 
-    const claimsRes: TransactionClaim = await IDClient.profile.transactionClaims.get(response2.data.id)
-    expect(claimsRes.profile_id).toBe(testProfileID)
-    expect(claimsRes.transaction_total).toBe(`${payload2.transaction_total}`)
-    expect(claimsRes.transaction_timezone).toBe(payload2.transaction_timezone)
-    expect(claimsRes.transaction_receipt_ref).toBe(`${payload2.transaction_receipt_ref}`)
-    expect(claimsRes.transaction_location_external_code).toBe(payload2.transaction_location_external_code)
+    const claimsRes: TransactionClaimsResponse = await IDClient.profile.transactionClaims.list({
+      'filter[transaction_receipt_ref]': response.data.id
+    })
+    const { data: claims } = claimsRes
+    expect(claims.length).toBe(1)
+    const claim = claims[0]
+    expect(claim.profile_id).toBe(testProfileID)
+    expect(claim.transaction_total).toBe(`${payload2.transaction_total}`)
+    expect(claim.transaction_timezone).toBe(payload2.transaction_timezone)
+    expect(claim.transaction_receipt_ref).toBe(`${payload2.transaction_receipt_ref}`)
+    expect(claim.transaction_location_external_code).toBe(payload2.transaction_location_external_code)
   })
 })
 
@@ -78,15 +83,14 @@ afterAll(async () => {
     }
   }
 
-  // TODO uncomment this once the delete api supported
   if (CREATED_TRANSACTION_CLAIM_IDS.length > 0) {
-    // for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
-    //   const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
-    //   if (deleteResponse.status === 204) {
-    //     console.log(`SDK Transaction claim ID ${id} deleted`)
-    //   } else {
-    //     console.log(`Failed to delete Transaction claim ID ${id}`, deleteResponse)
-    //   }
-    // }
+    for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`ID SDK Transaction claim ID ${id} deleted`)
+      } else {
+        console.log(`ID SDK Failed to delete Transaction claim ID ${id}`, deleteResponse)
+      }
+    }
   }
 })

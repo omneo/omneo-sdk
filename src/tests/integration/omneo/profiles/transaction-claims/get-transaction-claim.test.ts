@@ -13,8 +13,8 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
-describe('Profile Transaction claims list', () => {
-  test('SDK Profile Transaction claims list', async () => {
+describe('Profile Transaction claim get', () => {
+  test('SDK Profile Get Transaction claim', async () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
     const payload: TransactionInput = {
@@ -74,15 +74,14 @@ afterAll(async () => {
     }
   }
 
-  // TODO uncomment this once the delete api supported
   if (CREATED_TRANSACTION_CLAIM_IDS.length > 0) {
-    // for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
-    //   const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
-    //   if (deleteResponse.status === 204) {
-    //     console.log(`SDK Transaction claim ID ${id} deleted`)
-    //   } else {
-    //     console.log(`Failed to delete Transaction claim ID ${id}`, deleteResponse)
-    //   }
-    // }
+    for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Transaction claim ID ${id} deleted`)
+      } else {
+        console.log(`Failed to delete Transaction claim ID ${id}`, deleteResponse)
+      }
+    }
   }
 })
