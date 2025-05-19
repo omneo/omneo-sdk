@@ -2,7 +2,7 @@
 
 ```javascript
 const profileID = 'profile123';
-const claimID = 'transaction456';
+const claimID = 1347;
 
 omneoClient.profiles.transactionClaims.get(profileID, claimID)
     .then((data) => {
