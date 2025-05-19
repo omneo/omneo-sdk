@@ -1131,3 +1131,47 @@ console.log(updateProfile);
  const profileData = await connectionProfile.get()
  await connectionProfile.update({ first_name: 'New_First_Name' })
  ```
+
+ ### Get Transaction Claim
+
+```javascript
+const claimID = 1347;
+
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.transactionClaims.get(claimID)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
+
+### List Transaction Claims
+
+```javascript
+const params = {
+    // request parameters
+};
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.transactionClaims.list(params)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
+### Delete Transaction Claim
+
+```javascript
+const claimId = 24546;
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.transactionClaims.delete(claimId)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
