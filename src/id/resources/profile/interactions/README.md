@@ -1,0 +1,91 @@
+## Interactions
+
+Customer interactions management functionality.
+This allows customers to retrieve, create, update, and delete interactions associated with their profile.
+
+### Get Interaction
+Retrieves a specific interaction by ID.
+
+```javascript
+const interactionID = '12345';
+
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.interactions.get(interactionID)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
+
+### List Interactions
+
+Retrieves a list of interactions for the current profile.
+```javascript
+const params = {
+    // optional request parameters
+};
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.interactions.list(params)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
+
+### Create Interaction
+
+Creates a new interaction for the current profile.
+```javascript
+const interactionData = {
+    // interaction creation data fields
+    interaction_type: 'website_visit',
+    // other required fields
+};
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.interactions.create(interactionData)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
+
+### Update Interaction
+
+Updates an existing interaction for the current profile.
+```javascript
+const interactionID = '12345';
+const updateData = {
+    // interaction update data fields
+    interaction_type: 'purchase',
+    // other fields to update
+};
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.interactions.update(interactionID, updateData)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
+
+### Delete Interaction
+
+Deletes a specific interaction by ID.
+```javascript
+const interactionID = '12345';
+const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+IDClient.profile.interactions.delete(interactionID)
+    .then((data) => {
+        // handle response data
+    })
+    .catch((error) => {
+        // handle error
+    });
+```
