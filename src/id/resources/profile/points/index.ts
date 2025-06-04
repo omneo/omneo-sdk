@@ -1,4 +1,4 @@
-import { RequestParams, Point, PointInput, PointResponse } from '../../../../types'
+import { RequestParams, Point, PointResponse } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfilePoints extends Resource {
