@@ -36,45 +36,6 @@ IDClient.profile.interactions.list(params)
     });
 ```
 
-### Create Interaction
-
-Creates a new interaction for the current profile.
-```javascript
-const interactionData = {
-    // interaction creation data fields
-    interaction_type: 'website_visit',
-    // other required fields
-};
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
-IDClient.profile.interactions.create(interactionData)
-    .then((data) => {
-        // handle response data
-    })
-    .catch((error) => {
-        // handle error
-    });
-```
-
-### Update Interaction
-
-Updates an existing interaction for the current profile.
-```javascript
-const interactionID = '12345';
-const updateData = {
-    // interaction update data fields
-    interaction_type: 'purchase',
-    // other fields to update
-};
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
-IDClient.profile.interactions.update(interactionID, updateData)
-    .then((data) => {
-        // handle response data
-    })
-    .catch((error) => {
-        // handle error
-    });
-```
-
 ### Delete Interaction
 
 Deletes a specific interaction by ID.

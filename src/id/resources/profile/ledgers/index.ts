@@ -2,7 +2,7 @@ import { OrderLedger, TransactionLedger } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfileLedgers extends Resource {
-  get (ledgerID: string): Promise<(TransactionLedger | OrderLedger)> {
+  get (ledgerID: number): Promise<(TransactionLedger | OrderLedger)> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/ledgers/${ledgerID}`
@@ -16,7 +16,7 @@ export default class ProfileLedgers extends Resource {
       method: 'get',
       endpoint: '/profiles/me/ledgers'
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

@@ -41,12 +41,12 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  delete (handle: string): Promise<void> {
+  delete (handle: string): Promise<any> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/identities/${handle}`
     }).then((response) => {
-      return response?.data
+      return response
     })
   }
 
@@ -69,10 +69,12 @@ export default class ProfileIdentities extends Resource {
     }) as unknown as Promise<Identity>
   }
 
-  deleteByID (id: number): Promise<void> {
+  deleteByID (id: number): Promise<any> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/identities/id/${id}`
+    }).then((response) => {
+      return response
     })
   }
 

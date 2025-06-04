@@ -7,7 +7,7 @@ This allows customers to retrieve, create, update, and delete addresses in their
 Retrieves a specific address by ID.
 
 ```javascript
-const addressID = 'addr123';
+const addressID = '518';
 
 const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
 IDClient.profile.addresses.get(addressID)
@@ -62,7 +62,7 @@ IDClient.profile.addresses.create(addressData)
 
 Updates an existing address for the current profile.
 ```javascript
-const addressID = 'addr123';
+const addressID = '518';
 const updateData = {
     address_line_1: '456 Oak Ave',
     city: 'Anytown',
@@ -84,7 +84,7 @@ IDClient.profile.addresses.update(addressID, updateData)
 
 Deletes a specific address by ID.
 ```javascript
-const addressID = 'addr123';
+const addressID = '518';
 const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
 IDClient.profile.addresses.delete(addressID)
     .then((data) => {

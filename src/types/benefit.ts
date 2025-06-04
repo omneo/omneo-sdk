@@ -98,6 +98,7 @@ export type BenefitInput = {
   benefit_definition_id: number
   profile_id: string
   timezone: string
+  value?: number | null
   external_id?: string
   meta?: { [key: string]: any } | null
   expires_at?: string

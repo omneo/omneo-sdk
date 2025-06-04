@@ -10,30 +10,11 @@ export default class ProfileConnections extends Resource {
     })
   }
 
-  create (body: ConnectionInput): Promise<Connection> {
-    return this.client.call({
-      method: 'post',
-      endpoint: '/profiles/me/connections',
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  update (connectionID: string, body: Partial<ConnectionInput>): Promise<Connection> {
+  update (connectionID: number, body: Partial<ConnectionInput>): Promise<Connection> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/connections/${connectionID}`,
       body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  delete (connectionID: number): Promise<void> {
-    return this.client.call({
-      method: 'delete',
-      endpoint: `/profiles/me/connections/${connectionID}`
     }).then((response) => {
       return response.data
     })
@@ -44,7 +25,7 @@ export default class ProfileConnections extends Resource {
       method: 'get',
       endpoint: `/profiles/me/connections/${connectionID}/profileInfo`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

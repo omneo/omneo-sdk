@@ -16,6 +16,7 @@ import ProfileAggregations from './aggregations'
 import ProfileAddresses from './addresses'
 import ProfileConnections from './connections'
 import ProfileInteractions from './interactions'
+import ProfileLedgers from './ledgers'
 import ProfileRewards from './rewards'
 import ProfileBenefits from './benefits'
 import ProfileTransactions from './transactions'
@@ -40,6 +41,7 @@ export default class OmneoProfile extends Resource {
   regions = new ProfileRegions(this.client)
   lists = new ProfileLists(this.client)
   tiers = new ProfileTiers(this.client)
+  ledgers = new ProfileLedgers(this.client)
   attributes = {
     custom: new ProfileAttributesCustom(this.client),
     dates: new ProfileAttributesDates(this.client),

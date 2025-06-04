@@ -1,7 +1,7 @@
 ## Connections
 
 Customer connections management functionality.
-This allows customers to retrieve, create, update, and delete connections between profiles.
+This allows customers to retrieve, update connections between profiles.
 
 ### List Connections
 
@@ -12,26 +12,6 @@ const params = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
 IDClient.profile.connections.list(params)
-    .then((data) => {
-        // handle response data
-    })
-    .catch((error) => {
-        // handle error
-    });
-```
-
-### Create Connection
-
-Creates a new connection between profiles.
-```javascript
-const connectionData = {
-    // connection creation data fields
-    profile_id: 12345,
-    type: 'friend',
-    // other required fields
-};
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
-IDClient.profile.connections.create(connectionData)
     .then((data) => {
         // handle response data
     })
@@ -54,21 +34,6 @@ const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', co
 IDClient.profile.connections.update(connectionID, updateData)
     .then((data) => {
         // handle response data
-    })
-    .catch((error) => {
-        // handle error
-    });
-```
-
-### Delete Connection
-
-Deletes a specific connection by ID.
-```javascript
-const connectionID = 12345;
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
-IDClient.profile.connections.delete(connectionID)
-    .then(() => {
-        // handle successful deletion
     })
     .catch((error) => {
         // handle error

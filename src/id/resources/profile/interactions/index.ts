@@ -1,11 +1,11 @@
-import { Interaction, InteractionInput, InteractionResponse, RequestParams } from '../../../../types'
+import { Interaction, InteractionResponse, RequestParams } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfileInteractions extends Resource {
-  get (interactionID: string): Promise<Interaction> {
+  get (interactionID: number): Promise<Interaction> {
     return this.client.call({
       method: 'get',
-      endpoint: `/profiles/me/interaction/${interactionID}`
+      endpoint: `/profiles/me/interactions/${interactionID}`
     }).then((response) => {
       return response.data
     })
@@ -21,32 +21,12 @@ export default class ProfileInteractions extends Resource {
     })
   }
 
-  create (body: InteractionInput): Promise<Interaction> {
-    return this.client.call({
-      method: 'post',
-      endpoint: '/interactions',
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  update (interactionID: string, body: InteractionInput): Promise<Interaction> {
-    return this.client.call({
-      method: 'put',
-      endpoint: `/profiles/me/interactions/${interactionID}`,
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  delete (interactionID: string): Promise<void> {
+  delete (interactionID: number): Promise<any> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/interactions/${interactionID}`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

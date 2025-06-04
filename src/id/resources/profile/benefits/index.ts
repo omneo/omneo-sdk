@@ -21,7 +21,7 @@ export default class ProfileBenefits extends Resource {
     })
   }
 
-  update (benefitID: string, body: Partial<BenefitInput>): Promise<Benefit> {
+  update (benefitID: number, body: Partial<BenefitInput>): Promise<Benefit> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/benefits/${benefitID}`,
