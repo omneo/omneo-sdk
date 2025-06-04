@@ -9,13 +9,15 @@ Retrieves a specific point by ID.
 ```javascript
 const pointID = 1234;
 
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.points.get(pointID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -26,13 +28,15 @@ Retrieves a list of points for the current profile.
 const params = {
     // optional request parameters
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.points.list(params)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -45,13 +49,15 @@ const pointData = {
     amount: 100,
     // other required fields
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.points.create(pointData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -65,13 +71,15 @@ const updateData = {
     amount: 150,
     // other fields to update
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.points.update(pointID, updateData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -80,12 +88,14 @@ IDClient.profile.points.update(pointID, updateData)
 Deletes a specific point entry by ID.
 ```javascript
 const pointID = 1234;
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.points.delete(pointID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```

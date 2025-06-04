@@ -9,13 +9,15 @@ Retrieves a specific identity by handle.
 ```javascript
 const handle = 'email';
 
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.get(handle)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -25,13 +27,15 @@ Retrieves a specific identity by ID.
 ```javascript
 const identityID = 123;
 
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.getByID(identityID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -42,13 +46,15 @@ Retrieves a list of identities for the current profile.
 const params = {
     // optional request parameters
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.list(params)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -62,13 +68,15 @@ const identityData = {
     identifier: 'user@example.com',
     // other required fields
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.create(identityData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -82,13 +90,15 @@ const updateData = {
     identifier: 'newemail@example.com',
     // other fields to update
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.update(handle, updateData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -102,13 +112,15 @@ const updateData = {
     identifier: 'newemail@example.com',
     // other fields to update
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.updateByID(identityID, updateData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -117,13 +129,15 @@ IDClient.profile.identities.updateByID(identityID, updateData)
 Deletes a specific identity by handle.
 ```javascript
 const handle = 'email';
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.delete(handle)
-    .then(() => {
-        // handle successful deletion
+    .then((data) => {
+        // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -132,13 +146,15 @@ IDClient.profile.identities.delete(handle)
 Deletes a specific identity by ID.
 ```javascript
 const identityID = 123;
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.identities.deleteByID(identityID)
-    .then(() => {
-        // handle successful deletion
+    .then((data) => {
+        // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -152,11 +168,12 @@ const options = {
     identifier: 'user@example.com',
     findLatest: true // optional - to find the most recently created identity
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 const identity = IDClient.profile.identities.findInProfile(profile, options);
 
 if (identity) {
     // handle found identity
+    console.log('identity:', identity)
 } else {
     // handle not found case
 }

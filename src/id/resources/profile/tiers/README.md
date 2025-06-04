@@ -10,13 +10,15 @@ Retrieves a list of tiers for the current profile.
 const params = {
     // optional request parameters
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.tiers.list(params)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -24,13 +26,15 @@ IDClient.profile.tiers.list(params)
 
 Calculates tier progress for the current profile.
 ```javascript
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.tiers.calculate()
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -39,12 +43,14 @@ IDClient.profile.tiers.calculate()
 Assigns a specific tier to the current profile.
 ```javascript
 const tierDefinitionHandle = 'gold-tier';
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.tiers.assign(tierDefinitionHandle)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```

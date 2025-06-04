@@ -10,13 +10,15 @@ Retrieves a specific list item by list ID and item ID.
 const listID = 123;
 const itemID = 456;
 
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.items.get(listID, itemID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -28,13 +30,15 @@ const listID = 123;
 const params = {
     // optional request parameters
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.items.list(listID, params)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -49,13 +53,15 @@ const itemData = {
     quantity: 1,
     // other required fields
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.items.create(listID, itemID, itemData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -70,13 +76,15 @@ const updateData = {
     quantity: 2,
     // other fields to update
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.items.update(listID, itemID, updateData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -86,12 +94,14 @@ Removes a specific item from a list.
 ```javascript
 const listID = 123;
 const itemID = 456;
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.items.delete(listID, itemID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```

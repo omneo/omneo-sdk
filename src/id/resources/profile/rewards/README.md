@@ -9,13 +9,15 @@ Retrieves a specific reward by ID.
 ```javascript
 const rewardID = 1234;
 
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.rewards.get(rewardID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -26,13 +28,15 @@ Retrieves a list of rewards for the current profile.
 const params = {
     // optional request parameters
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.rewards.list(params)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -45,13 +49,15 @@ const rewardData = {
     reward_definition_id: 123,
     // other required fields
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.rewards.create(rewardData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -65,13 +71,15 @@ const updateData = {
     status: 'redeemed',
     // other fields to update
 };
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.rewards.update(rewardID, updateData)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -80,12 +88,14 @@ IDClient.profile.rewards.update(rewardID, updateData)
 Deletes a specific reward by ID.
 ```javascript
 const rewardID = 1234;
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.rewards.delete(rewardID)
     .then((data) => {
         // handle response data
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```

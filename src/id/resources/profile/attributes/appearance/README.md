@@ -7,14 +7,15 @@ This allows customers to retrieve and update their profile appearance settings.
 
 Retrieves the current appearance settings for the profile.
 ```javascript
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.appearance.get()
     .then((data) => {
         // handle response data
-        // data contains appearance settings
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -22,13 +23,14 @@ IDClient.profile.attributes.appearance.get()
 
 Updates the appearance settings for the current profile.
 ```javascript
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.appearance.update()
     .then((data) => {
         // handle response data
-        // data contains the updated appearance settings
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```

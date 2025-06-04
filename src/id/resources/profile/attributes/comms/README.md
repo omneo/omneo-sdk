@@ -7,14 +7,15 @@ This allows customers to retrieve and update their communication preferences.
 
 Retrieves the current communication preferences for the profile.
 ```javascript
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.comms.get()
     .then((data) => {
         // handle response data
-        // data contains communication preferences
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
 
@@ -22,13 +23,14 @@ IDClient.profile.attributes.comms.get()
 
 Updates the communication preferences for the current profile.
 ```javascript
-const IDClient = new ID({ tenant: 'your-tenant', omneoAPIToken: 'your-token', config: {} })
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.comms.update()
     .then((data) => {
         // handle response data
-        // data contains the updated communication preferences
+        console.log('Response data:', data)
     })
     .catch((error) => {
         // handle error
+        console.error('Error:', error)
     });
 ```
