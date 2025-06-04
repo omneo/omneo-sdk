@@ -20,33 +20,4 @@ export default class ProfilePoints extends Resource {
       return response
     })
   }
-
-  create (body: PointInput): Promise<Point> {
-    return this.client.call({
-      method: 'post',
-      endpoint: '/profiles/me/points',
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  update (pointID: string, body: Partial<PointInput>): Promise<Point> {
-    return this.client.call({
-      method: 'put',
-      endpoint: `/profiles/me/points/${pointID}`,
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  delete (pointID: number): Promise<void> {
-    return this.client.call({
-      method: 'delete',
-      endpoint: `/profiles/me/points/${pointID}`
-    }).then((response) => {
-      return response.data
-    })
-  }
 }
