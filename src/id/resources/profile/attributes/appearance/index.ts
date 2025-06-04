@@ -1,4 +1,4 @@
-import { ProfileAppearance } from '../../../../../types'
+import { ProfileAppearance, ProfileAppearanceInput } from '../../../../../types'
 import Resource from '../../../resource'
 
 export default class ProfileAttributesAppearance extends Resource {
@@ -11,10 +11,11 @@ export default class ProfileAttributesAppearance extends Resource {
     })
   }
 
-  update (): Promise<ProfileAppearance> {
+  update (body: ProfileAppearanceInput): Promise<ProfileAppearance> {
     return this.client.call({
       method: 'put',
-      endpoint: '/profiles/me/attributes/appearance'
+      endpoint: '/profiles/me/attributes/appearance',
+      body
     }).then((response) => {
       return response.data
     })

@@ -23,8 +23,11 @@ IDClient.profile.attributes.comms.get()
 
 Updates the communication preferences for the current profile.
 ```javascript
+const params = {
+    "push_discover": false
+}
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
-IDClient.profile.attributes.comms.update()
+IDClient.profile.attributes.comms.update(params)
     .then((data) => {
         // handle response data
         console.log('Response data:', data)

@@ -66,3 +66,4 @@ export type ProfileComms = {
 }
 
 export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
+export type ProfileCommsInput = Partial<Omit<ProfileComms, 'profile_id' | 'created_at' | 'updated_at'>>

@@ -23,8 +23,11 @@ IDClient.profile.attributes.appearance.get()
 
 Updates the appearance settings for the current profile.
 ```javascript
+const params = {
+    "hair_colour": "Brown"
+}
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
-IDClient.profile.attributes.appearance.update()
+IDClient.profile.attributes.appearance.update(params)
     .then((data) => {
         // handle response data
         console.log('Response data:', data)
