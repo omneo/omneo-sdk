@@ -9,14 +9,14 @@ Retrieves the current communication preferences for the profile.
 ```javascript
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.comms.get()
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Update Communication Preferences
@@ -28,12 +28,12 @@ const params = {
 }
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.comms.update(params)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```

@@ -11,14 +11,14 @@ const listID = 'list-123';
 
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.get(listID)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### List Lists
@@ -30,14 +30,14 @@ const params = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.list(params)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Create List
@@ -51,14 +51,14 @@ const listInput = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.create(listInput)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Update List
@@ -73,14 +73,14 @@ const updateData = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.update(listID, updateData)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Delete List
@@ -90,12 +90,12 @@ Deletes a specific list by ID.
 const listID = 'list-123';
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.delete(listID)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```

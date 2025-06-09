@@ -5,7 +5,7 @@ import Items from './items'
 export default class ProfileLists extends Resource {
   items = new Items(this.client)
 
-  get (profileID: string, listID: string): Promise<List> {
+  get (profileID: string, listID: number): Promise<List> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/lists/${listID}`
@@ -33,7 +33,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  update (profileID: string, listID: string, body: Partial<ListInput>): Promise<List> {
+  update (profileID: string, listID: number, body: Partial<ListInput>): Promise<List> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/lists/${listID}`,
@@ -43,7 +43,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  delete (profileID: string, listID: string): Promise<void> {
+  delete (profileID: string, listID: number): Promise<void> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/${profileID}/lists/${listID}`

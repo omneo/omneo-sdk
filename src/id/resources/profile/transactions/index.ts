@@ -2,10 +2,12 @@ import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionFil
 import Resource from '../../resource'
 
 export default class ProfileTransactions extends Resource {
-  get (transactionID: string): Promise<Transaction> {
+  get (transactionID: number): Promise<Transaction> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/transactions/${transactionID}`
+    }).then((response) => {
+      return response?.data
     })
   }
 

@@ -11,14 +11,14 @@ const addressID = '518';
 
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.addresses.get(addressID)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### List Addresses
@@ -30,14 +30,14 @@ const params = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.addresses.list(params)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Create Address
@@ -54,14 +54,14 @@ const addressData = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.addresses.create(addressData)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Update Address
@@ -78,14 +78,14 @@ const updateData = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.addresses.update(addressID, updateData)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Delete Address
@@ -95,12 +95,12 @@ Deletes a specific address by ID.
 const addressID = '518';
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.addresses.delete(addressID)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```

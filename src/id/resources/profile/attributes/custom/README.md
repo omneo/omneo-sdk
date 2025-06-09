@@ -12,14 +12,14 @@ const handle = 'preferences';
 
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.custom.get(namespace, handle)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### List Custom Attributes
@@ -31,14 +31,14 @@ const params = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.custom.list(params)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Update Custom Attribute
@@ -54,14 +54,14 @@ const updateData = {
 };
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.custom.update(namespace, handle, updateData)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### Delete Custom Attribute
@@ -72,12 +72,12 @@ const namespace = 'loyalty';
 const handle = 'preferences';
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.attributes.custom.delete(namespace, handle)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```

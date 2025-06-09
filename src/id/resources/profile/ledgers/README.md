@@ -11,14 +11,14 @@ const ledgerID = 'ledger-123';
 
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.ledgers.get(ledgerID)
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```
 
 ### List Ledgers
@@ -27,12 +27,12 @@ Retrieves a list of ledgers for the current profile.
 ```javascript
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.ledgers.list()
-    .then((data) => {
-        // handle response data
-        console.log('Response data:', data)
-    })
-    .catch((error) => {
-        // handle error
-        console.error('Error:', error)
-    });
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
 ```

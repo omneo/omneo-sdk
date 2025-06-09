@@ -26,7 +26,7 @@ export default class ProfileTransactions extends Resource {
       method: 'delete',
       endpoint: `/profiles/me/transactions/claims/${claimId}`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

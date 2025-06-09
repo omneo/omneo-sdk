@@ -47,20 +47,3 @@ omneoClient.points.create(pointInput)
     });
 ```
 
-### Update Point
-
-```javascript
-const pointId = '12345';
-const pointInput = {
-    // point input data
-};
-
-omneoClient.points.update(pointId, pointInput)
-    .then((data) => {
-        // handle response data
-    })
-    .catch((error) => {
-        // handle error
-    });
-```
-

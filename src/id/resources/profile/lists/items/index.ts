@@ -21,10 +21,10 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  create (listID: number, listItemID: number, body: ListItemInput): Promise<ListItem> {
+  create (listID: number, body: ListItemInput): Promise<ListItem> {
     return this.client.call({
       method: 'post',
-      endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`,
+      endpoint: `/profiles/me/lists/${listID}/items`,
       body
     }).then((response) => {
       return response.data

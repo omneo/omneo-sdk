@@ -2,7 +2,7 @@ import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionFil
 import Resource from '../../resource'
 
 export default class ProfileTransactions extends Resource {
-  get (profileID: string, transactionID: string): Promise<Transaction> {
+  get (profileID: string, transactionID: number): Promise<Transaction> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/transactions/${transactionID}`
