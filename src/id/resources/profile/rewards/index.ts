@@ -1,4 +1,4 @@
-import { RequestParams, Reward, RewardCreateInput, RewardResponse, RewardUpdateInput } from '../../../../types'
+import { RequestParams, Reward, RewardResponse } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfileRewards extends Resource {
