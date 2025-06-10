@@ -3,7 +3,8 @@ import IDResource from '../resource'
 export default class Auth extends IDResource {
 // Id could be an omneo ID, or and identity (identifier) when id_handle is present
   requestAuthToken (body: { id: string, id_handle?: string }): Promise<any> {
-    return fetch(`${this.client.baseURL}/auth/token`, {
+    const url = `${this.client.baseURL}/auth/token`
+    return fetch(url, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${this.client.omneoAPIToken}`,
@@ -16,6 +17,9 @@ export default class Auth extends IDResource {
         this.client.IDToken = data?.token
         this.client.IDTokenExp = data?.exp
         return data
+      }).catch((error) => {
+        console.error('Error requesting auth token:', error)
+        throw error
       })
   }
 

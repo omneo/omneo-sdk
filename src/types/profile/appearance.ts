@@ -61,3 +61,5 @@ export type ProfileAppearance = {
   created_at: string
   updated_at: string
 }
+
+export type ProfileAppearanceInput = Partial<Omit<ProfileAppearance, 'profile_id' | 'created_at' | 'updated_at'>>

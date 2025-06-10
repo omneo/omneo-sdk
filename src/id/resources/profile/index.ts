@@ -7,45 +7,50 @@ import {
   RequestParams,
   TransactionProductVariantsResponse
 } from '../../../types'
-import ProfileIdentities from './identities'
+
+import ProfileAddresses from './addresses'
+import ProfileAggregations from './aggregations'
+import ProfileAttributesAppearance from './attributes/appearance'
+import ProfileAttributesComms from './attributes/comms'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
-import ProfileAttributesComms from './attributes/comms'
-import ProfileAttributesAppearance from './attributes/appearance'
-import ProfileAggregations from './aggregations'
-import ProfileAddresses from './addresses'
-import ProfileConnections from './connections'
-import ProfileInteractions from './interactions'
-import ProfileRewards from './rewards'
+import ProfileBalances from './balances'
 import ProfileBenefits from './benefits'
+import ProfileConnections from './connections'
+import ProfileIdentities from './identities'
+import ProfileInteractions from './interactions'
+import ProfileLedgers from './ledgers'
+import ProfileLists from './lists'
+import ProfilePoints from './points'
+import ProfileRegions from './regions'
+import ProfileRewards from './rewards'
+import ProfileTiers from './tiers'
 import ProfileTransactions from './transactions'
 import ProfileTransactionClaims from './transaction-claims'
-import ProfileBalances from './balances'
-import ProfileRegions from './regions'
-import ProfileLists from './lists'
-import ProfileTiers from './tiers'
-
 import Resource from '../resource'
 export default class OmneoProfile extends Resource {
-  identities = new ProfileIdentities(this.client)
-  aggregations = new ProfileAggregations(this.client)
   addresses = new ProfileAddresses(this.client)
-  connections = new ProfileConnections(this.client)
-  interactions = new ProfileInteractions(this.client)
-  transactions = new ProfileTransactions(this.client)
-  transactionClaims = new ProfileTransactionClaims(this.client)
-  rewards = new ProfileRewards(this.client)
-  benefits = new ProfileBenefits(this.client)
-  balances = new ProfileBalances(this.client)
-  regions = new ProfileRegions(this.client)
-  lists = new ProfileLists(this.client)
-  tiers = new ProfileTiers(this.client)
+  aggregations = new ProfileAggregations(this.client)
   attributes = {
     custom: new ProfileAttributesCustom(this.client),
     dates: new ProfileAttributesDates(this.client),
     comms: new ProfileAttributesComms(this.client),
     appearance: new ProfileAttributesAppearance(this.client)
   }
+
+  balances = new ProfileBalances(this.client)
+  benefits = new ProfileBenefits(this.client)
+  connections = new ProfileConnections(this.client)
+  identities = new ProfileIdentities(this.client)
+  interactions = new ProfileInteractions(this.client)
+  ledgers = new ProfileLedgers(this.client)
+  lists = new ProfileLists(this.client)
+  points = new ProfilePoints(this.client)
+  regions = new ProfileRegions(this.client)
+  rewards = new ProfileRewards(this.client)
+  tiers = new ProfileTiers(this.client)
+  transactionClaims = new ProfileTransactionClaims(this.client)
+  transactions = new ProfileTransactions(this.client)
 
   get (): Promise<Profile> {
     return this.client.call({

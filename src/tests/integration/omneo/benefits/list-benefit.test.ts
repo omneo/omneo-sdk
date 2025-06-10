@@ -31,8 +31,7 @@ describe('Benefits list', async () => {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
-      expires_at: '2024-12-06',
-      issued_at: '2024-12-06 08:30:00',
+      issued_at: new Date().toISOString().replace('T', ' ').substring(0, 19),
       timezone: 'Australia/Melbourne'
     }
 

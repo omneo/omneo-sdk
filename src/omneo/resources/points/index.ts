@@ -29,22 +29,4 @@ export default class Points extends Resource {
       return response.data
     })
   }
-
-  update (id: string, body: PointInput): Promise<Point> {
-    return this.client.call({
-      method: 'put',
-      endpoint: `/points/${id}`,
-      body
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  // Does not exist
-  // delete (id: string): Promise<void> {
-  //   return this.client.call({
-  //     method: 'delete',
-  //     endpoint: `/points/${id}`
-  //   })
-  // }
 }
