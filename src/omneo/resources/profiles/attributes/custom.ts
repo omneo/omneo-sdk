@@ -1,4 +1,4 @@
-import { CustomAttributeFindInput, ProfileResponse, CustomAttribute, CustomAttributeInput, RequestParams } from '../../../../types'
+import { ProfileResponse, CustomAttribute, CustomAttributeInput, RequestParams } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfileAttributesCustom extends Resource {
@@ -40,11 +40,11 @@ export default class ProfileAttributesCustom extends Resource {
     })
   }
 
-  find (payload: CustomAttributeFindInput): Promise<ProfileResponse> {
+  find (params: RequestParams): Promise<ProfileResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/attributes/custom',
-      body: payload
+      params
     }).then((response) => {
       return response
     })
