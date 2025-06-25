@@ -19,3 +19,15 @@ export type CustomAttributeInput = {
   type: 'string' | 'integer' | 'float' | 'boolean' | 'json' | 'array',
   value: string | number | boolean | object | any[]
 }
+
+export type CustomAttributeFindInput = {
+  attributes: {
+    namespace: string
+    handle: string
+    value: string | number | boolean | object | any[]
+  }[]
+  page: {
+    size?: number
+  }
+  sort: string
+}
