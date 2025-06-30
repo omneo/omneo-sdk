@@ -24,3 +24,10 @@ export type RegionInput = {
   is_default?: boolean
   countries?: { iso_2: string } []
 }
+
+export type ProfileRegionInput = {
+  region_id: number
+  country: string
+  state: string
+  is_active?: boolean
+}

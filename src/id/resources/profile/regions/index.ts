@@ -1,17 +1,7 @@
-import { Region } from '../../../../types'
+import { Region, ProfileRegionInput } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfileRegions extends Resource {
-  // TODO NOT IMPLEMENTED IN API
-  // get (regionID: number): Promise<Region> {
-  //   return this.client.call({
-  //     method: 'get',
-  //     endpoint: `/profiles/me/regions/${regionID}`
-  //   }).then((response) => {
-  //     return response.data
-  //   })
-  // }
-
   list (): Promise<Region[]> {
     return this.client.call({
       method: 'get',
@@ -21,7 +11,7 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  create (region: any): Promise<Region> {
+  create (region: ProfileRegionInput): Promise<Region[]> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/regions',
@@ -31,7 +21,7 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  update (regionID: number, region: any): Promise<Region> {
+  update (regionID: number, region: ProfileRegionInput): Promise<Region[]> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/regions/${regionID}`,
