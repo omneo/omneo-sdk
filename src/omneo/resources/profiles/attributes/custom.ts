@@ -45,8 +45,6 @@ export default class ProfileAttributesCustom extends Resource {
       method: 'get',
       endpoint: '/profiles/attributes/custom',
       params
-    }).then((response) => {
-      return response
     })
   }
 }

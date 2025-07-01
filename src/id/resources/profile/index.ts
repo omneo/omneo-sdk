@@ -58,8 +58,6 @@ export default class OmneoProfile extends Resource {
       endpoint: '/profiles/me'
     }).then((response) => {
       return response.data
-    }).catch((error) => {
-      return Promise.reject(error)
     })
   }
 
