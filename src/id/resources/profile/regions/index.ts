@@ -31,12 +31,10 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  delete (regionID: number): Promise<void> {
+  delete (regionID: number): Promise<Response> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/regions/${regionID}`
-    }).then((response) => {
-      return response
     })
   }
 }
