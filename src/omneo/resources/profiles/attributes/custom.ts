@@ -35,8 +35,6 @@ export default class ProfileAttributesCustom extends Resource {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`
-    }).then((response) => {
-      return response
     })
   }
 
