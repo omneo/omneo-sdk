@@ -47,7 +47,7 @@ describe('Benefit deleted', async () => {
       FAILED_DELETED_BENEFIT_IDS.push(benefit.id)
       throw new Error(`SDK Benefit definition delete failed with id: ${benefit.id}`)
     })
-    const benefitResponse = await simpleOmneoRequest('GET', `/benefits/definitions/${benefit.id}`)
+    const benefitResponse = await simpleOmneoRequest('GET', `/benefits/${benefit.id}`)
     expect(benefitResponse).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })
 
