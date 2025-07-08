@@ -21,7 +21,7 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  update (id: string, regionId: number, body: ProfileRegionInput): Promise<Region[]> {
+  update (id: string, regionId: number, body: Partial<ProfileRegionInput>): Promise<Region[]> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${id}/regions/${regionId}`,
