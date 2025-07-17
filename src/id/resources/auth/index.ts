@@ -3,6 +3,8 @@ import IDResource from '../resource'
 export default class Auth extends IDResource {
 // Id could be an omneo ID, or and identity (identifier) when id_handle is present
   requestAuthToken (body: { id: string, id_handle?: string }): Promise<any> {
+    const formattedBody = { ...body }
+    if (!formattedBody.id) delete formattedBody.id_handle
     const url = `${this.client.baseURL}/auth/token`
     return fetch(url, {
       method: 'POST',
@@ -10,7 +12,7 @@ export default class Auth extends IDResource {
         Authorization: `Bearer ${this.client.omneoAPIToken}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(formattedBody)
     })
       .then((response) => response.json())
       .then(({ data }) => {
