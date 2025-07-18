@@ -1,3 +1,40 @@
+# [1.37.0](https://github.com/omneo/omneo-sdk/compare/v1.36.0...v1.37.0) (2025-07-18)
+
+
+### Bug Fixes
+
+* add api call to docs ([011aad4](https://github.com/omneo/omneo-sdk/commit/011aad4019b7adc9d26f4ecc80d764436ac8f930))
+* add api for get profiles by attribute values ([3703c74](https://github.com/omneo/omneo-sdk/commit/3703c745825e8c8c831a00e12a23e418d049eb25))
+* allow empty id for anon token in ID Proxy request ([b842a75](https://github.com/omneo/omneo-sdk/commit/b842a75cf48ea7841de676fe45d10701d40e3be0))
+* benefit delete test and update profile ([9631b1c](https://github.com/omneo/omneo-sdk/commit/9631b1c81b5470f810b34b35854e2a29c04ccaf4))
+* ci error remove unused import type ([14f5162](https://github.com/omneo/omneo-sdk/commit/14f51625874ba231b10777240ab49ce2db60b119))
+* empty line at the end of file ([a1da405](https://github.com/omneo/omneo-sdk/commit/a1da405f070ab116c816c55738b300acfd7b8b4e))
+* remove invalidate endpoint on points and adjust import order ([e9747c0](https://github.com/omneo/omneo-sdk/commit/e9747c0d3e8a3eddc6c08a1c5854c08a57a0b070))
+* remove log ([7da7265](https://github.com/omneo/omneo-sdk/commit/7da7265a1540d4d873c91186c5af3687b41e3fac))
+* remove not exist api ([4e40c4f](https://github.com/omneo/omneo-sdk/commit/4e40c4f669cd4cdc968f9416972cf1b8c88ff311))
+* remove then ([b1160ae](https://github.com/omneo/omneo-sdk/commit/b1160ae1549bef9cb679339702d40e7a312a94f2))
+* remove unused ([37199d2](https://github.com/omneo/omneo-sdk/commit/37199d248f88e91a755fd50b23d2518b12f82630))
+* remove unused import ([3458289](https://github.com/omneo/omneo-sdk/commit/3458289d075e2ab733a2b4b1c0b2dbc307a1e231))
+* update comms and appearance update api function ([cc93c25](https://github.com/omneo/omneo-sdk/commit/cc93c25c35e8e474b6afa6a93962d80838570db9))
+* update delete transaction claim test ([468d146](https://github.com/omneo/omneo-sdk/commit/468d14649e6ca7bdd6700138c2616939d696dc09))
+* update id api and remove unused ([21b0913](https://github.com/omneo/omneo-sdk/commit/21b0913697ed7b0a18d0b34551fb4318aebbddf3))
+* update id api docs ([8f0bca1](https://github.com/omneo/omneo-sdk/commit/8f0bca13ff6c5ff6d8b715910bc1a129e5a1580c))
+* update id docs code ([874bce1](https://github.com/omneo/omneo-sdk/commit/874bce1399161b3a17ede122e8cb5db3a23c6a14))
+* update issue date with dynamic ([414dc5c](https://github.com/omneo/omneo-sdk/commit/414dc5c8422c732a0f0fcd49003a734534b45a26))
+* update profile region payload partial ([1a84088](https://github.com/omneo/omneo-sdk/commit/1a840880fa187b361693941456b385bb03bfbff9))
+* update profile region payload partial 2 ([778642c](https://github.com/omneo/omneo-sdk/commit/778642c4d89e4d9187365a5a5a011298469a023b))
+* update readme doc ([d306529](https://github.com/omneo/omneo-sdk/commit/d306529670b2d86dbb5f9fa4a0946d9c8c566dc6))
+
+
+### Features
+
+* add find method for custom attribute api ([221021e](https://github.com/omneo/omneo-sdk/commit/221021e6f788064cc1a658b04601c4737423f076))
+* add profile regions api ([62d0da9](https://github.com/omneo/omneo-sdk/commit/62d0da93d384fa01096fd86201a5a9a5ceced334))
+* add unit test for profile region api ([464904f](https://github.com/omneo/omneo-sdk/commit/464904f8417016e39601c63d593969f5c0bd378a))
+* update id profile region api ([a8ed398](https://github.com/omneo/omneo-sdk/commit/a8ed3989e9019097d260ed0fc4f4c0947fe4db4b))
+* update profile date update api and unit test ([7b55df1](https://github.com/omneo/omneo-sdk/commit/7b55df19ddbd8d447ed419d0bbdf1581ba3d122b))
+* update region api ([6fd2af5](https://github.com/omneo/omneo-sdk/commit/6fd2af5753a8057d0b0b95a177115e31834e2052))
+
 # [1.36.0](https://github.com/omneo/omneo-sdk/compare/v1.35.0...v1.36.0) (2025-03-24)
 
 
