@@ -1,24 +1,27 @@
-import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../../omneo'
+import { describe, expect, afterAll } from 'vitest'
 import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
 import { TransactionInput, TransactionClaim } from '../../../../../types'
 
-const omneo = new Omneo({
-  tenant: process.env.OMNEO_TENANT as string,
-  token: process.env.OMNEO_TOKEN as string
-})
+import { ID } from '../../../../../id'
+import { testWithIDData } from '../../test-with-id-data'
 const CREATED_TRANSACTION_IDS : number[] = []
 const CREATED_TRANSACTION_CLAIM_IDS : number[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
-describe('ID Profile Transaction claims list', () => {
-  test('ID SDK Profile Transaction claims list', async () => {
-    const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
+describe('ID Profile Transaction claims get', () => {
+  testWithIDData('ID SDK Get Transaction claim', async ({ IDData }) => {
+    const { profile, tokenData } = IDData
+    const IDClient = new ID({
+      tenant: process.env.OMNEO_TENANT as string,
+      IDToken: tokenData.token,
+      omneoAPIToken: process.env.OMNEO_TOKEN as string
+    })
 
+    const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
     const payload: TransactionInput = {
-      profile_id: testProfileID,
+      profile_id: profile.id,
       total: 49.99,
       items: [
         {
@@ -52,9 +55,8 @@ describe('ID Profile Transaction claims list', () => {
       throw new Error('ID SDK get transaction claim created failed')
     })
     CREATED_TRANSACTION_CLAIM_IDS.push(response2.data.id)
-
-    const claimRes: TransactionClaim = await omneo.profiles.transactionClaims.get(testProfileID, response2.data.id)
-    expect(claimRes.profile_id).toBe(testProfileID)
+    const claimRes: TransactionClaim = await IDClient.profile.transactionClaims.get(response2.data.id)
+    expect(claimRes.profile_id).toBe(profile.id)
     expect(claimRes.transaction_total).toBe(`${payload2.transaction_total}`)
     expect(claimRes.transaction_timezone).toBe(payload2.transaction_timezone)
     expect(claimRes.transaction_receipt_ref).toBe(`${payload2.transaction_receipt_ref}`)
@@ -74,15 +76,14 @@ afterAll(async () => {
     }
   }
 
-  // TODO uncomment this once the delete api supported
   if (CREATED_TRANSACTION_CLAIM_IDS.length > 0) {
-    // for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
-    //   const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
-    //   if (deleteResponse.status === 204) {
-    //     console.log(`SDK Transaction claim ID ${id} deleted`)
-    //   } else {
-    //     console.log(`Failed to delete Transaction claim ID ${id}`, deleteResponse)
-    //   }
-    // }
+    for (const id of CREATED_TRANSACTION_CLAIM_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/transactions/claims/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`ID SDK Transaction claim ID ${id} deleted`)
+      } else {
+        console.log(`ID SDK Failed to delete Transaction claim ID ${id}`, deleteResponse)
+      }
+    }
   }
 })

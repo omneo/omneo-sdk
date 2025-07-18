@@ -1,4 +1,4 @@
-import { ProfileComms } from '../../../../types'
+import { ProfileComms, ProfileCommsInput } from '../../../../types'
 import Resource from '../../resource'
 
 export default class ProfileAttributesComms extends Resource {
@@ -11,7 +11,7 @@ export default class ProfileAttributesComms extends Resource {
     })
   }
 
-  update (profileID: string, comms: Partial<ProfileComms>): Promise<ProfileComms> {
+  update (profileID: string, comms: ProfileCommsInput): Promise<ProfileComms> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/attributes/comms`,
