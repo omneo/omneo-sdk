@@ -1,3 +1,10 @@
+## [1.37.1](https://github.com/omneo/omneo-sdk/compare/v1.37.0...v1.37.1) (2025-08-29)
+
+
+### Bug Fixes
+
+* retry mobile secondary fix response ([cb7ced0](https://github.com/omneo/omneo-sdk/commit/cb7ced0cb1ebdeefb08928ba240e3bae9f4e885f))
+
 # [1.37.0](https://github.com/omneo/omneo-sdk/compare/v1.36.0...v1.37.0) (2025-07-18)
 
 
