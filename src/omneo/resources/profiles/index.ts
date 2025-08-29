@@ -80,10 +80,12 @@ export default class Profiles extends Resource {
     }).then((response) => {
       return response.data
     }).catch(async (error) => {
-      if (error?.status !== 422 || !error?.body?.errors?.mobile_phone) {
+      const errors = error?.errors || error?.body?.errors
+      const isMobileError = Array.isArray(errors?.mobile_phone) && errors.mobile_phone.find((e: string) => e === 'The phone number exists')
+
+      if (!isMobileError || !options.retryMobileSecondary) {
         return Promise.reject(error)
       }
-      if (!options.retryMobileSecondary) return
 
       const payload = { ...body }
       payload.secondary_phone = payload.mobile_phone
@@ -92,6 +94,8 @@ export default class Profiles extends Resource {
         method: 'put',
         endpoint: `/profiles/${id}`,
         body: payload
+      }).then((response) => {
+        return response.data
       })
     })
   }
@@ -120,10 +124,11 @@ export default class Profiles extends Resource {
     }).then((response) => {
       return response.data
     }).catch(async (error) => {
-      if (error?.response?.status !== 422 || !error?.response?.data?.errors?.mobile_phone) {
+      const errors = error?.errors
+      const isMobileError = Array.isArray(errors?.mobile_phone) && errors.mobile_phone.find((e: string) => e === 'The phone number exists')
+      if (!isMobileError || !options.retryMobileSecondary) {
         return Promise.reject(error)
       }
-      if (!options.retryMobileSecondary) return
 
       const payload = { ...body }
       payload.secondary_phone = payload.mobile_phone
