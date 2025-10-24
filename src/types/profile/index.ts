@@ -62,7 +62,7 @@ export type Profile = {
   }
   statuses: Array<string>
   statuses_original: Array<string>
-  custom_attributes: Array<CustomAttribute>
+  custom_attributes: Record<string, any>
   address: Address
   addresses: Array<Address>
   reward_balance: number
