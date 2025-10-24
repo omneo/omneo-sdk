@@ -1,4 +1,3 @@
-import { CustomAttribute } from './custom-attribute'
 import { Address } from '../address'
 import { Identity } from '../identities'
 import { Location } from '../location'
