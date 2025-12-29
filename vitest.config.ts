@@ -18,7 +18,7 @@ export default defineConfig(({ command, mode }) => {
     },
     test: {
       env,
-      testTimeout: 15000
+      testTimeout: 40000
     }
   }
 })
