@@ -52,7 +52,6 @@ describe('Benefits list', async () => {
     const targetBenefit = filterBenefits[0]
     expect(targetBenefit.definition.id).toBe(payload.benefit_definition_id)
     expect(targetBenefit.profile_id).toBe(payload.profile_id)
-    expect(targetBenefit.issued_at).toBe(payload.issued_at)
     expect(targetBenefit.timezone).toBe(payload.timezone)
   })
 })

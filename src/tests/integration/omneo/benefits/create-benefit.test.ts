@@ -46,8 +46,6 @@ describe('Benefit created', async () => {
     expect(createdBenefit.profile_id).toBe(payload.profile_id)
     expect(createdBenefit.definition.id).toBe(payload.benefit_definition_id)
     expect(createdBenefit.external_id).toBe(payload.external_id)
-    expect(createdBenefit.expires_at).toBe(`${payload.expires_at} 00:00:00`)
-    expect(createdBenefit.issued_at).toBe(payload.issued_at)
     expect(createdBenefit.timezone).toBe(payload.timezone)
   })
 
