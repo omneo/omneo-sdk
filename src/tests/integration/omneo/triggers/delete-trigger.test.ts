@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { Omneo } from '@omneo'
+import { simpleOmneoRequest } from '@lib'
 
 const FAILED_DELETED_TRIGGER_IDS : number[] = []
 

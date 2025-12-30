@@ -1,5 +1,5 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileBenefits extends Resource {
   get (benefitID: number): Promise<Benefit> {

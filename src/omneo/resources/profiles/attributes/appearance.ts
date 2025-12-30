@@ -1,5 +1,5 @@
-import { ProfileAppearance, ProfileAppearanceInput } from '../../../../types'
-import Resource from '../../resource'
+import { ProfileAppearance, ProfileAppearanceInput } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesAppearance extends Resource {
   get (profileID: string): Promise<ProfileAppearance> {

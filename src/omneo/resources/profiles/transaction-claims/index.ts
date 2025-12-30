@@ -1,5 +1,5 @@
-import { RequestParams, TransactionClaim, TransactionClaimsResponse } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, TransactionClaim, TransactionClaimsResponse } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileTransactionsClaim extends Resource {
   get (profileID: string, claimId: number): Promise<TransactionClaim> {

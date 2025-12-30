@@ -1,9 +1,7 @@
 import { afterAll, describe, expect } from 'vitest'
-import { ID } from '../../../../../id'
+import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
-import simpleIDRequest from '../../../../lib/simple-id-request'
-import randomString from '../../../../lib/string/random'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
+import { simpleIDRequest, randomString, simpleOmneoRequest } from '@lib'
 
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 

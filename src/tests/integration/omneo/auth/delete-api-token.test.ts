@@ -1,7 +1,7 @@
 import { describe, test, afterAll, expect } from 'vitest'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { Omneo } from '../../../../omneo'
-import { APIToken } from '../../../../types'
+import { simpleOmneoRequest } from '@lib'
+import { Omneo } from '@omneo'
+import { APIToken } from '@types'
 
 const FAILED_DELETE_API_TOKENS : string[] = []
 

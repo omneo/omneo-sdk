@@ -1,5 +1,4 @@
-import { Brand, BrandInput, BrandResponse } from '../../../types/brands.js'
-import { RequestParams } from '../../../types/omneo.js'
+import { RequestParams, Brand, BrandInput, BrandResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Brands extends Resource {

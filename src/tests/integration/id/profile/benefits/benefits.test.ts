@@ -1,10 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import { BenefitInput } from '../../../../../types'
-import { getRandomString } from '../../../../lib/string/util'
-import randomString from '../../../../lib/string/random'
+import { BenefitInput } from '@types'
 import { testWithIDData } from '../../test-with-id-data'
-import { ID } from '../../../../../id'
+import { ID } from '@id'
+import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
 
 const CREATED_BENEFIT_DEFINITION_IDS : number[] = []
 const CREATED_BENEFITS_IDS : number[] = []

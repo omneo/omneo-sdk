@@ -1,5 +1,5 @@
-import { ProfileAppearance, ProfileAppearanceInput } from '../../../../../types'
-import Resource from '../../../resource'
+import { ProfileAppearance, ProfileAppearanceInput } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesAppearance extends Resource {
   get (): Promise<ProfileAppearance> {

@@ -1,5 +1,5 @@
-import { ProfileDatesAttribute, ProfileDatesAttributeInput, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { ProfileDatesAttribute, ProfileDatesAttributeInput, RequestParams } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesDates extends Resource {
   list (profileID: string, params?: RequestParams): Promise<ProfileDatesAttribute[]> {

@@ -1,9 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import { ID } from '../../../../../../id'
+import { ID } from '@id'
 import { testWithIDData } from '../../../test-with-id-data'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '../../../../../../types'
-import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
-import randomString from '../../../../../lib/string/random'
+import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { simpleOmneoRequest, randomString } from '@lib'
 
 const CREATED_DATES_IDS : number[] = []
 const getHandle = () => { return `sdk_unit_test_list_dates_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }

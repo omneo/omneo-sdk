@@ -1,4 +1,4 @@
-import { Omneo } from '../..'
+import { Omneo } from '@omneo'
 
 export default async function health (this: Omneo): Promise<{ status: number, statusText: string}> {
   const headers = new Headers({

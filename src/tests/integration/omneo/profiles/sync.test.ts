@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { Omneo } from '../../../..'
+import { Omneo } from '@omneo'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,

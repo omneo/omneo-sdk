@@ -1,9 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import { ID } from '../../../../../id'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import { RegionInput, ProfileRegionInput } from '../../../../../types'
+import { ID } from '@id'
+import { RegionInput, ProfileRegionInput } from '@types'
 import { testWithIDData } from '../../test-with-id-data'
-import { getRandomString } from '../../../../lib/string/util'
+import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const CREATED_REGION_IDS : number[] = []

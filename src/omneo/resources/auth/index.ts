@@ -1,4 +1,4 @@
-import { APIToken, APITokenInput } from '../../../types'
+import { APIToken, APITokenInput } from '@types'
 import Resource from '../resource.js'
 
 export default class Auth extends Resource {

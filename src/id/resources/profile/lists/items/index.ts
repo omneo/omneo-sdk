@@ -1,5 +1,5 @@
-import { ListItem, ListItemInput, RequestParams } from '../../../../../types'
-import Resource from '../../../resource'
+import { ListItem, ListItemInput, RequestParams } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileListItems extends Resource {
   get (listID: number, listItemID: number): Promise<ListItem> {

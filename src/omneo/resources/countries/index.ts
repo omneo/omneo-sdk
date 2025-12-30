@@ -1,4 +1,4 @@
-import { CountryInput, RequestParams, Country, CountryResponse } from '../../../types'
+import { CountryInput, RequestParams, Country, CountryResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Countries extends Resource {

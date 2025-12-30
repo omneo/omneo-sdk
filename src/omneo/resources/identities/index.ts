@@ -1,4 +1,4 @@
-import { IdentityResponse, Profile, RequestParams } from '../../../types'
+import { IdentityResponse, Profile, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Identities extends Resource {

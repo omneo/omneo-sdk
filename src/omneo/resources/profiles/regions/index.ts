@@ -1,5 +1,5 @@
-import { Region, ProfileRegionInput } from '../../../../types'
-import Resource from '../../resource'
+import { Region, ProfileRegionInput } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileRegions extends Resource {
   list (id: string): Promise<Region[]> {

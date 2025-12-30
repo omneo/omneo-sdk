@@ -1,7 +1,7 @@
 import { describe, test, beforeEach, expect } from 'vitest'
-import simpleOmneoRequest from '../../lib/simple-omneo-request'
-import { ID } from '../../../id'
+import { ID } from '@id'
 import jwt from 'jsonwebtoken'
+import { simpleOmneoRequest } from '@lib'
 
 const IDClient = new ID({
   tenant: process.env.OMNEO_TENANT as string,

@@ -1,9 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import { ID } from '../../../../../../id'
-import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
-import { CustomAttribute } from '../../../../../../types'
+import { ID } from '@id'
+import { CustomAttribute } from '@types'
 import { testWithIDData } from '../../../test-with-id-data'
-import { getRandomString } from '../../../../../lib/string/util'
+import { simpleOmneoRequest, getRandomString } from '@lib'
 
 let namespace = ''
 let handle = ''

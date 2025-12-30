@@ -10,7 +10,7 @@ import {
   ProfileBatchMatchCriteria,
   ProfileInput,
   TransactionProductVariantsResponse
-} from '../../../types'
+} from '@types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'

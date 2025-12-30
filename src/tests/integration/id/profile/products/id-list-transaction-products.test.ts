@@ -1,8 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import { TransactionInput, TransactionProductVariantsResponse } from '../../../../../types'
-import { ID } from '../../../../../id'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
+import { TransactionInput, TransactionProductVariantsResponse } from '@types'
+import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
+import { simpleOmneoRequest } from '@lib'
 
 const CREATED_TRANSACTION_IDS : number[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string

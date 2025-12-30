@@ -1,5 +1,5 @@
-import { List, ListInput, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { List, ListInput, RequestParams } from '@types'
+import Resource from '@omneo/resources/resource'
 import Items from './items'
 
 export default class ProfileLists extends Resource {

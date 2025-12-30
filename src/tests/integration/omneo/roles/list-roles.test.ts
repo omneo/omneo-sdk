@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { describe, expect, test } from 'vitest'
-import { Omneo } from '../../../../omneo'
+import { Omneo } from '@omneo'
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string

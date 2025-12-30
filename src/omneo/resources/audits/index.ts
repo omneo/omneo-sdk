@@ -1,4 +1,4 @@
-import { Audit, AuditResponse, RequestParams } from '../../../types'
+import { Audit, AuditResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Audits extends Resource {

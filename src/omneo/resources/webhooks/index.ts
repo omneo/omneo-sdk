@@ -1,4 +1,4 @@
-import { RequestParams, Webhook, WebhookResponse } from '../../../types'
+import { RequestParams, Webhook, WebhookResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Webhooks extends Resource {

@@ -1,8 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { Brand, BrandInput } from '../../../../types'
-import randomString from '../../../lib/string/random'
+import { Omneo } from '@omneo'
+import { Brand, BrandInput } from '@types'
+import { simpleOmneoRequest, randomString } from '@lib'
 export const getName = () => { return `sdk_unit_test_brand_get_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
 
 const omneo = new Omneo({

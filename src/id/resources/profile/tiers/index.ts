@@ -1,5 +1,5 @@
-import { RequestParams, TierProgress } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, TierProgress } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileTiers extends Resource {
   list (params?: RequestParams): Promise<TierProgress> {

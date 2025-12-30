@@ -1,5 +1,4 @@
-import { Automation, AutomationActionResponse, AutomationInput, AutomationResponse } from '../../../types'
-import { RequestParams } from '../../../types/omneo.js'
+import { RequestParams, Automation, AutomationActionResponse, AutomationInput, AutomationResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Automations extends Resource {

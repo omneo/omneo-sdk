@@ -6,7 +6,7 @@ import {
   ProfileType,
   RequestParams,
   TransactionProductVariantsResponse
-} from '../../../types'
+} from '@types'
 
 import ProfileAddresses from './addresses'
 import ProfileAggregations from './aggregations'

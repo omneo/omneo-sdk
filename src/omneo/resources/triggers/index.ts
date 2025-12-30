@@ -1,5 +1,4 @@
-import { RequestParams } from '../../../types/omneo.js'
-import { Trigger, TriggerAction, TriggerActionInput, TriggerActionResponse, TriggerInput, TriggerResponse, TriggerUpdateInput } from '../../../types'
+import { RequestParams, Trigger, TriggerAction, TriggerActionInput, TriggerActionResponse, TriggerInput, TriggerResponse, TriggerUpdateInput } from '@types'
 import Resource from '../resource.js'
 
 export default class Triggers extends Resource {

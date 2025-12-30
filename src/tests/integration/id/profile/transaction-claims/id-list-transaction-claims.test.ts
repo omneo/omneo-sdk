@@ -1,9 +1,9 @@
 
-import { TransactionInput, TransactionClaimsResponse } from '../../../../../types'
+import { TransactionInput, TransactionClaimsResponse } from '@types'
 import { describe, expect, afterAll } from 'vitest'
-import { ID } from '../../../../../id'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
+import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
+import { simpleOmneoRequest } from '@lib'
 
 const CREATED_TRANSACTION_IDS : number[] = []
 const CREATED_TRANSACTION_CLAIM_IDS : number[] = []

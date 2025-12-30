@@ -38,3 +38,4 @@ export * from './trigger'
 export * from './automations'
 
 export * from './misc'
+export * from './permissions'
