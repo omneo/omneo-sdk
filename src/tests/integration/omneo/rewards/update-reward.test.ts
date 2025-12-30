@@ -3,7 +3,6 @@ import { Omneo } from '@omneo'
 import { Reward, RewardDefinitionCreateInput, RewardUpdateInput } from '@types'
 import { simpleOmneoRequest, getRandomString, convertToUTC } from '@lib'
 
-
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string

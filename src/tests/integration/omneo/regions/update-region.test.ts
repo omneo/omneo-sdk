@@ -1,7 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { Region, RegionInput, Country, CountryInput } from '@types'
-import { simpleOmneoRequest, getRandomString } from '@lib'
+import { simpleOmneoRequest, getRandomString, getIsoNumeric } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
