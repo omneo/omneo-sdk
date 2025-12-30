@@ -1,4 +1,4 @@
-import { OrderResponse, RequestParams } from '../../../types'
+import { OrderResponse, RequestParams } from '@types'
 import Resource from '../resource'
 
 export default class Orders extends Resource {

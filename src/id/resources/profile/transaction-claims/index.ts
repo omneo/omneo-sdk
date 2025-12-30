@@ -1,5 +1,5 @@
-import { TransactionClaim, TransactionClaimsResponse, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { TransactionClaim, TransactionClaimsResponse, RequestParams } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileTransactions extends Resource {
   get (claimId: number): Promise<TransactionClaim> {

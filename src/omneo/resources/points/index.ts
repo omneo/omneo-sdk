@@ -1,4 +1,4 @@
-import { Point, PointInput, PointResponse, RequestParams } from '../../../types'
+import { Point, PointInput, PointResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Points extends Resource {

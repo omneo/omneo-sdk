@@ -1,4 +1,4 @@
-import { RequestParams, Setting, SettingInput } from '../../../types'
+import { RequestParams, Setting, SettingInput } from '@types'
 import Resource from '../resource'
 
 export default class Settings extends Resource {

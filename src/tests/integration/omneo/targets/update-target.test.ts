@@ -1,7 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import randomString from '../../../lib/string/random'
+import { Omneo } from '@omneo'
+import { simpleOmneoRequest, randomString } from '@lib'
 
 const CREATED_TARGET_IDS : number[] = []
 const getHandle = () => `sdk_unit_test_target_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}`

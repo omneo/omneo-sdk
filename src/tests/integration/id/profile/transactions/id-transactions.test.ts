@@ -1,7 +1,6 @@
 import { describe, expect, test } from 'vitest'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import simpleIDRequest from '../../../../lib/simple-id-request'
-import { ID } from '../../../../..'
+import { ID } from '@id'
+import { simpleOmneoRequest, simpleIDRequest } from '@lib'
 
 describe('ID transactions', async () => {
   const allTransactions = await simpleOmneoRequest('GET', '/transactions').then(({ data }) => data)

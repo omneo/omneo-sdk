@@ -1,5 +1,5 @@
-import { Address, CustomAttribute, CustomAttributeInput, RequestParams } from '../../../../../types'
-import Resource from '../../../resource'
+import { Address, CustomAttribute, CustomAttributeInput, RequestParams } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesCustom extends Resource {
   get (namespace: string, handle: string): Promise<CustomAttribute> {

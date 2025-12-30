@@ -1,8 +1,7 @@
 import { describe, test, expect, afterAll } from 'vitest'
-import { Omneo } from '../../../../../../omneo'
-import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
-import { CustomAttribute, ProfileResponse, Profile } from '../../../../../../types'
-import { getRandomString } from '../../../../../lib/string/util'
+import { Omneo } from '@omneo'
+import { CustomAttribute, ProfileResponse, Profile } from '@types'
+import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,

@@ -1,4 +1,4 @@
-import { Transaction, TransactionInput } from '../../../types'
+import { Transaction, TransactionInput } from '@types'
 
 export const writeTransactionWithVariant: TransactionInput = {
   profile_id: process.env.OMNEO_TEST_PROFILE_ID,

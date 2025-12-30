@@ -1,5 +1,5 @@
-import { Region, ProfileRegionInput } from '../../../../types'
-import Resource from '../../resource'
+import { Region, ProfileRegionInput } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileRegions extends Resource {
   list (): Promise<Region[]> {

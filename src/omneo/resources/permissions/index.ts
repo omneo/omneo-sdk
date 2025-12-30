@@ -1,5 +1,4 @@
-import { RequestParams } from '../../../types'
-import { Permission, PermissionResponse } from '../../../types/permissions.js'
+import { RequestParams, Permission, PermissionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Permissions extends Resource {

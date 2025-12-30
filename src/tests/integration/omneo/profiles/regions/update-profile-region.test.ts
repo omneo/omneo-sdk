@@ -1,9 +1,8 @@
 
-import { getRandomString } from '../../../../lib/string/util'
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../../omneo'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import { ProfileRegionInput, Region, RegionInput } from '../../../../../types'
+import { Omneo } from '@omneo'
+import { ProfileRegionInput, Region, RegionInput } from '@types'
+import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,

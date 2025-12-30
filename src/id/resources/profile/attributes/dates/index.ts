@@ -1,5 +1,5 @@
-import { ProfileDatesAttribute, ProfileDatesAttributeInput, RequestParams } from '../../../../../types'
-import Resource from '../../../resource'
+import { ProfileDatesAttribute, ProfileDatesAttributeInput, RequestParams } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesDates extends Resource {
   list (params?: RequestParams): Promise<ProfileDatesAttribute[]> {

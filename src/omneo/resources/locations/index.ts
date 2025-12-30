@@ -1,4 +1,4 @@
-import { Location, LocationResponse, RequestParams } from '../../../types'
+import { Location, LocationResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Locations extends Resource {

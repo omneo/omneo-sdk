@@ -1,5 +1,5 @@
-import { RequestParams, Point, PointResponse } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Point, PointResponse } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfilePoints extends Resource {
   get (pointID: number): Promise<Point> {

@@ -1,4 +1,4 @@
-import { RequestParams, Transaction, TransactionInput, TransactionResponse } from '../../../types'
+import { RequestParams, Transaction, TransactionInput, TransactionResponse } from '@types'
 import Resource from '../resource'
 
 export default class Transactions extends Resource {

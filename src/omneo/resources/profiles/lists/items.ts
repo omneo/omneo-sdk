@@ -1,5 +1,5 @@
-import { ListItem, ListItemInput, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { ListItem, ListItemInput, RequestParams } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileListItems extends Resource {
   get (profileID: string, listID: number, listItemID: number): Promise<ListItem> {

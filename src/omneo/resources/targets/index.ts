@@ -1,4 +1,4 @@
-import { RequestParams, Target, TargetInput, TargetResponse } from '../../../types'
+import { RequestParams, Target, TargetInput, TargetResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Targets extends Resource {

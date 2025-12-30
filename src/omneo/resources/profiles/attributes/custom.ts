@@ -1,5 +1,5 @@
-import { ProfileResponse, CustomAttribute, CustomAttributeInput, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { ProfileResponse, CustomAttribute, CustomAttributeInput, RequestParams } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesCustom extends Resource {
   get (profileID: string, namespace: string, handle: string): Promise<CustomAttribute> {

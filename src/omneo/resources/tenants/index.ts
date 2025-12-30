@@ -1,5 +1,4 @@
-import { RequestParams } from '../../../types'
-import { TenantCustomFieldRequest } from '../../../types/tenant.js'
+import { RequestParams, TenantCustomFieldRequest } from '@types'
 import Resource from '../resource.js'
 
 export default class Tenants extends Resource {

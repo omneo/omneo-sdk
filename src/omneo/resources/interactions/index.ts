@@ -1,4 +1,4 @@
-import { Interaction, InteractionResponse, RequestParams } from '../../../types'
+import { Interaction, InteractionResponse, RequestParams } from '@types'
 import Resource from '../resource'
 
 export default class Interactions extends Resource {

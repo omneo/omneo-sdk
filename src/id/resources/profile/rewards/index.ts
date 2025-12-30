@@ -1,5 +1,5 @@
-import { RequestParams, Reward, RewardResponse } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Reward, RewardResponse } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileRewards extends Resource {
   get (rewardID: number): Promise<Reward> {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { Omneo } from '../../../../..'
+import { Omneo } from '@omneo'
 import { tier as mockTier } from '../../../../mocks/tier/tier'
 
 const omneo = new Omneo({

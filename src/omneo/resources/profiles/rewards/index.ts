@@ -1,5 +1,5 @@
-import { RequestParams, Reward, RewardResponse } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Reward, RewardResponse } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileRewards extends Resource {
   get (profileID: string, rewardID: number): Promise<Reward> {

@@ -1,5 +1,5 @@
-import { OrderLedger, TransactionLedger } from '../../../../types'
-import Resource from '../../resource'
+import { OrderLedger, TransactionLedger } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileLedgers extends Resource {
   get (profileID: string, ledgerID: number): Promise<(TransactionLedger | OrderLedger)> {

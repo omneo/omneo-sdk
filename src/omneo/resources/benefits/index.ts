@@ -1,4 +1,4 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '../../../types'
+import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '@types'
 import Resource from '../resource.js'
 
 export default class Benefits extends Resource {

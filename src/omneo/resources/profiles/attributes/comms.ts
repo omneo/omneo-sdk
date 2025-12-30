@@ -1,5 +1,5 @@
-import { ProfileComms, ProfileCommsInput } from '../../../../types'
-import Resource from '../../resource'
+import { ProfileComms, ProfileCommsInput } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesComms extends Resource {
   get (profileID: string): Promise<ProfileComms> {

@@ -1,6 +1,6 @@
 import { describe, test, afterAll, expect } from 'vitest'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { Omneo } from '../../../../omneo'
+import { simpleOmneoRequest } from '@lib'
+import { Omneo } from '@omneo'
 
 const CREATED_API_TOKENS : string[] = []
 

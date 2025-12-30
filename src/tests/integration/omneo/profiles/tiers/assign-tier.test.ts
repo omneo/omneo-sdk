@@ -1,7 +1,7 @@
 // Tests can be re-added once omneo bugs with calculating tiers bugs are fixed, can delete tier definitions
 import { describe, test } from 'vitest'
-// import { Omneo } from '../../../../..'
-// import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
+// import { Omneo } from '@omneo'
+// import { simpleOmneoRequest } from '@lib'
 
 // const CREATED_TIER_DEFINITIONS = [] as number[]
 

@@ -1,4 +1,4 @@
-import { Connection, ConnectionInput, ConnectionResponse, RequestParams } from '../../../types'
+import { Connection, ConnectionInput, ConnectionResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Connections extends Resource {

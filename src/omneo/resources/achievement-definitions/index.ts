@@ -1,5 +1,4 @@
-import { AchievementDefinition, AchievementDefinitionInput, AchievementDefinitionResponse } from '../../../types'
-import { RequestParams } from '../../../types/index.js'
+import { RequestParams, AchievementDefinition, AchievementDefinitionInput, AchievementDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class AchievementDefinitions extends Resource {

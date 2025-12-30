@@ -1,4 +1,4 @@
-import { RequestParams, Tag, TagInput, TagResponse } from '../../../types'
+import { RequestParams, Tag, TagInput, TagResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Tags extends Resource {

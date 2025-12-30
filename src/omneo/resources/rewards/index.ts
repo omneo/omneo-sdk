@@ -1,4 +1,4 @@
-import { RewardCreateInput, RewardUpdateInput, RequestParams, Reward, RewardResponse } from '../../../types'
+import { RewardCreateInput, RewardUpdateInput, RequestParams, Reward, RewardResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Rewards extends Resource {

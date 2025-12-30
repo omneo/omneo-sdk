@@ -1,5 +1,5 @@
-import { ProfileComms, ProfileCommsInput } from '../../../../../types'
-import Resource from '../../../resource'
+import { ProfileComms, ProfileCommsInput } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesComms extends Resource {
   get (): Promise<ProfileComms> {

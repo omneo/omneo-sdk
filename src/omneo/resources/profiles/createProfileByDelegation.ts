@@ -1,5 +1,5 @@
-import { Omneo } from '../../..'
-import { DelegationData, Profile } from '../../../types'
+import { Omneo } from '@omneo'
+import { DelegationData, Profile } from '@types'
 
 async function createProfileByDelegation (client: Omneo, body: any, delegation: DelegationData, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
   const { type, url, enabled } = delegation

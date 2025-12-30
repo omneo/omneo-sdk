@@ -1,5 +1,5 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileBenefits extends Resource {
   get (profileID: string, benefitID: number): Promise<Benefit> {

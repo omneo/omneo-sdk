@@ -1,4 +1,4 @@
-import { ProductResponse, RequestParams } from '../../../types'
+import { ProductResponse, RequestParams } from '@types'
 import Resource from '../resource'
 
 export default class Products extends Resource {

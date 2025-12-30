@@ -1,4 +1,4 @@
-import { RewardDefinitionCreateInput, RewardDefinitionUpdateInput, RequestParams, RewardDefinition, RewardDefinitionResponse } from '../../../types/index.js'
+import { RewardDefinitionCreateInput, RewardDefinitionUpdateInput, RequestParams, RewardDefinition, RewardDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class RewardDefinitions extends Resource {
