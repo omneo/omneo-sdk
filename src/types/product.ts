@@ -6,9 +6,13 @@ export type Product = {
     id: number
     title: string
     handle: string
+    type: string
     external_id: string
     status: string
     brand: string
+    department: any
+    link_brand?: string
+    link_department?: null | string
     description: string
     web_url: null | string
     currency: null | string
@@ -23,6 +27,8 @@ export type Product = {
     options: any[]
     custom_fields: CustomField[]
     variants: ProductVariant[]
+    organisation: any
+    meta: { [key: string]: any }
     created_at: string
     updated_at: string
 }

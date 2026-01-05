@@ -62,3 +62,6 @@ export type TransactionProductVariant = {
 export type TransactionProductVariantsResponse = PaginationResponse & {
   data: TransactionProductVariant[]
 }
+export type ProductVariantsResponse = PaginationResponse & {
+  data: ProductVariant[]
+}
