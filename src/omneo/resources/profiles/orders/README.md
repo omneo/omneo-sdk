@@ -34,6 +34,7 @@ omneoClient.profiles.orders.list(profileID, params)
         console.error('Error:', error)
     });
 ```
+
 ### List Group Orders
 
 ```javascript
