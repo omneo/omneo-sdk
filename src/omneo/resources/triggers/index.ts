@@ -56,7 +56,7 @@ export default class Triggers extends Resource {
 
   createAction (triggerID: number, payload: TriggerActionInput): Promise<TriggerAction> {
     return this.client.call({
-      method: 'get',
+      method: 'post',
       endpoint: `/triggers/${triggerID}/actions`
     })
   }

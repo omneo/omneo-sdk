@@ -1,5 +1,5 @@
 import { Location } from './location'
-import { PaginationResponse } from './pagination'
+import { PaginationMeta, PaginationResponse } from './pagination'
 import { Profile, ProfileWebhook } from './profile'
 import { Redemption } from './redemption'
 import { Transaction } from './transaction'
@@ -174,4 +174,78 @@ export type OrderLedger = {
 
 export type OrderResponse = PaginationResponse & {
   data: Order[]
+}
+
+export type GroupOrderResponse = PaginationMeta & {
+  data: {
+    order_number: string
+    order_id: number
+    number_orders: number
+    total: number
+    latest_updated_at: string
+    latest_transacted_at: string
+    orders: Order[]
+  }[]
+}
+
+export type OrderCreateInput = {
+  profile_id: string
+  profile_id_handle?: string
+  redemption_id?: number
+  external_id?: string
+  location_id?: string
+  currency?: string
+  total: number
+  total_original?: number
+  rounding?: number
+  tender?: string
+  is_void?: boolean
+  margin?: number
+  transacted_at: string
+  timezone: string
+  meta?: { [key: string]: any }
+  tags?: Array<string>
+  items: Array<{
+    external_id?: string
+    name: string
+    price_current?: number
+    price_sell: number
+    quantity: number
+    price_original?: number
+    price_margin?: number
+    discounts?: Array<any>
+    sku?: string
+    department?: string
+    variant_external_id?: string
+    product_variant_sku?: string
+    product_variant_id?: string
+    product_variant?: {
+      product_id: number
+      sku: string
+      title: string
+      category: string
+      subcategory?: string
+      brand: string
+      price: number
+    }
+    meta?: { [key: string]: any }
+  }>
+  systems?: Array<string>
+  staff_id?: string
+  payments?: Array<any>
+  receipt_is_email?: boolean
+  receipt_ref?: string
+  receipt_email?: string
+  type?: string
+  status?: string
+  order_number?: string
+  due_date?: string
+  custom_fields?: Array<{
+    namespace: string
+    handle: string
+    type: string
+    value: any
+  }>
+  organisation_id?: string
+  fees?: string
 }
