@@ -2,6 +2,7 @@ import { Product } from './product'
 import { ProductVariant } from './productVariant'
 import { Profile } from './profile'
 import { CustomFieldInput } from './general'
+import { PaginationResponse } from './pagination'
 
 export type ListItemInput = {
   product_variant_sku?: string
@@ -92,4 +93,8 @@ export type List = {
   staff: null | Profile
   created_at: string
   updated_at: string
+}
+
+export type ListDefinitionResponse = PaginationResponse & {
+  data: ListDefinition[]
 }
