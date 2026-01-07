@@ -14,7 +14,7 @@ export type CustomField = {
 
 export type CustomFieldInput = {
     name?: CustomField['name']
-    type: CustomField['type']
+    type: CustomField['type'] | string
     handle: CustomField['handle']
     namespace: CustomField['namespace']
     value: CustomField['value']
