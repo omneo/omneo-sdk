@@ -20,7 +20,7 @@ export default class ProfileLists extends Resource {
       endpoint: `/profiles/${profileID}/lists`,
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
@@ -48,7 +48,7 @@ export default class ProfileLists extends Resource {
       method: 'delete',
       endpoint: `/profiles/${profileID}/lists/${listID}`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }
