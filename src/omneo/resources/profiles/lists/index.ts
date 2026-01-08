@@ -1,9 +1,11 @@
 import { List, ListInput, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 import Items from './items'
+import CustomFields from './custom-fields'
 
 export default class ProfileLists extends Resource {
   items = new Items(this.client)
+  customFields = new CustomFields(this.client)
 
   get (profileID: string, listID: number): Promise<List> {
     return this.client.call({

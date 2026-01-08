@@ -1,9 +1,11 @@
 import { List, ListInput, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 import Items from './items'
+import CustomFields from './custom-fields'
 
 export default class ProfileLists extends Resource {
   items = new Items(this.client)
+  customFields = new CustomFields(this.client)
 
   get (listID: number): Promise<List> {
     return this.client.call({
