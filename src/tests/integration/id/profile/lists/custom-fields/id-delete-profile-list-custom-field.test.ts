@@ -6,7 +6,7 @@ import { testWithIDData } from '../../../test-with-id-data'
 
 const CREATED_LIST_DEFINITION_IDS: number[] = []
 const CREATED_LIST_IDS: number[] = []
-const CREATED_LIST_CUSTOM_FIELDS: any[] = []
+const FAILED_DELETE_LIST_CUSTOM_FIELDS: any[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 beforeAll(() => {
@@ -45,11 +45,7 @@ describe('ID Delete Profile List Custom Fields', () => {
     }
     const createdCustomFieldResponse = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/custom-fields`, payload3)
     expect(createdCustomFieldResponse.data).toBeDefined()
-    CREATED_LIST_CUSTOM_FIELDS.push({
-      listId,
-      namespace: payload3.namespace,
-      handle: payload3.handle
-    })
+
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
       IDToken: tokenData.token,
@@ -57,6 +53,11 @@ describe('ID Delete Profile List Custom Fields', () => {
     })
     await IDClient.profile.lists.customFields.delete(listId, payload3.namespace, payload3.handle).catch((err: any) => {
       console.error('ID SDK Delete profile list custom fields failed:', err)
+      FAILED_DELETE_LIST_CUSTOM_FIELDS.push({
+        listId,
+        namespace: payload3.namespace,
+        handle: payload3.handle
+      })
       throw new Error('ID SDK Delete profile list custom fields failed')
     })
     const customFieldResponse = await simpleOmneoRequest('GET', `/profiles/${testProfileID}/lists/${listId}/custom-fields/${payload3.namespace}:${payload3.handle}`)
@@ -65,8 +66,8 @@ describe('ID Delete Profile List Custom Fields', () => {
 })
 
 afterAll(async () => {
-  if (CREATED_LIST_CUSTOM_FIELDS.length > 0) {
-    for (const { namespace, handle, listId } of CREATED_LIST_CUSTOM_FIELDS) {
+  if (FAILED_DELETE_LIST_CUSTOM_FIELDS.length > 0) {
+    for (const { namespace, handle, listId } of FAILED_DELETE_LIST_CUSTOM_FIELDS) {
       console.log('Cleaning up ID SDK List Custom Field with namespace, handle', namespace, handle, listId)
       const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${listId}/custom-fields/${namespace}:${handle}`)
       if (deleteResponse.status === 204) {
