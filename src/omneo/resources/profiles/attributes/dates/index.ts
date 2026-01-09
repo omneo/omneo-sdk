@@ -27,7 +27,7 @@ export default class ProfileAttributesDates extends Resource {
       method: 'delete',
       endpoint: `/profiles/${profileID}/attributes/dates/${dateID}`
     }).then((response) => {
-      return response
+      return response.data
     })
   }
 }
