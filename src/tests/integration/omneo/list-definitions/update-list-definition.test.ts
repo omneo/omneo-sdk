@@ -39,7 +39,6 @@ describe('Update List Definition', () => {
     }
     const listDefinitionsRes: ListDefinition = await omneoClient.listDefinitions.update(response.data.id, payload2)
     expect(listDefinitionsRes).toBeDefined()
-    CREATED_LIST_DEFINITION_IDS.push(listDefinitionsRes.id)
     expect(listDefinitionsRes).toBeDefined()
     const targetDefinition = listDefinitionsRes
     expect(targetDefinition.name).toBe(payload2.name)

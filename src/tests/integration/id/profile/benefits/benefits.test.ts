@@ -73,9 +73,11 @@ describe('Profile Benefits', async () => {
       throw new Error('SDK list benefits created failed')
     })
 
-    CREATED_BENEFITS_IDS.push(benefit.id)
-
-    await IDClient.profile.benefits.delete(benefit.id)
+    await IDClient.profile.benefits.delete(benefit.id).catch((err) => {
+      console.error('SDK Delete profile benefit failed:', err)
+      CREATED_BENEFITS_IDS.push(benefit.id)
+      throw new Error('SDK Delete profile benefit failed')
+    })
     const fetchedBenefit = await simpleOmneoRequest('GET', `/benefits/${benefit.id}`)
     expect(fetchedBenefit).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })
