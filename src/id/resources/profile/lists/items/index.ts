@@ -1,4 +1,4 @@
-import { ListItem, ListItemInput, RequestParams } from '@types'
+import { ListItem, ListItemInput, ListItemCustomInput, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileListItems extends Resource {
@@ -17,7 +17,7 @@ export default class ProfileListItems extends Resource {
       endpoint: `/profiles/me/lists/${listID}/items`,
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
@@ -25,6 +25,16 @@ export default class ProfileListItems extends Resource {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/me/lists/${listID}/items`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  custom (listID: number, body: ListItemCustomInput): Promise<ListItem> {
+    return this.client.call({
+      method: 'post',
+      endpoint: `/profiles/me/lists/${listID}/custom`,
       body
     }).then((response) => {
       return response.data
@@ -46,7 +56,7 @@ export default class ProfileListItems extends Resource {
       method: 'delete',
       endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

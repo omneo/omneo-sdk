@@ -11,12 +11,27 @@ export type ListItemInput = {
   product_variant_id?: number
   product_id?: number
   external_id?: string
+  custom_field?: string
   quantity?: number
   position?: number | null
   status?: string | null
   meta?: { [key: string]: any } | null
   source?: string | null
   location_id?: number | null
+}
+
+export type ListItemCustomInput = {
+  name: string
+  description?: string
+  barcode?: string
+  sku?: string
+  url?: string
+  price?: number
+  currency?: string
+  image_url?: string
+  product_id?: number | null
+  quantity?: number | null
+  position?: number | null
 }
 
 export type ListInput = {
