@@ -1,4 +1,4 @@
-import { ListItem, ListItemInput, ListItemCustomInput, RequestParams } from '@types'
+import { ListItem, ListItemInput, ListItemCustomInput, ListItemResponse } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileListItems extends Resource {
@@ -11,11 +11,10 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  list (profileID: string, listID: number, params?: RequestParams): Promise<ListItem[]> {
+  list (profileID: string, listID: number): Promise<ListItemResponse> {
     return this.client.call({
       method: 'get',
-      endpoint: `/profiles/${profileID}/lists/${listID}/items`,
-      params
+      endpoint: `/profiles/${profileID}/lists/${listID}/items`
     }).then((response) => {
       return response
     })

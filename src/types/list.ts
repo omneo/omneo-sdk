@@ -1,4 +1,4 @@
-import { Product } from './product'
+import { Product, CustomProduct } from './product'
 import { ProductVariant } from './productVariant'
 import { Profile } from './profile'
 import { CustomFieldInput } from './general'
@@ -56,7 +56,7 @@ export type ListItem = {
   product_category: null | string
   product_variant: ProductVariant
   product: Product
-  custom_product: any
+  custom_product: CustomProduct
   created_at: string
   updated_at: string
   quantity: number
@@ -121,4 +121,7 @@ export type ListShare = {
 
 export type ListDefinitionResponse = PaginationResponse & {
   data: ListDefinition[]
+}
+export type ListItemResponse = PaginationResponse & {
+  data: ListItem[]
 }

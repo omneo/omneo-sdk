@@ -1,4 +1,4 @@
-import { ListItem, ListItemInput, ListItemCustomInput, RequestParams } from '@types'
+import { ListItem, ListItemInput, ListItemCustomInput, ListItemResponse } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileListItems extends Resource {
@@ -11,11 +11,10 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  list (listID: number, params?: RequestParams): Promise<ListItem[]> {
+  list (listID: number): Promise<ListItemResponse> {
     return this.client.call({
       method: 'get',
-      endpoint: `/profiles/me/lists/${listID}/items`,
-      params
+      endpoint: `/profiles/me/lists/${listID}/items`
     }).then((response) => {
       return response
     })
