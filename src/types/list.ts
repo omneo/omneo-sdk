@@ -26,7 +26,7 @@ export type ListItemCustomInput = {
   barcode?: string
   sku?: string
   url?: string
-  price?: number
+  price?: number | string
   currency?: string
   image_url?: string
   product_id?: number | null
