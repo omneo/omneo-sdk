@@ -21,6 +21,8 @@ import Rewards from './resources/rewards'
 import RewardDefinitions from './resources/reward-definitions'
 import Benefits from './resources/benefits'
 import BenefitDefinitions from './resources/benefit-definitions'
+import CreditDefinitions from './resources/credit-definitions'
+import Credits from './resources/credits'
 import ListDefinitions from './resources/list-definitions'
 import Webhooks from './resources/webhooks'
 import Roles from './resources/roles'
@@ -70,6 +72,8 @@ export class Omneo {
   public benefits = new Benefits(this)
   public achievementDefinitions = new AchievementDefinitions(this)
   public benefitDefinitions = new BenefitDefinitions(this)
+  public creditDefinitions = new CreditDefinitions(this)
+  public credits = new Credits(this)
   public listDefinitions = new ListDefinitions(this)
   public webhooks = new Webhooks(this)
   public roles = new Roles(this)
