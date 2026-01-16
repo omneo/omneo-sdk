@@ -1,15 +1,15 @@
 import { CustomField, PaginationResponse, PeriodType } from '.'
 
 export type CreditDefinition = {
-  id: string
+  id: number
   name: string
   handle: string
   timezone: string
   period: number
-  period_type: PeriodType
+  period_type: PeriodType | string
   absolute_expiry: string | null
   release_period: number
-  release_period_type: PeriodType
+  release_period_type: PeriodType | string
   release_period_absolute_expiry: string | null
   is_published: boolean
   is_archived: boolean
@@ -146,8 +146,8 @@ export type UpdateCreditInput = Partial<Omit<CreditInput, 'credit_definition_id'
 export type ExtendCreditInput = {
   profile_id: string
   ids: string[]
-  extend_days: string
-  extend_date: string
+  extend_days?: string
+  extend_date?: string
 }
 
 export type CreditResponse = PaginationResponse & {
