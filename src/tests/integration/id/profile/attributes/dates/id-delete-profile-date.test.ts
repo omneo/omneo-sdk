@@ -51,11 +51,14 @@ describe('ID Delete Date', () => {
 
 afterAll(async () => {
   if (FAILED_DELETE_DATES.length > 0) {
-    for (const handle of FAILED_DELETE_DATES) {
-      console.log('ID Cleaning up Profile Date with ID', handle)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `profiles/${testProfileID}/attributes/dates/${handle}`)
-      if (deleteResponse.status === 204) {
-        console.log(`ID Profile Date ID ${handle} deleted`)
+    for (const id of FAILED_DELETE_DATES) {
+      console.log('ID Cleaning up Profile Date with ID', id)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/dates/${id}`)
+      const findDate = deleteResponse?.data?.find((v: any) => v.id === id)
+      if (!findDate) {
+        console.log(`ID SDK Profile Dates ID ${id} deleted`)
+      } else {
+        console.log(`Failed to delete Profile Dates ID ${id}`)
       }
     }
   }
