@@ -29,6 +29,7 @@ import ProfileRegions from './regions'
 import ProfileLists from './lists'
 import ProfileTiers from './tiers'
 import ProfileBenefits from './benefits'
+import ProfileCredits from './credits'
 
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
@@ -47,6 +48,7 @@ export default class Profiles extends Resource {
   regions = new ProfileRegions(this.client)
   lists = new ProfileLists(this.client)
   tiers = new ProfileTiers(this.client)
+  credits = new ProfileCredits(this.client)
   attributes = {
     custom: new ProfileAttributesCustom(this.client),
     dates: new ProfileAttributesDates(this.client),
