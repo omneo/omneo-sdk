@@ -25,6 +25,7 @@ export type Profile = {
   title: string | null
   first_name: string
   last_name: string
+  full_name: string
   email: string
   gender: 'male' | 'female' | 'witheld' | 'other' | null
   currency: 'string' | null
