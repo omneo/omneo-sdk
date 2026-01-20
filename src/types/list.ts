@@ -1,4 +1,4 @@
-import { Product } from './product'
+import { Product, CustomProduct } from './product'
 import { ProductVariant } from './productVariant'
 import { Profile } from './profile'
 import { CustomFieldInput } from './general'
@@ -11,12 +11,27 @@ export type ListItemInput = {
   product_variant_id?: number
   product_id?: number
   external_id?: string
+  custom_field?: string
   quantity?: number
   position?: number | null
   status?: string | null
   meta?: { [key: string]: any } | null
   source?: string | null
   location_id?: number | null
+}
+
+export type ListItemCustomInput = {
+  name: string
+  description?: string
+  barcode?: string
+  sku?: string
+  url?: string
+  price?: number | string
+  currency?: string
+  image_url?: string
+  product_id?: number | null
+  quantity?: number | null
+  position?: number | null
 }
 
 export type ListInput = {
@@ -41,7 +56,7 @@ export type ListItem = {
   product_category: null | string
   product_variant: ProductVariant
   product: Product
-  custom_product: any
+  custom_product: CustomProduct
   created_at: string
   updated_at: string
   quantity: number
@@ -106,4 +121,7 @@ export type ListShare = {
 
 export type ListDefinitionResponse = PaginationResponse & {
   data: ListDefinition[]
+}
+export type ListItemResponse = PaginationResponse & {
+  data: ListItem[]
 }
