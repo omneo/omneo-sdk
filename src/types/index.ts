@@ -37,6 +37,7 @@ export * from './credit'
 export * from './brands'
 export * from './trigger'
 export * from './automations'
+export * from './redemption'
 
 export * from './misc'
 export * from './permissions'
