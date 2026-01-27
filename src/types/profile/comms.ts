@@ -114,6 +114,8 @@ export type ProfileComms = {
   sms_verification: 'sent' | 'not_sent'
   phone_verification: 'sent' | 'not_sent'
   post_verification: 'sent' | 'not_sent'
+  email_consent_updated_at: string | null
+  sms_consent_updated_at: string | null
   terms_accepted_at: Boolean | null | null
   terms_accepted_version: Boolean | null | null
   created_at: string
