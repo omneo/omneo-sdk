@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { AchievementDefinitionInput, CreateProfileAchievementInput, ProfileAchievement } from '@types'
+import { AchievementDefinitionInput, CreateProfileAchievementInput } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
