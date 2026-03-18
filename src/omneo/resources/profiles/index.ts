@@ -24,6 +24,7 @@ import ProfileRewards from './rewards'
 import ProfileOrders from './orders'
 import ProfileTransactions from './transactions'
 import ProfileTransactionClaims from './transaction-claims'
+import ProfileAchievements from './achievements'
 import ProfileBalances from './balances'
 import ProfileRegions from './regions'
 import ProfileLists from './lists'
@@ -43,6 +44,7 @@ export default class Profiles extends Resource {
   transactionClaims = new ProfileTransactionClaims(this.client)
   rewards = new ProfileRewards(this.client)
   orders = new ProfileOrders(this.client)
+  achievements = new ProfileAchievements(this.client)
   benefits = new ProfileBenefits(this.client)
   balances = new ProfileBalances(this.client)
   regions = new ProfileRegions(this.client)

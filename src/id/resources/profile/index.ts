@@ -14,6 +14,7 @@ import ProfileAttributesAppearance from './attributes/appearance'
 import ProfileAttributesComms from './attributes/comms'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
+import ProfileAchievements from './achievements'
 import ProfileBalances from './balances'
 import ProfileBenefits from './benefits'
 import ProfileConnections from './connections'
@@ -40,6 +41,7 @@ export default class OmneoProfile extends Resource {
     appearance: new ProfileAttributesAppearance(this.client)
   }
 
+  achievements = new ProfileAchievements(this.client)
   balances = new ProfileBalances(this.client)
   benefits = new ProfileBenefits(this.client)
   connections = new ProfileConnections(this.client)
