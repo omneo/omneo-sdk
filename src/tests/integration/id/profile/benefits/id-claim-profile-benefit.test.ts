@@ -8,8 +8,8 @@ const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 const CREATED_BENEFIT_IDS: number[] = []
 
 const buildDefinitionPayload = (): BenefitDefinitionInput => ({
-  name: getRandomString('sdk_unit_test_id_profile_benefit_claim_name'),
-  handle: getRandomString('sdk_unit_test_id_profile_benefit_claim_handle'),
+  name: getRandomString('id_sdk_unit_test_id_profile_benefit_claim_name'),
+  handle: getRandomString('id_sdk_unit_test_id_profile_benefit_claim_handle'),
   period: 30,
   is_published: true,
   is_assignable: true,

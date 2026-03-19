@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { BenefitDefinitionInput, ClaimBenefitInput } from '@types'
+import { Benefit, BenefitDefinitionInput, ClaimBenefitInput } from '@types'
 import { ID } from '@id'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '../../test-with-id-data'
@@ -8,8 +8,8 @@ const CREATED_BENEFIT_IDS: number[] = []
 const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 
 const buildDefinitionPayload = (): BenefitDefinitionInput => ({
-  name: getRandomString('sdk_unit_test_id_profile_benefit_claim_redeem_name'),
-  handle: getRandomString('sdk_unit_test_id_profile_benefit_claim_redeem_handle'),
+  name: getRandomString('id_sdk_unit_test_id_profile_benefit_claim_redeem_name'),
+  handle: getRandomString('id_sdk_unit_test_id_profile_benefit_claim_redeem_handle'),
   period: 30,
   is_published: true,
   is_assignable: true,
@@ -46,14 +46,15 @@ describe('ID Claim Redeem Profile Benefit', () => {
     expect(redemption.items.length).toBeGreaterThan(0)
 
     for (const item of redemption.items) {
-      CREATED_BENEFIT_IDS.push(item.type_attributes.id)
+      CREATED_BENEFIT_IDS.push((item.type_attributes as Benefit).id)
     }
 
     expect(redemption.items[0].type).toBe('benefit')
     expect(redemption.items[0].type_attributes.profile_id).toBe(profile.id)
-    expect(redemption.items[0].type_attributes.definition.name).toBe(definitionPayload.name)
-    expect(redemption.items[0].type_attributes.definition.handle).toBe(definitionPayload.handle)
-    expect(redemption.items[0].type_attributes.definition.period).toBe(definitionPayload.period)
+    const benefit: Benefit = redemption.items[0].type_attributes as Benefit
+    expect(benefit.definition.name).toBe(definitionPayload.name)
+    expect(benefit.definition.handle).toBe(definitionPayload.handle)
+    expect(benefit.definition.period).toBe(definitionPayload.period)
   })
 })
 
