@@ -1,4 +1,4 @@
-import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionFilters, TransactionResponse, TransactionUnassignedItemsResponse } from '@types'
+import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionAssignedItemsResponse, TransactionFilters, TransactionItem, TransactionResponse, TransactionUnassignedItemsResponse } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileTransactions extends Resource {
@@ -48,6 +48,51 @@ export default class ProfileTransactions extends Resource {
       method: 'get',
       endpoint: `/profiles/${profileID}/transactionitems/list/unassigned`,
       params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getAssignedItems (profileID: string, params?: { include_list_item: 1 | 0}): Promise<TransactionAssignedItemsResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/profiles/${profileID}/transactionitems/list/assigned`,
+      params
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  linkListItem (profileId: string, transactionItemId: number, profileListId: number): Promise<TransactionItem> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`,
+      body: {
+        product_list_item_id: profileListId,
+        type: 'link'
+      }
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  unlinkListItem (profileId: string, transactionItemId: number, profileListId: number): Promise<TransactionItem> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`,
+      body: {
+        product_list_item_id: profileListId,
+        type: 'unlink'
+      }
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  unattach (profileId: string, transactionId: number): Promise<Transaction> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/profiles/${profileId}/transactions/${transactionId}/unattach`
     }).then((response) => {
       return response.data
     })
