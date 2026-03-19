@@ -25,6 +25,7 @@ import ProfileLists from './lists'
 import ProfilePoints from './points'
 import ProfileRegions from './regions'
 import ProfileRewards from './rewards'
+import ProfileRedemptions from './redemptions'
 import ProfileCredits from './credits'
 import ProfileOrders from './orders'
 import ProfileTiers from './tiers'
@@ -52,6 +53,7 @@ export default class OmneoProfile extends Resource {
   points = new ProfilePoints(this.client)
   regions = new ProfileRegions(this.client)
   rewards = new ProfileRewards(this.client)
+  redemptions = new ProfileRedemptions(this.client)
   credits = new ProfileCredits(this.client)
   orders = new ProfileOrders(this.client)
   tiers = new ProfileTiers(this.client)
