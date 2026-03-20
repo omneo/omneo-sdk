@@ -21,7 +21,8 @@ const buildDefinitionPayload = (): BenefitDefinitionInput => ({
   is_claimable: true,
   is_reclaimable: true,
   claim_period_start_at: '2025-01-01 00:00:00',
-  claim_period_end_at: '2030-01-01 00:00:00'
+  claim_period_end_at: '2030-01-01 00:00:00',
+  external_id: getRandomString('sdk_unit_test_profile_redemption_list_external_id')
 })
 
 describe('List Profile Redemptions', () => {
@@ -32,7 +33,8 @@ describe('List Profile Redemptions', () => {
 
     const claimInput: ClaimBenefitInput = {
       definition: definitionPayload.handle as string,
-      timezone: 'Australia/Melbourne'
+      timezone: 'Australia/Melbourne',
+      external_id: definitionPayload.external_id
     }
 
     const { data: createdRedemption } = await simpleOmneoRequest(
@@ -48,8 +50,7 @@ describe('List Profile Redemptions', () => {
     }
 
     const params = {
-      has_benefit: true,
-      'page[size]': 10
+      has_benefit: true
     }
     const response = await omneoClient.profiles.redemptions.list(testProfileID, params)
     const redemptions = Array.isArray(response.data) ? response.data : []

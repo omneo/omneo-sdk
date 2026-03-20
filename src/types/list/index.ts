@@ -1,8 +1,8 @@
-import { Product, CustomProduct, ProductList, ProductListNoPII } from '../product'
-import { ProductVariant } from '../productVariant'
-import { Profile } from '../profile'
-import { CustomFieldInput } from '../custom-field'
-import { PaginationResponse } from '../pagination'
+import { Product, CustomProduct } from './product'
+import { ProductVariant } from './productVariant'
+import { Profile } from './profile'
+import { CustomFieldInput } from './general'
+import { PaginationResponse } from './pagination'
 
 export type ListItemInput = {
   product_variant_sku?: string
@@ -67,7 +67,6 @@ type ListItemBase = {
   location: Location
 }
 
-// ProductListReservationNested
 export type ListItemReservation = {
   id: number
   profile: Profile
@@ -80,69 +79,6 @@ export type ListItemReservation = {
   expires_at: string | null
   created_at: string
   updated_at: string
-}
-
-export type CreateListItemReservationInput = {
-  external_profile_id?: string | null
-  quantity: number
-  timezone?: string | null
-  expires_at?: string | null
-  profile_id?: number
-}
-
-export type UpdateListItemReservationInput = {
-  quantity: number
-  timezone?: string | null
-  expires_at?: string | null
-}
-
-export type ListItemTransaction = {
-  transacted_at: string
-  receipt_ref: string | null
-  external_id: string | null
-  profile: {
-    id: string
-    first_name: string
-    last_name: string
-    email: string
-  } | null
-}
-
-export type ListItemTransactionItem = {
-  id: number
-  external_id: string | null
-  name: string
-  transaction_id: number
-  product_id: number | null
-  product_variant_id: number | null
-  sku: string | null
-  variant_external_id: string | null
-  is_void: boolean
-  quantity: number
-  price_current: number
-  price_sell: number
-  price_original: number | null
-  price_margin: number | null
-  price_tax: number | null
-  is_return: boolean
-  discounts: Array<{
-    amount: number
-    reason_desc: string
-  }> | null
-  department: string | null
-  meta: { [key: string]: any } | null
-  product_images: Array<{
-    url: string
-    sort_order: number
-  }>
-  order_id: number | null
-  created_at: string
-  updated_at: string
-  pivot: {
-    created_at: string
-    updated_at: string
-  } | {}
-  transaction?: ListItemTransaction
 }
 
 export type ListItem = ListItemBase & {
@@ -197,24 +133,6 @@ export type ListShare = {
   handle: string
   profile_id: string
   product_list_id: number
-  created_at: string
-  updated_at: string
-}
-
-export type ListShareNested = {
-  id: number
-  handle: string
-  list: ProductList
-  created_at: string
-  updated_at: string
-  profile?: Profile
-}
-
-export type ListShareNoProfile = {
-  id: number
-  handle: string
-  profile_id: string
-  list: ProductListNoPII
   created_at: string
   updated_at: string
 }

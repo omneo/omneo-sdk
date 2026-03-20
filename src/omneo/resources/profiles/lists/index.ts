@@ -10,6 +10,7 @@ export default class ProfileLists extends Resource {
   items = new Items(this.client)
   reservations = new Reservations(this.client)
   shares = new Shares(this.client)
+  reservations = new Reservations(this.client)
 
   get (profileID: string, listID: number): Promise<List> {
     return this.client.call({
