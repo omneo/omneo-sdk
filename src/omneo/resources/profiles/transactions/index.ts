@@ -49,7 +49,7 @@ export default class ProfileTransactions extends Resource {
       endpoint: `/profiles/${profileID}/transactionitems/list/unassigned`,
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
@@ -59,7 +59,7 @@ export default class ProfileTransactions extends Resource {
       endpoint: `/profiles/${profileID}/transactionitems/list/assigned`,
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
