@@ -1,17 +1,20 @@
 import { Benefit } from './benefit'
 import { Credit } from './credit'
 import { Location } from './location'
+import { PaginationResponse } from './pagination'
 import { Point } from './point'
 import { Profile } from './profile'
 import { Reward } from './reward'
 import { Transaction } from './transaction'
 
+export type RedemptionType = 'reward' | 'point' | 'benefit' | 'credit' | string
+
 export type Redemptionitem = {
   id: number
-  type: string | null
+  type: RedemptionType | null
   value: number | null
-  count: number
-  type_attributes: Reward & Point & Benefit & Credit
+  count: number | null
+  type_attributes: Reward | Point | Benefit | Credit
   created_at: string
   updated_at: string
 }
@@ -36,4 +39,8 @@ export type Redemption = {
   transaction?: Pick<Transaction, 'external_id' | 'receipt_ref' | 'transacted_at' | 'total'> & {
     location?: Pick<Location, 'id' | 'name' | 'external_id'>
   } | null
+}
+
+export type RedemptionResponse = PaginationResponse & {
+  data: Redemption
 }
