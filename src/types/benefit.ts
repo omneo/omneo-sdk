@@ -1,12 +1,17 @@
 import { PaginationResponse, PeriodType } from '.'
+import { Redemption } from './redemption'
 
+export type BenefitRedemptionResponse = Redemption
 export type BenefitDefinition = {
   id: string
   name: string
   handle: string
   period: number
-  period_type: PeriodType
-  absolute_expiry: string | null
+  period_type?: PeriodType
+  absolute_expiry?: string | null
+  region_id?: string | number | null
+  region?: any | null
+  currency?: string | null
   description: string | null
   internal_notes: string | null
   meta: { [key: string]: any } | null
@@ -20,7 +25,7 @@ export type BenefitDefinition = {
   redeem_code_online: string | null
   icon: string | null
   image_url: string | null
-  max_redemptions: number
+  max_redemptions: number | null
   is_extendable: boolean
   is_assignable: boolean
   is_reassignable: boolean
@@ -31,10 +36,10 @@ export type BenefitDefinition = {
   max_global_redemptions: number | null
   total_global_redemptions_remaining: number | null
   total_global_redemptions: number
-  total_global_created: number
+  total_global_created?: number
   claim_period_start_at: string | null
   claim_period_end_at: string | null
-  claim_condition: string | null
+  claim_condition: { [key: string]: any } | string | null
   is_reclaimable: boolean | null
   notify_schedule_offset: number | null
   notify_issue_offset_days: number | null
@@ -53,10 +58,11 @@ export type BenefitDefinition = {
   created_at: string
   updated_at: string
   claim_timeframe: string | null
-  view_condition: string | null
+  view_condition: { [key: string]: any } | string | null
   allow_user_redeem: boolean
-  value: number | null
-  type: string | null
+  same_campaign_count?: number
+  value?: number | null
+  type?: string | null
 }
 
 export type Benefit = {
@@ -81,6 +87,8 @@ export type Benefit = {
   combine_meta: { [key: string]: any } | null
   is_combined: boolean | null
   extended_at: string | null
+  source_id: string | number | null
+  source_type: string | null
 }
 
 export type BenefitDefinitionResponse = PaginationResponse & {
@@ -106,4 +114,11 @@ export type BenefitInput = {
 
 export type BenefitResponse = PaginationResponse & {
   data: Benefit[]
+}
+
+export type ClaimBenefitInput = {
+  definition: string
+  timezone: string
+  external_id?: string | null
+  meta?: { [key: string]: any } | null
 }
