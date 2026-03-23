@@ -22,10 +22,11 @@ export type TransactionItem = {
   sku: string | null
   variant_external_id: string | null
   is_void: boolean
+  is_return: boolean
   quantity: number
   price_current: number
   price_sell: number
-  price_original: number
+  price_original: number | null
   price_margin: number | null
   price_tax: number | null
   discounts: Array<{
@@ -33,7 +34,10 @@ export type TransactionItem = {
     reason_desc: string
   }> | null
   department: string | null
-  product_images: Array<any>
+  product_images: Array<{
+    url: string
+    sort_order: number
+  }>
   order_id: number | null
   created_at: string
   updated_at: string
@@ -43,19 +47,20 @@ export type TransactionItem = {
     receipt_ref: string | null
     external_id: string | null
   }
-  meta: {[key: string]: any}
+  meta: {[key: string]: any} | null
 }
 
 export type Transaction = {
   id: number
-  external_id: string
-  profile_id?: string
+  external_id: string | null
+  redemption: Redemption | null
+  reversed_redemptions: Redemption[]
+  profile_id?: string | null
   profile?: {
     email: string
-  }
-  redemption: Redemption | null
+  } | null
   location?: Location
-  meta: {[key: string]: any}
+  meta: {[key: string]: any} | null
   total: number
   total_original: number | null
   total_converted: number | null
@@ -67,9 +72,10 @@ export type Transaction = {
   timezone: string
   tags: Array<string>
   items: Array<TransactionItem>
-  payments: Array<Payment>
+  payments: Array<Payment> | null
   receipt_is_email: boolean
   receipt_ref: string | null
+  linked_receipt_ref: string | null
   claimed_at: string | null
   receipt_email: string | null
   staff: {
@@ -89,6 +95,8 @@ export type Transaction = {
   external_order_id: string | null
   need_action: boolean | null
   custom_fields: { [key: string]: any }
+  organisation: any | null
+  fees: any | null
   created_at: string
   updated_at: string
 }
@@ -188,23 +196,41 @@ export type TransactionUnassignedItemsResponse = PaginationResponse & {
   data: TransactionItem[]
 }
 
+export type TransactionAssignedItemsResponse = PaginationResponse & {
+  data: TransactionItem[]
+}
+
 export type TransactionClaim = {
   id: number
   status: string
   profile_id: string
-  transaction_receipt_ref: string
+  transaction_receipt_ref: number | string
   transaction_transacted_at: string
   transaction_timezone: string
   transaction_total: number
   transaction_location_external_code: string
-  attempts: number
-  claimed_transaction_id: number
-  claimed_at: string
-  last_checked_at: string
+  attempts: number | null
+  claimed_transaction_id: number | null
+  claimed_at: string | null
+  last_checked_at: string | null
   created_at: string
   updated_at: string
 }
 
 export type TransactionClaimsResponse = PaginationResponse & {
   data: TransactionClaim[]
+}
+
+export type ClaimTransactionInput = {
+  profile_id: string
+  transaction_receipt_ref: number | string
+  transaction_transacted_at: string
+  transaction_timezone?: string
+  transaction_total: number
+  transaction_location_external_code?: string
+}
+
+export type LinkTransactionItemListItemInput = {
+  product_list_item_id: number
+  type: 'link'
 }
