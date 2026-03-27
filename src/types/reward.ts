@@ -112,3 +112,10 @@ export type RewardUpdateInput = {
   expires_at?: string
   meta?: object
 }
+
+export type ExtendRewardParams = {
+  profile_id: string
+  ids: number[]
+  extend_days?: number | null
+  extend_date?: string | null
+}

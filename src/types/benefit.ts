@@ -99,6 +99,7 @@ export type BenefitDefinitionInput = Partial<Omit<BenefitDefinition, 'id' | 'cre
   name: BenefitDefinition['name']
   handle: BenefitDefinition['handle']
   period: BenefitDefinition['period']
+  external_id?: string | null
 }
 
 export type BenefitInput = {
@@ -122,3 +123,5 @@ export type ClaimBenefitInput = {
   external_id?: string | null
   meta?: { [key: string]: any } | null
 }
+
+export type BenefitTriggerTargetType = 'issue' | 'remind' | string

@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TransactionInput, TransactionItem, ListDefinition, List } from '@types'
+import { CreateTransactionInput, TransactionItem, ListDefinition, List } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -25,6 +25,9 @@ describe('Profile Link and Unlink Transaction Item', () => {
       type: 'gift_registry',
       is_published: true,
       allow_quantity: true,
+      allow_reserve: true,
+      is_active: true,
+      allow_edit: true,
       allow_custom_product: true
     }
     const listDefResponse: { data: ListDefinition } = await simpleOmneoRequest('POST', '/lists/definitions', listDefPayload)
@@ -39,7 +42,7 @@ describe('Profile Link and Unlink Transaction Item', () => {
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: testProfileID,
       total: 49.99,
       items: [
@@ -86,6 +89,15 @@ describe('Profile Link and Unlink Transaction Item', () => {
 })
 
 afterAll(async () => {
+  if (CREATED_TRANSACTION_IDS.length > 0) {
+    for (const id of CREATED_TRANSACTION_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Transaction ID ${id} deleted`)
+      }
+    }
+  }
+
   if (CREATED_LIST_IDS.length > 0) {
     for (const id of CREATED_LIST_IDS) {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${id}`)
@@ -100,15 +112,6 @@ afterAll(async () => {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/lists/definitions/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`SDK Link/Unlink List Definition ID ${id} deleted`)
-      }
-    }
-  }
-
-  if (CREATED_TRANSACTION_IDS.length > 0) {
-    for (const id of CREATED_TRANSACTION_IDS) {
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
-      if (deleteResponse.status === 204) {
-        console.log(`SDK Transaction ID ${id} deleted`)
       }
     }
   }

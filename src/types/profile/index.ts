@@ -102,3 +102,20 @@ export type ProfileInput = Partial<Omit<Profile, 'id' & 'created_at' & 'updated_
   last_name: Profile['last_name']
   email: Profile['email']
 }
+
+export type ExistsProfileInput = {
+  type: string
+  id: string
+}
+
+export type TriggerProfileCustomEventExcluded =
+  | 'profile.updated'
+  | 'profile.created'
+  | 'profile.deleted'
+  | 'profile.merged'
+  | 'aggregation.updated'
+
+export type TriggerProfileCustomEventInput = {
+  event: Exclude<string, TriggerProfileCustomEventExcluded>
+  context?: { [key: string]: any } | null
+}

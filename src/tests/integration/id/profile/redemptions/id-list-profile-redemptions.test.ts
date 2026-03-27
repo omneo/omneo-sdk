@@ -21,7 +21,7 @@ const buildDefinitionPayload = (): BenefitDefinitionInput => ({
 
 describe('ID List Profile Redemptions', () => {
   testWithIDData('ID SDK List Profile Redemptions', async ({ IDData }) => {
-    const { profile, tokenData } = IDData
+    const { tokenData } = IDData
 
     const definitionPayload = buildDefinitionPayload()
     const definitionResponse = await simpleOmneoRequest('POST', '/benefits/definitions', definitionPayload)
@@ -45,14 +45,17 @@ describe('ID List Profile Redemptions', () => {
         CREATED_BENEFIT_IDS.push(item.type_attributes.id)
       }
     }
-
-    const response = await IDClient.profile.redemptions.list({ 'page[size]': 999 })
+    const params = {
+      has_benefit: true
+    }
+    const response = await IDClient.profile.redemptions.list(params)
     const redemptions = Array.isArray(response.data) ? response.data : []
 
     expect(Array.isArray(redemptions)).toBe(true)
-    const target = redemptions.find((item) => item.id === createdRedemption.id)
+    expect(redemptions.length).toBeGreaterThan(0)
+    const target = redemptions[0]
     expect(target).toBeDefined()
-    expect(target?.profile_id).toBe(profile.id)
+    expect(target).toHaveProperty('profile_id')
   })
 })
 

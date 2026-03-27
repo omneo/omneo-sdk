@@ -36,7 +36,7 @@ describe('Redeemable Profile Benefits', () => {
     CREATED_BENEFIT_IDS.push(benefit.id)
 
     const params = {
-      'page[size]': 999
+      'filter[benefit_definition_id]': definitionResponse.data.id
     }
     const response = await omneoClient.profiles.benefits.redeemable(testProfileID, params)
     const benefits = response.data ?? []

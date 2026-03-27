@@ -17,6 +17,10 @@ export type CurrencyInput = {
   is_system?: boolean
 }
 
+export type UpdateCurrencyInput = {
+  rate: number
+}
+
 export type CurrencyResponse = PaginationResponse & {
   data: Currency[]
 }

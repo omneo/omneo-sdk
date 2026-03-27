@@ -3,9 +3,10 @@ import Resource from '@omneo/resources/resource'
 
 export default class ProfileListCustomFields extends Resource {
   get (profileID: string, listID: number, namespace: string, handle: string): Promise<CustomField> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'get',
-      endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields/${namespace}:${handle}`
+      method: 'GET',
+      endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields/${attribute}`
     }).then((response) => {
       return response.data
     })
@@ -32,9 +33,10 @@ export default class ProfileListCustomFields extends Resource {
   }
 
   update (profileID: string, listID: number, namespace: string, handle: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'put',
-      endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields/${namespace}:${handle}`,
+      method: 'PUT',
+      endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields/${attribute}`,
       body
     }).then((response) => {
       return response.data
@@ -42,9 +44,10 @@ export default class ProfileListCustomFields extends Resource {
   }
 
   delete (profileID: string, listID: number, namespace: string, handle: string): Promise<any> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'delete',
-      endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields/${namespace}:${handle}`
+      method: 'DELETE',
+      endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields/${attribute}`
     }).then((response) => {
       return response
     })

@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { TransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
+import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
@@ -43,7 +43,7 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: profile.id,
       total: 49.99,
       items: [

@@ -10,6 +10,7 @@ export type ProfileComms = {
   readonly phone_optout_raw: number
   post_optout: Boolean | null
   readonly post_optout_raw: number
+
   email_bounced: Boolean | null
   readonly email_bounced_raw: number
   push_bounced: Boolean | null
@@ -20,6 +21,7 @@ export type ProfileComms = {
   readonly phone_bounced_raw: number
   post_bounced: Boolean | null
   readonly post_bounced_raw: number
+
   sms_promo: Boolean | null
   readonly sms_promo_raw: number
   push_promo: Boolean | null
@@ -30,6 +32,7 @@ export type ProfileComms = {
   readonly phone_promo_raw: number
   post_promo: Boolean | null
   readonly post_promo_raw: number
+
   email_discover: Boolean | null
   readonly email_discover_raw: number
   email_benefits: Boolean | null
@@ -46,6 +49,7 @@ export type ProfileComms = {
   readonly email_location_raw: number
   email_service: Boolean | null
   readonly email_service_raw: number
+
   sms_discover: Boolean | null
   readonly sms_discover_raw: number
   sms_benefits: Boolean | null
@@ -62,6 +66,7 @@ export type ProfileComms = {
   readonly sms_location_raw: number
   sms_service: Boolean | null
   readonly sms_service_raw: number
+
   push_discover: Boolean | null
   readonly push_discover_raw: number
   push_benefits: Boolean | null
@@ -78,6 +83,7 @@ export type ProfileComms = {
   readonly push_location_raw: number
   push_service: Boolean | null
   readonly push_service_raw: number
+
   phone_discover: Boolean | null
   readonly phone_discover_raw: number
   phone_benefits: Boolean | null
@@ -94,6 +100,7 @@ export type ProfileComms = {
   readonly phone_location_raw: number
   phone_service: Boolean | null
   readonly phone_service_raw: number
+
   post_discover: Boolean | null
   readonly post_discover_raw: number
   post_benefits: Boolean | null
@@ -110,12 +117,15 @@ export type ProfileComms = {
   readonly post_location_raw: number
   post_service: Boolean | null
   readonly post_service_raw: number
+
   email_verification: 'sent' | 'not_sent'
   sms_verification: 'sent' | 'not_sent'
   phone_verification: 'sent' | 'not_sent'
   post_verification: 'sent' | 'not_sent'
+
   email_consent_updated_at: string | null
   sms_consent_updated_at: string | null
+
   terms_accepted_at: Boolean | null | null
   terms_accepted_version: Boolean | null | null
   created_at: string

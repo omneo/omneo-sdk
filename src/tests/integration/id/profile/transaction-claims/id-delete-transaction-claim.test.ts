@@ -1,5 +1,5 @@
 
-import { TransactionInput } from '@types'
+import { CreateTransactionInput } from '@types'
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
 import { simpleOmneoRequest } from '@lib'
@@ -21,7 +21,7 @@ describe('ID Profile Transaction claims delete', () => {
     })
 
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: testProfileID,
       total: 49.99,
       items: [

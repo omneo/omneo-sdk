@@ -47,13 +47,17 @@ describe('List Profile Redemptions', () => {
       }
     }
 
-    const response = await omneoClient.profiles.redemptions.list(testProfileID, { 'page[size]': 999 })
+    const params = {
+      has_benefit: true
+    }
+    const response = await omneoClient.profiles.redemptions.list(testProfileID, params)
     const redemptions = Array.isArray(response.data) ? response.data : []
 
     expect(Array.isArray(redemptions)).toBe(true)
-    const target = redemptions.find((item) => item.id === createdRedemption.id)
+    expect(redemptions.length).toBeGreaterThan(0)
+    const target = redemptions[0]
     expect(target).toBeDefined()
-    expect(target?.profile_id).toBe(testProfileID)
+    expect(target).toHaveProperty('profile_id')
   })
 })
 

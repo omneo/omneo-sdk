@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TransactionInput, TransactionClaim } from '@types'
+import { CreateTransactionInput, TransactionClaim } from '@types'
 import { simpleOmneoRequest } from '@lib'
 
 const omneo = new Omneo({
@@ -17,7 +17,7 @@ describe('Profile Transaction claim get', () => {
   test('SDK Profile Get Transaction claim', async () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: testProfileID,
       total: 49.99,
       items: [

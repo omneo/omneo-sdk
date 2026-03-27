@@ -2,7 +2,7 @@ import { describe, expect, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
-import { Order, OrderCreateInput } from '@types'
+import { Order, CreateOrderInput } from '@types'
 import { testWithIDData } from '../../test-with-id-data'
 
 const omneoClient = new Omneo({
@@ -23,7 +23,7 @@ describe('ID Profile Get Order by ID', () => {
     const { tokenData } = IDData
     const product = await omneoClient.products.get(testProductId)
     const productVariant = await omneoClient.products.getProductVariant(testProductId, testProductVariantId)
-    const payload: OrderCreateInput = {
+    const payload: CreateOrderInput = {
       profile_id: testProfileID,
       total: productVariant.price,
       external_id: getRandomString('sdk_unit_test_get_order_external_id_'),

@@ -1,7 +1,7 @@
 ## Tiers
 
 Customer tier management functionality.
-This allows customers to list, calculate and assign tiers to their profile.
+This allows customers to list, calculate and assign tiers to their profile, and view tier points.
 
 ### List Tiers
 
@@ -45,6 +45,25 @@ Assigns a specific tier to the current profile.
 const tierDefinitionHandle = 'gold-tier';
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.tiers.assign(tierDefinitionHandle)
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
+```
+
+### List Tier Points
+
+Retrieves tier points for the current profile.
+```javascript
+const params = {
+  // optional request parameters
+}
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
+IDClient.profile.tiers.points(params)
   .then((data) => {
     // handle response data
     console.log('Response data:', data)

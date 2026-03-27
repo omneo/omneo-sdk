@@ -64,26 +64,35 @@ export default class ProfileTransactions extends Resource {
   }
 
   linkListItem (profileId: string, transactionItemId: number, profileListId: number): Promise<TransactionItem> {
+    const body = {
+      product_list_item_id: profileListId,
+      type: 'link'
+    }
+    console.log('linkListItem body:', body)
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`,
-      body: {
-        product_list_item_id: profileListId,
-        type: 'link'
-      }
+      body
     }).then((response) => {
+      console.log('linkListItem response:', response)
       return response.data
+    }).catch((error) => {
+      console.error('linkListItem error:', error)
+      throw error
     })
   }
 
   unlinkListItem (profileId: string, transactionItemId: number, profileListId: number): Promise<TransactionItem> {
+    const body = {
+      product_list_item_id: profileListId,
+      type: 'unlink'
+    }
+    const endpoint = `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`
+    console.log('unlinkListItem body:', body)
     return this.client.call({
       method: 'POST',
-      endpoint: `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`,
-      body: {
-        product_list_item_id: profileListId,
-        type: 'unlink'
-      }
+      endpoint,
+      body
     }).then((response) => {
       return response.data
     })
