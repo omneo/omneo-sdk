@@ -18,7 +18,7 @@ beforeAll(() => {
 describe('Profile List Group Orders', () => {
   test('SDK Profile List Group Orders', async () => {
     const product = await omneoClient.products.get(testProductId)
-    const productVariant = await omneoClient.products.getProductVariant(testProductId, testProductVariantId)
+    const productVariant = await omneoClient.products.variants.get(testProductId, testProductVariantId)
     const payload: CreateOrderInput = {
       profile_id: testProfileID,
       total: productVariant.price,

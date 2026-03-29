@@ -20,7 +20,7 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
+    const nowDateString = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19)
 
     // Create List Definition
     const listDefPayload = {
@@ -55,7 +55,7 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
           quantity: 1
         }
       ],
-      timezone: 'UTC',
+      timezone: 'Australia/Melbourne',
       transacted_at: nowDateString,
       location_id: testLocationId
     }
@@ -88,6 +88,15 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
 })
 
 afterAll(async () => {
+  if (CREATED_TRANSACTION_IDS.length > 0) {
+    for (const id of CREATED_TRANSACTION_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`ID SDK Transaction ID ${id} deleted`)
+      }
+    }
+  }
+
   if (CREATED_LIST_IDS.length > 0) {
     for (const id of CREATED_LIST_IDS) {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${id}`)
@@ -102,15 +111,6 @@ afterAll(async () => {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/lists/definitions/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`ID SDK Link/Unlink List Definition ID ${id} deleted`)
-      }
-    }
-  }
-
-  if (CREATED_TRANSACTION_IDS.length > 0) {
-    for (const id of CREATED_TRANSACTION_IDS) {
-      const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
-      if (deleteResponse.status === 204) {
-        console.log(`ID SDK Transaction ID ${id} deleted`)
       }
     }
   }

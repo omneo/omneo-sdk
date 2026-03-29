@@ -27,3 +27,7 @@ export type CreateImportJobInput = {
 export type ExportImportJobInput = {
   status: ImportJobStatus
 }
+
+export type FinalizeImportJobInput = {
+  total_batch_count: number
+}

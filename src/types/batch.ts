@@ -27,3 +27,21 @@ export type Batch = {
 export type BatchResponse = PaginationResponse & {
   data: Batch[]
 }
+
+export type CreateBatchInput = {
+  entity_type: string
+  import_job_id?: number | null
+}
+
+export type CreateBatchItem = {
+  external_id?: string | null
+  status: 'pending' | 'success' | 'failed'
+  entity_id?: string | null
+  error?: string | null
+}
+
+export type CreateBatchResponse = {
+  batch_id: string
+  entity_type: string | null
+  import_job_id: number | null
+}

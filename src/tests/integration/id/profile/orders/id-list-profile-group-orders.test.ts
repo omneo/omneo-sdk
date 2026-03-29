@@ -22,7 +22,7 @@ describe('ID Profile List Group orders', () => {
   testWithIDData('ID SDK List Group orders', async ({ IDData }) => {
     const { tokenData } = IDData
     const product = await omneoClient.products.get(testProductId)
-    const productVariant = await omneoClient.products.getProductVariant(testProductId, testProductVariantId)
+    const productVariant = await omneoClient.products.variants.get(testProductId, testProductVariantId)
     const payload: CreateOrderInput = {
       profile_id: testProfileID,
       total: productVariant.price,

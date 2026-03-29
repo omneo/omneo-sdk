@@ -1,4 +1,4 @@
-import { RequestParams, BatchResponse, Batch } from '@types'
+import { RequestParams, BatchResponse, Batch, CreateBatchInput, CreateBatchItem, CreateBatchResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Batches extends Resource {
@@ -14,6 +14,26 @@ export default class Batches extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: `/batches/${batchId}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  create (body: CreateBatchInput): Promise<CreateBatchResponse> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: '/batches',
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  createItem (batchId: number, body: CreateBatchItem): Promise<Batch> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: `/batches/${batchId}/items`,
+      body
     }).then((response) => {
       return response.data
     })

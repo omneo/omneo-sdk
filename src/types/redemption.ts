@@ -21,6 +21,10 @@ export type Redemptionitem = {
   updated_at: string
 }
 
+export type RedemptionItemResponse = PaginationResponse & {
+  data: Redemptionitem[]
+}
+
 export type Redemption = {
   id: number
   profile_id: string
