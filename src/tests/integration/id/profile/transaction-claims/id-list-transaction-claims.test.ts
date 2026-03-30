@@ -1,5 +1,5 @@
 
-import { TransactionInput, TransactionClaimsResponse } from '@types'
+import { CreateTransactionInput, TransactionClaimsResponse } from '@types'
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
@@ -21,7 +21,7 @@ describe('ID Profile Transaction claims list', () => {
     })
 
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: testProfileID,
       total: 49.99,
       items: [

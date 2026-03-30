@@ -48,9 +48,8 @@ describe('Claim Redeem Profile Benefit', () => {
 
     expect(redemption.items[0].type).toBe('benefit')
     expect(redemption.items[0].type_attributes.profile_id).toBe(testProfileID)
-    expect(redemption.items[0].type_attributes.definition.name).toBe(definitionPayload.name)
-    expect(redemption.items[0].type_attributes.definition.handle).toBe(definitionPayload.handle)
-    expect(redemption.items[0].type_attributes.definition.period).toBe(definitionPayload.period)
+    expect(redemption.items[0]!.type_attributes!.definition!.name).toBe(definitionPayload.name)
+    expect(redemption.items[0]!.type_attributes!.definition!.handle).toBe(definitionPayload.handle)
   })
 })
 

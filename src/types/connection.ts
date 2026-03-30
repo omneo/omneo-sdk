@@ -1,7 +1,24 @@
+import { Identity } from './identities'
 import { PaginationResponse } from './pagination'
-import { Profile } from './profile'
+import { ProductList } from './product'
+import { Profile, ProfileAppearance, ProfileComms, ProfileDatesAttribute } from './profile'
 
 export type ConnectionStatuses = 'draft' | 'pending' | 'accepted' | 'rejected' | 'hold' | 'archived' | 'break'
+
+export type ConnectionDefinitionType =
+  | 'brand'
+  | 'referral'
+  | 'dependant'
+  | 'stylist'
+  | 'company'
+  | 'partner'
+  | 'household'
+  | 'advisor'
+  | 'staff_join'
+  | 'staff_preferred'
+  | 'gift'
+  | 'external'
+  | 'other'
 
 export type GetConnectionInputParams = {
   type?: 'connected' | 'connector',
@@ -29,11 +46,32 @@ export type ConnectionInput = {
     notes?: string | null
 }
 
+type ConnectionExternalIdType =
+  | 'attributes_date'
+  | 'interaction'
+  | 'external'
+  | 'transaction'
+  | 'order'
+  | 'product_list'
+  | 'addresses'
+
+type UpdateConnectionEditable = Omit<
+  ConnectionInput,
+  'connected_id' | 'connector_id' | 'connection_definition_id' | 'connection_definition_handle'
+> & {
+  external_id?: string | null
+  external_id_type?: ConnectionExternalIdType | null
+  organisation_id?: number | null
+}
+
+export type UpdateConnectionInput = Partial<UpdateConnectionEditable>
+
 export type ConnectionDefinition = {
   id: number
   name: string
   handle: string
   short_description: string | null
+  description?: string | null
   icon: string | null
   cover: string | null
   internal_notes: string | null
@@ -63,6 +101,17 @@ export type ConnectionProfileData = {
   birth_year: Profile['birth_year']
   birth_month: Profile['birth_month']
   birth_day: Profile['birth_day']
+  attributes?: {
+    comms?: ProfileComms
+    appearance?: ProfileAppearance
+    dates?: ProfileDatesAttribute
+  }
+  identities?: Identity[]
+  custom_attributes?: {
+    [namespace:string]: {
+      [handle:string]: any
+    }
+  }
 }
 
 export type Connection = {
@@ -72,6 +121,7 @@ export type Connection = {
   definition: ConnectionDefinition
   connected_id: string
   connected: ConnectionProfileData
+  connector_id: string
   connector: ConnectionProfileData
   status: ConnectionStatuses
   disconnected_by: string | null
@@ -85,10 +135,35 @@ export type Connection = {
   sort_order: number
   meta: { [key: string]: any } | null
   notes: string | null
+  external_id: string | null
+  external_id_type: string | null
+  organisation: { [key: string]: any } | null
   created_at: string
   updated_at: string
+  product_lists?: ProductList[]
 }
 
 export type ConnectionResponse = PaginationResponse & {
   data: Connection[]
 }
+
+export type ConnectionDefinitionResponse = PaginationResponse & {
+  data: ConnectionDefinition[]
+}
+
+type ConnectionDefinitionEditable = Omit<
+  ConnectionDefinition,
+  'id' | 'created_at' | 'updated_at'
+> & {
+  type: ConnectionDefinitionType
+}
+
+type ConnectionDefinitionRequiredFields = 'name' | 'handle' | 'type'
+
+export type CreateConnectionDefinitionInput =
+  Required<Pick<ConnectionDefinitionEditable, ConnectionDefinitionRequiredFields>>
+  & Partial<Omit<ConnectionDefinitionEditable, ConnectionDefinitionRequiredFields>>
+
+type ConnectionDefinitionUpdateEditable = Omit<ConnectionDefinitionEditable, 'handle'>
+
+export type UpdateConnectionDefinitionInput = Partial<ConnectionDefinitionUpdateEditable>

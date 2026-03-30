@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
+import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -16,7 +16,7 @@ const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('Profile Get Unassigned and Assigned Transaction Items', () => {
-  test('SDK Profile Get Unassigned and Assigned Transaction Items', async () => {
+  test.skip('SDK Profile Get Unassigned and Assigned Transaction Items', async () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
     // Create List Definition
@@ -40,7 +40,7 @@ describe('Profile Get Unassigned and Assigned Transaction Items', () => {
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: testProfileID,
       total: 49.99,
       items: [

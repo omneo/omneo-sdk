@@ -1,7 +1,10 @@
-import { RequestParams, Automation, AutomationActionResponse, AutomationInput, AutomationResponse } from '@types'
+import { RequestParams, Automation, AutomationInput, AutomationResponse } from '@types'
 import Resource from '../resource.js'
+import AutomationActions from './actions/index.js'
 
 export default class Automations extends Resource {
+  actions = new AutomationActions(this.client)
+
   get (id: number, params?: RequestParams): Promise<Automation> {
     return this.client.call({
       method: 'get',
@@ -51,13 +54,6 @@ export default class Automations extends Resource {
     return this.client.call({
       method: 'post',
       endpoint: `/automations/${id}/trigger`
-    })
-  }
-
-  actions (id: number): Promise<AutomationActionResponse> {
-    return this.client.call({
-      method: 'get',
-      endpoint: `/automations/${id}/actions`
     })
   }
 }

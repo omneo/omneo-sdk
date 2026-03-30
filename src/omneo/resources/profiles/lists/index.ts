@@ -3,10 +3,12 @@ import Resource from '@omneo/resources/resource'
 import Items from './items'
 import CustomFields from './custom-fields'
 import Shares from './shares'
+import Reservations from './reservations'
 
 export default class ProfileLists extends Resource {
-  items = new Items(this.client)
   customFields = new CustomFields(this.client)
+  items = new Items(this.client)
+  reservations = new Reservations(this.client)
   shares = new Shares(this.client)
 
   get (profileID: string, listID: number): Promise<List> {

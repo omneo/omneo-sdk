@@ -1,9 +1,11 @@
-import { CustomField, PaginationResponse, PeriodType } from '.'
+import { Currency, CustomField, PaginationResponse, PeriodType, Region } from '.'
 
 export type CreditDefinition = {
   id: number
   name: string
   handle: string
+  region_id: number | null
+  region: Region | null
   timezone: string
   period: number
   period_type: PeriodType | string
@@ -28,6 +30,7 @@ export type CreditDefinition = {
   value: number | null
   max_value: number | null
   currency_id: number | null
+  currency: Currency | null
   require_creator: boolean | null
   require_assigned: boolean | null
   is_extendable: boolean | null
@@ -103,12 +106,20 @@ export type CreditDefinitionResponse = PaginationResponse & {
   data: CreditDefinition[]
 }
 
-export type CreditDefinitionInput = Partial<Omit<CreditDefinition, 'id' | 'created_at' | 'updated_at'>> & {
-  name: CreditDefinition['name']
-  handle: CreditDefinition['handle']
-  type: CreditDefinition['type']
+type CreditDefinitionEditable = Omit<
+  CreditDefinition,
+  'id' | 'created_at' | 'updated_at' | 'region' | 'currency' | 'currency_id'
+> & {
+  currency?: string | null
 }
-export type UpdateCreditDefinitionInput = Partial<Omit<CreditDefinition, 'id' | 'created_at' | 'updated_at'>>
+
+type CreditDefinitionRequiredFields = 'name' | 'handle' | 'type'
+
+export type CreditDefinitionInput =
+  Required<Pick<CreditDefinitionEditable, CreditDefinitionRequiredFields>>
+  & Partial<Omit<CreditDefinitionEditable, CreditDefinitionRequiredFields>>
+
+export type UpdateCreditDefinitionInput = Partial<CreditDefinitionInput>
 
 export type CreditInput = {
   credit_definition_id?: number

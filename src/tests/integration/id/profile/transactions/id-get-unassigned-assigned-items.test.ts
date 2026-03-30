@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { TransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
+import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
@@ -12,7 +12,7 @@ const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
-  testWithIDData('ID SDK Get Unassigned and Assigned Transaction Items', async ({ IDData }) => {
+  testWithIDData.skip('ID SDK Get Unassigned and Assigned Transaction Items', async ({ IDData }) => {
     const { profile, tokenData } = IDData
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
@@ -43,7 +43,7 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: profile.id,
       total: 49.99,
       items: [

@@ -38,7 +38,7 @@ describe('ID Redeemable Profile Benefits', () => {
       CREATED_BENEFIT_IDS.push(item.type_attributes.id)
     }
     const params = {
-      'page[size]': 999
+      'filter[benefit_definition_id]': definitionResponse.data.id
     }
     const response = await IDClient.profile.benefits.redeemable(params)
     const benefits = response.data ?? []

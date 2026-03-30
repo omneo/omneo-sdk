@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { TransactionInput, TransactionProductVariantsResponse } from '@types'
+import { CreateTransactionInput, TransactionProductVariantsResponse } from '@types'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
 import { simpleOmneoRequest } from '@lib'
@@ -21,7 +21,7 @@ describe('ID Profile Transaction products list', () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
     const prevDateString = new Date(new Date().getTime() - 1000).toISOString().replace('T', ' ').slice(0, 19)
 
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: testProfileID,
       total: 49.99,
       items: [

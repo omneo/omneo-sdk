@@ -1,7 +1,10 @@
 import { Location, LocationResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
+import LocationCustomFields from './custom-fields/index.js'
 
 export default class Locations extends Resource {
+  customFields = new LocationCustomFields(this.client)
+
   get (id: number, params?: RequestParams): Promise<Location> {
     return this.client.call({
       method: 'get',
@@ -46,6 +49,15 @@ export default class Locations extends Resource {
     return this.client.call({
       method: 'delete',
       endpoint: `/locations/${id}`
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  getByType (idType: string, id: number): Promise<Location> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/locations/${idType}/${id}`
     }).then((response) => {
       return response.data
     })

@@ -31,6 +31,24 @@ export type OrderItem = {
   transaction: Pick<Transaction, 'transacted_at' | 'receipt_ref' | 'external_id'>
 }
 
+export type OrderItemResponse = PaginationResponse & {
+  data: OrderItem[]
+}
+
+export type CreateOrderItemInput = {
+  name: string
+  product_variant_id?: number | null
+  quantity: number
+  is_void?: boolean | null
+  price_current: number
+  price_sell: number
+  price_original?: number | null
+  price_margin?: number | null
+  tags?: string[]
+}
+
+export type UpdateOrderItemInput = Partial<CreateOrderItemInput>
+
 export type Order = {
   id: number
   external_id: string
@@ -188,37 +206,32 @@ export type GroupOrderResponse = PaginationMeta & {
   }[]
 }
 
-export type OrderCreateInput = {
-  profile_id: string
-  profile_id_handle?: string
-  redemption_id?: number
-  external_id?: string
-  location_id?: string
-  currency?: string
+export type CreateOrderInput = {
+  profile_id?: string | null
+  profile_id_handle?: string | null
+  redemption_id?: number | null
+  external_id?: string | null
+  location_id?: string | null
+  currency?: string | null
   total: number
-  total_original?: number
-  rounding?: number
-  tender?: string
-  is_void?: boolean
-  margin?: number
+  total_original?: number | null
+  rounding?: number | null
+  tender?: string | null
+  is_void?: boolean | null
+  margin?: number | null
   transacted_at: string
   timezone: string
-  meta?: { [key: string]: any }
+  meta?: { [key: string]: any } | null
   tags?: Array<string>
-  items: Array<{
-    external_id?: string
-    name: string
+  items: Array<Omit<CreateOrderItemInput, 'is_void' | 'tags' | 'price_current' | 'price_sell'> & {
+    external_id?: string | null
     price_current?: number
-    price_sell: number
-    quantity: number
-    price_original?: number
-    price_margin?: number
-    discounts?: Array<any>
-    sku?: string
-    department?: string
-    variant_external_id?: string
-    product_variant_sku?: string
-    product_variant_id?: string
+    price_sell?: number
+    discounts?: Array<any> | null
+    sku?: string | null
+    department?: string | null
+    variant_external_id?: string | null
+    product_variant_sku?: string | null
     product_variant?: {
       product_id: number
       sku: string
@@ -227,25 +240,27 @@ export type OrderCreateInput = {
       subcategory?: string
       brand: string
       price: number
-    }
-    meta?: { [key: string]: any }
+    } | null
+    meta?: { [key: string]: any } | null
   }>
   systems?: Array<string>
-  staff_id?: string
+  staff_id?: string | null
   payments?: Array<any>
-  receipt_is_email?: boolean
-  receipt_ref?: string
-  receipt_email?: string
-  type?: string
-  status?: string
-  order_number?: string
-  due_date?: string
+  receipt_is_email?: boolean | null
+  receipt_ref?: string | null
+  receipt_email?: string | null
+  type?: string | null
+  status?: string | null
+  order_number?: string | null
+  due_date?: string | null
   custom_fields?: Array<{
     namespace: string
     handle: string
     type: string
     value: any
   }>
-  organisation_id?: string
-  fees?: string
+  organisation_id?: string | null
+  fees?: Array<any> | null
 }
+
+export type UpdateOrderInput = Partial<CreateOrderInput>

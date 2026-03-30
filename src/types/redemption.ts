@@ -1,8 +1,10 @@
 import { Benefit } from './benefit'
 import { Credit } from './credit'
+import { Currency } from './currencies'
 import { Location } from './location'
 import { PaginationResponse } from './pagination'
 import { Point } from './point'
+import { ProfileBalances } from './profile/balances'
 import { Profile } from './profile'
 import { Reward } from './reward'
 import { Transaction } from './transaction'
@@ -17,6 +19,10 @@ export type Redemptionitem = {
   type_attributes: Reward | Point | Benefit | Credit
   created_at: string
   updated_at: string
+}
+
+export type RedemptionItemResponse = PaginationResponse & {
+  data: Redemptionitem[]
 }
 
 export type Redemption = {
@@ -43,4 +49,20 @@ export type Redemption = {
 
 export type RedemptionResponse = PaginationResponse & {
   data: Redemption
+}
+
+export type SuccessfulRedemption = {
+  id: number
+  profile_id: string
+  total_localised: number
+  total: number
+  location_id?: number | null
+  location?: Pick<Location, 'id' | 'type' | 'name' | 'description' | 'phone' | 'email' | 'external_id' | 'is_published' | 'is_permanently_closed'> | null
+  currency?: Currency | null
+  balances: ProfileBalances
+  meta: { [key: string]: any } | null
+  transaction_external_id: string | null
+  transaction_receipt_ref: string | number | null
+  created_at: string
+  updated_at: string
 }

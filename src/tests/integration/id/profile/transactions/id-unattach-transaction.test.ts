@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { TransactionInput, Transaction } from '@types'
+import { CreateTransactionInput, Transaction } from '@types'
 import { simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
@@ -21,7 +21,7 @@ describe('ID Profile Unattach Transaction', () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
     // Create transaction
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: profile.id,
       total: 49.99,
       receipt_ref: getRandomDigitString(16),

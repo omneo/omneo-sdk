@@ -1,10 +1,23 @@
-import { Product, ProductVariant, ProductResponse, ProductVariantsResponse, RequestParams } from '@types'
+import { CreateProductInput, Product, ProductResponse, RequestParams, UpdateProductInput } from '@types'
 import Resource from '../resource'
+import ProductVariants from './variants/index.js'
 
 export default class Products extends Resource {
+  variants = new ProductVariants(this.client)
+
+  list (params?: RequestParams): Promise<ProductResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: '/products',
+      params
+    }).then((response) => {
+      return response
+    })
+  }
+
   get (id: string, params?: RequestParams): Promise<Product> {
     return this.client.call({
-      method: 'get',
+      method: 'GET',
       endpoint: `/products/${id}`,
       params
     }).then((response) => {
@@ -12,58 +25,19 @@ export default class Products extends Resource {
     })
   }
 
-  getProductVariant (productID: string, variantID: string, params?: RequestParams): Promise<ProductVariant> {
+  create (body: CreateProductInput): Promise<Product> {
     return this.client.call({
-      method: 'get',
-      endpoint: `/products/${productID}/variants/${variantID}`,
-      params
+      method: 'POST',
+      endpoint: '/products',
+      body
     }).then((response) => {
       return response.data
     })
   }
 
-  deleteProductVariant (productID: string, variantID: string): Promise<any> {
+  update (id: string, body: UpdateProductInput): Promise<Product> {
     return this.client.call({
-      method: 'delete',
-      endpoint: `/products/${productID}/variants/${variantID}`
-    }).then((response) => {
-      return response
-    })
-  }
-
-  updateProductVariant (productID: string, variantID: string, body: any): Promise<ProductVariant> {
-    return this.client.call({
-      method: 'put',
-      body,
-      endpoint: `/products/${productID}/variants/${variantID}`
-    }).then((response) => {
-      return response.data
-    })
-  }
-
-  listProductVariants (productID: string, params?: RequestParams): Promise<ProductVariantsResponse> {
-    return this.client.call({
-      method: 'get',
-      endpoint: `/products/${productID}/variants`,
-      params
-    }).then((response) => {
-      return response
-    })
-  }
-
-  listVariants (params?: RequestParams): Promise<ProductVariantsResponse> {
-    return this.client.call({
-      method: 'get',
-      endpoint: '/products/variants',
-      params
-    }).then((response) => {
-      return response
-    })
-  }
-
-  update (id: string, body: any): Promise<Product> {
-    return this.client.call({
-      method: 'put',
+      method: 'PUT',
       endpoint: `/products/${id}`,
       body
     }).then((response) => {
@@ -73,37 +47,27 @@ export default class Products extends Resource {
 
   delete (id: string): Promise<any> {
     return this.client.call({
-      method: 'delete',
+      method: 'DELETE',
       endpoint: `/products/${id}`
     }).then((response) => {
       return response
     })
   }
 
-  list (params?: RequestParams): Promise<ProductResponse> {
+  queue (body: any): Promise<{data: string}> {
     return this.client.call({
-      method: 'get',
-      endpoint: '/products',
-      params
-    }).then((response) => {
-      return response
-    })
-  }
-
-  create (body: any): Promise<Product> {
-    return this.client.call({
-      method: 'post',
-      endpoint: '/products',
+      method: 'POST',
+      endpoint: '/products/queue',
       body
     }).then((response) => {
       return response.data
     })
   }
 
-  queue (body: any): Promise<{data: string}> {
+  createOrUpdate (body: CreateProductInput | UpdateProductInput): Promise<Product> {
     return this.client.call({
-      method: 'post',
-      endpoint: '/products/queue',
+      method: 'POST',
+      endpoint: '/products/create-update',
       body
     }).then((response) => {
       return response.data

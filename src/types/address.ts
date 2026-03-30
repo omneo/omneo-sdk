@@ -1,4 +1,6 @@
 
+import { CreateCustomFieldInput } from './custom-field'
+
 export type Address = {
   id: number
   address_line_1: string
@@ -63,4 +65,30 @@ export type AddressWebhook = Address & {
     id: string
     email: string
   }
+}
+
+export type UpsertAddressCustomFieldInput = Pick<CreateCustomFieldInput, 'namespace' | 'handle' | 'value'> & {
+  type: 'string' | 'integer' | 'float' | 'boolean' | 'json' | 'array'
+  is_index: boolean
+}
+
+export type UpsertAddressInput = {
+  address_line_1: string
+  address_line_2?: string | null
+  address_line_3?: string | null
+  company?: string | null
+  city: string
+  postcode: string
+  state?: string
+  country: string
+  notes?: string | null
+  is_default?: boolean | null
+  external_id?: string | null
+  meta?: { [key: string]: any } | null
+  name?: string | null
+  type?: 'home' | 'business' | 'billing' | 'holiday' | 'hotel' | 'recipient' | 'other' | null
+  phone?: string | null
+  iso?: string | null
+  iso_state?: string | null
+  custom_fields?: UpsertAddressCustomFieldInput[]
 }

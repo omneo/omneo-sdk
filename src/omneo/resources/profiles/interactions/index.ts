@@ -4,8 +4,8 @@ import Resource from '@omneo/resources/resource'
 export default class ProfileInteractions extends Resource {
   get (profileID: string, interactionID: number): Promise<Interaction> {
     return this.client.call({
-      method: 'get',
-      endpoint: `/profiles/${profileID}/interaction/${interactionID}`
+      method: 'GET',
+      endpoint: `/profiles/${profileID}/interactions/${interactionID}`
     }).then((response) => {
       return response.data
     })

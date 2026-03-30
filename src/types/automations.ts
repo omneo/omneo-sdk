@@ -1,31 +1,14 @@
 import { PaginationResponse } from './pagination'
+import { ActionBase, ActionArgument } from './action'
 
-export type AutomationArgument = {
-  name: string
-  value: string | number | boolean | { var: string }
-  is_dynamic?: boolean | null
-}
-
-export type AutomationAction = {
-  id: number
-  uuid: string
-  references_id: number | null
-  name: string
-  sort_order: number
-  description: string
-  notes: string
-  arguments: AutomationArgument[]
-  created_at: string
-  updated_at: string
-}
-
+export type AutomationAction = ActionBase
 export type Automation = {
   id: number
   name: string
   type: string
   query: string
   date: string | null
-  arguments: AutomationArgument[]
+  arguments: ActionArgument[]
   slot: string
   actions: AutomationAction[]
   description: string | null
@@ -42,6 +25,16 @@ export type AutomationInput = Partial<Omit<Automation, 'id' | 'created_at' | 'up
   type: Automation['type']
   query: Automation['query']
 }
+
+export type CreateAutomationActionInput = {
+  name: string
+  sort_order?: number | null
+  arguments?: Pick<ActionArgument, 'name' | 'value' | 'is_dynamic'>[] | null
+  description?: string | null
+  notes?: string | null
+}
+
+export type UpdateAutomationActionInput = Partial<CreateAutomationActionInput>
 
 export type AutomationResponse = PaginationResponse & {
   data: Automation[]

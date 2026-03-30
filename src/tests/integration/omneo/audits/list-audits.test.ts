@@ -12,8 +12,8 @@ describe('Audits get', () => {
     expect(Array.isArray(data)).toBe(true)
     expect(data.length).toBeGreaterThan(0)
     const dataIsValid = data.every(({ old_values, new_values, auditable_type, auditable_id }) => {
-      return typeof old_values === 'string' &&
-      typeof new_values === 'string' &&
+      return typeof old_values === 'object' &&
+      typeof new_values === 'object' &&
       typeof auditable_type === 'string' &&
       (typeof auditable_id === 'number' || auditable_id === null)
     })

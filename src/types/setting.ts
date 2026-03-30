@@ -1,3 +1,5 @@
+import { PaginationResponse } from './pagination'
+
 export type Setting = {
   id: number
   handle: string
@@ -9,4 +11,19 @@ export type Setting = {
 
 export type SettingInput = Partial<Setting> & {
   handle: Setting['handle']
+}
+
+export type CreateSettingInput = {
+  handle: Setting['handle']
+  value: unknown
+  type: 'string' | 'boolean' | 'integer' | 'float' | 'json'
+}
+
+export type UpdateSettingInput = {
+  value?: unknown
+  type?: 'string' | 'boolean' | 'integer' | 'float'
+}
+
+export type SettingResponse = PaginationResponse & {
+  data: Setting[]
 }

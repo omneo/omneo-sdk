@@ -3,9 +3,10 @@ import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesCustom extends Resource {
   get (profileID: string, namespace: string, handle: string): Promise<CustomAttribute> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'get',
-      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`
+      method: 'GET',
+      endpoint: `/profiles/${profileID}/attributes/custom/${attribute}`
     }).then((response) => {
       return response.data
     })
@@ -22,9 +23,10 @@ export default class ProfileAttributesCustom extends Resource {
   }
 
   update (profileID: string, namespace: string, handle: string, body: Partial<CustomAttributeInput>): Promise<CustomAttribute> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'put',
-      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`,
+      method: 'PUT',
+      endpoint: `/profiles/${profileID}/attributes/custom/${attribute}`,
       body
     }).then((response) => {
       return response.data
@@ -32,9 +34,10 @@ export default class ProfileAttributesCustom extends Resource {
   }
 
   delete (profileID: string, namespace: string, handle: string): Promise<Response> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'delete',
-      endpoint: `/profiles/${profileID}/attributes/custom/${namespace}:${handle}`
+      method: 'DELETE',
+      endpoint: `/profiles/${profileID}/attributes/custom/${attribute}`
     })
   }
 

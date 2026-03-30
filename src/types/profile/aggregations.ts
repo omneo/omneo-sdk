@@ -69,3 +69,44 @@ export type Aggregations = {
     likely_region: string | null
     likely_region_score: number | null
 }
+
+export type UpdateAggregationInput = {
+  shop_days?: number | null
+  shop_count?: number | null
+  spend_12m?: number | null
+  spend_12m_now?: number | null
+  spend_all?: number | null
+  spend_atv_12m?: number | null
+  spend_atv_all?: number | null
+  spend_first_date?: string | null
+  spend_last_date?: string | null
+  dimension_frequency?: string | null
+  dimension_recency?: string | null
+  dimension_join?: string | null
+  channel?: string | null
+  likely_country?: string | null
+  likely_country_score?: number | null
+  purchased_brands?: string[] | null
+  discount_avg?: number | null
+  total_shop_days?: number | null
+  first_shop_days?: number | null
+  second_shop_days?: number | null
+  latest_shop_days?: number | null
+  average_shop_days?: number | null
+  second_shop_date?: string | null
+  previous_shop_date?: string | null
+  at_risk_date?: string | null
+  latest_shop_spend?: number | null
+  latest_shop_currency_id?: number | null
+  latest_transacted_location_id?: number | null
+  transacted_locations?: string[] | null
+  likely_country_iso?: string | null
+  likely_country_iso_score?: number | null
+  likely_state_iso?: string | null
+  likely_state_iso_score?: number | null
+  likely_region?: string | null
+  likely_region_score?: number | null
+  most_spend_location_id?: number | null
+  most_spend_12m_location_id?: number | null
+  top_historic_status_id?: number | null
+}
