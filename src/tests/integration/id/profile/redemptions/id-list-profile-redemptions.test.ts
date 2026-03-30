@@ -46,7 +46,8 @@ describe('ID List Profile Redemptions', () => {
       }
     }
     const params = {
-      has_benefit: true
+      has_benefit: true,
+      'page[size]': 10
     }
     const response = await IDClient.profile.redemptions.list(params)
     const redemptions = Array.isArray(response.data) ? response.data : []

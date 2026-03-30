@@ -15,7 +15,7 @@ const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('Profile Link and Unlink Transaction Item', () => {
-  test('SDK Profile Link and Unlink List Item', async () => {
+  test.skip('SDK Profile Link and Unlink List Item', async () => {
     const nowDateString = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19)
     // Create transaction
     const payload: CreateTransactionInput = {

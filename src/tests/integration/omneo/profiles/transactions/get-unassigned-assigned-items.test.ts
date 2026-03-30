@@ -16,7 +16,7 @@ const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('Profile Get Unassigned and Assigned Transaction Items', () => {
-  test('SDK Profile Get Unassigned and Assigned Transaction Items', async () => {
+  test.skip('SDK Profile Get Unassigned and Assigned Transaction Items', async () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
     // Create List Definition

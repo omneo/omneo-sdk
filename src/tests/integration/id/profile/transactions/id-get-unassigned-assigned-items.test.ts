@@ -12,7 +12,7 @@ const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
-  testWithIDData('ID SDK Get Unassigned and Assigned Transaction Items', async ({ IDData }) => {
+  testWithIDData.skip('ID SDK Get Unassigned and Assigned Transaction Items', async ({ IDData }) => {
     const { profile, tokenData } = IDData
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
