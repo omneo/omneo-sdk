@@ -40,7 +40,7 @@ export default class TransactionItems extends Resource {
     })
   }
 
-  destroy (transactionId: number, itemId: number): Promise<void> {
+  delete (transactionId: number, itemId: number): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/transactions/${transactionId}/items/${itemId}`

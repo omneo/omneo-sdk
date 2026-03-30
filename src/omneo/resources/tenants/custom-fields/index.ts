@@ -43,7 +43,7 @@ export default class TenantCustomFields extends Resource {
     })
   }
 
-  destroy (namespace: string, handle: string): Promise<void> {
+  delete (namespace: string, handle: string): Promise<void> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'DELETE',

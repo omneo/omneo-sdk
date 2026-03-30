@@ -43,7 +43,7 @@ export default class TransactionCustomFields extends Resource {
     })
   }
 
-  destroy (transactionId: number, namespace: string, handle: string): Promise<void> {
+  delete (transactionId: number, namespace: string, handle: string): Promise<void> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'DELETE',

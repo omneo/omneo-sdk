@@ -68,17 +68,12 @@ export default class ProfileTransactions extends Resource {
       product_list_item_id: profileListId,
       type: 'link'
     }
-    console.log('linkListItem body:', body)
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`,
       body
     }).then((response) => {
-      console.log('linkListItem response:', response)
       return response.data
-    }).catch((error) => {
-      console.error('linkListItem error:', error)
-      throw error
     })
   }
 
@@ -88,7 +83,6 @@ export default class ProfileTransactions extends Resource {
       type: 'unlink'
     }
     const endpoint = `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`
-    console.log('unlinkListItem body:', body)
     return this.client.call({
       method: 'POST',
       endpoint,

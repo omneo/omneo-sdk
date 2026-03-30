@@ -32,7 +32,7 @@ export default class Staffs extends Resource {
     })
   }
 
-  destroy (staffId: number): Promise<void> {
+  delete (staffId: number): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/staff/${staffId}`

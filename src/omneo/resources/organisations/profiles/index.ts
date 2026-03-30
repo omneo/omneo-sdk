@@ -22,7 +22,7 @@ export default class OrganisationProfiles extends Resource {
     })
   }
 
-  destroy (organisationId: number, profileId: string): Promise<void> {
+  delete (organisationId: number, profileId: string): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/organisations/${organisationId}/profiles/${profileId}`

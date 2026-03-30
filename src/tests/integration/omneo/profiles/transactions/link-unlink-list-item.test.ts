@@ -63,10 +63,12 @@ describe('Profile Link and Unlink Transaction Item', () => {
     const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
     CREATED_LIST_IDS.push(listResponse.data.id)
 
+    // TODO add log to monitor the random error.
     console.log('Created list definition and list for link/unlink test:', listDefResponse.data, listResponse.data)
     const transactionItem = response.data.items[0]
 
     // Test linkListItem
+    // TODO add log to monitor the random error.
     console.log('Linking transaction item to list...', transactionItem.id, listResponse.data.id)
     const linkedItem: TransactionItem = await omneoClient.profiles.transactions.linkListItem(
       testProfileID,
@@ -90,30 +92,30 @@ describe('Profile Link and Unlink Transaction Item', () => {
 })
 
 afterAll(async () => {
-  // if (CREATED_TRANSACTION_IDS.length > 0) {
-  //   for (const id of CREATED_TRANSACTION_IDS) {
-  //     const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
-  //     if (deleteResponse.status === 204) {
-  //       console.log(`SDK Transaction ID ${id} deleted`)
-  //     }
-  //   }
-  // }
+  if (CREATED_TRANSACTION_IDS.length > 0) {
+    for (const id of CREATED_TRANSACTION_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Transaction ID ${id} deleted`)
+      }
+    }
+  }
 
-  // if (CREATED_LIST_IDS.length > 0) {
-  //   for (const id of CREATED_LIST_IDS) {
-  //     const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${id}`)
-  //     if (deleteResponse.status === 204) {
-  //       console.log(`SDK Link/Unlink List ID ${id} deleted`)
-  //     }
-  //   }
-  // }
+  if (CREATED_LIST_IDS.length > 0) {
+    for (const id of CREATED_LIST_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Link/Unlink List ID ${id} deleted`)
+      }
+    }
+  }
 
-  // if (CREATED_LIST_DEFINITION_IDS.length > 0) {
-  //   for (const id of CREATED_LIST_DEFINITION_IDS) {
-  //     const deleteResponse = await simpleOmneoRequest('DELETE', `/lists/definitions/${id}`)
-  //     if (deleteResponse.status === 204) {
-  //       console.log(`SDK Link/Unlink List Definition ID ${id} deleted`)
-  //     }
-  //   }
-  // }
+  if (CREATED_LIST_DEFINITION_IDS.length > 0) {
+    for (const id of CREATED_LIST_DEFINITION_IDS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/lists/definitions/${id}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Link/Unlink List Definition ID ${id} deleted`)
+      }
+    }
+  }
 })

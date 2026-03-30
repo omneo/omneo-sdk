@@ -41,7 +41,7 @@ export default class LocationCustomFields extends Resource {
     })
   }
 
-  destroy (locationId: number, customField: string): Promise<void> {
+  delete (locationId: number, customField: string): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/locations/${locationId}/custom-fields/${customField}`

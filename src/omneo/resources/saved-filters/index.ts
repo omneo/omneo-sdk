@@ -32,7 +32,7 @@ export default class SavedFilters extends Resource {
     })
   }
 
-  destroy (modelType: string, savedFilterId: number): Promise<void> {
+  delete (modelType: string, savedFilterId: number): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/${modelType}/savedfilter/${savedFilterId}`

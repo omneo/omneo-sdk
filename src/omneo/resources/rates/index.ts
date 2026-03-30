@@ -41,7 +41,7 @@ export default class Rates extends Resource {
     })
   }
 
-  destroy (id: number): Promise<void> {
+  delete (id: number): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/rates/${id}`

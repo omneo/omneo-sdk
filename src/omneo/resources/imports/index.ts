@@ -34,7 +34,7 @@ export default class Imports extends Resource {
     })
   }
 
-  destroy (importId: number): Promise<void> {
+  delete (importId: number): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/imports/${importId}`
