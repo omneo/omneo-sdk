@@ -9,7 +9,7 @@ const omneoClient = new Omneo({
 const FAILED_DELETE_TIER_DEFINITION_IDS: number[] = []
 
 describe('Delete Tier Definition', () => {
-  test.skip('SDK Delete Tier Definition', async () => {
+  test('SDK Delete Tier Definition', async () => {
     const payload = {
       name: getRandomString('sdk_unit_test_delete_tier_definition_name'),
       handle: getRandomString('sdk_unit_test_delete_tier_definition_handle'),

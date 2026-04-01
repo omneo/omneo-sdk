@@ -1,7 +1,8 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { BenefitInput } from '@types'
-import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
+import { simpleOmneoRequest, randomString, getRandomString, formatUtcToTimezone } from '@lib'
+import { format } from 'path'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -29,8 +30,8 @@ describe('Benefits update', async () => {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
-      expires_at: '2024-12-06',
-      issued_at: '2024-12-06 08:30:00',
+      expires_at: '2030-12-06 00:00:00',
+      issued_at: '2030-12-06 08:30:00',
       timezone: 'Australia/Melbourne'
     }
 
@@ -40,15 +41,13 @@ describe('Benefits update', async () => {
     })
 
     CREATED_BENEFITS_IDS.push(benefitResponse.data.id)
-
-    const updatedBenefit = await omneo.benefits.update(benefitResponse.data.id, {
+    const payload2 = {
       external_id: `${payload.external_id}-updated`,
-      expires_at: '2024-12-01'
-    })
-
+      expires_at: '2030-12-07 00:00:00'
+    }
+    const updatedBenefit = await omneo.benefits.update(benefitResponse.data.id, payload2)
     expect(updatedBenefit.external_id).toBe(`${payload.external_id}-updated`)
-    // TODO the expires_at should be UTC time.
-    // expect(updatedBenefit.expires_at).toBe('2024-12-01 00:00:00')
+    expect(formatUtcToTimezone(updatedBenefit.expires_at, payload.timezone)).toBe(payload2.expires_at)
   })
 })
 

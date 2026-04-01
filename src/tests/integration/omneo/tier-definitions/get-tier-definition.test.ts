@@ -10,7 +10,7 @@ const omneoClient = new Omneo({
 const CREATED_TIER_DEFINITION_IDS: number[] = []
 
 describe('Get Tier Definition', () => {
-  test.skip('SDK Get Tier Definition', async () => {
+  test('SDK Get Tier Definition', async () => {
     const payload = {
       name: getRandomString('sdk_unit_test_get_tier_definition_name'),
       handle: getRandomString('sdk_unit_test_get_tier_definition_handle'),
