@@ -2,7 +2,6 @@ import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { BenefitInput } from '@types'
 import { simpleOmneoRequest, randomString, getRandomString, formatUtcToTimezone } from '@lib'
-import { format } from 'path'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
