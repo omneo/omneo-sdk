@@ -30,17 +30,32 @@ export type PointDefinition = {
   updated_at: string
 }
 
-type PointDefinitionEditable = Omit<PointDefinition, 'id' | 'created_at' | 'updated_at' | 'region' | 'currency'>
-type PointDefinitionCreateRequiredField = 'name' | 'handle'
+export type CreatePointDefinitionInput = {
+  name: string
+  handle: string
+  region_id?: number | null
+  description?: string | null
+  notes?: string | null
+  is_reassignable?: boolean
+  issue_period?: number | null
+  issue_period_type?: PointDefinitionIssuePeriodType
+  issue_absolute_expiry?: string | null
+  tags?: Array<string>
+  currency?: string | null
+}
 
-export type CreatePointDefinitionInput =
-  Required<Pick<PointDefinitionEditable, PointDefinitionCreateRequiredField>> &
-  Partial<Omit<PointDefinitionEditable, PointDefinitionCreateRequiredField>> & {
-    currency?: string | null
-    issue_period_type?: PointDefinitionIssuePeriodType
-  }
-
-export type UpdatePointDefinitionInput = Partial<Omit<CreatePointDefinitionInput, 'handle'>>
+export type UpdatePointDefinitionInput = {
+  name?: string
+  region_id?: number | null
+  description?: string | null
+  notes?: string | null
+  is_reassignable?: boolean
+  issue_period?: number | null
+  issue_period_type?: PointDefinitionIssuePeriodType
+  issue_absolute_expiry?: string | null
+  tags?: Array<string>
+  currency?: string | null
+}
 
 export type Point = {
   id: number
