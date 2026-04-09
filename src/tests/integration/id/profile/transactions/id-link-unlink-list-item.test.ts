@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionItem, ListDefinition, List } from '@types'
+import { CreateTransactionInput, TransactionItem, ListDefinition, List, ListItemInput } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
@@ -7,12 +7,13 @@ import { testWithIDData } from '../../test-with-id-data'
 const CREATED_TRANSACTION_IDS: number[] = []
 const CREATED_LIST_DEFINITION_IDS: number[] = []
 const CREATED_LIST_IDS: number[] = []
+const CREATED_LIST_ITEMS: { listId: number; itemId: number }[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('ID Profile Link and Unlink Transaction Item', () => {
-  testWithIDData.skip('ID SDK Link and Unlink List Item', async ({ IDData }) => {
+  testWithIDData('ID SDK Link and Unlink List Item', async ({ IDData }) => {
     const { profile, tokenData } = IDData
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
@@ -67,10 +68,21 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
 
     const transactionItem = response.data.items[0]
 
+    // Create List Item
+    const listItemPayload: ListItemInput = {
+      product_variant_id: parseInt(testProductVariantId),
+      quantity: 1
+    }
+    const createdListItem = await simpleOmneoRequest('POST', `/profiles/${profile.id}/lists/${listResponse.data.id}/items`, listItemPayload).catch((err) => {
+      console.error('ID SDK link/unlink list item, list item created failed:', err)
+      throw new Error('ID SDK link/unlink list item, list item created failed')
+    })
+    CREATED_LIST_ITEMS.push({ listId: listResponse.data.id, itemId: createdListItem.data.id })
+
     // Test linkListItem
     const linkedItem: TransactionItem = await IDClient.profile.transactions.linkListItem(
       transactionItem.id,
-      listResponse.data.id
+      createdListItem.data.id
     )
 
     expect(linkedItem).toBeDefined()
@@ -79,7 +91,7 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
     // Test unlinkListItem
     const unlinkedItem: TransactionItem = await IDClient.profile.transactions.unlinkListItem(
       transactionItem.id,
-      listResponse.data.id
+      createdListItem.data.id
     )
 
     expect(unlinkedItem).toBeDefined()
@@ -93,6 +105,15 @@ afterAll(async () => {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`ID SDK Transaction ID ${id} deleted`)
+      }
+    }
+  }
+
+  if (CREATED_LIST_ITEMS.length > 0) {
+    for (const { listId, itemId } of CREATED_LIST_ITEMS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${listId}/items/${itemId}`)
+      if (deleteResponse.status === 204) {
+        console.log(`ID SDK Link/Unlink List Item ID ${itemId} deleted`)
       }
     }
   }

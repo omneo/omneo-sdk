@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CreateTransactionInput, TransactionItem, ListDefinition, List } from '@types'
+import { CreateTransactionInput, TransactionItem, ListDefinition, List, ListItemInput } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -10,12 +10,13 @@ const omneoClient = new Omneo({
 const CREATED_TRANSACTION_IDS: number[] = []
 const CREATED_LIST_DEFINITION_IDS: number[] = []
 const CREATED_LIST_IDS: number[] = []
+const CREATED_LIST_ITEMS: { listId: number; itemId: number }[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('Profile Link and Unlink Transaction Item', () => {
-  test.skip('SDK Profile Link and Unlink List Item', async () => {
+  test('SDK Profile Link and Unlink List Item', async () => {
     const nowDateString = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19)
     // Create transaction
     const payload: CreateTransactionInput = {
@@ -62,20 +63,24 @@ describe('Profile Link and Unlink Transaction Item', () => {
     }
     const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
     CREATED_LIST_IDS.push(listResponse.data.id)
-
-    // TODO add log to monitor the random error.
-    console.log('Created list definition and list for link/unlink test:', listDefResponse.data, listResponse.data)
     const transactionItem = response.data.items[0]
 
-    // Test linkListItem
-    // TODO add log to monitor the random error.
-    console.log('Linking transaction item to list...', transactionItem.id, listResponse.data.id)
+    // Create List Item
+    const listItemPayload: ListItemInput = {
+      product_variant_id: parseInt(testProductVariantId),
+      quantity: 1
+    }
+    const createdListItem = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listResponse.data.id}/items`, listItemPayload).catch((err) => {
+      console.error('SDK link/unlink list item, list item created failed:', err)
+      throw new Error('SDK link/unlink list item, list item created failed')
+    })
+    CREATED_LIST_ITEMS.push({ listId: listResponse.data.id, itemId: createdListItem.data.id })
+
     const linkedItem: TransactionItem = await omneoClient.profiles.transactions.linkListItem(
       testProfileID,
       transactionItem.id,
-      listResponse.data.id
+      createdListItem.data.id
     )
-
     expect(linkedItem).toBeDefined()
     expect(linkedItem.id).toBe(transactionItem.id)
 
@@ -83,7 +88,7 @@ describe('Profile Link and Unlink Transaction Item', () => {
     const unlinkedItem: TransactionItem = await omneoClient.profiles.transactions.unlinkListItem(
       testProfileID,
       transactionItem.id,
-      listResponse.data.id
+      createdListItem.data.id
     )
 
     expect(unlinkedItem).toBeDefined()
@@ -97,6 +102,15 @@ afterAll(async () => {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/transactions/${id}`)
       if (deleteResponse.status === 204) {
         console.log(`SDK Transaction ID ${id} deleted`)
+      }
+    }
+  }
+
+  if (CREATED_LIST_ITEMS.length > 0) {
+    for (const { listId, itemId } of CREATED_LIST_ITEMS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${listId}/items/${itemId}`)
+      if (deleteResponse.status === 204) {
+        console.log(`SDK Link/Unlink List Item ID ${itemId} deleted`)
       }
     }
   }

@@ -55,9 +55,9 @@ export type UpdateTierDefinitionInput = Partial<Omit<CreateTierDefinitionInput, 
 export type TierProgress = {
   id: number
   profile_id: string
-  current_tier: Tier | null
-  next_tier: Tier | null
-  prev_tier: Tier | null
+  current_tier: TierDefinition | null
+  next_tier: TierDefinition | null
+  prev_tier: TierDefinition | null
   is_floor: boolean
   current_credit: number
   current_progress: number

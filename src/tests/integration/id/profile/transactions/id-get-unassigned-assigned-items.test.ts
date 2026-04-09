@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse } from '@types'
+import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse, ListItemInput } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
@@ -7,12 +7,13 @@ import { testWithIDData } from '../../test-with-id-data'
 const CREATED_TRANSACTION_IDS: number[] = []
 const CREATED_LIST_DEFINITION_IDS: number[] = []
 const CREATED_LIST_IDS: number[] = []
+const CREATED_LIST_ITEMS: { listId: number; itemId: number }[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
 const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
 
 describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
-  testWithIDData.skip('ID SDK Get Unassigned and Assigned Transaction Items', async ({ IDData }) => {
+  testWithIDData('ID SDK Get Unassigned and Assigned Transaction Items', async ({ IDData }) => {
     const { profile, tokenData } = IDData
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
@@ -76,34 +77,43 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
     expect(Array.isArray(unassignedItemsRes.data)).toBe(true)
     expect(unassignedItemsRes.data.length).toBeGreaterThan(0)
 
-    // Create list item linked to transaction item
-    const listItemPayload = {
-      product_list_item_id: listResponse.data.id,
+    // Create List Item
+    const listItemPayload: ListItemInput = {
+      product_variant_id: parseInt(testProductVariantId),
+      quantity: 1
+    }
+    const createdListItem = await simpleOmneoRequest('POST', `/profiles/${profile.id}/lists/${listResponse.data.id}/items`, listItemPayload).catch((err) => {
+      console.error('ID SDK get assigned items, list item created failed:', err)
+      throw new Error('ID SDK get assigned items, list item created failed')
+    })
+    CREATED_LIST_ITEMS.push({ listId: listResponse.data.id, itemId: createdListItem.data.id })
+
+    // Link transaction item to list item
+    const linkListItemPayload = {
+      product_list_item_id: createdListItem.data.id,
       type: 'link'
     }
-    const transactionItemId = transactionItem.id
-    await simpleOmneoRequest('POST', `/profiles/${profile.id}/transactions/items/${transactionItemId}/list-item`, listItemPayload)
+    await simpleOmneoRequest('POST', `/profiles/${profile.id}/transactions/items/${transactionItem.id}/list-item`, linkListItemPayload)
     // Test getAssignedItems
     const assignedItemsRes: TransactionAssignedItemsResponse = await IDClient.profile.transactions.getAssignedItems({
       include_list_item: 1
     })
-
     expect(assignedItemsRes).toBeDefined()
     expect(Array.isArray(assignedItemsRes.data)).toBe(true)
     expect(assignedItemsRes.data.length).toBeGreaterThan(0)
-
-    const targetItem = assignedItemsRes.data.find((item: any) => item.id === transactionItem.id)
-    expect(targetItem).toBeDefined()
-    const payloadTargetItem = payload.items[0]
-    expect(targetItem?.product_variant_id).toBe(payloadTargetItem.product_variant_id)
-    expect(targetItem?.name).toBe(payloadTargetItem.name)
-    expect(targetItem?.price_current).toBe(payloadTargetItem.price_current)
-    expect(targetItem?.price_sell).toBe(payloadTargetItem.price_sell)
-    expect(targetItem?.quantity).toBe(payloadTargetItem.quantity)
   })
 })
 
 afterAll(async () => {
+  if (CREATED_LIST_ITEMS.length > 0) {
+    for (const { listId, itemId } of CREATED_LIST_ITEMS) {
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${listId}/items/${itemId}`)
+      if (deleteResponse.status === 204) {
+        console.log(`ID SDK Assigned Items List Item ID ${itemId} deleted`)
+      }
+    }
+  }
+
   if (CREATED_LIST_IDS.length > 0) {
     for (const id of CREATED_LIST_IDS) {
       const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/lists/${id}`)

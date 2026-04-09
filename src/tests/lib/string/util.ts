@@ -20,6 +20,28 @@ export const getIsoNumeric = () => {
   return `${Math.floor(Date.now()) + Math.floor(Math.random() * 1000)}`
 }
 
+export const formatUtcToTimezone = (dateTime: string, timezone: string): string => {
+  const [datePart, timePart] = dateTime.split(' ')
+  const [year, month, day] = datePart.split('-').map(Number)
+  const [hours, minutes, seconds] = (timePart ?? '00:00:00').split(':').map(Number)
+
+  const utcDate = new Date(Date.UTC(year, month - 1, day, hours, minutes, seconds))
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: timezone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  }).formatToParts(utcDate)
+
+  const getPart = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value ?? ''
+
+  return `${getPart('year')}-${getPart('month')}-${getPart('day')} ${getPart('hour')}:${getPart('minute')}:${getPart('second')}`
+}
+
 export const isSameDay = (date1: string, date2: string): boolean => {
   const d1 = new Date(date1)
   const d2 = new Date(date2)
