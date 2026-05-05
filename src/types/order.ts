@@ -8,7 +8,7 @@ export type OrderItem = {
   id: number
   external_id: string | null
   name: string
-  transaction_id: number
+  order_id: number
   product_id: number
   product_variant_id: number | null
   sku: string | null
@@ -28,7 +28,7 @@ export type OrderItem = {
   product_images: Array<any>
   created_at: string
   updated_at: string
-  transaction: Pick<Transaction, 'transacted_at' | 'receipt_ref' | 'external_id'>
+  order: Pick<Transaction, 'transacted_at' | 'receipt_ref' | 'external_id'>
 }
 
 export type OrderItemResponse = PaginationResponse & {

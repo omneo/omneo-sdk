@@ -67,7 +67,7 @@ export type UpdateProductVariantInput = Omit<Partial<CreateProductVariantInput>,
 
 export type TransactionProductVariant = {
   id: number
-  countt: number
+  count: number
   refund_qty: number
   purchase_qty: number
   latest_transacted_at: string
