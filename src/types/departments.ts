@@ -1,47 +1,50 @@
-// Route category: brands
+// Route category: departments
 
 import type { AnyJsonRecord, AnyRecord, FilterOperator } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
-import type { Department } from './departments'
+import type { DepartmentBrand } from './brands'
 
-export type RequestCreateBrand = {
+export type RequestCreateDepartment = {
+  brand_id: number
   description?: string | null
   external_code?: string | null
   external_id?: string | null
   handle: string
   image_url?: string | null
   internal_note?: string | null
-  is_system?: boolean | null
+  location_id?: number | null
   meta?: AnyJsonRecord | null
   name: string
   short_description?: string | null
   url?: string | null
 }
 
-export type RequestUpdateBrand = {
+export type RequestUpdateDepartment = {
+  brand_id?: number
   description?: string | null
   external_code?: string | null
   external_id?: string | null
   image_url?: string | null
   internal_note?: string | null
-  is_system?: boolean | null
+  location_id?: number | null
   meta?: AnyJsonRecord | null
   name?: string
   short_description?: string | null
   url?: string | null
 }
 
-export type RequestQueryBrand = {
+export type RequestQueryDepartment = {
   offset?: number
   limit?: number
   filter?: {
     name?: string | FilterOperator
     handle?: string | FilterOperator
+    brand_id?: string | FilterOperator
     external_id?: string | FilterOperator
     external_code?: string | FilterOperator
-    is_system?: string | FilterOperator
     description?: string | FilterOperator
     short_description?: string | FilterOperator
+    location_id?: string | FilterOperator
     url?: string | FilterOperator
     image_url?: string | FilterOperator
     internal_note?: string | FilterOperator
@@ -59,9 +62,10 @@ export type RequestQueryBrand = {
   }
 }
 
-export type Brand = {
+export type Department = {
+  brand: DepartmentBrand
+  brand_id: number
   created_at: string
-  departments: Department[]
   description: string | null
   external_code: string | null
   external_id: string
@@ -69,7 +73,7 @@ export type Brand = {
   id: number
   image_url: string | null
   internal_note: string | null
-  is_system: boolean
+  location_id: number
   meta: AnyRecord | null
   name: string | null
   short_description: string | null
@@ -77,13 +81,8 @@ export type Brand = {
   url: string | null
 }
 
-export type DepartmentBrand = {
-  name: string | null
-  handle: string | null
-}
-
-export type BrandResponse = {
-  data: Brand[]
+export type DepartmentResponse = {
+  data: Department[]
   meta?: PaginationMeta
   links?: PaginationLink
 }

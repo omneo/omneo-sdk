@@ -1,3 +1,5 @@
+import type { AnyJsonRecord } from './common'
+
 export type OmneoConfig = {}
 
 export type OmneoClassOptions = {
@@ -7,14 +9,15 @@ export type OmneoClassOptions = {
   baseURL?: string
 }
 
-export type RequestParams = {[key: string]: any}
-export type RequestBody = {[key: string]: any}
+export type RequestParams = AnyJsonRecord
+export type RequestBody = AnyJsonRecord
+
 export type OmneoRequest = {
   method: string
   endpoint: string
   params?: RequestParams
   body?: RequestBody,
-  headers?: {[key: string]: string}
+  headers?: { [key: string]: string }
 }
 
 export type DelegationData = {

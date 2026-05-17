@@ -1,94 +1,126 @@
+// Address type
 
-import { CreateCustomFieldInput } from './custom-field'
-
-export type Address = {
-  id: number
-  address_line_1: string
-  address_line_2: string | null
-  address_line_3: string | null
-  company: string | null
-  is_default: boolean
-  latitude: string | null
-  longitude: string | null
-  city: string
-  state: string
-  postcode: string
-  country: string
-  iso: string | null
-  iso_state: string | null
-  notes: string
-  external_id?: string | null
-  created_at?: string
-  updated_at?: string
-  meta?: {[key: string]: any} | null
-  name?: string | null
-  type?: string | null
-  phone?: string | null
-  profile_id?: string
-  custom_fields?: any[]
-}
-
-export type AddressInput = Partial<Address> & {
-  address_line_1: string
-  city: string,
-  postcode: string,
-  country: string,
-  state: string
-}
-
-export type AddressUpdateInput = {
-  address_line_1?: string
-  address_line_2?: string
-  address_line_3?: string
-  company?: string
-  is_default?: Boolean
-  latitude?: string
-  longitude?: string
-  city?: string
-  state?: string
-  postcode?: string
-  country?: string
-  iso?: string
-  iso_state?: string
-  notes?: string
-  external_id?: string
-}
-
-export type AddressWebhook = Address & {
-  external_id: string
-  resource_owner_id: string
-  resource_owner_type: string
-  name: string
-  type: string
-  phone: string
-  profile: {
-    id: string
-    email: string
-  }
-}
-
-export type UpsertAddressCustomFieldInput = Pick<CreateCustomFieldInput, 'namespace' | 'handle' | 'value'> & {
-  type: 'string' | 'integer' | 'float' | 'boolean' | 'json' | 'array'
-  is_index: boolean
-}
-
-export type UpsertAddressInput = {
+import type { AnyJsonRecord, AnyRecord, CustomFieldsGrouped } from './common'
+import type { CustomFieldItem, CustomFieldTypeEnum } from './custom-fields'
+import type { PaginationLink, PaginationMeta } from './pagination'
+export type LocationsAddress = {
   address_line_1: string
   address_line_2?: string | null
   address_line_3?: string | null
-  company?: string | null
   city: string
-  postcode: string
-  state?: string
+  company?: string | null
   country: string
-  notes?: string | null
   is_default?: boolean | null
-  external_id?: string | null
-  meta?: { [key: string]: any } | null
-  name?: string | null
-  type?: 'home' | 'business' | 'billing' | 'holiday' | 'hotel' | 'recipient' | 'other' | null
-  phone?: string | null
   iso?: string | null
   iso_state?: string | null
-  custom_fields?: UpsertAddressCustomFieldInput[]
+  latitude?: number | null
+  longitude?: number | null
+  notes?: string | null
+  postcode: string
+  state: string
+}
+
+export type AddressTypeEnum = 'home' | 'business' | 'billing' | 'holiday' | 'hotel' | 'recipient' | 'other'
+
+export type UpsertAddressCustomFieldsItem = {
+  handle: string
+  is_index: boolean
+  namespace: string
+  type: CustomFieldTypeEnum
+  value: string
+}
+
+export type Address = {
+  address_line_1: string
+  address_line_2: string | null
+  address_line_3: string | null
+  city: string
+  company: string | null
+  country: string
+  created_at: string
+  custom_fields: CustomFieldsGrouped
+  external_id: string
+  id: number
+  is_default: boolean
+  iso: string | null
+  iso_state: string | null
+  latitude: number | null
+  longitude: number | null
+  meta: AnyRecord | null
+  name: string | null
+  notes: string | null
+  phone: string | null
+  postcode: string
+  profile_id: string
+  state: string | null
+  type: AddressTypeEnum | null
+  updated_at: string
+}
+
+export type RequestCreateAddress = {
+  address_line_1: string
+  address_line_2?: string | null
+  address_line_3?: string | null
+  city: string
+  company?: string | null
+  country: string
+  custom_fields?: CustomFieldItem[]
+  external_id?: string | null
+  is_default?: boolean | null
+  iso?: string | null
+  iso_state?: string | null
+  meta?: AnyJsonRecord | null
+  name?: string | null
+  notes?: string | null
+  phone?: string | null
+  postcode: string
+  state?: string
+  type?: AddressTypeEnum | null
+}
+
+export type RequestUpdateAddress = {
+  address_line_1?: string
+  address_line_2?: string | null
+  address_line_3?: string | null
+  city?: string
+  company?: string | null
+  country?: string
+  external_id?: string | null
+  is_default?: boolean | null
+  iso?: string | null
+  iso_state?: string | null
+  meta?: AnyJsonRecord | null
+  name?: string | null
+  notes?: string | null
+  phone?: string | null
+  postcode?: string
+  state?: string
+  type?: AddressTypeEnum | null
+}
+
+export type RequestUpsertAddress = {
+  address_line_1: string
+  address_line_2?: string | null
+  address_line_3?: string | null
+  city: string
+  company?: string | null
+  country: string
+  custom_fields?: UpsertAddressCustomFieldsItem[]
+  external_id?: string | null
+  is_default?: boolean | null
+  iso?: string | null
+  iso_state?: string | null
+  meta?: AnyJsonRecord | null
+  name?: string | null
+  notes?: string | null
+  phone?: string
+  postcode: string
+  state?: string
+  type?: AddressTypeEnum | null
+}
+
+export type ProfileAddressResponse = {
+  data: Address[]
+  meta?: PaginationMeta
+  links?: PaginationLink
 }

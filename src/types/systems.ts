@@ -1,14 +1,12 @@
-// Route category: tags
+// Route category: systems
 
 import type { FilterOperator } from './common'
 
-import type { PaginationLink, PaginationMeta } from './pagination'
-
-export type RequestCreateTag = {
+export type RequestCreateSystem = {
   handle: string
 }
 
-export type RequestQueryTag = {
+export type RequestQuerySystem = {
   offset?: number
   limit?: number
   filter?: {
@@ -20,21 +18,17 @@ export type RequestQueryTag = {
     [key: string]: any
   }
   sort?: string
-  page?: {
-    size?: number
-    number?: number
-  }
 }
 
-export type TagResponse = {
-  data: string[]
-  meta?: PaginationMeta
-  links?: PaginationLink
-}
-
-export type TagOriginal = {
-  created_at: string
-  handle: string | null
+export type System = {
   id: number
+  handle: string
+  created_at: string
   updated_at: string
 }
+
+export type SystemResponse = { data: System[] }
+
+export type SystemStoreResponse = { data: System }
+
+export type SystemShowResponse = { data: System }

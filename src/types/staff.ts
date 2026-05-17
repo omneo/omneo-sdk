@@ -1,29 +1,41 @@
-import { PaginationResponse } from './pagination'
-import { Profile } from './profile'
+// Route category: staff
+
+import type { Profile } from './profiles'
+
+export type StaffGenderEnum = 'male' | 'female' | 'withheld' | 'other'
 
 export type Staff = Profile
 
-export type StaffGender = 'male' | 'female' | 'withheld' | 'other'
-
-export type CreateStaffInput = {
-  title?: string | null
-  first_name: string
-  last_name: string
+export type RequestCreateStaff = {
+  birth_day: number | null
+  birth_month: number | null
+  birth_year: number | null
+  company?: string | null
   email: string
-  gender?: StaffGender | null
+  first_name: string
+  gender?: StaffGenderEnum | null
+  joined_at: string
+  last_name: string
   mobile_phone?: string | null
+  occupation?: string | null
   secondary_phone?: string | null
+  staff_id: string
+  title?: string | null
+}
+
+export type RequestUpdateStaff = {
   birth_day?: number | null
   birth_month?: number | null
   birth_year?: number | null
   company?: string | null
+  email?: string
+  first_name?: string
+  gender?: StaffGenderEnum | null
+  last_name?: string
+  mobile_phone?: string | null
   occupation?: string | null
-  staff_id: string
-  joined_at: string
+  secondary_phone?: string | null
+  staff_id?: string
+  title?: string | null
 }
-
-export type UpdateStaffInput = Omit<Partial<CreateStaffInput>, 'joined_at'>
-
-export type StaffResponse = PaginationResponse & {
-  data: Staff[]
-}
+export type StaffResponse = { data: Staff[]; }

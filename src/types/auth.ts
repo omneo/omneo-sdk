@@ -1,4 +1,86 @@
-import { User } from './user'
+// Route category: auth
+
+import type { User } from './users'
+
+export type RequestDelegateToken = {
+  client_handle: string
+  scopes?: string[]
+}
+
+export type RequestDiscoveryToken = {
+  rules?: | string[]
+  | Record<string, { filter?: string } | null>
+}
+
+export type DelegationDelegateResponse = {
+  data: {
+    token: string
+  }
+}
+
+export type OauthAccessTokenForUserResponse = Array<{
+  id: string
+  user_id: number
+  client_id: number
+  name: string | null
+  scopes: string[]
+  revoked: boolean
+  created_at: string | null
+  updated_at: string | null
+  expires_at: string | null
+  client: {
+    id: number
+    personal_access_client: boolean
+    [key: string]: any
+  }
+  usage:
+    | {
+        id: number
+        access_token_id: string
+        last_used_at: string
+        created_at: string | null
+        updated_at: string | null
+      }
+    | never[]
+  user:
+    | {
+        id: number
+        name: string
+        email: string
+        throttle: number | null
+        deleted_at: string | null
+        created_at: string | null
+        updated_at: string | null
+      }
+    | never[]
+}>
+
+export type DiscoveryIssueResponse = {
+  data: {
+    token: string
+  }
+}
+
+export type PersonalAccessToken = {
+  id: string
+  user_id: number
+  client_id: number
+  name: string
+  scopes: string[]
+  revoked: boolean
+  created_at: string
+  updated_at: string
+  expires_at: string | null
+}
+
+export type PersonalAccessTokenForUserResponse = PersonalAccessToken[]
+
+export type PersonalAccessTokenWithSecret = PersonalAccessToken & {
+  accessToken: string
+  token: PersonalAccessToken
+}
+
+export type PersonalAccessTokenStoreResponse = PersonalAccessTokenWithSecret
 
 export type APIScopes =
   | 'read-audits'
@@ -155,7 +237,7 @@ export type APIScopes =
 
 export type APITokenInput = {
   name: string
-  scopes: Array<APIScopes>
+  scopes: APIScopes[]
 }
 
 export type Client = {
@@ -176,12 +258,12 @@ export type APIToken = {
   user_id: number
   client_id: number
   name: string
-  scopes: Array<string>
+  scopes: APIScopes[]
   revoked: boolean
   created_at: string
   updated_at: string
   expires_at: string
   client: Client
-  usage: Array<any>
+  usage: any[]
   user: User
 }
