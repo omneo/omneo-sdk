@@ -12,13 +12,16 @@ export default defineConfig(({ command, mode }) => {
         '@': path.resolve(__dirname, 'src'),
         '@omneo': path.resolve(__dirname, 'src/omneo'),
         '@id': path.resolve(__dirname, 'src/id'),
+        '@id-tests': path.resolve(__dirname, 'src/id/tests'),
         '@types': path.resolve(__dirname, 'src/types'),
-        '@lib': path.resolve(__dirname, 'src/tests/lib')
+        '@lib': path.resolve(__dirname, 'src/tests/lib'),
+        '@mocks': path.resolve(__dirname, 'src/tests/mocks')
       }
     },
     test: {
       env,
-      testTimeout: 40000
+      testTimeout: 40000,
+      include: ['src/{id,omneo}/**/tests/**/*.test.ts']
     }
   }
 })

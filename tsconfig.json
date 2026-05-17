@@ -35,10 +35,14 @@
       "@omneo/*": ["src/omneo/*"],
       "@id": ["src/id/index.ts"],
       "@id/*": ["src/id/*"],
+      "@id-tests": ["src/id/tests"],
+      "@id-tests/*": ["src/id/tests/*"],
       "@types": ["src/types/index.ts"],
       "@types/*": ["src/types/*"],
       "@lib": ["src/tests/lib/index.ts"],
-      "@lib/*": ["src/tests/lib/*"]
+      "@lib/*": ["src/tests/lib/*"],
+      "@mocks": ["src/tests/mocks"],
+      "@mocks/*": ["src/tests/mocks/*"]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
@@ -110,5 +114,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*.ts", "src/*.ts"]
+  "include": ["src/**/*.ts", "src/*.ts"],
+  "exclude": ["node_modules", "dist", "*.test.ts", "src/**/*.test.ts"]
 }
