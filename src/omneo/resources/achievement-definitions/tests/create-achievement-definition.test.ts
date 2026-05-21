@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { AchievementDefinition, AchievementDefinitionInput } from '@types'
+import { AchievementDefinition, RequestCreateAchievementDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -11,7 +11,7 @@ const CREATED_ACHIEVEMENT_DEFINITION_IDS : number[] = []
 
 describe('Achievement Definition create', () => {
   test('SDK Create Achievement Definition', async () => {
-    const payload: AchievementDefinitionInput = {
+    const payload: RequestCreateAchievementDefinition = {
       name: getRandomString('sdk_unit_test_achievement_definition_create'),
       handle: getRandomString('sdk_unit_test_achievement_definition_create'),
       description: 'Tracks monthly spend for monthly rewards',

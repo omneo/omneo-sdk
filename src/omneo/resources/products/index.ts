@@ -1,11 +1,11 @@
-import { Product, ProductResponse, RequestParams } from '@types'
+import { Product, ProductResponse, RequestCreateOrUpdateProduct, RequestCreateOrUpdateProductQueue, RequestCreateProduct, RequestQueryProduct, RequestUpdateProduct } from '@types'
 import Resource from '../resource'
 import ProductVariants from './variants/index.js'
 
 export default class Products extends Resource {
   variants = new ProductVariants(this.client)
 
-  list (params?: RequestParams): Promise<ProductResponse> {
+  list (params?: RequestQueryProduct): Promise<ProductResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/products',
@@ -15,17 +15,16 @@ export default class Products extends Resource {
     })
   }
 
-  get (id: string, params?: RequestParams): Promise<Product> {
+  get (id: string): Promise<Product> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/products/${id}`,
-      params
+      endpoint: `/products/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  create (body: Product): Promise<Product> {
+  create (body: RequestCreateProduct): Promise<Product> {
     return this.client.call({
       method: 'POST',
       endpoint: '/products',
@@ -35,7 +34,7 @@ export default class Products extends Resource {
     })
   }
 
-  update (id: string, body: Product): Promise<Product> {
+  update (id: string, body: RequestUpdateProduct): Promise<Product> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/products/${id}`,
@@ -45,7 +44,7 @@ export default class Products extends Resource {
     })
   }
 
-  delete (id: string): Promise<any> {
+  delete (id: string): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/products/${id}`
@@ -54,7 +53,7 @@ export default class Products extends Resource {
     })
   }
 
-  queue (body: any): Promise<{data: string}> {
+  queue (body: RequestCreateOrUpdateProductQueue): Promise<{data: string}> {
     return this.client.call({
       method: 'POST',
       endpoint: '/products/queue',
@@ -64,7 +63,7 @@ export default class Products extends Resource {
     })
   }
 
-  createOrUpdate (body: Product): Promise<Product> {
+  createOrUpdate (body: RequestCreateOrUpdateProduct): Promise<Product> {
     return this.client.call({
       method: 'POST',
       endpoint: '/products/create-update',

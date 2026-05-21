@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionClaim, ClaimTransactionInput } from '@types'
+import { RequestCreateTransaction, TransactionClaim, RequestClaimTransaction } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -19,7 +19,7 @@ describe('ID Profile Transaction claim create', () => {
     })
 
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
-    const payload: CreateTransactionInput = {
+    const payload: RequestCreateTransaction = {
       profile_id: profile.id,
       total: 49.99,
       items: [
@@ -33,7 +33,7 @@ describe('ID Profile Transaction claim create', () => {
       ],
       timezone: 'UTC',
       transacted_at: nowDateString,
-      location_id: testLocationId
+      location_id: testLocationId as any
     }
     const response = await simpleOmneoRequest('POST', '/transactions', payload).catch((err) => {
       console.error('ID SDK create transaction claim, transaction created failed:', err)
@@ -41,16 +41,16 @@ describe('ID Profile Transaction claim create', () => {
     })
     CREATED_TRANSACTION_IDS.push(response.data.id)
 
-    const claimInput: ClaimTransactionInput = {
+    const claimInput: RequestClaimTransaction = {
       transaction_transacted_at: nowDateString.split(' ')[0],
-      transaction_location_external_code: payload.location_id,
+      transaction_location_external_code: `${payload.location_id}`,
       transaction_receipt_ref: response.data.id,
       transaction_total: payload.total,
       transaction_timezone: payload.timezone,
-      profile_id: payload.profile_id
+      profile_id: payload.profile_id as string
     }
 
-    const claimRes: TransactionClaim = await IDClient.profile.transactionClaims.create(claimInput)
+    const claimRes: TransactionClaim = await IDClient.profile.transactionClaims.create(claimInput as any)
     CREATED_TRANSACTION_CLAIM_IDS.push(claimRes.id)
 
     expect(claimRes.profile_id).toBe(profile.id)

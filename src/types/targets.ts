@@ -1,11 +1,10 @@
 // Route category: targets
 
-import type { FilterOperator } from './common'
-
+import type { AnyRecord, FilterOperator } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type RequestCreateTarget = {
-  condition?: string[] | null
+  condition?: AnyRecord | null
   description?: string | null
   handle: string
   name: string
@@ -15,7 +14,7 @@ export type RequestCreateTarget = {
 }
 
 export type RequestUpdateTarget = {
-  condition?: string[] | null
+  condition?: AnyRecord | null
   description?: string | null
   name?: string
   notes?: string | null

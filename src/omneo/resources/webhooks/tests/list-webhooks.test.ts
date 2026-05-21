@@ -1,14 +1,14 @@
 /* eslint-disable camelcase */
 import { afterAll, describe, expect, test } from 'vitest'
 import { Omneo } from '@omneo'
-import { WebhookInput } from '@types'
+import { RequestCreateWebhook } from '@types'
 import { simpleOmneoRequest } from '@lib'
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
 
-const webhookPayload: WebhookInput = {
+const webhookPayload: RequestCreateWebhook = {
   trigger: 'profiles.create',
   url: `https://example.com/webhook/list-${Date.now()}`,
   is_active: true,
@@ -42,14 +42,22 @@ describe('SDK Webhooks List', async () => {
   })
 
   test('SDK can list active webhooks', async () => {
-    const webhookList = await omneo.webhooks.list({ 'filter[is_active]': 1 })
+    const webhookList = await omneo.webhooks.list({
+      filter: {
+        is_active: '1'
+      }
+    })
 
     expect(webhookList.data.length).toBeGreaterThan(0)
     const isDataValid = webhookList.data.every((webhook) => webhook.is_active === true)
     expect(isDataValid).toBe(true)
   })
   test('SDK can list inactive webhooks', async () => {
-    const webhookList = await omneo.webhooks.list({ 'filter[is_active]': 0 })
+    const webhookList = await omneo.webhooks.list({
+      filter: {
+        is_active: '0'
+      }
+    })
 
     expect(webhookList.data.length).toBeGreaterThan(0)
     const isDataValid = webhookList.data.every((webhook) => webhook.is_active === false)
@@ -57,7 +65,11 @@ describe('SDK Webhooks List', async () => {
   })
 
   test('SDK can list webhooks by trigger', async () => {
-    const webhookList = await omneo.webhooks.list({ 'filter[trigger]': 'profiles.create' })
+    const webhookList = await omneo.webhooks.list({
+      filter: {
+        trigger: 'profiles.create'
+      }
+    })
 
     expect(webhookList.data.length).toBeGreaterThan(0)
     const isDataValid = webhookList.data.every((webhook) => webhook.trigger === 'profiles.create')
@@ -65,7 +77,11 @@ describe('SDK Webhooks List', async () => {
   })
 
   test('SDK can list webhooks by namespace', async () => {
-    const webhookList = await omneo.webhooks.list({ 'filter[namespace]': webhookPayload.namespace })
+    const webhookList = await omneo.webhooks.list({
+      filter: {
+        namespace: webhookPayload.namespace
+      }
+    })
 
     expect(webhookList.data.length).toBeGreaterThan(0)
     const isDataValid = webhookList.data.every((webhook) => webhook.namespace === webhookPayload.namespace)
@@ -75,20 +91,20 @@ describe('SDK Webhooks List', async () => {
 
 test('SDK can get webhooks with pagination', async () => {
   const { links, meta } = await omneo.webhooks.list()
-  expect(links.first).toBeTypeOf('string')
-  expect(links.last).toBeTypeOf('string')
-  expect(links).toHaveProperty('prev')
-  expect(links).toHaveProperty('next')
+  expect(links!.first).toBeTypeOf('string')
+  expect(links!.last).toBeTypeOf('string')
+  expect(links!).toHaveProperty('prev')
+  expect(links!).toHaveProperty('next')
 
   // meta
-  expect(meta.current_page).toBeTypeOf('number')
-  expect(meta.from).toBeTypeOf('number')
-  expect(meta.last_page).toBeTypeOf('number')
-  expect(meta).toHaveProperty('links')
-  expect(meta.path).toBeTypeOf('string')
-  expect(meta.per_page).toBeTypeOf('number')
-  expect(meta.to).toBeTypeOf('number')
-  expect(meta.total).toBeTypeOf('number')
+  expect(meta!.current_page).toBeTypeOf('number')
+  expect(meta!.from).toBeTypeOf('number')
+  expect(meta!.last_page).toBeTypeOf('number')
+  expect(meta!).toHaveProperty('links')
+  expect(meta!.path).toBeTypeOf('string')
+  expect(meta!.per_page).toBeTypeOf('number')
+  expect(meta!.to).toBeTypeOf('number')
+  expect(meta!.total).toBeTypeOf('number')
 })
 
 afterAll(async () => {

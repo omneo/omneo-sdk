@@ -1,18 +1,17 @@
-import { SavedFilter, RequestParams, SavedFilterResponse } from '@types'
+import { RequestCreateSavedFilter, RequestUpdateSavedFilter, SavedFilter, SavedFilterResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class SavedFilters extends Resource {
-  list (modelType: string, params?: RequestParams): Promise<SavedFilterResponse> {
+  list (modelType: string): Promise<SavedFilterResponse> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/${modelType}/savedfilter`,
-      params
+      endpoint: `/${modelType}/savedfilter`
     }).then((response) => {
       return response
     })
   }
 
-  create (modelType: string, body: SavedFilter): Promise<SavedFilter> {
+  create (modelType: string, body: RequestCreateSavedFilter): Promise<SavedFilter> {
     return this.client.call({
       method: 'POST',
       endpoint: `/${modelType}/savedfilter`,
@@ -22,7 +21,7 @@ export default class SavedFilters extends Resource {
     })
   }
 
-  update (modelType: string, savedFilterId: number, body: SavedFilter): Promise<SavedFilter> {
+  update (modelType: string, savedFilterId: number, body: RequestUpdateSavedFilter): Promise<SavedFilter> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/${modelType}/savedfilter/${savedFilterId}`,

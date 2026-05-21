@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileRegionInput, Region, RegionInput } from '@types'
+import { RequestCreateProfileRegion, ProfileRegion, RequestCreateRegion } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -13,7 +13,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Regions list', () => {
   test('SDK Profile Regions list', async () => {
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_name_list'),
       handle: getRandomString('sdk_unit_test_handle_list')
     }
@@ -23,7 +23,7 @@ describe('Profile Regions list', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'
@@ -33,7 +33,7 @@ describe('Profile Regions list', () => {
       throw new Error('SDK list regions created profile region failed')
     })
 
-    const regions: Region[] = await omneoClient.profiles.regions.list(testProfileID)
+    const regions: ProfileRegion[] = await omneoClient.profiles.regions.list(testProfileID)
     expect(regions.length).toBeGreaterThan(0)
     const region = regions.find((region) => region.id === response.data.id)
     region?.id && CREATED_PROFILE_REGION_IDS.push(region.id)

@@ -1,18 +1,17 @@
-import { Interaction, InteractionResponse, RequestParams } from '@types'
+import { Interaction, InteractionResponse, RequestCreateInteraction, RequestQueryInteraction, RequestUpdateInteraction } from '@types'
 import Resource from '../resource'
 
 export default class Interactions extends Resource {
-  get (id: string, params?: RequestParams): Promise<Interaction> {
+  get (id: string): Promise<Interaction> {
     return this.client.call({
       method: 'get',
-      endpoint: `/interactions/${id}`,
-      params
+      endpoint: `/interactions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<InteractionResponse> {
+  list (params?: RequestQueryInteraction): Promise<InteractionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/interactions',
@@ -20,7 +19,7 @@ export default class Interactions extends Resource {
     })
   }
 
-  create (body: any): Promise<Interaction> {
+  create (body: RequestCreateInteraction): Promise<Interaction> {
     return this.client.call({
       method: 'post',
       endpoint: '/interactions',
@@ -30,7 +29,7 @@ export default class Interactions extends Resource {
     })
   }
 
-  update (id: string, body: any): Promise<Interaction> {
+  update (id: string, body: RequestUpdateInteraction): Promise<Interaction> {
     return this.client.call({
       method: 'put',
       endpoint: `/interactions/${id}`,

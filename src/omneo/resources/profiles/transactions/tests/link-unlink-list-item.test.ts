@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CreateTransactionInput, TransactionItem, ListDefinition, List, ListItemInput } from '@types'
+import { TransactionItem, ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -19,7 +19,7 @@ describe('Profile Link and Unlink Transaction Item', () => {
   test('SDK Profile Link and Unlink List Item', async () => {
     const nowDateString = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19)
     // Create transaction
-    const payload: CreateTransactionInput = {
+    const payload = {
       profile_id: testProfileID,
       total: 49.99,
       items: [
@@ -61,12 +61,12 @@ describe('Profile Link and Unlink Transaction Item', () => {
       list_definition_id: listDefResponse.data.id,
       name: getRandomString('sdk_test_list_link_unlink')
     }
-    const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
+    const listResponse: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
     CREATED_LIST_IDS.push(listResponse.data.id)
     const transactionItem = response.data.items[0]
 
     // Create List Item
-    const listItemPayload: ListItemInput = {
+    const listItemPayload = {
       product_variant_id: parseInt(testProductVariantId),
       quantity: 1
     }

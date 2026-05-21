@@ -1,16 +1,17 @@
-import { RequestParams, Automation, AutomationActionResponse, UpdateAutomationActionsItem, CreateAutomationActionsItem } from '@types'
+import { AutomationActionResponse, UpdateAutomationActionsItem, CreateAutomationActionsItem, Action, RequestQueryAction } from '@types'
 import Resource from '../../resource.js'
 
 export default class AutomationActions extends Resource {
-  list (automationId: number, params?: RequestParams): Promise<AutomationActionResponse> {
+  list (automationId: number, params?: RequestQueryAction): Promise<AutomationActionResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/automations/${automationId}/actions`,
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  get (automationId: number, actionId: number): Promise<Automation> {
+  get (automationId: number, actionId: number): Promise<Action> {
     return this.client.call({
       method: 'GET',
       endpoint: `/automations/${automationId}/actions/${actionId}`
@@ -19,7 +20,7 @@ export default class AutomationActions extends Resource {
     })
   }
 
-  create (automationId: number, body: CreateAutomationActionsItem): Promise<AutomationActionResponse> {
+  create (automationId: number, body: CreateAutomationActionsItem): Promise<Action> {
     return this.client.call({
       method: 'POST',
       endpoint: `/automations/${automationId}/actions`,
@@ -29,7 +30,7 @@ export default class AutomationActions extends Resource {
     })
   }
 
-  update (automationId: number, actionId: number, body: UpdateAutomationActionsItem): Promise<AutomationActionResponse> {
+  update (automationId: number, actionId: number, body: UpdateAutomationActionsItem): Promise<Action> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/automations/${automationId}/actions/${actionId}`,

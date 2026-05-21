@@ -7,8 +7,8 @@ import type { PaginationLink, PaginationMeta } from './pagination'
 export type BenefitDefinitionTypeEnum = 'discount' | 'value' | 'competition' | 'event' | 'gift' | 'voucher' | 'bonus' | 'other'
 
 export type BatchBenefitJsonItem = {
-  benefit_definition_handle: string
-  benefit_definition_id: number
+  benefit_definition_handle?: string | null
+  benefit_definition_id?: number | null
   expires_at?: string | null
   external_id?: string | null
   issued_at: string | null
@@ -30,8 +30,8 @@ export type RequestDownloadBenefitDefinitionCsv = {
 }
 
 export type RequestExtendBenefit = {
-  extend_date: string
-  extend_days: number
+  extend_date?: string | null
+  extend_days?: number | null
   ids: number[]
   profile_id: string
 }
@@ -169,10 +169,10 @@ export type BenefitCountResponse = {
 }
 
 export type RequestCreateBenefitDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   allow_user_redeem?: boolean | null
   campaign?: string | null
-  claim_condition?: string[] | null
+  claim_condition?: AnyRecord | null
   claim_period_end_at?: string | null
   claim_period_start_at?: string | null
   claim_timeframe?: string[] | null
@@ -219,15 +219,15 @@ export type RequestCreateBenefitDefinition = {
   terms_conditions?: string | null
   type?: BenefitDefinitionTypeEnum | null
   value?: number | null
-  view_condition?: string[] | null
-  visibility_condition?: AnyJsonRecord | null
+  view_condition?: AnyRecord | null
+  visibility_condition?: AnyRecord | null
 }
 
 export type RequestUpdateBenefitDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   allow_user_redeem?: boolean | null
   campaign?: string | null
-  claim_condition?: string[] | null
+  claim_condition?: AnyRecord | null
   claim_period_end_at?: string | null
   claim_period_start_at?: string | null
   claim_timeframe?: string[] | null
@@ -273,8 +273,8 @@ export type RequestUpdateBenefitDefinition = {
   terms_conditions?: string | null
   type?: BenefitDefinitionTypeEnum | null
   value?: number | null
-  view_condition?: string[] | null
-  visibility_condition?: AnyJsonRecord | null
+  view_condition?: AnyRecord | null
+  visibility_condition?: AnyRecord | null
 }
 
 export type BenefitDefinition = {

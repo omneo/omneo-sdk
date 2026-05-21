@@ -40,7 +40,7 @@ describe('Update Credit Definition', () => {
       long_description: 'sdk_long_desc_for_update_credit_definition_updated',
       value: 120
     }
-    const creditDefinition: CreditDefinition = await omneoClient.creditDefinitions.update(response.data.id, payload2)
+    const creditDefinition: CreditDefinition = await omneoClient.creditDefinitions.update(response.data.id, payload2 as any)
 
     expect(creditDefinition).toBeDefined()
     const targetDefinition: CreditDefinition = creditDefinition

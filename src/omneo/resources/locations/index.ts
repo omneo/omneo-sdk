@@ -1,21 +1,20 @@
-import { Location, LocationResponse, RequestParams } from '@types'
+import { Location, LocationResponse, RequestCreateLocation, RequestQueryLocation, RequestUpdateLocation } from '@types'
 import Resource from '../resource.js'
 import LocationCustomFields from './custom-fields/index.js'
 
 export default class Locations extends Resource {
   customFields = new LocationCustomFields(this.client)
 
-  get (id: number, params?: RequestParams): Promise<Location> {
+  get (id: number): Promise<Location> {
     return this.client.call({
       method: 'get',
-      endpoint: `/locations/${id}`,
-      params
+      endpoint: `/locations/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<LocationResponse> {
+  list (params?: RequestQueryLocation): Promise<LocationResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/locations',
@@ -25,7 +24,7 @@ export default class Locations extends Resource {
     })
   }
 
-  create (body: any): Promise<Location> {
+  create (body: RequestCreateLocation): Promise<Location> {
     return this.client.call({
       method: 'post',
       endpoint: '/locations',
@@ -35,7 +34,7 @@ export default class Locations extends Resource {
     })
   }
 
-  update (id: number, body: any): Promise<Location> {
+  update (id: number, body: RequestUpdateLocation): Promise<Location> {
     return this.client.call({
       method: 'put',
       endpoint: `/locations/${id}`,

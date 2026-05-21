@@ -1,6 +1,6 @@
 import { describe, expect, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List, ListItem } from '@types'
+import { ListDefinition, ProductList, ProductListItem } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -40,7 +40,7 @@ describe('ID Delete Profile List Item', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('id_sdk_list_name_for_delete_list_item')
     }
-    const response2: {data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: {data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     const listId = response2.data.id
     CREATED_LIST_IDS.push(listId)
 
@@ -53,7 +53,7 @@ describe('ID Delete Profile List Item', () => {
       quantity: +3,
       status: 'remaining'
     }
-    const response3: { data: ListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
+    const response3: { data: ProductListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
     const listItemId = response3.data.id
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
@@ -71,9 +71,9 @@ describe('ID Delete Profile List Item', () => {
 
     expect(response3.data).toBeDefined()
     expect(response3.data!.product_list_id).toBe(listId)
-    expect(response3.data!.product_variant.id).toBe(payload3.product_variant_id)
-    expect(response3.data!.product.id).toBe(payload3.product_id)
-    expect(response3.data!.product.external_id).toBe(payload3.external_id)
+    expect(response3.data!.product_variant!.id).toBe(payload3.product_variant_id)
+    expect(response3.data!.product!.id).toBe(payload3.product_id)
+    expect(response3.data!.product!.external_id).toBe(payload3.external_id)
     expect(response3.data!.quantity).toBe(payload3.quantity)
     expect(response3.data!.status).toBe(payload3.status)
 

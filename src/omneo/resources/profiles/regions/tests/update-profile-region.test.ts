@@ -1,7 +1,7 @@
 
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileRegionInput, Region, RegionInput } from '@types'
+import { RequestCreateProfileRegion, ProfileRegion, RequestCreateRegion } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -14,7 +14,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Region update', () => {
   test('SDK Profile Region update', async () => {
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_name_update'),
       handle: getRandomString('sdk_unit_test_handle_update')
     }
@@ -24,7 +24,7 @@ describe('Profile Region update', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'
@@ -33,12 +33,12 @@ describe('Profile Region update', () => {
       console.error('SDK Update region created profile region failed:', err)
       throw new Error('SDK Update region created profile region failed')
     })
-    const payload3: ProfileRegionInput = {
+    const payload3: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'AU',
       state: 'VIC'
     }
-    const regions: Region[] = await omneo.profiles.regions.update(testProfileID, response.data.id, payload3)
+    const regions: ProfileRegion[] = await omneo.profiles.regions.update(testProfileID, response.data.id, payload3)
     expect(regions.length).toBeGreaterThan(0)
     const region = regions.find((region) => region.id === response.data.id)
     region?.id && CREATED_PROFILE_REGION_IDS.push(region?.id)

@@ -1,8 +1,8 @@
-import { ImportJob, RequestExportImportJobRequest, RequestFinalizeImportJob, ImportJobResponse, RequestParams } from '@types'
+import { ImportJob, RequestExportImportJobRequest, RequestFinalizeImportJob, ImportJobResponse, RequestQueryImportJob, BatchImportJobJsonItem, ImportJobExportResponse } from '@types'
 import Resource from '../../resource.js'
 
 export default class ImportJobs extends Resource {
-  list (importId: number, params?: RequestParams): Promise<ImportJobResponse> {
+  list (importId: number, params?: RequestQueryImportJob): Promise<ImportJobResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/imports/${importId}/jobs`,
@@ -21,7 +21,7 @@ export default class ImportJobs extends Resource {
     })
   }
 
-  create (importId: number, body: ImportJob): Promise<ImportJob> {
+  create (importId: number, body: BatchImportJobJsonItem): Promise<ImportJob> {
     return this.client.call({
       method: 'POST',
       endpoint: `/imports/${importId}/jobs`,
@@ -31,7 +31,7 @@ export default class ImportJobs extends Resource {
     })
   }
 
-  export (importId: number, body: RequestExportImportJobRequest): Promise<{data: any}> {
+  export (importId: number, body: RequestExportImportJobRequest): Promise<ImportJobExportResponse> {
     return this.client.call({
       method: 'POST',
       endpoint: `/imports/${importId}/jobs/export`,

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { afterAll, describe, expect, test } from 'vitest'
 import { Omneo } from '@omneo'
-import { WebhookInput } from '@types'
+import { RequestCreateWebhook, RequestUpdateWebhook } from '@types'
 import { simpleOmneoRequest } from '@lib'
 
 const omneo = new Omneo({
@@ -9,7 +9,7 @@ const omneo = new Omneo({
   token: process.env.OMNEO_TOKEN as string
 })
 
-const webhookPayload: WebhookInput = {
+const webhookPayload: RequestCreateWebhook = {
   trigger: 'profiles.create',
   url: `https://example.com/webhook/update-${Date.now()}`,
   is_active: true,
@@ -27,7 +27,7 @@ describe('SDK Webhooks Update', () => {
     const { data: webhook } = await simpleOmneoRequest('POST', '/webhooks', webhookPayload)
     CREATED_WEBHOOKS.push(webhook.id)
 
-    const updatePayload = {
+    const updatePayload: RequestUpdateWebhook = {
       url: `https://www.updated-${Date.now()}-test.com`,
       trigger: 'products.created',
       is_active: false,

@@ -71,7 +71,7 @@ export type ProfileOrganisationRoleDefinition = {
 
 export type RequestCreateOrganisation = {
   address?: OrganisationAddress | null
-  authorised_domains?: string | null
+  authorised_domains?: AnyRecord | null
   custom_fields?: CustomFieldItem[]
   description?: string | null
   domain?: string | null
@@ -82,7 +82,7 @@ export type RequestCreateOrganisation = {
   is_active?: boolean | null
   is_tenant?: boolean | null
   locations?: number[] | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name: string
   notes?: string | null
   phone?: string | null
@@ -94,7 +94,7 @@ export type RequestCreateOrganisation = {
 
 export type RequestUpdateOrganisation = {
   address?: OrganisationAddress | null
-  authorised_domains?: string | null
+  authorised_domains?: AnyRecord | null
   custom_fields?: CustomFieldItem[]
   description?: string | null
   domain?: string | null
@@ -104,7 +104,7 @@ export type RequestUpdateOrganisation = {
   is_active?: boolean | null
   is_tenant?: boolean | null
   locations?: number[] | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name?: string
   notes?: string | null
   phone?: string | null

@@ -1,21 +1,20 @@
-import { RequestParams, Trigger, TriggerResponse, RequestUpdateTrigger } from '@types'
+import { RequestCreateTrigger, RequestQueryTrigger, RequestUpdateTrigger, Trigger, TriggerResponse } from '@types'
 import Resource from '../resource.js'
 import TriggerActions from './actions/index.js'
 
 export default class Triggers extends Resource {
   actions = new TriggerActions(this.client)
 
-  get (id: number, params?: RequestParams): Promise<Trigger> {
+  get (id: number): Promise<Trigger> {
     return this.client.call({
       method: 'get',
-      endpoint: `/triggers/${id}`,
-      params
+      endpoint: `/triggers/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<TriggerResponse> {
+  list (params?: RequestQueryTrigger): Promise<TriggerResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/triggers',
@@ -23,7 +22,7 @@ export default class Triggers extends Resource {
     })
   }
 
-  create (body: Trigger): Promise<Trigger> {
+  create (body: RequestCreateTrigger): Promise<Trigger> {
     return this.client.call({
       method: 'post',
       endpoint: '/triggers',
@@ -33,7 +32,7 @@ export default class Triggers extends Resource {
     })
   }
 
-  update (id: number, body: Partial<RequestUpdateTrigger>): Promise<Trigger> {
+  update (id: number, body: RequestUpdateTrigger): Promise<Trigger> {
     return this.client.call({
       method: 'put',
       endpoint: `/triggers/${id}`,

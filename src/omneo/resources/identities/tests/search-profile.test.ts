@@ -30,7 +30,7 @@ describe('Identities search', () => {
     const { data: profile } = await simpleOmneoRequest('POST', '/profiles', payload)
     CREATED_PROFILE_IDS.push(profile.id)
 
-    const profiles = await omneo.identities.searchProfile(identifier)
+    const { data: profiles } = await omneo.identities.searchProfile(identifier)
     expect(profiles.length).toEqual(1)
     expect(profiles[0].id).toEqual(profile.id)
   })

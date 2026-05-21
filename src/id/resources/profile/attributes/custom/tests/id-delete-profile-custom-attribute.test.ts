@@ -1,6 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { CustomAttribute } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
@@ -14,7 +13,7 @@ describe('ID Profile Get Custom Attribute', () => {
     const { tokenData } = IDData
     namespace = getRandomString('sdk_unit_test_delete_id_custom_attribute_namespace')
     handle = getRandomString('sdk_unit_test_delete_id_custom_attribute_handle')
-    const payload: CustomAttribute = {
+    const payload = {
       namespace,
       handle,
       type: 'string',

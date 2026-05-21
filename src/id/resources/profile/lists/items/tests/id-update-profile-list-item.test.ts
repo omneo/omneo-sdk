@@ -1,6 +1,6 @@
 import { describe, expect, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List, ListItem } from '@types'
+import { ListDefinition, ProductList, ProductListItem } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -40,7 +40,7 @@ describe('ID Update Profile List Item', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('id_sdk_list_name_for_update_list_item')
     }
-    const response2: {data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: {data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     const listId = response2.data.id
     CREATED_LIST_IDS.push(listId)
 
@@ -53,7 +53,7 @@ describe('ID Update Profile List Item', () => {
       quantity: +3,
       status: 'remaining'
     }
-    const response3: { data: ListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
+    const response3: { data: ProductListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
     const listItemId = response3.data.id
     const IDClient = new ID({
       tenant: process.env.OMNEO_TENANT as string,
@@ -65,7 +65,7 @@ describe('ID Update Profile List Item', () => {
       quantity: 5,
       status: 'gifted'
     }
-    const listItem = await IDClient.profile.lists.items.update(listId, listItemId, payload4).catch((err: any) => {
+    const listItem = await IDClient.profile.lists.items.update(listId, listItemId, payload4 as any).catch((err: any) => {
       console.error('ID SDK Update profile list item failed:', err)
       throw new Error('ID SDK Update profile list item failed')
     })
@@ -76,8 +76,8 @@ describe('ID Update Profile List Item', () => {
     expect(listItem).toBeDefined()
     expect(listItem!.product_list_id).toBe(listId)
     expect(listItem!.product_variant.id).toBe(payload3.product_variant_id)
-    expect(listItem!.product.id).toBe(payload3.product_id)
-    expect(listItem!.product.external_id).toBe(payload3.external_id)
+    expect(listItem!.product!.id).toBe(payload3.product_id)
+    expect(listItem!.product!.external_id).toBe(payload3.external_id)
     expect(listItem!.quantity).toBe(payload4.quantity)
     expect(listItem!.status).toBe(payload4.status)
   })

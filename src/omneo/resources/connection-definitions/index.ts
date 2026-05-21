@@ -1,8 +1,8 @@
-import { RequestParams, ConnectionDefinitionResponse, RequestCreateConnectionDefinition, RequestUpdateConnectionDefinition, ConnectionDefinition } from '@types'
+import { ConnectionDefinitionResponse, RequestCreateConnectionDefinition, RequestUpdateConnectionDefinition, ConnectionDefinition, RequestQueryConnectionDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class ConnectionDefinitions extends Resource {
-  list (params?: RequestParams): Promise<ConnectionDefinitionResponse> {
+  list (params?: RequestQueryConnectionDefinition): Promise<ConnectionDefinitionResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/connection/definitions',
@@ -10,11 +10,10 @@ export default class ConnectionDefinitions extends Resource {
     })
   }
 
-  get (id: number, params?: RequestParams): Promise<ConnectionDefinition> {
+  get (id: number): Promise<ConnectionDefinition> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/connection/definitions/${id}`,
-      params
+      endpoint: `/connection/definitions/${id}`
     }).then((response) => {
       return response.data
     })

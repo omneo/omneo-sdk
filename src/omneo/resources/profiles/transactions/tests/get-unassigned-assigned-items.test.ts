@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse, ListItemInput } from '@types'
+import { ListDefinition, ProductList, TransactionItemResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -36,11 +36,11 @@ describe('Profile Get Unassigned and Assigned Transaction Items', () => {
       list_definition_id: listDefResponse.data.id,
       name: getRandomString('sdk_test_list_assigned_items')
     }
-    const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
+    const listResponse: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: CreateTransactionInput = {
+    const payload = {
       profile_id: testProfileID,
       total: 49.99,
       items: [
@@ -64,7 +64,7 @@ describe('Profile Get Unassigned and Assigned Transaction Items', () => {
     const transactionItem = response.data.items[0]
 
     // Test getUnassignedItems
-    const unassignedItemsRes: TransactionUnassignedItemsResponse = await omneoClient.profiles.transactions.getUnassignedItems(testProfileID, {
+    const unassignedItemsRes: TransactionItemResponse = await omneoClient.profiles.transactions.getUnassignedItems(testProfileID, {
       include_list_item: 1
     })
 
@@ -73,7 +73,7 @@ describe('Profile Get Unassigned and Assigned Transaction Items', () => {
     expect(unassignedItemsRes.data.length).toBeGreaterThan(0)
 
     // Create List Item
-    const listItemPayload: ListItemInput = {
+    const listItemPayload = {
       product_variant_id: parseInt(testProductVariantId),
       quantity: 1
     }
@@ -88,7 +88,7 @@ describe('Profile Get Unassigned and Assigned Transaction Items', () => {
       type: 'link'
     }
     await simpleOmneoRequest('POST', `/profiles/${testProfileID}/transactions/items/${transactionItem.id}/list-item`, linkListItemPayload)
-    const assignedItemsRes: TransactionAssignedItemsResponse = await omneoClient.profiles.transactions.getAssignedItems(testProfileID, {
+    const assignedItemsRes: TransactionItemResponse = await omneoClient.profiles.transactions.getAssignedItems(testProfileID, {
       include_list_item: 1
     })
 

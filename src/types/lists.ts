@@ -27,7 +27,7 @@ export type RequestCreateListDefinition = {
   meta?: AnyJsonRecord | null
   name: string
   organisation_id?: number | null
-  reservation_absolute_expiry: string | null
+  reservation_absolute_expiry?: string | null
   reservation_expiry_target_id?: number | null
   reservation_notify_remind_offset_days?: number | null
   reservation_notify_remind_offset_hours?: number | null
@@ -59,7 +59,7 @@ export type RequestUpdateListDefinition = {
   meta?: AnyJsonRecord | null
   name?: string
   organisation_id?: number | null
-  reservation_absolute_expiry: string | null
+  reservation_absolute_expiry?: string | null
   reservation_expiry_target_id?: number | null
   reservation_notify_remind_offset_days?: number | null
   reservation_notify_remind_offset_hours?: number | null
@@ -96,6 +96,7 @@ export type RequestQueryListDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ListDefinition = {

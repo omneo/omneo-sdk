@@ -1,18 +1,17 @@
-import { Region, RequestParams, RegionResponse } from '@types'
+import { Region, RequestCreateRegion, RequestQueryRegion, RegionResponse, RequestUpdateRegion } from '@types'
 import Resource from '../resource.js'
 
 export default class Regions extends Resource {
-  get (id: number, params?: RequestParams): Promise<Region> {
+  get (id: number): Promise<Region> {
     return this.client.call({
       method: 'get',
-      endpoint: `/regions/${id}`,
-      params
+      endpoint: `/regions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<RegionResponse> {
+  list (params?: RequestQueryRegion): Promise<RegionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/regions',
@@ -20,7 +19,7 @@ export default class Regions extends Resource {
     })
   }
 
-  create (body: Region): Promise<Region> {
+  create (body: RequestCreateRegion): Promise<Region> {
     return this.client.call({
       method: 'post',
       endpoint: '/regions',
@@ -30,7 +29,7 @@ export default class Regions extends Resource {
     })
   }
 
-  update (id: number, body: Region): Promise<Region> {
+  update (id: number, body: RequestUpdateRegion): Promise<Region> {
     return this.client.call({
       method: 'put',
       endpoint: `/regions/${id}`,

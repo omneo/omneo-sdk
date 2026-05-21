@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { RewardDefinitionCreateInput } from '@types'
+
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -13,7 +13,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Reward delete', () => {
   test('SDK Reward delete', async () => {
-    const payload: RewardDefinitionCreateInput = {
+    const payload = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,

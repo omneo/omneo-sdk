@@ -42,14 +42,14 @@ export type RequestCreateReminder = {
   expires_at?: string | null
   is_active?: boolean | null
   note: string
-  period_time_at: string | null
-  period_unit: ReminderPeriodUnitEnum | null
-  period_value: string | null
+  period_time_at?: string | null
+  period_unit?: ReminderPeriodUnitEnum | null
+  period_value?: string | null
   recipient?: string | null
-  remind_at: string | null
-  repeat_time_at: string | null
-  repeat_unit: ReminderRepeatUnitEnum | null
-  repeat_value: string | null
+  remind_at?: string | null
+  repeat_time_at?: string | null
+  repeat_unit?: ReminderRepeatUnitEnum | null
+  repeat_value?: string | null
   schedule_type: ReminderScheduleTypeEnum
   timezone?: string | null
 }
@@ -59,14 +59,14 @@ export type RequestUpdateReminder = {
   expires_at?: string | null
   is_active?: boolean | null
   note?: string
-  period_time_at: string | null
-  period_unit: ReminderPeriodUnitEnum | null
-  period_value: number | null
+  period_time_at?: string | null
+  period_unit?: ReminderPeriodUnitEnum | null
+  period_value?: number | null
   recipient?: string | null
-  remind_at: string | null
-  repeat_time_at: string | null
-  repeat_unit: ReminderRepeatUnitEnum | null
-  repeat_value: number | null
+  remind_at?: string | null
+  repeat_time_at?: string | null
+  repeat_unit?: ReminderRepeatUnitEnum | null
+  repeat_value?: number | null
   schedule_type?: ReminderScheduleTypeEnum
   timezone?: string | null
 }

@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { BenefitInput } from '@types'
+import { RequestCreateBenefit } from '@types'
 import { simpleOmneoRequest, randomString, getRandomString, formatUtcToTimezone } from '@lib'
 
 const omneo = new Omneo({
@@ -26,7 +26,7 @@ describe('Benefits extend', async () => {
   CREATED_BENEFIT_DEFINITION_IDS.push(definition.id)
 
   test('SDK Extend a benefit with extend_date', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -50,12 +50,12 @@ describe('Benefits extend', async () => {
     const { data: extendedBenefits } = await omneo.benefits.extend(payload2)
 
     expect(extendedBenefits.length).toBe(1)
-    expect(formatUtcToTimezone(extendedBenefits[0].expires_at, payload.timezone as string)).toBe(payload2.extend_date)
+    expect(formatUtcToTimezone(extendedBenefits[0].expires_at!, payload.timezone as string)).toBe(payload2.extend_date)
     expect(typeof extendedBenefits[0].extended_at).toBe('string')
   })
 
   test('SDK Extend a benefit with extend_days', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),

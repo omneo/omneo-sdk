@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { PointDefinition, UpdatePointDefinitionInput } from '@types'
+import { PointDefinition, RequestUpdatePointDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -22,7 +22,7 @@ describe('Update Point Definition', () => {
     const created = await simpleOmneoRequest('POST', '/points/definitions', createPayload)
     CREATED_POINT_DEFINITION_IDS.push(created.data.id)
 
-    const updatePayload: UpdatePointDefinitionInput = {
+    const updatePayload: RequestUpdatePointDefinition = {
       name: getRandomString('sdk_unit_test_update_point_definition_updated'),
       description: 'Updated description',
       issue_period: 60,

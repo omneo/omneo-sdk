@@ -7,10 +7,10 @@ import type { Rate } from './rates'
 import type { Region } from './regions'
 
 export type RequestCreatePoint = {
-  accrued_at: string | null
+  accrued_at?: string | null
   description?: string | null
   expires_at?: string | null
-  issued_at: string | null
+  issued_at?: string | null
   meta?: AnyJsonRecord | null
   point_definition_id: number
   profile_id: string

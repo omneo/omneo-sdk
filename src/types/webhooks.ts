@@ -46,7 +46,7 @@ export type WebhookBatchJsonResponse = {
 }
 
 export type RequestCreateWebhook = {
-  condition?: string[] | null
+  condition?: AnyJsonRecord | null
   extra_data_template?: string | null
   is_active?: boolean | null
   namespace: string
@@ -58,7 +58,7 @@ export type RequestCreateWebhook = {
 }
 
 export type RequestUpdateWebhook = {
-  condition?: string[] | null
+  condition?: AnyJsonRecord | null
   extra_data_template?: string | null
   is_active?: boolean
   queue?: WebhookQueueEnum | null

@@ -1,10 +1,8 @@
-
-
 export type CreateProfileRegionsItem = {
   country?: string | null
-  handle: string
+  handle?: string | null
   is_active?: boolean | null
-  region_id: number
+  region_id?: number | null
   state?: string | null
 }
 
@@ -17,8 +15,8 @@ export type RequestCreateProfileRegion = {
 
 export type UpdateProfileRegionsItem = {
   country?: string | null
-  handle: string
-  id: number
+  handle?: string | null
+  id?: number | null
   is_active?: boolean | null
   state?: string | null
 }

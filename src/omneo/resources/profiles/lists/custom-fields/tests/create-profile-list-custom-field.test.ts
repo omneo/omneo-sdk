@@ -1,6 +1,6 @@
 import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -33,7 +33,7 @@ describe('Create Profile List Custom Field', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_unit_test_list_name')
     }
-    const response2: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     CREATED_LIST_IDS.push(response2.data.id)
 
     // Create List Custom Field
@@ -50,18 +50,18 @@ describe('Create Profile List Custom Field', () => {
       namespace: payload3.namespace,
       handle: payload3.handle
     })
-    const listCustomField = await omneoClient.profiles.lists.customFields.create(testProfileID, listId, payload3).catch((err: any) => {
+    const listProfileCustomAttribute = await omneoClient.profiles.lists.customFields.create(testProfileID, listId, payload3 as any).catch((err: any) => {
       console.error('SDK Create profile list custom field failed:', err)
       throw new Error('SDK Create profile list custom field failed')
     })
-    expect(listCustomField).toBeDefined()
-    const targetCustomField = listCustomField
-    expect(targetCustomField).toBeDefined()
-    expect(targetCustomField.name).toBe(payload3.name)
-    expect(targetCustomField.namespace).toBe(payload3.namespace)
-    expect(targetCustomField.handle).toBe(payload3.handle)
-    expect(targetCustomField.value).toBe(payload3.value)
-    expect(targetCustomField.type).toBe(payload3.type)
+    expect(listProfileCustomAttribute).toBeDefined()
+    const targetProfileCustomAttribute = listProfileCustomAttribute
+    expect(targetProfileCustomAttribute).toBeDefined()
+    expect(targetProfileCustomAttribute.name).toBe(payload3.name)
+    expect(targetProfileCustomAttribute.namespace).toBe(payload3.namespace)
+    expect(targetProfileCustomAttribute.handle).toBe(payload3.handle)
+    expect(targetProfileCustomAttribute.value).toBe(payload3.value)
+    expect(targetProfileCustomAttribute.type).toBe(payload3.type)
   })
 })
 

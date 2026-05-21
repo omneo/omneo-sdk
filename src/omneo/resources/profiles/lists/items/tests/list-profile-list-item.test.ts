@@ -1,6 +1,6 @@
 import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List, ListItem, ListItemResponse } from '@types'
+import { ListDefinition, ProductList, ProductListItem, ProductListItemResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -36,7 +36,7 @@ describe('List Profile List Items', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_list_name_for_list_list_items')
     }
-    const response2: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     CREATED_LIST_IDS.push(response2.data.id)
 
     const product = await omneoClient.products.get(testProductId)
@@ -49,23 +49,23 @@ describe('List Profile List Items', () => {
       status: 'remaining'
     }
     const listId = response2.data.id
-    const response3: { data: ListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
+    const response3: { data: ProductListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
     const listItemId = response3.data.id
     CREATED_LIST_ITEM_IDS.push({
       listId,
       itemId: listItemId
     })
 
-    const { data: listItems }: ListItemResponse = await omneoClient.profiles.lists.items.list(testProfileID, listId).catch((err: any) => {
+    const { data: listItems }: ProductListItemResponse = await omneoClient.profiles.lists.items.list(testProfileID, listId).catch((err: any) => {
       console.error('SDK List profile list item failed:', err)
       throw new Error('SDK List profile list item failed')
     })
-    const listItem = listItems.find(item => item.id === listItemId)
+    const listItem = listItems.find((item: ProductListItem) => item.id === listItemId)
     expect(listItem).toBeDefined()
     expect(listItem!.product_list_id).toBe(listId)
     expect(listItem!.product_variant.id).toBe(payload3.product_variant_id)
-    expect(listItem!.product.id).toBe(payload3.product_id)
-    expect(listItem!.product.external_id).toBe(payload3.external_id)
+    expect(listItem!.product!.id).toBe(payload3.product_id)
+    expect(listItem!.product!.external_id).toBe(payload3.external_id)
     expect(listItem!.quantity).toBe(payload3.quantity)
     expect(listItem!.status).toBe(payload3.status)
   })

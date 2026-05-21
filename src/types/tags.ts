@@ -26,15 +26,15 @@ export type RequestQueryTag = {
   }
 }
 
-export type TagResponse = {
-  data: string[]
-  meta?: PaginationMeta
-  links?: PaginationLink
-}
-
 export type TagOriginal = {
   created_at: string
   handle: string | null
   id: number
   updated_at: string
+}
+
+export type TagOriginalResponse = {
+  data: TagOriginal[]
+  meta?: PaginationMeta
+  links?: PaginationLink
 }

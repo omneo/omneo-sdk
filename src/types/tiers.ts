@@ -37,8 +37,8 @@ export type RequestCreateTierDefinition = {
 }
 
 export type RequestCreateTierPoint = {
-  accrued_at: string | null
-  issued_at: string | null
+  accrued_at?: string | null
+  issued_at?: string | null
   meta?: AnyJsonRecord | null
   point_definition_id: number
   profile_id: string
@@ -109,6 +109,8 @@ export type RequestQueryTierPoint = {
     source_id?: string | FilterOperator
     source_type?: string | FilterOperator
     value?: string | FilterOperator
+    accrued_at?: string | FilterOperator
+    expired_at?: string | FilterOperator
     search?: string
     search_with?: Record<string, string>
     custom_field?: Record<string, Record<string, string>>

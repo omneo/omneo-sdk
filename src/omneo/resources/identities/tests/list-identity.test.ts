@@ -62,26 +62,25 @@ describe('Identities list', () => {
 
     const params: RequestParams = {
       'filter[handle]': testHandle,
-      include: 'profile',
-      withPagination: true
+      include: 'profile'
     }
     const { links, meta }: IdentityResponse = await omneo.identities.list(params)
 
     // links
-    expect(links.first).toBeTypeOf('string')
-    expect(links.last).toBeTypeOf('string')
-    expect(links).toHaveProperty('prev')
-    expect(links).toHaveProperty('next')
+    expect(links!.first).toBeTypeOf('string')
+    expect(links!.last).toBeTypeOf('string')
+    expect(links!).toHaveProperty('prev')
+    expect(links!).toHaveProperty('next')
 
     // meta
-    expect(meta.current_page).toBeTypeOf('number')
-    expect(meta.from).toBeTypeOf('number')
-    expect(meta.last_page).toBeTypeOf('number')
-    expect(meta).toHaveProperty('links')
-    expect(meta.path).toBeTypeOf('string')
-    expect(meta.per_page).toBeTypeOf('number')
-    expect(meta.to).toBeTypeOf('number')
-    expect(meta.total).toBeTypeOf('number')
+    expect(meta!.current_page).toBeTypeOf('number')
+    expect(meta!.from).toBeTypeOf('number')
+    expect(meta!.last_page).toBeTypeOf('number')
+    expect(meta!).toHaveProperty('links')
+    expect(meta!.path).toBeTypeOf('string')
+    expect(meta!.per_page).toBeTypeOf('number')
+    expect(meta!.to).toBeTypeOf('number')
+    expect(meta!.total).toBeTypeOf('number')
   })
 })
 

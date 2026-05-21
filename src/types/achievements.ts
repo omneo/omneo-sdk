@@ -1,6 +1,6 @@
 // Route category: achievements
 
-import type { AnyJsonRecord, FilterOperator, NamedHandle } from './common'
+import type { AnyRecord, FilterOperator, NamedHandle } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type AchievementDefinitionDisplayOptionEnum = 'visible' | 'hidden' | 'mystery' | 'internal'
@@ -11,8 +11,9 @@ export type CreateAchievementDefinitionLevelsItem = {
   allow_multiple_earn?: boolean | null
   description?: string | null
   display_number: number
+  meta?: AnyRecord | null
   name: string
-  repeat_interval: number
+  repeat_interval?: number | null
   repeats?: boolean
   trigger: number
 }
@@ -20,8 +21,9 @@ export type CreateAchievementDefinitionLevelsItem = {
 export type UpdateAchievementDefinitionLevelsItem = {
   description?: string | null
   display_number: number
+  meta?: AnyRecord | null
   name: string
-  repeat_interval: number
+  repeat_interval?: number | null
   repeats?: boolean
   trigger: number
 }
@@ -96,7 +98,7 @@ export type RequestCreateAchievementDefinition = {
   is_published?: boolean
   levels: CreateAchievementDefinitionLevelsItem[] | null
   long_description?: string | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name: string
   period?: AchievementDefinitionPeriodEnum | null
   region_id?: number | null
@@ -122,7 +124,7 @@ export type RequestUpdateAchievementDefinition = {
   is_published?: boolean
   levels?: UpdateAchievementDefinitionLevelsItem[] | null
   long_description?: string | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name?: string
   period?: AchievementDefinitionPeriodEnum | null
   region_id?: number | null

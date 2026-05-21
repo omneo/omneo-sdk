@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { RewardDefinition, RewardDefinitionCreateInput, RewardDefinitionUpdateInput } from '@types'
+import { RewardDefinition, RequestUpdateRewardDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -11,7 +11,7 @@ const CREATED_REWARDS_DEFINITION_IDS : number[] = []
 
 describe('Reward Definition update', () => {
   test('SDK Reward Definition update', async () => {
-    const payload: RewardDefinitionCreateInput = {
+    const payload = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,
@@ -24,9 +24,8 @@ describe('Reward Definition update', () => {
       throw new Error('SDK update reward definition created failed')
     })
     CREATED_REWARDS_DEFINITION_IDS.push(response.data.id)
-    const updatedPayload: RewardDefinitionUpdateInput = {
+    const updatedPayload: RequestUpdateRewardDefinition = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
-      handle: payload.handle,
       value: 100,
       period: 300,
       period_type: 'weeks',
@@ -38,7 +37,6 @@ describe('Reward Definition update', () => {
     })
 
     expect(targetRewardDefinition.name).toBe(updatedPayload.name)
-    expect(targetRewardDefinition.handle).toBe(updatedPayload.handle)
     expect(targetRewardDefinition.value).toBe(updatedPayload.value)
     expect(targetRewardDefinition.period).toBe(updatedPayload.period)
     expect(targetRewardDefinition.period_type).toBe(updatedPayload.period_type)

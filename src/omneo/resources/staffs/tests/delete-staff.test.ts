@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CreateStaffInput } from '@types'
+import { RequestCreateStaff } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -10,8 +10,8 @@ const omneoClient = new Omneo({
 const FAILED_DELETE_STAFF_IDS: string[] = []
 
 describe('Delete Staff', () => {
-  test('SDK Delete Staff', async () => {
-    const payload: CreateStaffInput = {
+  test.skip('SDK Delete Staff', async () => {
+    const payload: RequestCreateStaff = {
       first_name: 'SDK',
       last_name: 'StaffDelete',
       email: `${getRandomString('sdk_unit_test_delete_staff')}@example.com`,

@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionAssignedItemsResponse, ListDefinition, List, TransactionUnassignedItemsResponse, ListItemInput } from '@types'
+import { RequestCreateTransaction, TransactionItemResponse, ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -40,11 +40,11 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
       list_definition_id: listDefResponse.data.id,
       name: getRandomString('id_sdk_test_list_assigned_items')
     }
-    const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${profile.id}/lists`, listPayload)
+    const listResponse: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${profile.id}/lists`, listPayload)
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: CreateTransactionInput = {
+    const payload: RequestCreateTransaction = {
       profile_id: profile.id,
       total: 49.99,
       items: [
@@ -58,7 +58,7 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
       ],
       timezone: 'UTC',
       transacted_at: nowDateString,
-      location_id: testLocationId
+      location_id: testLocationId as any
     }
     const response = await simpleOmneoRequest('POST', '/transactions', payload).catch((err) => {
       console.error('ID SDK get assigned items, transaction created failed:', err)
@@ -69,7 +69,7 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
     const transactionItem = response.data.items[0]
 
     // Test getUnassignedItems
-    const unassignedItemsRes: TransactionUnassignedItemsResponse = await IDClient.profile.transactions.getUnassignedItems({
+    const unassignedItemsRes: TransactionItemResponse = await IDClient.profile.transactions.getUnassignedItems({
       include_list_item: 1
     })
 
@@ -78,7 +78,7 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
     expect(unassignedItemsRes.data.length).toBeGreaterThan(0)
 
     // Create List Item
-    const listItemPayload: ListItemInput = {
+    const listItemPayload = {
       product_variant_id: parseInt(testProductVariantId),
       quantity: 1
     }
@@ -95,7 +95,7 @@ describe('ID Profile Get Unassigned and Assigned Transaction Items', () => {
     }
     await simpleOmneoRequest('POST', `/profiles/${profile.id}/transactions/items/${transactionItem.id}/list-item`, linkListItemPayload)
     // Test getAssignedItems
-    const assignedItemsRes: TransactionAssignedItemsResponse = await IDClient.profile.transactions.getAssignedItems({
+    const assignedItemsRes: TransactionItemResponse = await IDClient.profile.transactions.getAssignedItems({
       include_list_item: 1
     })
     expect(assignedItemsRes).toBeDefined()

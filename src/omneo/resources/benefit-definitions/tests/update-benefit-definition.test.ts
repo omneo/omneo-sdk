@@ -24,7 +24,7 @@ describe('Benefit Definition update', () => {
     const updatedPayload = {
       name: getRandomString('sdk_unit_test_benefit_definition_update')
     }
-    const targetBenefitDefinition: BenefitDefinition = await omneo.benefitDefinitions.update(response.data.id, updatedPayload).catch((err) => {
+    const targetBenefitDefinition: BenefitDefinition = await omneo.benefitDefinitions.update(response.data.id, updatedPayload as any).catch((err) => {
       console.error('SDK Benefit definition created failed:', err)
       throw new Error('SDK Benefit definition created failed')
     })

@@ -1,5 +1,5 @@
 import { describe, expect, beforeAll, afterAll } from 'vitest'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -31,7 +31,7 @@ describe('ID Delete Profile List Share', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_unit_test_list_name')
     }
-    const response2: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     CREATED_LIST_IDS.push(response2.data.id)
     const listId = response2.data.id
 

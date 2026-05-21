@@ -12,8 +12,8 @@ export type BatchRewardJsonItem = {
   meta?: AnyJsonRecord | null
   profile_id: string
   profile_id_handle: string | null
-  reward_definition_handle: string
-  reward_definition_id: number
+  reward_definition_handle?: string | null
+  reward_definition_id?: number | null
   timezone: string
   value_initial?: number
   value_remaining?: number
@@ -32,8 +32,8 @@ export type RequestCreateReward = {
   issued_at?: string
   meta?: AnyJsonRecord | null
   profile_id: string
-  reward_definition_handle: string
-  reward_definition_id: number
+  reward_definition_handle?: string | null
+  reward_definition_id?: number | null
   timezone: string
   value_initial?: number
   value_remaining?: number
@@ -129,7 +129,7 @@ export type RewardBatchJsonResponse = {
 }
 
 export type RequestCreateRewardDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   currency?: string | null
   description?: string | null
   earn_instructions?: string | null
@@ -167,7 +167,7 @@ export type RequestCreateRewardDefinition = {
 }
 
 export type RequestUpdateRewardDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   currency?: string | null
   description?: string | null
   earn_instructions?: string | null

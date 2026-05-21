@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { RegionInput } from '@types'
+import { RequestCreateRegion } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -11,7 +11,7 @@ const FAILED_DELETE_REGIONS : number[] = []
 
 describe('Region delete', () => {
   test('SDK Region delete', async () => {
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_region_name'),
       handle: getRandomString('sdk_unit_test_region_handle')
     }
@@ -23,7 +23,9 @@ describe('Region delete', () => {
     })
 
     const regionsRes = await omneo.regions.list({
-      'filter[handle]': payload.handle
+      filter: {
+        handle: payload.handle
+      }
     })
     const { data: regions } = regionsRes
     expect(regions.length).toBe(0)

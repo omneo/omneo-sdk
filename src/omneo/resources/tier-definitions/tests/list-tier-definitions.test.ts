@@ -20,7 +20,9 @@ describe('List Tier Definitions', () => {
     CREATED_TIER_DEFINITION_IDS.push(created.data.id)
 
     const params = {
-      handle: payload.handle
+      filter: {
+        handle: payload.handle
+      }
     }
     const response: TierDefinitionResponse = await omneoClient.tierDefinitions.list(params).catch((err) => {
       console.error('SDK List Tier Definitions failed:', err)

@@ -1,4 +1,4 @@
-import { ProfileAchievementPointResponse, ProfileAchievement, RequestParams } from '@types'
+import { ProfileAchievementPointResponse, ProfileAchievement, RequestCreateProfileAchievement, AchievementPoint, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAchievements extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileAchievements extends Resource {
     })
   }
 
-  create (body: ProfileAchievement): Promise<ProfileAchievement> {
+  create (body: RequestCreateProfileAchievement): Promise<AchievementPoint> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/achievements',

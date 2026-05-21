@@ -1,4 +1,4 @@
-import { Identity, Profile, RequestParams } from '@types'
+import { Identity, Profile, RequestCreateIdentity, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileIdentities extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  create (profileID: string, body: Identity): Promise<Identity> {
+  create (profileID: string, body: RequestCreateIdentity): Promise<Identity> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/identities`,

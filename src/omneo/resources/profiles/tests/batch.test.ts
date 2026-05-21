@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileType } from '@types'
+import { UpdateProfileProfileTypeEnum } from '@types'
 import { simpleOmneoRequest, randomString } from '@lib'
 
 const BATCHED_PROFILE_IDENTIFIER = randomString(10)
@@ -17,7 +17,7 @@ describe('Profile Batch', () => {
         first_name: 'SDK test profile batch',
         last_name: id,
         email: `${id}-sdk-test-profile-batch@example.com`,
-        profile_type: 'deleted' as ProfileType
+        profile_type: 'deleted' as UpdateProfileProfileTypeEnum
       }
     })
 
@@ -34,7 +34,7 @@ afterAll(async () => {
     '/profiles?filter[first_name]=Sdk Test Profile Batch&filter[profile_type]=deleted'
   )
   console.log(`Deleting ${profiles.length} profiles found from batch`)
-  await Promise.all(profiles.map((profile) => {
+  await Promise.all(profiles.map((profile: any) => {
     return simpleOmneoRequest('DELETE', `/profiles/${profile.id}`)
   }))
 })

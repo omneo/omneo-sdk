@@ -1,8 +1,8 @@
-import { RequestParams, ActionHistoryResponse, ActionHistory } from '@types'
+import { ActionHistoryResponse, ActionHistory, RequestQueryActionHistory } from '@types'
 import Resource from '../resource.js'
 
 export default class ActionHistories extends Resource {
-  list (params?: RequestParams): Promise<ActionHistoryResponse> {
+  list (params?: RequestQueryActionHistory): Promise<ActionHistoryResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/action-history',

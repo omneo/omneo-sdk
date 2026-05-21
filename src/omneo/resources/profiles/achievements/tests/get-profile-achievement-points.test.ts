@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { AchievementDefinitionInput, CreateProfileAchievementInput, ProfileAchievementPoint } from '@types'
+import { RequestCreateAchievementDefinition, RequestCreateProfileAchievement } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -11,7 +11,7 @@ const omneoClient = new Omneo({
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const CREATED_ACHIEVEMENT_DEFINITION_IDS: number[] = []
 
-const buildAchievementDefinitionPayload = (): AchievementDefinitionInput => ({
+const buildAchievementDefinitionPayload = (): RequestCreateAchievementDefinition => ({
   name: getRandomString('sdk_unit_test_profile_achievement_points_name'),
   handle: getRandomString('sdk_unit_test_profile_achievement_points_handle'),
   description: 'Tracks spend for SDK profile achievement points tests',
@@ -36,7 +36,7 @@ describe('Get Profile Achievement Points', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/achievements/definitions', definitionPayload)
     CREATED_ACHIEVEMENT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const createPayload: CreateProfileAchievementInput = {
+    const createPayload: RequestCreateProfileAchievement = {
       definition_id: definitionResponse.data.id,
       count: 200,
       meta: {
@@ -47,7 +47,7 @@ describe('Get Profile Achievement Points', () => {
     await simpleOmneoRequest('POST', `/profiles/${testProfileID}/achievements`, createPayload)
 
     const response = await omneoClient.profiles.achievements.getPoints(testProfileID, definitionResponse.data.id)
-    const points = (response.data ?? []) as ProfileAchievementPoint[]
+    const points = response.data ?? []
 
     expect(points.length).toBeGreaterThan(0)
     const point = points.find((item) => item.count === createPayload.count && item.profile_id === testProfileID)

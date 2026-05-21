@@ -1,18 +1,17 @@
-import { RequestParams, Brand, BrandResponse } from '@types'
+import { Brand, BrandResponse, RequestCreateBrand, RequestUpdateBrand, RequestQueryBrand } from '@types'
 import Resource from '../resource.js'
 
 export default class Brands extends Resource {
-  get (id: number, params?: RequestParams): Promise<Brand> {
+  get (id: number): Promise<Brand> {
     return this.client.call({
       method: 'get',
-      endpoint: `/brands/${id}`,
-      params
+      endpoint: `/brands/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<BrandResponse> {
+  list (params?: RequestQueryBrand): Promise<BrandResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/brands',
@@ -20,7 +19,7 @@ export default class Brands extends Resource {
     })
   }
 
-  create (body: Brand): Promise<Brand> {
+  create (body: RequestCreateBrand): Promise<Brand> {
     return this.client.call({
       method: 'post',
       endpoint: '/brands',
@@ -30,7 +29,7 @@ export default class Brands extends Resource {
     })
   }
 
-  update (id: number, body: Partial<Brand>): Promise<Brand> {
+  update (id: number, body: RequestUpdateBrand): Promise<Brand> {
     return this.client.call({
       method: 'put',
       endpoint: `/brands/${id}`,

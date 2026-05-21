@@ -1,7 +1,6 @@
 // Route category: allocations
 
-import type { FilterOperator, AnyJsonRecord } from './common'
-
+import type { AnyJsonRecord, AnyRecord, FilterOperator } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type BatchAllocationJsonDefinitionTypeEnum = 'benefit_definition' | 'point_definition' | 'reward_definition'
@@ -10,7 +9,7 @@ export type BatchAllocationJsonItem = {
   allocated_at?: string | null
   code: string
   external_id?: string | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name?: string | null
   valid_from?: string | null
   valid_to?: string | null

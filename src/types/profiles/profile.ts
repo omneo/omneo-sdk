@@ -53,7 +53,7 @@ export type CreateProfileAddressesItem = {
   meta?: AnyJsonRecord | null
   notes?: string | null
   postcode: string
-  state: string
+  state?: string | null
 }
 
 export type CreateProfileIdentitiesItem = {
@@ -118,8 +118,8 @@ export type UpdateProfileAddressesItem = {
 }
 
 export type UpdateProfileIdentitiesItem = {
-  handle: string
-  id: number
+  handle?: string | null
+  id?: number | null
   identifier: string
   is_active?: boolean | null
 }
@@ -380,8 +380,8 @@ export type BatchProfileJsonItem = {
   addresses?: CreateProfileAddressesItem[] | null
   attributes?: CreateProfileAttributes
   avatar_url?: string | null
-  birth_day: number | null
-  birth_month: number | null
+  birth_day?: number | null
+  birth_month?: number | null
   birth_year?: number | null
   comms_attributes?: ProfileCommsAttributes | null
   company?: string | null
@@ -423,8 +423,8 @@ export type RequestCreateProfile = {
   addresses?: CreateProfileAddressesItem[] | null
   attributes?: CreateProfileAttributes
   avatar_url?: string | null
-  birth_day: number | null
-  birth_month: number | null
+  birth_day?: number | null
+  birth_month?: number | null
   birth_year?: number | null
   comms_attributes?: ProfileCommsAttributes | null
   company?: string | null

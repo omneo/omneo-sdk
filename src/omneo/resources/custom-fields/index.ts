@@ -1,12 +1,11 @@
-import { CustomField, CustomFieldBatchDeleteItem, CustomFieldResponse, RequestParams } from '@types'
+import { CustomField, CustomFieldResponse, RequestCustomFieldBatchDelete, CustomFieldBatchJsonDeleteResponse, RequestQueryCustomField } from '@types'
 import Resource from '../resource.js'
 
 export default class CustomFields extends Resource {
-  list (model: string, id: number, params?: RequestParams): Promise<CustomFieldResponse> {
+  list (model: string, id: number): Promise<CustomFieldResponse> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/custom-fields/${model}/${id}`,
-      params
+      endpoint: `/custom-fields/${model}/${id}`
     }).then((response) => {
       return response
     })
@@ -22,7 +21,7 @@ export default class CustomFields extends Resource {
     })
   }
 
-  search (params: RequestParams): Promise<CustomFieldResponse> {
+  search (params: RequestQueryCustomField): Promise<CustomFieldResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/custom-fields/search',
@@ -41,7 +40,7 @@ export default class CustomFields extends Resource {
     })
   }
 
-  deleteBatch (model: string, id: number, body: CustomFieldBatchDeleteItem): Promise<{deleted: number}> {
+  deleteBatch (model: string, id: number, body: RequestCustomFieldBatchDelete): Promise<CustomFieldBatchJsonDeleteResponse> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/custom-fields/${model}/${id}/batchJsonDelete`,

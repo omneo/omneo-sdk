@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { ProfileDatesAttribute } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -15,7 +15,7 @@ describe('Profile Date Update', () => {
   test('SDK Update Date', async () => {
     const dateHandle = getRandomString('sdk_unit_test_dates_handle')
     const dateRelationship = getRandomString('sdk_unit_test_dates_relationship')
-    const payload: ProfileDatesAttributeInput = {
+    const payload = {
       name: 'Omneo SDK Original Date',
       date: new Date().toISOString().replace('T', ' ').slice(0, 10),
       type: 'test',
@@ -35,7 +35,7 @@ describe('Profile Date Update', () => {
     const createdDateId = profileFilterDates[0].id as number
     CREATED_DATES_IDS.push(createdDateId)
 
-    const updatedPayload: ProfileDatesAttributeInput = {
+    const updatedPayload = {
       name: 'Omneo SDK Update Date',
       date: new Date().toISOString().replace('T', ' ').slice(0, 10),
       type: 'test',
@@ -46,7 +46,7 @@ describe('Profile Date Update', () => {
       note: 'test notes for omneo update',
       description: 'test description for update'
     }
-    const updatedDate: ProfileDatesAttribute = await omneo.profiles.attributes.dates.update(testProfileID, updatedPayload)
+    const updatedDate = await omneo.profiles.attributes.dates.update(testProfileID, updatedPayload)
     expect(updatedDate.name).toBe(updatedPayload.name)
     expect(updatedDate.note).toBe(updatedPayload.note)
     // TODO need to support to update description by core api

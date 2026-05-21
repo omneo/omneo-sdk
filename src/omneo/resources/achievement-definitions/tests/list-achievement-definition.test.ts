@@ -41,7 +41,9 @@ describe('Achievement Definitions list', () => {
     CREATED_ACHIEVEMENT_DEFINITION_IDS.push(response.data.id)
 
     const achievementDefinitionsRes: AchievementDefinitionResponse = await omneo.achievementDefinitions.list({
-      'filter[handle]': payload.handle
+      filter: {
+        handle: payload.handle
+      }
     })
     const { data: achievementDefinitions } = achievementDefinitionsRes
     expect(achievementDefinitions.length).toBe(1)

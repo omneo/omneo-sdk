@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -31,7 +31,7 @@ describe('Get List', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_list_name_for_get_list')
     }
-    const response2: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     const listId = response2.data.id
     CREATED_LIST_IDS.push(listId)
 

@@ -35,6 +35,7 @@ export type RequestQueryCountry = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type State = {

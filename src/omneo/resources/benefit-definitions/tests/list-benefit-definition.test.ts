@@ -20,7 +20,9 @@ describe('Benefit Definitions list', () => {
     CREATED_BENEFIT_DEFINITION_IDS.push(response.data.id)
 
     const benefitDefinitionsRes: BenefitDefinitionResponse = await omneo.benefitDefinitions.list({
-      'filter[handle]': payload.handle
+      filter: {
+        handle: payload.handle
+      }
     })
     const { data: benefitDefinitions } = benefitDefinitionsRes
     expect(benefitDefinitions.length).toBe(1)

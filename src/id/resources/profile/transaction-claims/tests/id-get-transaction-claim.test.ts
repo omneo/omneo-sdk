@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionClaim } from '@types'
+import { RequestCreateTransaction, TransactionClaim } from '@types'
 import { simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -19,7 +19,7 @@ describe('ID Profile Transaction claims get', () => {
     })
 
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
-    const payload: CreateTransactionInput = {
+    const payload: RequestCreateTransaction = {
       profile_id: profile.id,
       total: 49.99,
       items: [
@@ -33,7 +33,7 @@ describe('ID Profile Transaction claims get', () => {
       ],
       timezone: 'UTC',
       transacted_at: nowDateString,
-      location_id: testLocationId
+      location_id: testLocationId as any
     }
     const response = await simpleOmneoRequest('POST', '/transactions', payload).catch((err) => {
       console.error('ID SDK get transaction claim, transaction created failed:', err)

@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { getRandomString, convertToUTC, simpleOmneoRequest } from '@lib'
-import { RewardDefinitionCreateInput, Reward } from '@types'
+import { Reward } from '@types'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -16,7 +16,7 @@ beforeAll(() => {
 })
 describe('Profile Get Reward', () => {
   test('SDK Profile Get Reward by ID', async () => {
-    const payload: RewardDefinitionCreateInput = {
+    const payload = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,
@@ -34,6 +34,7 @@ describe('Profile Get Reward', () => {
 
     const rewardPayload = {
       reward_definition_id: response.data.id,
+      reward_definition_handle: response.data.handle,
       profile_id: testProfileID,
       value_initial: 5,
       value_remaining: 5,

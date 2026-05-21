@@ -1,6 +1,6 @@
 import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List, ListItem } from '@types'
+import { ListDefinition, ProductList, ProductListItem } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -36,7 +36,7 @@ describe('Delete Profile List Item', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_list_name_for_delete_list_item')
     }
-    const response2: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     CREATED_LIST_IDS.push(response2.data.id)
 
     const product = await omneoClient.products.get(testProductId)
@@ -49,7 +49,7 @@ describe('Delete Profile List Item', () => {
       status: 'remaining'
     }
     const listId = response2.data.id
-    const response3: { data: ListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
+    const response3: { data: ProductListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, payload3)
     const listItemId = response3.data.id
 
     await omneoClient.profiles.lists.items.delete(testProfileID, listId, listItemId).catch((err: any) => {
@@ -63,8 +63,8 @@ describe('Delete Profile List Item', () => {
     expect(response3.data).toBeDefined()
     expect(response3.data.product_list_id).toBe(listId)
     expect(response3.data.product_variant.id).toBe(payload3.product_variant_id)
-    expect(response3.data.product.id).toBe(payload3.product_id)
-    expect(response3.data.product.external_id).toBe(payload3.external_id)
+    expect(response3.data.product!.id).toBe(payload3.product_id)
+    expect(response3.data.product!.external_id).toBe(payload3.external_id)
 
     const listItemResponse = await simpleOmneoRequest('GET', `/profiles/${testProfileID}/lists/${listId}/items/${listItemId}`)
     expect(listItemResponse).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))

@@ -6,9 +6,9 @@ import type { PaginationLink, PaginationMeta } from './pagination'
 import type { Country } from './countries'
 
 export type RegionCountriesItem = {
-  iso_2: string
-  iso_3: string
-  iso_numeric: string
+  iso_2?: string
+  iso_3?: string
+  iso_numeric?: string
 }
 
 export type RequestQueryRegion = {

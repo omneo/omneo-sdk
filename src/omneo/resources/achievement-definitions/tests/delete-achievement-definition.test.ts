@@ -1,7 +1,7 @@
 
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { AchievementDefinitionInput } from '@types'
+import { RequestCreateAchievementDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -12,7 +12,7 @@ const FAILED_DELETE_ACHIEVEMENT_DEFINITION_IDS : number[] = []
 
 describe('Achievement Definition delete', () => {
   test('SDK Delete Achievement Definition', async () => {
-    const payload: AchievementDefinitionInput = {
+    const payload: RequestCreateAchievementDefinition = {
       name: getRandomString('sdk_unit_test_achievement_definition_delete'),
       handle: getRandomString('sdk_unit_test_achievement_definition_delete'),
       description: 'Tracks monthly spend for monthly rewards',

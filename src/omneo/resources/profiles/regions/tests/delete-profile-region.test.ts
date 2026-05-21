@@ -1,7 +1,7 @@
 
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileRegionInput, RegionInput } from '@types'
+import { RequestCreateProfileRegion, RequestCreateRegion } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -14,7 +14,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Region Delete', () => {
   test('SDK Profile Region delete', async () => {
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_name_delete'),
       handle: getRandomString('sdk_unit_test_handle_delete')
     }
@@ -24,7 +24,7 @@ describe('Profile Region Delete', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'

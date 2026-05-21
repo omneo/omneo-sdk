@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionProductVariantsResponse } from '@types'
+import { RequestCreateTransaction, TransactionProductVariantResponse } from '@types'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest } from '@lib'
@@ -21,7 +21,7 @@ describe('ID Profile Transaction products list', () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
     const prevDateString = new Date(new Date().getTime() - 1000).toISOString().replace('T', ' ').slice(0, 19)
 
-    const payload: CreateTransactionInput = {
+    const payload: RequestCreateTransaction = {
       profile_id: testProfileID,
       total: 49.99,
       items: [
@@ -35,7 +35,7 @@ describe('ID Profile Transaction products list', () => {
       ],
       timezone: 'UTC',
       transacted_at: nowDateString,
-      location_id: testLocationId
+      location_id: testLocationId as any
     }
 
     const response = await simpleOmneoRequest('POST', '/transactions', payload).catch((err) => {
@@ -44,12 +44,12 @@ describe('ID Profile Transaction products list', () => {
     })
     CREATED_TRANSACTION_IDS.push(response.data.id)
 
-    const productsRes: TransactionProductVariantsResponse = await IDClient.profile.transactionProducts({
+    const productsRes: TransactionProductVariantResponse = await IDClient.profile.transactionProducts({
       'filter[transacted_at]': prevDateString
     })
     const { data: products } = productsRes
     expect(products.length).toBeGreaterThan(0)
-    const mappingProducts = products.map(({ id }) => {
+    const mappingProducts = products.map(({ id }: any) => {
       return { id }
     })
     expect(mappingProducts).toContainEqual({

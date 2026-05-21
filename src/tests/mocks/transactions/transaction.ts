@@ -167,7 +167,8 @@ export const readTransaction: Transaction = {
     transaction: {
       transacted_at: '2024-02-13 01:09:57',
       receipt_ref: 'D17200109877',
-      external_id: '36865285'
+      external_id: '36865285',
+      location: null
     }
   }],
   payments: [{

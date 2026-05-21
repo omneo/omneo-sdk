@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { CreateTransactionInput, TransactionItem, ListDefinition, List, ListItemInput } from '@types'
+import { RequestCreateTransaction, TransactionItem, ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -40,11 +40,11 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
       list_definition_id: listDefResponse.data.id,
       name: getRandomString('id_sdk_test_list_link_unlink')
     }
-    const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${profile.id}/lists`, listPayload)
+    const listResponse: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${profile.id}/lists`, listPayload)
     CREATED_LIST_IDS.push(listResponse.data.id)
 
     // Create transaction
-    const payload: CreateTransactionInput = {
+    const payload: RequestCreateTransaction = {
       profile_id: profile.id,
       total: 49.99,
       items: [
@@ -58,7 +58,7 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
       ],
       timezone: 'Australia/Melbourne',
       transacted_at: nowDateString,
-      location_id: testLocationId
+      location_id: testLocationId as any
     }
     const response = await simpleOmneoRequest('POST', '/transactions', payload).catch((err) => {
       console.error('ID SDK link/unlink list item, transaction created failed:', err)
@@ -69,7 +69,7 @@ describe('ID Profile Link and Unlink Transaction Item', () => {
     const transactionItem = response.data.items[0]
 
     // Create List Item
-    const listItemPayload: ListItemInput = {
+    const listItemPayload = {
       product_variant_id: parseInt(testProductVariantId),
       quantity: 1
     }

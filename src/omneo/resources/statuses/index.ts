@@ -1,18 +1,17 @@
-import { RequestParams, Status, StatusResponse } from '@types'
+import { RequestCreateStatus, RequestQueryStatus, RequestUpdateStatus, Status, StatusResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Statuses extends Resource {
-  get (id: number, params?: RequestParams): Promise<Status> {
+  get (id: number): Promise<Status> {
     return this.client.call({
       method: 'get',
-      endpoint: `/statuses/${id}`,
-      params
+      endpoint: `/statuses/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<StatusResponse> {
+  list (params?: RequestQueryStatus): Promise<StatusResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/statuses',
@@ -20,7 +19,7 @@ export default class Statuses extends Resource {
     })
   }
 
-  create (body: Status): Promise<Status> {
+  create (body: RequestCreateStatus): Promise<Status> {
     return this.client.call({
       method: 'post',
       endpoint: '/statuses',
@@ -30,7 +29,7 @@ export default class Statuses extends Resource {
     })
   }
 
-  update (id: number, body: Partial<Status>): Promise<Status> {
+  update (id: number, body: RequestUpdateStatus): Promise<Status> {
     return this.client.call({
       method: 'put',
       endpoint: `/statuses/${id}`,

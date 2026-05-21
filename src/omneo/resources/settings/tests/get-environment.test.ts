@@ -7,7 +7,7 @@ const omneo = new Omneo({
 
 describe('Settings get', () => {
   test('SDK can get environment setting', async () => {
-    const environmentSettings = await omneo.settings.getEnvironment()
+    const { data: environmentSettings } = await omneo.settings.getEnvironment()
     const appKey = environmentSettings.find((setting) => setting.handle === 'app.request_key')
     expect(appKey?.handle).toBe('app.request_key')
   })

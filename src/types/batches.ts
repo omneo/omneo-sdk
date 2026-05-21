@@ -11,7 +11,7 @@ export type RequestBatchStore = {
 
 export type BatchStoreItemsItem = {
   entity_id?: string | null
-  error: string | null
+  error?: string | null
   external_id?: string | null
   status: 'pending' | 'success' | 'failed'
 }

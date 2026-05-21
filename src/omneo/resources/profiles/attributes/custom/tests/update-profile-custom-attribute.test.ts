@@ -1,6 +1,5 @@
 import { describe, test, expect, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CustomAttribute } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -15,7 +14,7 @@ describe('Profile Update Custom Attribute', () => {
   test('SDK Update custom attribute', async () => {
     namespace = getRandomString('sdk_unit_test_update_custom_attribute_namespace')
     handle = getRandomString('sdk_unit_test_update_custom_attribute_handle')
-    const payload: CustomAttribute = {
+    const payload = {
       namespace,
       handle,
       type: 'string',
@@ -24,12 +23,12 @@ describe('Profile Update Custom Attribute', () => {
 
     const testUpdatedValue = getRandomString('sdk_unit_test_value')
     await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
-      type: payload.type,
+      type: payload.type as any,
       value: payload.value
     })
 
-    const targetAttribute: CustomAttribute = await omneo.profiles.attributes.custom.update(testProfileID, payload.namespace, payload.handle, {
-      type: payload.type,
+    const targetAttribute = await omneo.profiles.attributes.custom.update(testProfileID, payload.namespace, payload.handle, {
+      type: payload.type as any,
       value: testUpdatedValue
     })
     expect(targetAttribute.profile_id).toBe(testProfileID)

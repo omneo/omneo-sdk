@@ -27,7 +27,7 @@ describe('Create Credit Definition', () => {
       value: 100
     }
 
-    const creditDefinition: CreditDefinition = await omneoClient.creditDefinitions.create(payload)
+    const creditDefinition: CreditDefinition = await omneoClient.creditDefinitions.create(payload as any)
     CREATED_CREDIT_DEFINITION_IDS.push(creditDefinition.id)
 
     expect(creditDefinition).toBeDefined()

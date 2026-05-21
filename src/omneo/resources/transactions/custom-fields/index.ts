@@ -1,8 +1,8 @@
-import { CustomField, CustomFieldResponse, RequestParams } from '@types'
+import { CustomField, CustomFieldResponse, RequestQueryCustomField } from '@types'
 import Resource from '../../resource.js'
 
 export default class TransactionCustomFields extends Resource {
-  list (transactionId: number, params?: RequestParams): Promise<CustomFieldResponse> {
+  list (transactionId: number, params?: RequestQueryCustomField): Promise<CustomFieldResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/transactions/${transactionId}/custom-fields`,
@@ -53,13 +53,13 @@ export default class TransactionCustomFields extends Resource {
     })
   }
 
-  versions (namespace: string, handle: string): Promise<CustomField[]> {
+  versions (namespace: string, handle: string): Promise<CustomFieldResponse> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'GET',
       endpoint: `/transactions/custom-fields/${attribute}/versions`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

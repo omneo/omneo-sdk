@@ -18,6 +18,7 @@ export type OmneoRequest = {
   params?: RequestParams
   body?: RequestBody,
   headers?: { [key: string]: string }
+  flattenParams?: boolean
 }
 
 export type DelegationData = {

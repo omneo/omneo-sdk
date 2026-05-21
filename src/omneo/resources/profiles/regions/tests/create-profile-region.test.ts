@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileRegionInput, Region, RegionInput } from '@types'
+import { RequestCreateProfileRegion, ProfileRegion, RequestCreateRegion } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -13,7 +13,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Region Create', () => {
   test('SDK Profile Region create', async () => {
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_name_create'),
       handle: getRandomString('sdk_unit_test_handle_create')
     }
@@ -23,12 +23,12 @@ describe('Profile Region Create', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'
     }
-    const regions: Region[] = await omneo.profiles.regions.create(testProfileID, payload2)
+    const regions: ProfileRegion[] = await omneo.profiles.regions.create(testProfileID, payload2)
     const region = regions.find((v) => v.id === response.data.id)
     region?.id && CREATED_PROFILE_REGION_IDS.push(region?.id)
     expect(region?.country).toBe(payload2.country)

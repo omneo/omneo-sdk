@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CreateTransactionInput, Transaction } from '@types'
+import { Transaction } from '@types'
 import { simpleOmneoRequest } from '@lib'
 import { getRandomDigitString } from '@/tests/lib/string/util'
 
@@ -18,7 +18,7 @@ describe('Profile Unattach Transaction', () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
     // Create transaction
-    const payload: CreateTransactionInput = {
+    const payload = {
       profile_id: testProfileID,
       total: 49.99,
       receipt_ref: getRandomDigitString(16),

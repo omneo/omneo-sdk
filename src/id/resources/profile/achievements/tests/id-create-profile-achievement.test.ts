@@ -1,12 +1,13 @@
 import { describe, expect, afterAll } from 'vitest'
-import { AchievementDefinitionInput, CreateProfileAchievementInput, ProfileAchievementPoint } from '@types'
+import { RequestCreateAchievementDefinition, RequestCreateProfileAchievement, AchievementPoint } from '@types'
+
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const CREATED_ACHIEVEMENT_DEFINITION_IDS: number[] = []
 
-const buildAchievementDefinitionPayload = (): AchievementDefinitionInput => ({
+const buildAchievementDefinitionPayload = (): RequestCreateAchievementDefinition => ({
   name: getRandomString('sdk_unit_test_id_profile_achievement_create_name'),
   handle: getRandomString('sdk_unit_test_id_profile_achievement_create_handle'),
   description: 'Tracks spend for SDK ID profile achievement create tests',
@@ -32,7 +33,7 @@ describe('ID Create Profile Achievement', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/achievements/definitions', definitionPayload)
     CREATED_ACHIEVEMENT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const payload: CreateProfileAchievementInput = {
+    const payload: RequestCreateProfileAchievement = {
       definition_id: definitionResponse.data.id,
       count: 150,
       meta: {
@@ -47,7 +48,7 @@ describe('ID Create Profile Achievement', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const createdPoint = await IDClient.profile.achievements.create(payload) as ProfileAchievementPoint
+    const createdPoint = await IDClient.profile.achievements.create(payload as any) as AchievementPoint
 
     expect(createdPoint.id).toBeDefined()
     expect(createdPoint.profile_id).toBe(profile.id)

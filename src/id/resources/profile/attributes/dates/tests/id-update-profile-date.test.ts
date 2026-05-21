@@ -1,7 +1,7 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { ProfileDatesAttribute } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const CREATED_DATES_IDS : number[] = []
@@ -12,7 +12,7 @@ describe('ID Update Date', () => {
     const { tokenData } = IDData
     const dateHandle = getRandomString('sdk_unit_test_dates_handle')
     const dateRelationship = getRandomString('sdk_unit_test_dates_relationship')
-    const payload: ProfileDatesAttributeInput = {
+    const payload = {
       name: 'Omneo SDK Original Date',
       date: new Date().toISOString().replace('T', ' ').slice(0, 10),
       type: 'test',
@@ -38,7 +38,7 @@ describe('ID Update Date', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const updatedPayload: ProfileDatesAttributeInput = {
+    const updatedPayload = {
       name: 'Omneo SDK Update Date',
       date: new Date().toISOString().replace('T', ' ').slice(0, 10),
       type: 'test',
@@ -49,7 +49,7 @@ describe('ID Update Date', () => {
       note: 'test notes for omneo update',
       description: 'test description for update'
     }
-    const updatedDate: ProfileDatesAttribute = await IDClient.profile.attributes.dates.update(updatedPayload)
+    const updatedDate: ProfileDatesAttribute = await IDClient.profile.attributes.dates.update(updatedPayload as any)
     expect(updatedDate.name).toBe(updatedPayload.name)
     expect(updatedDate.note).toBe(updatedPayload.note)
     // expect(updatedDate.description).toBe(updatedPayload.description)

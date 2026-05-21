@@ -1,18 +1,17 @@
-import { Country, RequestParams, CountryResponse } from '@types'
+import { Country, CountryResponse, RequestCreateCountry, RequestUpdateCountry, RequestQueryCountry } from '@types'
 import Resource from '../resource.js'
 
 export default class Countries extends Resource {
-  get (id: number, params?: RequestParams): Promise<Country> {
+  get (id: number): Promise<Country> {
     return this.client.call({
       method: 'get',
-      endpoint: `/countries/${id}`,
-      params
+      endpoint: `/countries/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<CountryResponse> {
+  list (params?: RequestQueryCountry): Promise<CountryResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/countries',
@@ -20,7 +19,7 @@ export default class Countries extends Resource {
     })
   }
 
-  create (body: Country): Promise<Country> {
+  create (body: RequestCreateCountry): Promise<Country> {
     return this.client.call({
       method: 'post',
       endpoint: '/countries',
@@ -30,7 +29,7 @@ export default class Countries extends Resource {
     })
   }
 
-  update (id: number, body: Country): Promise<Country> {
+  update (id: number, body: RequestUpdateCountry): Promise<Country> {
     return this.client.call({
       method: 'put',
       endpoint: `/countries/${id}`,

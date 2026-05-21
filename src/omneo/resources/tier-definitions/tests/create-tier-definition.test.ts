@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TierDefinition, CreateTierDefinitionInput } from '@types'
+import { TierDefinition, RequestCreateTierDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -11,7 +11,7 @@ const CREATED_TIER_DEFINITION_IDS: number[] = []
 
 describe('Create Tier Definition', () => {
   test('SDK Create Tier Definition', async () => {
-    const payload: CreateTierDefinitionInput = {
+    const payload: RequestCreateTierDefinition = {
       name: getRandomString('sdk_unit_test_create_tier_definition_name'),
       handle: getRandomString('sdk_unit_test_create_tier_definition_handle'),
       value_min: 10,

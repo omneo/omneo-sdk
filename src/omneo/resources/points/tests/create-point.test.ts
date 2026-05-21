@@ -22,7 +22,7 @@ describe('Points create', () => {
         test: true
       }
     }
-    const sdkPoint = await omneo.points.create(pointPayload)
+    const sdkPoint = await omneo.points.create(pointPayload as any)
 
     expect(sdkPoint).toHaveProperty('id')
     CREATED_POINTS.push(sdkPoint.id)
@@ -45,7 +45,7 @@ describe('Points create', () => {
         test: true
       }
     }
-    const sdkPoint = await omneo.points.create(pointPayload)
+    const sdkPoint = await omneo.points.create(pointPayload as any)
 
     expect(sdkPoint).toHaveProperty('id')
     CREATED_POINTS.push(sdkPoint.id)

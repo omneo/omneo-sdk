@@ -15,8 +15,8 @@ export type InteractionChannelEnum = 'app' | 'email' | 'location' | 'push' | 'sm
 export type InteractionSignalEnum = '-1' | '0' | '1'
 
 export type InteractionIdentifier = {
-  handle: string
-  id: string
+  handle?: string | null
+  id?: string | null
 }
 
 export type RequestQueryInteraction = {
@@ -90,11 +90,11 @@ export type RequestCreateInteraction = {
   duration?: number | null
   identifier?: InteractionIdentifier
   interacted_at?: string | null
-  interacted_id: number | null
-  interacted_type: 'profile' | 'product' | 'transaction' | 'reward' | 'benefit' | 'point' | 'user' | 'tenant' | 'list' | 'listItem' | 'target' | 'automation' | 'trigger' | 'aggregation' | 'comms_attribute' | 'appearance_attribute' | 'webhook' | 'identity' | 'tier' | 'address' | 'location' | 'product_variant' | 'benefit_definition' | 'reward_definition' | 'tier_definition' | 'transaction_item' | 'order' | 'redemption' | 'tier_point' | 'interaction' | 'status' | 'organisation' | 'role_definition' | 'credit_definition' | 'credit' | 'product_list_reservation' | 'appointment_definition' | 'appointment' | 'question' | 'questionnaire' | 'questionnaire_answer' | 'questionnaire_submission' | 'rating' | 'custom_attribute' | 'connection' | null
-  latitude: number | null
+  interacted_id?: number | null
+  interacted_type?: 'profile' | 'product' | 'transaction' | 'reward' | 'benefit' | 'point' | 'user' | 'tenant' | 'list' | 'listItem' | 'target' | 'automation' | 'trigger' | 'aggregation' | 'comms_attribute' | 'appearance_attribute' | 'webhook' | 'identity' | 'tier' | 'address' | 'location' | 'product_variant' | 'benefit_definition' | 'reward_definition' | 'tier_definition' | 'transaction_item' | 'order' | 'redemption' | 'tier_point' | 'interaction' | 'status' | 'organisation' | 'role_definition' | 'credit_definition' | 'credit' | 'product_list_reservation' | 'appointment_definition' | 'appointment' | 'question' | 'questionnaire' | 'questionnaire_answer' | 'questionnaire_submission' | 'rating' | 'custom_attribute' | 'connection' | null
+  latitude?: number | null
   location_id?: number
-  longitude: number | null
+  longitude?: number | null
   meta?: AnyJsonRecord | null
   name: string
   namespace: string

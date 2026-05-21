@@ -1,12 +1,12 @@
 import { describe, expect, afterAll } from 'vitest'
-import { BenefitDefinitionInput } from '@types'
+import { RequestCreateBenefitDefinition } from '@types'
 import { ID } from '@id'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 
-const buildDefinitionPayload = (): BenefitDefinitionInput => ({
+const buildDefinitionPayload = (): RequestCreateBenefitDefinition => ({
   name: getRandomString('id_sdk_unit_test_id_profile_benefit_viewable_name'),
   handle: getRandomString('id_sdk_unit_test_id_profile_benefit_viewable_handle'),
   period: 30,

@@ -2,7 +2,6 @@ import {
   CommsChannel,
   Profile,
   ProfileCommsAttribute,
-  
   UpdateProfileProfileTypeEnum,
   RequestParams,
   TransactionProductVariantResponse

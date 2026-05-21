@@ -1,12 +1,12 @@
 import { describe, expect, afterAll } from 'vitest'
-import { AchievementDefinitionInput, CreateProfileAchievementInput, ProfileAchievementPoint } from '@types'
+import { RequestCreateAchievementDefinition, RequestCreateProfileAchievement, ProfileAchievementPointResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const CREATED_ACHIEVEMENT_DEFINITION_IDS: number[] = []
 
-const buildAchievementDefinitionPayload = (): AchievementDefinitionInput => ({
+const buildAchievementDefinitionPayload = (): RequestCreateAchievementDefinition => ({
   name: getRandomString('sdk_unit_test_id_profile_achievement_points_name'),
   handle: getRandomString('sdk_unit_test_id_profile_achievement_points_handle'),
   description: 'Tracks spend for SDK ID profile achievement points tests',
@@ -32,7 +32,7 @@ describe('ID Get Profile Achievement Points', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/achievements/definitions', definitionPayload)
     CREATED_ACHIEVEMENT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const createPayload: CreateProfileAchievementInput = {
+    const createPayload: RequestCreateProfileAchievement = {
       definition_id: definitionResponse.data.id,
       count: 200,
       meta: {
@@ -48,14 +48,14 @@ describe('ID Get Profile Achievement Points', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const response = await IDClient.profile.achievements.getPoints(definitionResponse.data.id)
-    const points = (response.data ?? []) as ProfileAchievementPoint[]
+    const response: ProfileAchievementPointResponse = await IDClient.profile.achievements.getPoints(definitionResponse.data.id)
+    const points = response.data ?? []
 
     expect(points.length).toBeGreaterThan(0)
     const point = points.find((item) => item.count === createPayload.count && item.profile_id === profile.id)
     expect(point).toBeDefined()
-    expect(point?.meta?.manual).toBe(createPayload.meta?.manual)
-    expect(point?.meta?.user).toBe(createPayload.meta?.user)
+    expect((point?.meta as any)?.manual).toBe((createPayload.meta as any)?.manual)
+    expect((point?.meta as any)?.user).toBe((createPayload.meta as any)?.user)
   })
 })
 

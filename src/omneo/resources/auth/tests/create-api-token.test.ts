@@ -1,7 +1,7 @@
 import { describe, test, afterAll, expect } from 'vitest'
 import { simpleOmneoRequest } from '@lib'
 import { Omneo } from '@omneo'
-import { allOmneoScopes } from '/auth/auth'
+import { allOmneoScopes } from '@mocks/auth/auth'
 
 const CREATED_API_TOKENS : string[] = []
 

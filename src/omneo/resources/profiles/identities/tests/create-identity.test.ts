@@ -18,7 +18,7 @@ describe('Profile Identity create', () => {
       identifier: randomString(10)
     }
     const identity = await omneo.profiles.identities.create(testProfileID, payload)
-    CREATED_IDENTITY_HANDLES.push(identity.handle)
+    CREATED_IDENTITY_HANDLES.push(identity.handle!)
 
     expect(identity.handle).toEqual(payload.handle)
     expect(identity.identifier).toEqual(payload.identifier)

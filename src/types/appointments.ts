@@ -11,7 +11,7 @@ export type RequestAppointmentLinkAction = {
 }
 
 export type AppointmentAnswersItem = {
-  questionnaire_question_id: number
+  questionnaire_question_id?: number | null
   value?: string
 }
 

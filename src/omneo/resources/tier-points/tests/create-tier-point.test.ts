@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TierPoint, CreateTierPointInput } from '@types'
+import { TierPoint, RequestCreateTierPoint } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -19,7 +19,7 @@ describe('Create Tier Point', () => {
     const pointDefinition = await simpleOmneoRequest('POST', '/points/definitions', pointDefinitionPayload)
     createdPointDefinitionId = pointDefinition.data.id
 
-    const payload: CreateTierPointInput = {
+    const payload: RequestCreateTierPoint = {
       profile_id: process.env.OMNEO_TEST_PROFILE_ID as string,
       point_definition_id: pointDefinition.data.id,
       value: 100,

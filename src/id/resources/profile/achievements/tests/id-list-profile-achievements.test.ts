@@ -1,12 +1,12 @@
 import { describe, expect, afterAll } from 'vitest'
-import { AchievementDefinitionInput, CreateProfileAchievementInput } from '@types'
+import { RequestCreateAchievementDefinition, RequestCreateProfileAchievement } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const CREATED_ACHIEVEMENT_DEFINITION_IDS: number[] = []
 
-const buildAchievementDefinitionPayload = (): AchievementDefinitionInput => ({
+const buildAchievementDefinitionPayload = (): RequestCreateAchievementDefinition => ({
   name: getRandomString('sdk_unit_test_id_profile_achievement_list_name'),
   handle: getRandomString('sdk_unit_test_id_profile_achievement_list_handle'),
   description: 'Tracks spend for SDK ID profile achievement list tests',
@@ -32,7 +32,7 @@ describe('ID List Profile Achievements', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/achievements/definitions', definitionPayload)
     CREATED_ACHIEVEMENT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const createPayload: CreateProfileAchievementInput = {
+    const createPayload: RequestCreateProfileAchievement = {
       definition_id: definitionResponse.data.id,
       count: 200,
       meta: {
@@ -49,11 +49,11 @@ describe('ID List Profile Achievements', () => {
     })
 
     const achievements = await IDClient.profile.achievements.list({})
-    const target = Array.isArray(achievements) ? achievements.find((achievement) => achievement.id === definitionResponse.data.id) : Object.values(achievements).find((achievement) => achievement.id === definitionResponse.data.id)
+    const target: any = Array.isArray(achievements) ? achievements.find((achievement) => achievement.id === definitionResponse.data.id) : Object.values(achievements as any).find((achievement: any) => achievement.id === definitionResponse.data.id)
     expect(target).toBeDefined()
-    expect(target?.id).toBe(definitionResponse.data.id)
-    expect(target?.handle).toBe(definitionPayload.handle)
-    expect(target?.name).toBe(definitionPayload.name)
+    expect((target as any)?.id).toBe(definitionResponse.data.id)
+    expect((target as any)?.handle).toBe(definitionPayload.handle)
+    expect((target as any)?.name).toBe(definitionPayload.name)
   })
 })
 

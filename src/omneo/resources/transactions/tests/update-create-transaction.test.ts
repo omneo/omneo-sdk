@@ -1,5 +1,5 @@
 import { describe, test, afterAll, expect } from 'vitest'
-import { writeTransactionWithVariant, writeTransactionWithVariantID } from '/transactions/transaction'
+import { writeTransactionWithVariant, writeTransactionWithVariantID } from '@mocks/transactions/transaction'
 import { Omneo } from '@omneo'
 import { simpleOmneoRequest, randomString } from '@lib'
 
@@ -14,7 +14,7 @@ describe('Transactions update-create', () => {
   test('SDK can create a transaction with a variant to Omneo.', async () => {
     writeTransactionWithVariant.external_id = randomString(9)
 
-    const sdkCreateTransaction = await omneo.transactions.updateCreate(writeTransactionWithVariant)
+    const sdkCreateTransaction = await omneo.transactions.updateCreate(writeTransactionWithVariant as any)
     CREATED_TRANSACTION_IDS.push(sdkCreateTransaction.id)
 
     expect(sdkCreateTransaction.external_id).toBe(writeTransactionWithVariant.external_id)
@@ -25,7 +25,7 @@ describe('Transactions update-create', () => {
   test('SDK can create a transaction with a variant ID Omneo.', async () => {
     writeTransactionWithVariantID.external_id = randomString(9)
 
-    const sdkCreateTransaction = await omneo.transactions.updateCreate(writeTransactionWithVariantID)
+    const sdkCreateTransaction = await omneo.transactions.updateCreate(writeTransactionWithVariantID as any)
     CREATED_TRANSACTION_IDS.push(sdkCreateTransaction.id)
 
     expect(sdkCreateTransaction.external_id).toBe(writeTransactionWithVariantID.external_id)

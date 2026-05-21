@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { BenefitInput } from '@types'
+import { RequestCreateBenefit } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { ID } from '@id'
 import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
@@ -30,7 +30,7 @@ describe('Profile Benefits', async () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -59,7 +59,7 @@ describe('Profile Benefits', async () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -90,7 +90,7 @@ describe('Profile Benefits', async () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -120,7 +120,7 @@ describe('Profile Benefits', async () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),

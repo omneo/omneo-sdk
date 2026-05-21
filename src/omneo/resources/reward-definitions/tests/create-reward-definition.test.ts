@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { RewardDefinitionCreateInput, RewardDefinition } from '@types'
+import { RewardDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -11,7 +11,7 @@ const CREATED_REWARDS_DEFINITION_IDS : number[] = []
 
 describe('Reward Definition created', () => {
   test('SDK created Reward Definition', async () => {
-    const payload: RewardDefinitionCreateInput = {
+    const payload = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: getRandomString('sdk_unit_test_reward_definition_handle'),
       value: 10,
@@ -19,7 +19,7 @@ describe('Reward Definition created', () => {
       period_type: 'days',
       type: 'spend'
     }
-    const targetRewardDefinition: RewardDefinition = await omneo.rewardDefinitions.create(payload).catch((err) => {
+    const targetRewardDefinition: RewardDefinition = await omneo.rewardDefinitions.create(payload as any).catch((err) => {
       console.error('SDK Reward definition created failed:', err)
       throw new Error('SDK Reward definition created failed')
     })

@@ -1,6 +1,6 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { CustomAttribute } from '@types'
+import { ProfileCustomAttribute } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
@@ -13,7 +13,7 @@ describe('ID Profile Get Custom Attributes', () => {
     const { tokenData } = IDData
     namespace = getRandomString('sdk_unit_test_list_id_custom_attribute_namespace')
     handle = getRandomString('sdk_unit_test_list_id_custom_attribute_handle')
-    const payload: CustomAttribute = {
+    const payload = {
       namespace,
       handle,
       type: 'string',
@@ -31,7 +31,7 @@ describe('ID Profile Get Custom Attributes', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const customAttributes: CustomAttribute[] = await IDClient.profile.attributes.custom.list()
+    const customAttributes: ProfileCustomAttribute[] = await IDClient.profile.attributes.custom.list()
     const filterAttributes = customAttributes.filter(d => d.handle === payload.handle)
     expect(filterAttributes.length).toBeGreaterThan(0)
     const targetAttribute = filterAttributes[0]

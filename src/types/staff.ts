@@ -7,9 +7,9 @@ export type StaffGenderEnum = 'male' | 'female' | 'withheld' | 'other'
 export type Staff = Profile
 
 export type RequestCreateStaff = {
-  birth_day: number | null
-  birth_month: number | null
-  birth_year: number | null
+  birth_day?: number | null
+  birth_month?: number | null
+  birth_year?: number | null
   company?: string | null
   email: string
   first_name: string

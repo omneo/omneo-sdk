@@ -7,7 +7,7 @@ const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_BENEFIT_DEFINITION_IDS : string[] = []
+const CREATED_BENEFIT_DEFINITION_IDS : number[] = []
 
 describe('Benefit Definition clone', () => {
   test('SDK Benefit Definition clone', async () => {

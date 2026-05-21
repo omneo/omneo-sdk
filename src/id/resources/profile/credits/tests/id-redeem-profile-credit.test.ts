@@ -67,7 +67,7 @@ describe('Redeem Profile Credit', () => {
     expect(redemption.items.length).toBeGreaterThan(0)
     expect(redemption.items[0].type).toBe('credit')
     expect(redemption.items[0].type_attributes!.id).toBe(response2.data.id)
-    expect(redemption.items[0].type_attributes!.credit_definition_id).toBe(response.data.id)
+    expect((redemption.items[0].type_attributes as any)!.credit_definition_id).toBe(response.data.id)
     expect(redemption.items[0].type_attributes!.profile_id).toBe(testProfileID)
   })
 })

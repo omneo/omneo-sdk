@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { BenefitDefinitionInput, ClaimBenefitInput } from '@types'
+import { RequestCreateBenefitDefinition, RequestClaimBenefit } from '@types'
 import { ID } from '@id'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -7,7 +7,7 @@ import { testWithIDData } from '@id-tests/test-with-id-data'
 const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 const CREATED_BENEFIT_IDS: number[] = []
 
-const buildDefinitionPayload = (): BenefitDefinitionInput => ({
+const buildDefinitionPayload = (): RequestCreateBenefitDefinition => ({
   name: getRandomString('id_sdk_unit_test_id_profile_benefit_redeemable_name'),
   handle: getRandomString('id_sdk_unit_test_id_profile_benefit_redeemable_handle'),
   period: 30,
@@ -24,7 +24,7 @@ describe('ID Redeemable Profile Benefits', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/benefits/definitions', definitionPayload)
     CREATED_BENEFIT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const claimInput: ClaimBenefitInput = {
+    const claimInput: RequestClaimBenefit = {
       definition: definitionPayload.handle as string,
       timezone: 'Australia/Melbourne'
     }
@@ -35,7 +35,7 @@ describe('ID Redeemable Profile Benefits', () => {
     })
     const redemption = await IDClient.profile.benefits.claimRedeem(claimInput)
     for (const item of redemption.items) {
-      CREATED_BENEFIT_IDS.push(item.type_attributes.id)
+      CREATED_BENEFIT_IDS.push(item.type_attributes!.id)
     }
     const params = {
       'filter[benefit_definition_id]': definitionResponse.data.id

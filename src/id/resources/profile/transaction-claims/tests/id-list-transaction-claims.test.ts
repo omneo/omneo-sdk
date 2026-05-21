@@ -1,5 +1,5 @@
 
-import { CreateTransactionInput, TransactionClaimsResponse } from '@types'
+import { RequestCreateTransaction, ProfileTransactionClaimResponse } from '@types'
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -21,7 +21,7 @@ describe('ID Profile Transaction claims list', () => {
     })
 
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
-    const payload: CreateTransactionInput = {
+    const payload: RequestCreateTransaction = {
       profile_id: testProfileID,
       total: 49.99,
       items: [
@@ -35,7 +35,7 @@ describe('ID Profile Transaction claims list', () => {
       ],
       timezone: 'UTC',
       transacted_at: nowDateString,
-      location_id: testLocationId
+      location_id: testLocationId as any
     }
     const response = await simpleOmneoRequest('POST', '/transactions', payload).catch((err) => {
       console.error('ID SDK list transaction claims, transaction created failed:', err)
@@ -57,7 +57,7 @@ describe('ID Profile Transaction claims list', () => {
     })
     CREATED_TRANSACTION_CLAIM_IDS.push(response2.data.id)
 
-    const claimsRes: TransactionClaimsResponse = await IDClient.profile.transactionClaims.list({
+    const claimsRes: ProfileTransactionClaimResponse = await IDClient.profile.transactionClaims.list({
       'filter[transaction_receipt_ref]': response.data.id
     })
     const { data: claims } = claimsRes

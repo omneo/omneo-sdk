@@ -4,20 +4,20 @@ import type { AnyJsonRecord, AnyRecord, CustomFieldsGrouped } from './common'
 import type { CustomFieldItem, CustomFieldTypeEnum } from './custom-fields'
 import type { PaginationLink, PaginationMeta } from './pagination'
 export type LocationsAddress = {
-  address_line_1: string
+  address_line_1?: string | null
   address_line_2?: string | null
   address_line_3?: string | null
-  city: string
+  city?: string | null
   company?: string | null
-  country: string
+  country?: string | null
   is_default?: boolean | null
   iso?: string | null
   iso_state?: string | null
   latitude?: number | null
   longitude?: number | null
   notes?: string | null
-  postcode: string
-  state: string
+  postcode?: string | null
+  state?: string | null
 }
 
 export type AddressTypeEnum = 'home' | 'business' | 'billing' | 'holiday' | 'hotel' | 'recipient' | 'other'

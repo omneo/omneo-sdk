@@ -1,6 +1,6 @@
 import { describe, expect, test, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -33,7 +33,7 @@ describe('Delete Profile List Custom Field', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_unit_test_list_name')
     }
-    const response2: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     CREATED_LIST_IDS.push(response2.data.id)
 
     // Create List Custom Field
@@ -45,10 +45,10 @@ describe('Delete Profile List Custom Field', () => {
       type: 'string'
     }
     const listId = response2.data.id
-    const createCustomFieldResponse = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/custom-fields`, payload3)
-    expect(createCustomFieldResponse).toBeDefined()
-    expect(createCustomFieldResponse.data.namespace).toBe(payload3.namespace)
-    expect(createCustomFieldResponse.data.handle).toBe(payload3.handle)
+    const createProfileCustomAttributeResponse = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/custom-fields`, payload3)
+    expect(createProfileCustomAttributeResponse).toBeDefined()
+    expect(createProfileCustomAttributeResponse.data.namespace).toBe(payload3.namespace)
+    expect(createProfileCustomAttributeResponse.data.handle).toBe(payload3.handle)
 
     await omneoClient.profiles.lists.customFields.delete(testProfileID, listId, payload3.namespace, payload3.handle).catch((err: any) => {
       console.error('SDK Delete profile list custom field failed:', err)

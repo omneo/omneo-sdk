@@ -1,7 +1,7 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { ProfileDatesAttribute } from '@types'
 import { simpleOmneoRequest, randomString } from '@lib'
 
 const CREATED_DATES_IDS : number[] = []
@@ -11,7 +11,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 describe('ID Dates', () => {
   testWithIDData('ID SDK Get Dates', async ({ IDData }) => {
     const { tokenData } = IDData
-    const payload: ProfileDatesAttributeInput = {
+    const payload = {
       name: 'ID SDK Get Dates',
       date: '2024-12-02',
       type: 'test',

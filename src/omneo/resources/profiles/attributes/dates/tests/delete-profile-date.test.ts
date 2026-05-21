@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { ProfileDatesAttribute } from '@types'
 import { simpleOmneoRequest, randomString } from '@lib'
 
 const omneo = new Omneo({
@@ -14,7 +14,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 
 describe('Profile Date Delete', () => {
   test('SDK Delete Date', async () => {
-    const payload: ProfileDatesAttributeInput = {
+    const payload = {
       name: 'Omneo SDK Delete Date',
       date: '2024-12-02',
       type: 'test',

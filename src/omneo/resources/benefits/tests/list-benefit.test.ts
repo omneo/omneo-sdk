@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { Benefit, BenefitInput, BenefitResponse } from '@types'
+import { Benefit, RequestCreateBenefit, BenefitResponse } from '@types'
 import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -25,7 +25,7 @@ describe('Benefits list', async () => {
   CREATED_BENEFIT_DEFINITION_IDS.push(definition.id)
 
   test('SDK List Benefits', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -41,7 +41,9 @@ describe('Benefits list', async () => {
     CREATED_BENEFITS_IDS.push(benefitResponse.data.id)
 
     const { data: benefits }: BenefitResponse = await omneo.benefits.list({
-      'filter[external_id]': payload.external_id
+      filter: {
+        external_id: payload.external_id!
+      }
     })
 
     expect(benefits.length).toBeGreaterThan(0)

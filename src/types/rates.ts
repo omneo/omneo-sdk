@@ -21,13 +21,13 @@ export type RequestEstimateProductRate = {
 }
 
 export type RequestEstimateProductVariantRate = {
-  barcode: string | null
+  barcode?: string | null
   country?: string | null
   definition: string
-  external_id: string | null
+  external_id?: string | null
   location_id?: number | null
   region?: string | null
-  sku: string | null
+  sku?: string | null
 }
 
 export type RequestCreateRate = {

@@ -17,30 +17,30 @@ export type RequestCreateCustomProductListItem = {
 }
 
 export type CreateProductListItemsItem = {
-  custom_field: string
-  external_id: string
+  custom_field?: string
+  external_id?: string
   meta?: AnyJsonRecord | null
   position?: number | null
-  product_category_id: number
-  product_id: number
-  product_variant_barcode: string
-  product_variant_id: number
-  product_variant_sku: string
+  product_category_id?: number
+  product_id?: number
+  product_variant_barcode?: string
+  product_variant_id?: number
+  product_variant_sku?: string
   quantity?: number | null
   status?: string | null
 }
 
 export type RequestCreateProductListItem = {
-  custom_field: string
-  external_id: string
+  custom_field?: string
+  external_id?: string
   location_id?: number | null
   meta?: AnyJsonRecord | null
   position?: number | null
   product_category_id?: number
-  product_id: number
-  product_variant_barcode: string
-  product_variant_id: number
-  product_variant_sku: string
+  product_id?: number
+  product_variant_barcode?: string
+  product_variant_id?: number
+  product_variant_sku?: string
   quantity?: number
   source?: string | null
   status?: string

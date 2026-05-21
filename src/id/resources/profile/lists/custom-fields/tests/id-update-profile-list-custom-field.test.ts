@@ -1,5 +1,5 @@
 import { describe, expect, beforeAll, afterAll } from 'vitest'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -31,7 +31,7 @@ describe('ID Update Profile List Custom Fields', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('sdk_unit_test_list_name')
     }
-    const response2: {data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: {data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     const listId = response2.data.id
     CREATED_LIST_IDS.push(listId)
 
@@ -59,7 +59,7 @@ describe('ID Update Profile List Custom Fields', () => {
       value: getRandomString('sdk_unit_test_custom_field_value'),
       type: 'string'
     }
-    const listCustomField = await IDClient.profile.lists.customFields.update(listId, payload3.namespace, payload3.handle, payload4).catch((err: any) => {
+    const listCustomField = await IDClient.profile.lists.customFields.update(listId, payload3.namespace, payload3.handle, payload4 as any).catch((err: any) => {
       console.error('ID SDK Update profile list custom fields failed:', err)
       throw new Error('ID SDK Update profile list custom fields failed')
     })

@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { Country, CountryInput } from '@types'
+import { Country, RequestCreateCountry } from '@types'
 import { simpleOmneoRequest, getRandomString, getIsoNumeric } from '@lib'
 
 const omneo = new Omneo({
@@ -12,7 +12,7 @@ const CREATED_COUNTRIES_IDS : number[] = []
 describe('Countries update', () => {
   test('SDK Countries update', async () => {
     const updatedName = getRandomString('sdk_unit_test_country')
-    const payload: CountryInput = {
+    const payload: RequestCreateCountry = {
       name: getRandomString('sdk_unit_test_country'),
       iso_2: getRandomString('sdk_unit_test_iso2'),
       iso_3: getRandomString('sdk_unit_test_iso3'),

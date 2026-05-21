@@ -5,8 +5,8 @@ import type { FilterOperator, AnyJsonRecord, AnyRecord } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 export type QuestionOptionsItem = {
   image?: string | null
-  label: string
-  value: string
+  label?: string | null
+  value?: string | null
 }
 
 export type RequestQueryQuestion = {

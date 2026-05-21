@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TierDefinition, UpdateTierDefinitionInput } from '@types'
+import { TierDefinition, RequestUpdateTierDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -21,7 +21,7 @@ describe('Update Tier Definition', () => {
     const created = await simpleOmneoRequest('POST', '/tiers/definitions', createPayload)
     CREATED_TIER_DEFINITION_IDS.push(created.data.id)
 
-    const updatePayload: UpdateTierDefinitionInput = {
+    const updatePayload: RequestUpdateTierDefinition = {
       name: getRandomString('sdk_unit_test_update_tier_definition_updated'),
       value_min: 2000,
       value_maintain: 1000,

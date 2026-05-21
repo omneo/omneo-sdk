@@ -1,6 +1,7 @@
 // Route category: ratings
 
-import type { AnyJsonRecord, AnyRecord, FilterOperator } from './common'
+import type { FilterOperator, AnyRecord } from './common'
+
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type RatingStatusEnum = 'offered' | 'declined' | 'received'
@@ -54,7 +55,7 @@ export type RequestUpdateRating = {
   comment?: string | null
   is_active?: boolean | null
   is_public?: boolean | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   namespace?: string | null
   reason?: string | null
   requires_action?: boolean
@@ -66,24 +67,24 @@ export type RequestUpdateRating = {
 
 export type RequestCreateRating = {
   comment?: string | null
-  external_id: string
-  interaction_id: number
+  external_id?: string | null
+  interaction_id?: number | null
   is_active?: boolean | null
   is_public?: boolean | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   namespace?: string | null
-  product_id: number
-  product_variant_id: number
+  product_id?: number | null
+  product_variant_id?: number | null
   profile_id: string
   reason?: string | null
   requires_action: boolean
   score: number
   score_type: RatingScoreTypeEnum
   source: RatingSource
-  staff_id: string
+  staff_id?: string | null
   status: RatingStatusEnum
   title?: string | null
-  transaction_id: number
+  transaction_id?: number | null
 }
 
 export type Rating = {

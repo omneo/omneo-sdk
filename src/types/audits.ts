@@ -1,7 +1,6 @@
 // Route category: audits
 
-import type { AnyJsonRecord, FilterOperator, ProfileSummary } from './common'
-
+import type { AnyJsonRecord, AnyRecord, FilterOperator, ProfileSummary } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type RequestCreateAudit = {
@@ -10,8 +9,8 @@ export type RequestCreateAudit = {
   event: string
   ip_address?: string | null
   location_id?: number | null
-  new_values?: string[] | null
-  old_values?: string[] | null
+  new_values?: AnyRecord | null
+  old_values?: AnyRecord | null
   profile_id?: string | null
   staff_id?: string | null
   url?: string | null
@@ -24,8 +23,8 @@ export type RequestUpdateAudit = {
   event?: string
   ip_address?: string | null
   location_id?: number | null
-  new_values?: string[] | null
-  old_values?: string[] | null
+  new_values?: AnyRecord | null
+  old_values?: AnyRecord | null
   profile_id?: string | null
   staff_id?: string | null
   url?: string | null

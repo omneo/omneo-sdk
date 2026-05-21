@@ -1,4 +1,4 @@
-import { ProfileDatesAttribute, RequestParams } from '@types'
+import { ProfileDatesAttribute, RequestUpdateProfileDatesAttribute, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesDates extends Resource {
@@ -12,7 +12,7 @@ export default class ProfileAttributesDates extends Resource {
     })
   }
 
-  update (profileID: string, payload: ProfileDatesAttribute): Promise<ProfileDatesAttribute> {
+  update (profileID: string, payload: RequestUpdateProfileDatesAttribute): Promise<ProfileDatesAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/attributes/dates`,

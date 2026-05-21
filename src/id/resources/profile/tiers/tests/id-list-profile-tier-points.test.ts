@@ -1,6 +1,6 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { TierPointsResponse } from '@types'
+import { TierPointResponse } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
@@ -33,7 +33,7 @@ describe('ID Profile Tiers - List Tier Points', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const response: TierPointsResponse = await IDClient.profile.tiers.points().catch((err) => {
+    const response: TierPointResponse = await IDClient.profile.tiers.points().catch((err) => {
       console.error('ID SDK List Profile Tier Points failed:', err)
       throw new Error('ID SDK List Profile Tier Points failed')
     })

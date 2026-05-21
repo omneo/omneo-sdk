@@ -1,6 +1,7 @@
 // Route category: departments
 
-import type { AnyJsonRecord, AnyRecord, FilterOperator } from './common'
+import type { FilterOperator, AnyRecord } from './common'
+
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { DepartmentBrand } from './brands'
 
@@ -13,7 +14,7 @@ export type RequestCreateDepartment = {
   image_url?: string | null
   internal_note?: string | null
   location_id?: number | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name: string
   short_description?: string | null
   url?: string | null
@@ -27,7 +28,7 @@ export type RequestUpdateDepartment = {
   image_url?: string | null
   internal_note?: string | null
   location_id?: number | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name?: string
   short_description?: string | null
   url?: string | null

@@ -19,7 +19,9 @@ describe('List Point Definitions', () => {
     CREATED_POINT_DEFINITION_IDS.push(created.data.id)
 
     const params = {
-      handle: payload.handle
+      filter: {
+        handle: payload.handle
+      }
     }
     const response: PointDefinitionResponse = await omneoClient.pointDefinitions.list(params).catch((err) => {
       console.error('SDK List Point Definitions failed:', err)

@@ -25,8 +25,8 @@ export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
 
 export type CurrencyRate = {
   from?: string
-  rate?: number
-  to?: string
+  rate?: number | null
+  to?: string | null
 }
 
 export type CustomFieldsGrouped = {

@@ -1,6 +1,5 @@
 // Route category: permissions
 
-
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type Permission = {

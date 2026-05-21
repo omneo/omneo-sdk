@@ -1,18 +1,17 @@
-import { RequestParams, CreditDefinition, CreditDefinitionResponse } from '@types'
+import { CreditDefinition, CreditDefinitionResponse, RequestCreateCreditDefinition, RequestUpdateCreditDefinition, RequestQueryCreditDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class CreditDefinitions extends Resource {
-  get (id: number, params?: RequestParams): Promise<CreditDefinition> {
+  get (id: number): Promise<CreditDefinition> {
     return this.client.call({
       method: 'get',
-      endpoint: `/credits/definitions/${id}`,
-      params
+      endpoint: `/credits/definitions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<CreditDefinitionResponse> {
+  list (params?: RequestQueryCreditDefinition): Promise<CreditDefinitionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/credits/definitions',
@@ -22,7 +21,7 @@ export default class CreditDefinitions extends Resource {
     })
   }
 
-  create (body: CreditDefinition): Promise<CreditDefinition> {
+  create (body: RequestCreateCreditDefinition): Promise<CreditDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/credits/definitions',
@@ -32,7 +31,7 @@ export default class CreditDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: CreditDefinition): Promise<CreditDefinition> {
+  update (id: number, body: RequestUpdateCreditDefinition): Promise<CreditDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/credits/definitions/${id}`,

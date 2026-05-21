@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CreateTransactionInput, TransactionProductVariantsResponse } from '@types'
+import { TransactionProductVariantResponse } from '@types'
 import { simpleOmneoRequest } from '@lib'
 
 const omneo = new Omneo({
@@ -17,7 +17,7 @@ describe('Profile Transaction products list', () => {
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
     const prevDateString = new Date(new Date().getTime() - 1000).toISOString().replace('T', ' ').slice(0, 19)
 
-    const payload: CreateTransactionInput = {
+    const payload = {
       profile_id: testProfileID,
       total: 49.99,
       items: [
@@ -40,7 +40,7 @@ describe('Profile Transaction products list', () => {
     })
     CREATED_TRANSACTION_IDS.push(response.data.id)
 
-    const productsRes: TransactionProductVariantsResponse = await omneo.profiles.transactionProducts(testProfileID, {
+    const productsRes: TransactionProductVariantResponse = await omneo.profiles.transactionProducts(testProfileID, {
       'filter[transacted_at]': prevDateString
     })
     const { data: products } = productsRes

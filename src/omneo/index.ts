@@ -137,8 +137,9 @@ export class Omneo {
   public health = health.bind(this)
 
   async call (requestParams: OmneoRequest): Promise<any> {
-    const { endpoint, params = {}, method, body, headers: requestHeaders } = requestParams
-    const queryParams = Object.keys(params).length && new URLSearchParams(params).toString()
+    const { endpoint, params = {}, method, body, headers: requestHeaders, flattenParams = false } = requestParams
+    const flatParams = flattenParams ? this.flattenParams(params) : params
+    const queryParams = Object.keys(flatParams).length && new URLSearchParams(flatParams).toString()
     const url = `${this.baseURL}${endpoint}${queryParams ? `?${queryParams}` : ''}`
 
     const headers = new Headers({
@@ -159,6 +160,21 @@ export class Omneo {
     }
 
     return data || null
+  }
+
+  private flattenParams (obj: Record<string, any>, prefix = ''): Record<string, string> {
+    return Object.keys(obj).reduce((acc: Record<string, string>, key) => {
+      const fullKey = prefix ? `${prefix}[${key}]` : key
+      const val = obj[key]
+      if (val !== null && val !== undefined) {
+        if (typeof val === 'object' && !Array.isArray(val)) {
+          Object.assign(acc, this.flattenParams(val, fullKey))
+        } else {
+          acc[fullKey] = String(val)
+        }
+      }
+      return acc
+    }, {})
   }
 
   private async returnResponse (response: any) {

@@ -8,8 +8,8 @@ export type ImportJobStatus = 'SUCCESS' | 'FAILED' | 'PENDING' | 'PROCESSING'
 
 export type RequestFileUploadImport = {
   file: string
-  importable_id: number | null
-  importable_type: 'benefit_definition' | 'credit_definition' | 'reward_definition' | null
+  importable_id?: number | null
+  importable_type?: 'benefit_definition' | 'credit_definition' | 'reward_definition' | null
   mapping_fields: string
   meta?: string | null
   name?: string | null

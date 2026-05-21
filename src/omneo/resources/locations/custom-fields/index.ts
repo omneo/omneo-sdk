@@ -1,8 +1,8 @@
-import { CustomField, CustomFieldResponse, RequestParams } from '@types'
+import { CustomField, CustomFieldResponse, RequestQueryCustomField } from '@types'
 import Resource from '../../resource.js'
 
 export default class LocationCustomFields extends Resource {
-  list (locationId: number, params?: RequestParams): Promise<CustomFieldResponse> {
+  list (locationId: number, params?: RequestQueryCustomField): Promise<CustomFieldResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/locations/${locationId}/custom-fields`,

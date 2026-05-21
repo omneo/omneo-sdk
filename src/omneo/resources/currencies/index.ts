@@ -1,8 +1,8 @@
-import { Currency, CurrencyResponse, RequestParams } from '@types'
+import { Currency, CurrencyResponse, RequestCreateCurrency, RequestQueryCurrency, RequestUpdateCurrency } from '@types'
 import Resource from '../resource.js'
 
 export default class Currencies extends Resource {
-  list (params?: RequestParams): Promise<CurrencyResponse> {
+  list (params?: RequestQueryCurrency): Promise<CurrencyResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/currencies',
@@ -10,17 +10,16 @@ export default class Currencies extends Resource {
     })
   }
 
-  get (id: number, params?: RequestParams): Promise<Currency> {
+  get (id: number): Promise<Currency> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/currencies/${id}`,
-      params
+      endpoint: `/currencies/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  create (body: Currency): Promise<Currency> {
+  create (body: RequestCreateCurrency): Promise<Currency> {
     return this.client.call({
       method: 'POST',
       endpoint: '/currencies',
@@ -30,7 +29,7 @@ export default class Currencies extends Resource {
     })
   }
 
-  update (id: number, body: Currency): Promise<Currency> {
+  update (id: number, body: RequestUpdateCurrency): Promise<Currency> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/currencies/${id}`,

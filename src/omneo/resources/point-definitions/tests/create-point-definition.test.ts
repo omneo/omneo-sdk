@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { PointDefinition, CreatePointDefinitionInput } from '@types'
+import { PointDefinition, RequestCreatePointDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -11,7 +11,7 @@ const CREATED_POINT_DEFINITION_IDS: number[] = []
 
 describe('Create Point Definition', () => {
   test('SDK Create Point Definition', async () => {
-    const payload: CreatePointDefinitionInput = {
+    const payload: RequestCreatePointDefinition = {
       name: getRandomString('sdk_unit_test_create_point_definition'),
       handle: getRandomString('sdk_unit_test_create_point_definition'),
       description: 'SDK unit test point definition',

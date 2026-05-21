@@ -1,6 +1,6 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { CustomAttribute } from '@types'
+import { ProfileCustomAttribute } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
@@ -13,7 +13,7 @@ describe('ID Profile Update Custom Attribute', () => {
     const { tokenData } = IDData
     namespace = getRandomString('sdk_unit_test_update_id_custom_attribute_namespace')
     handle = getRandomString('sdk_unit_test_update_id_custom_attribute_handle')
-    const payload: CustomAttribute = {
+    const payload = {
       namespace,
       handle,
       type: 'string',
@@ -21,7 +21,7 @@ describe('ID Profile Update Custom Attribute', () => {
     }
     const testUpdatedValue = getRandomString('sdk_unit_id_value')
     await simpleOmneoRequest('PUT', `/profiles/${testProfileID}/attributes/custom/${payload.namespace}:${payload.handle}`, {
-      type: payload.type,
+      type: payload.type as any,
       value: payload.value
     })
     const IDClient = new ID({
@@ -30,8 +30,8 @@ describe('ID Profile Update Custom Attribute', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const targetAttribute: CustomAttribute = await IDClient.profile.attributes.custom.update(payload.namespace, payload.handle, {
-      type: payload.type,
+    const targetAttribute: ProfileCustomAttribute = await IDClient.profile.attributes.custom.update(payload.namespace, payload.handle, {
+      type: payload.type as any,
       value: testUpdatedValue
     })
     expect(targetAttribute.profile_id).toBe(testProfileID)

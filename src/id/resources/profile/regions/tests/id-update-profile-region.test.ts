@@ -1,6 +1,6 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { Region, RegionInput, ProfileRegionInput } from '@types'
+import { RequestCreateRegion, RequestCreateProfileRegion, RequestUpdateProfileRegion } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
@@ -11,7 +11,7 @@ const CREATED_PROFILE_REGION_IDS : number[] = []
 describe('ID Profile Update region', () => {
   testWithIDData('ID SDK Update region', async ({ IDData }) => {
     const { tokenData } = IDData
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_id_name_update'),
       handle: getRandomString('sdk_unit_test_id_handle_update')
     }
@@ -21,7 +21,7 @@ describe('ID Profile Update region', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'
@@ -30,8 +30,7 @@ describe('ID Profile Update region', () => {
       console.error('SDK Update region created profile region failed:', err)
       throw new Error('SDK Update region created profile region failed')
     })
-    const payload3: ProfileRegionInput = {
-      region_id: response.data.id,
+    const payload3: RequestUpdateProfileRegion = {
       country: 'AU',
       state: 'VIC'
     }
@@ -40,12 +39,12 @@ describe('ID Profile Update region', () => {
       IDToken: tokenData.token,
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
-    const regions: Region[] = await IDClient.profile.regions.update(response.data.id, payload3)
+    const regions = await IDClient.profile.regions.update(response.data.id, payload3)
     expect(regions.length).toBeGreaterThan(0)
     const region = regions.find((region) => region.id === response.data.id)
     region?.id && CREATED_PROFILE_REGION_IDS.push(region?.id)
-    expect(region?.country).toBe(payload3.country)
-    expect(region?.state).toBe(payload3.state)
+    expect((region as any)?.country).toBe(payload3.country)
+    expect((region as any)?.state).toBe(payload3.state)
   })
 })
 

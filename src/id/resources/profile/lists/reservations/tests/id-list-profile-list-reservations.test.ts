@@ -1,7 +1,7 @@
 import { describe, expect, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { ID } from '@id'
-import { ListDefinition, List, ListItem, ListItemReservation } from '@types'
+import { ListDefinition, ProductList, ProductListItem, ProductListReservation } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
@@ -39,7 +39,7 @@ describe('ID List Profile List Reservations', () => {
       name: getRandomString('id_sdk_list_for_list_reservations')
     }
 
-    const listResponse: { data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
+    const listResponse: { data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, listPayload)
     const listId = listResponse.data.id
     CREATED_LIST_IDS.push(listId)
 
@@ -52,7 +52,7 @@ describe('ID List Profile List Reservations', () => {
       status: 'remaining'
     }
 
-    const listItemResponse: { data: ListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, listItemPayload)
+    const listItemResponse: { data: ProductListItem } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists/${listId}/items`, listItemPayload)
     const listItemId = listItemResponse.data.id
     CREATED_LIST_ITEMS.push({ listId, itemId: listItemId })
 
@@ -62,7 +62,7 @@ describe('ID List Profile List Reservations', () => {
       timezone: 'Australia/Melbourne'
     }
 
-    const reservationResponse: { data: ListItemReservation } = await simpleOmneoRequest('POST', `/list/items/${listItemId}/reservations`, reservationPayload)
+    const reservationResponse: { data: ProductListReservation } = await simpleOmneoRequest('POST', `/list/items/${listItemId}/reservations`, reservationPayload)
     const reservationId = reservationResponse.data.id
 
     const IDClient = new ID({
@@ -81,7 +81,7 @@ describe('ID List Profile List Reservations', () => {
 
     expect(reservation).toBeDefined()
     expect(reservation!.id).toBe(reservationId)
-    expect(reservation!.profile.id).toBe(testProfileID)
+    expect(reservation!.profile!.id).toBe(testProfileID)
     expect(reservation!.product_list_item!.id).toBe(listItemId)
   })
 })

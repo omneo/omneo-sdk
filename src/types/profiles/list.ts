@@ -12,4 +12,3 @@ export type RequestListProfileLocations = {
   filter?: ListProfileLocationsFilter
   page?: PageSize
 }
-

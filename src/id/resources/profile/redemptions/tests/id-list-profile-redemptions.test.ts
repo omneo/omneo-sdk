@@ -1,5 +1,5 @@
 import { describe, expect, afterAll } from 'vitest'
-import { BenefitDefinitionInput, ClaimBenefitInput } from '@types'
+import { RequestCreateBenefitDefinition, RequestClaimBenefit } from '@types'
 import { ID } from '@id'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -7,7 +7,7 @@ import { testWithIDData } from '@id-tests/test-with-id-data'
 const CREATED_BENEFIT_IDS: number[] = []
 const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 
-const buildDefinitionPayload = (): BenefitDefinitionInput => ({
+const buildDefinitionPayload = (): RequestCreateBenefitDefinition => ({
   name: getRandomString('sdk_unit_test_id_profile_redemption_list_name'),
   handle: getRandomString('sdk_unit_test_id_profile_redemption_list_handle'),
   period: 30,
@@ -33,7 +33,7 @@ describe('ID List Profile Redemptions', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const claimInput: ClaimBenefitInput = {
+    const claimInput: RequestClaimBenefit = {
       definition: definitionPayload.handle as string,
       timezone: 'Australia/Melbourne'
     }

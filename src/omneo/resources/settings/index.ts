@@ -1,15 +1,14 @@
-import { RequestParams, Setting } from '@types'
+import { RequestQuerySetting, SettingResponse, Setting, RequestCreateSetting, RequestUpdateSetting, SettingEnvironmentResponse } from '@types'
 import Resource from '../resource'
 
 export default class Settings extends Resource {
-  // Not Paginated
-  list (params?: RequestParams): Promise<Setting[]> {
+  list (params?: RequestQuerySetting): Promise<SettingResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/settings',
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
@@ -22,7 +21,7 @@ export default class Settings extends Resource {
     })
   }
 
-  create (body: Setting): Promise<Setting> {
+  create (body: RequestCreateSetting): Promise<Setting> {
     return this.client.call({
       method: 'POST',
       endpoint: '/settings',
@@ -32,7 +31,7 @@ export default class Settings extends Resource {
     })
   }
 
-  update (handle: string, body: Setting): Promise<Setting> {
+  update (handle: string, body: RequestUpdateSetting): Promise<Setting> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/settings/${handle}`,
@@ -42,21 +41,19 @@ export default class Settings extends Resource {
     })
   }
 
-  delete (handle: string, body: Setting): Promise<Setting> {
+  delete (handle: string): Promise<void> {
     return this.client.call({
       method: 'DELETE',
-      endpoint: `/settings/${handle}`,
-      body
+      endpoint: `/settings/${handle}`
     }).then((response) => {
       return response
     })
   }
 
-  getEnvironment (params?: RequestParams): Promise<{ handle: string, value: any }[]> {
+  getEnvironment (): Promise<SettingEnvironmentResponse> {
     return this.client.call({
       method: 'get',
-      endpoint: '/settings/environment',
-      params
+      endpoint: '/settings/environment'
     }).then((response) => {
       return response.data
     })

@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { Region, RegionInput, Country, CountryInput } from '@types'
+import { Region, RequestCreateRegion, Country, RequestCreateCountry } from '@types'
 import { simpleOmneoRequest, getRandomString, getIsoNumeric } from '@lib'
 
 const omneo = new Omneo({
@@ -13,7 +13,7 @@ const CREATED_REGIONS_IDS : number[] = []
 describe('Region update', () => {
   test('SDK Region update', async () => {
     const updatedName = getRandomString('sdk_unit_test_region_name')
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_region_name'),
       handle: getRandomString('sdk_unit_test_region_handle')
     }
@@ -35,7 +35,7 @@ describe('Region update', () => {
 
   test('SDK Regions update country', async () => {
     const updatedName = getRandomString('sdk_unit_test_region_name')
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_region_name'),
       handle: getRandomString('sdk_unit_test_region_handle')
     }
@@ -45,7 +45,7 @@ describe('Region update', () => {
     })
     CREATED_REGIONS_IDS.push(response.data.id)
 
-    const payload2: CountryInput = {
+    const payload2: RequestCreateCountry = {
       name: getRandomString('sdk_unit_test_region_name'),
       iso_2: getRandomString('sdk_unit_test_iso2'),
       iso_3: getRandomString('sdk_unit_test_iso3'),
@@ -63,7 +63,7 @@ describe('Region update', () => {
       countries: [
         {
           iso_2: payload2.iso_2
-        }
+        } as any
       ]
     }).catch((err) => {
       console.error(`SDK Region updated failed with id:${response.data.id}`, err)

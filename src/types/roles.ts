@@ -1,20 +1,21 @@
 // Route category: roles
 
-import type { AnyJsonRecord, AnyRecord, FilterOperator, PeriodType } from './common'
+import type { AnyRecord, FilterOperator, PeriodType } from './common'
+
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { Permission } from './permissions'
 import type { CustomFieldItem } from './custom-fields'
 
 export type RequestCreateRoleDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   custom_fields?: CustomFieldItem[]
   description?: string | null
-  group_handle: string | null
-  group_name: string | null
+  group_handle?: string | null
+  group_name?: string | null
   handle: string
   icon?: string | null
   image_url?: string | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name: string
   notes?: string | null
   period?: number | null
@@ -23,14 +24,14 @@ export type RequestCreateRoleDefinition = {
 }
 
 export type RequestUpdateRoleDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   custom_fields?: CustomFieldItem[]
   description?: string | null
-  group_handle: string | null
-  group_name: string | null
+  group_handle?: string | null
+  group_name?: string | null
   icon?: string | null
   image_url?: string | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name?: string
   notes?: string | null
   period?: number | null

@@ -1,16 +1,15 @@
-import { RequestParams, Webhook, WebhookResponse } from '@types'
+import { RequestCreateWebhook, RequestQueryWebhook, RequestUpdateWebhook, Webhook, WebhookResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Webhooks extends Resource {
-  get (id: number, params?: RequestParams): Promise<Webhook> {
+  get (id: number): Promise<Webhook> {
     return this.client.call({
       method: 'get',
-      endpoint: `/webhooks/${id}`,
-      params
+      endpoint: `/webhooks/${id}`
     }).then((response) => response.data)
   }
 
-  list (params?: RequestParams): Promise<WebhookResponse> {
+  list (params?: RequestQueryWebhook): Promise<WebhookResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/webhooks',
@@ -20,7 +19,7 @@ export default class Webhooks extends Resource {
     })
   }
 
-  create (body: any): Promise<Webhook> {
+  create (body: RequestCreateWebhook): Promise<Webhook> {
     return this.client.call({
       method: 'post',
       endpoint: '/webhooks',
@@ -30,7 +29,7 @@ export default class Webhooks extends Resource {
     })
   }
 
-  update (id: number, body: any): Promise<Webhook> {
+  update (id: number, body: RequestUpdateWebhook): Promise<Webhook> {
     return this.client.call({
       method: 'put',
       endpoint: `/webhooks/${id}`,

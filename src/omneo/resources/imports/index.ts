@@ -1,11 +1,11 @@
-import { RequestCreateManualImport, RequestUploadImport, RequestFileUploadImport, Import, ImportResponse, RequestParams } from '@types'
+import { RequestCreateManualImport, RequestUploadImport, RequestFileUploadImport, Import, ImportResponse, RequestQueryImport } from '@types'
 import Resource from '../resource.js'
 import ImportJobs from './jobs/index.js'
 
 export default class Imports extends Resource {
   jobs = new ImportJobs(this.client)
 
-  list (params?: RequestParams): Promise<ImportResponse> {
+  list (params?: RequestQueryImport): Promise<ImportResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/imports',
@@ -63,7 +63,7 @@ export default class Imports extends Resource {
     })
   }
 
-  conditionImport (params: RequestParams): Promise<ImportResponse> {
+  conditionImport (params: RequestQueryImport): Promise<ImportResponse> {
     return this.client.call({
       method: 'POST',
       endpoint: '/imports/condition',

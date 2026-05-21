@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { BrandInput } from '@types'
+import { RequestCreateBrand } from '@types'
 import { simpleOmneoRequest, randomString } from '@lib'
 
 export const getName = () => { return `sdk_unit_test_brand_delete_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
@@ -13,7 +13,7 @@ const FAILED_DELETE_BRANDS : number[] = []
 
 describe('Brands delete', () => {
   test('SDK Brands delete', async () => {
-    const payload: BrandInput = {
+    const payload: RequestCreateBrand = {
       name: getName(),
       handle: randomString(10).toLowerCase()
     }

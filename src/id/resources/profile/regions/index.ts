@@ -1,4 +1,4 @@
-import { Region, ProfileRegion } from '@types'
+import { Region, ProfileRegion, RequestUpdateProfileRegion } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileRegions extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  update (regionID: number, region: Partial<ProfileRegion>): Promise<Region[]> {
+  update (regionID: number, region: RequestUpdateProfileRegion): Promise<Region[]> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/regions/${regionID}`,

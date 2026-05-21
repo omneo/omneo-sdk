@@ -1,9 +1,9 @@
 
-import { ProductVariant, ProductVariantResponse, RequestParams } from '@types'
+import { ProductVariant, ProductVariantResponse, RequestCreateProductVariant, RequestQueryProductVariant, RequestUpdateProductVariant } from '@types'
 import Resource from '../../resource.js'
 
 export default class ProductVariants extends Resource {
-  list (productID: string, params?: RequestParams): Promise<ProductVariantResponse> {
+  list (productID: string, params?: RequestQueryProductVariant): Promise<ProductVariantResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/products/${productID}/variants`,
@@ -13,17 +13,16 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  get (productID: string, variantID: string, params?: RequestParams): Promise<ProductVariant> {
+  get (productID: string, variantID: string): Promise<ProductVariant> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/products/${productID}/variants/${variantID}`,
-      params
+      endpoint: `/products/${productID}/variants/${variantID}`
     }).then((response) => {
       return response.data
     })
   }
 
-  create (productID: string, body: ProductVariant): Promise<ProductVariant> {
+  create (productID: string, body: RequestCreateProductVariant): Promise<ProductVariant> {
     return this.client.call({
       method: 'POST',
       body,
@@ -33,7 +32,7 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  update (productID: string, variantID: string, body: ProductVariant): Promise<ProductVariant> {
+  update (productID: string, variantID: string, body: RequestUpdateProductVariant): Promise<ProductVariant> {
     return this.client.call({
       method: 'PUT',
       body,
@@ -43,7 +42,7 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  delete (productID: string, variantID: string): Promise<any> {
+  delete (productID: string, variantID: string): Promise<void> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/products/${productID}/variants/${variantID}`
@@ -52,7 +51,7 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  listVariants (params?: RequestParams): Promise<ProductVariantResponse> {
+  listVariants (params?: RequestQueryProductVariant): Promise<ProductVariantResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/products/variants',

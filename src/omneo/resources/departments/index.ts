@@ -1,8 +1,8 @@
-import { Department, DepartmentResponse, RequestParams } from '@types'
+import { Department, DepartmentResponse, RequestCreateDepartment, RequestQueryDepartment, RequestUpdateDepartment } from '@types'
 import Resource from '../resource.js'
 
 export default class Departments extends Resource {
-  list (params?: RequestParams): Promise<DepartmentResponse> {
+  list (params?: RequestQueryDepartment): Promise<DepartmentResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/departments',
@@ -21,7 +21,7 @@ export default class Departments extends Resource {
     })
   }
 
-  create (body: Department): Promise<Department> {
+  create (body: RequestCreateDepartment): Promise<Department> {
     return this.client.call({
       method: 'POST',
       endpoint: '/departments',
@@ -31,7 +31,7 @@ export default class Departments extends Resource {
     })
   }
 
-  update (id: number, body: Department): Promise<Department> {
+  update (id: number, body: RequestUpdateDepartment): Promise<Department> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/departments/${id}`,

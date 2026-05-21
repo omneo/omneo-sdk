@@ -1,4 +1,4 @@
-import { RequestParams, AchievementDefinition, AchievementDefinitionResponse } from '@types'
+import { AchievementDefinition, AchievementDefinitionResponse, RequestCreateAchievementDefinition, RequestUpdateAchievementDefinition, RequestQueryAchievementDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class AchievementDefinitions extends Resource {
@@ -11,15 +11,16 @@ export default class AchievementDefinitions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<AchievementDefinitionResponse> {
+  list (params?: RequestQueryAchievementDefinition): Promise<AchievementDefinitionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/achievements/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: AchievementDefinition): Promise<AchievementDefinition> {
+  create (body: RequestCreateAchievementDefinition): Promise<AchievementDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/achievements/definitions',
@@ -29,7 +30,7 @@ export default class AchievementDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: Partial<AchievementDefinition>): Promise<AchievementDefinition> {
+  update (id: number, body: RequestUpdateAchievementDefinition): Promise<AchievementDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/achievements/definitions/${id}`,

@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CountryInput } from '@types'
+import { RequestCreateCountry } from '@types'
 import { simpleOmneoRequest, getRandomString, getIsoNumeric } from '@lib'
 
 const omneo = new Omneo({
@@ -11,7 +11,7 @@ const FAILED_DELETE_COUNTRIES : number[] = []
 
 describe('Countries delete', () => {
   test('SDK Countries delete', async () => {
-    const payload: CountryInput = {
+    const payload: RequestCreateCountry = {
       name: getRandomString('sdk_unit_test_country'),
       iso_2: getRandomString('sdk_unit_test_iso2'),
       iso_3: getRandomString('sdk_unit_test_iso3'),
@@ -26,7 +26,9 @@ describe('Countries delete', () => {
     })
 
     const countriesRes = await omneo.countries.list({
-      'filter[name]': payload.name
+      filter: {
+        name: payload.name
+      }
     })
     const { data: countries } = countriesRes
     expect(countries.length).toBe(0)

@@ -86,14 +86,14 @@ export type ConnectionConnector = {
 export type RequestCreateConnection = {
   connected_at?: string | null
   connected_id: string
-  connection_definition_handle: string
-  connection_definition_id: number
+  connection_definition_handle?: string | null
+  connection_definition_id?: number | null
   connector_id: string
   description?: string | null
   disconnected_at?: string | null
   disconnected_by?: string
-  external_id: string | null
-  external_id_type: ConnectionExternalIdTypeEnum | null
+  external_id?: string | null
+  external_id_type?: ConnectionExternalIdTypeEnum | null
   is_archived?: boolean | null
   is_default?: boolean | null
   is_invalid?: boolean | null
@@ -112,8 +112,8 @@ export type RequestUpdateConnection = {
   description?: string | null
   disconnected_at?: string | null
   disconnected_by?: string
-  external_id: string | null
-  external_id_type: ConnectionExternalIdTypeEnum | null
+  external_id?: string | null
+  external_id_type?: ConnectionExternalIdTypeEnum | null
   is_archived?: boolean | null
   is_default?: boolean | null
   is_invalid?: boolean | null

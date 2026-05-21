@@ -4,14 +4,14 @@ import type { FilterOperator, PeriodType } from './common'
 import type { CustomFieldItem } from './custom-fields'
 
 export type RequestCreateStatus = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   code?: string | null
   colour?: string | null
   custom_fields?: CustomFieldItem[]
   description?: string | null
   earn_instructions?: string | null
-  group_handle: string | null
-  group_name: string | null
+  group_handle?: string | null
+  group_name?: string | null
   handle: string
   icon?: string | null
   image_url?: string | null
@@ -30,7 +30,7 @@ export type RequestCreateStatus = {
 }
 
 export type RequestUpdateStatus = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   code?: string | null
   colour?: string | null
   custom_fields?: CustomFieldItem[]

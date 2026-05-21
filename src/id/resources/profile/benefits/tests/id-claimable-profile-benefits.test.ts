@@ -1,12 +1,12 @@
 import { describe, expect, afterAll } from 'vitest'
-import { BenefitDefinitionInput } from '@types'
+import { RequestCreateBenefitDefinition } from '@types'
 import { ID } from '@id'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 
-const buildDefinitionPayload = (): BenefitDefinitionInput => ({
+const buildDefinitionPayload = (): RequestCreateBenefitDefinition => ({
   name: getRandomString('id_sdk_unit_test_id_profile_benefit_claimable_name'),
   handle: getRandomString('id_sdk_unit_test_id_profile_benefit_claimable_handle'),
   period: 30,
@@ -34,7 +34,7 @@ describe('ID Claimable Profile Benefits', () => {
     const definitions = await IDClient.profile.benefits.claimable()
 
     expect(Array.isArray(definitions)).toBe(true)
-    const target = definitions.find((d) => d.id === String(definitionResponse.data.id))
+    const target = definitions.find((d) => d.id === definitionResponse.data.id)
     expect(target).toBeDefined()
     expect(target?.handle).toBe(definitionPayload.handle)
     expect(target?.name).toBe(definitionPayload.name)

@@ -1,19 +1,17 @@
-import { RequestParams, TagResponse, RequestCreateTag } from '@types'
+import { RequestCreateTag, RequestQueryTag, TagOriginal, TagOriginalResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Tags extends Resource {
-  get (id: number, params?: RequestParams): Promise<TagResponse> {
+  get (id: number): Promise<TagOriginal> {
     return this.client.call({
       method: 'get',
-      endpoint: `/tags/${id}`,
-      params
+      endpoint: `/tags/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  // Non paginated response
-  list (params?: RequestParams): Promise<TagResponse> {
+  list (params?: RequestQueryTag): Promise<TagOriginalResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/tags',
@@ -21,7 +19,7 @@ export default class Tags extends Resource {
     })
   }
 
-  create (body: RequestCreateTag): Promise<TagResponse> {
+  create (body: RequestCreateTag): Promise<TagOriginal> {
     return this.client.call({
       method: 'post',
       endpoint: '/tags',

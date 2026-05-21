@@ -1,6 +1,6 @@
 import { describe, test, expect, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CustomAttribute } from '@types'
+import { ProfileCustomAttribute } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -15,7 +15,7 @@ describe('Profile Custom Attributes list', () => {
   test('SDK Get custom attributes', async () => {
     namespace = getRandomString('sdk_unit_test_list_custom_attribute_namespace')
     handle = getRandomString('sdk_unit_test_list_custom_attribute_handle')
-    const payload: CustomAttribute = {
+    const payload = {
       namespace,
       handle,
       type: 'string',
@@ -27,7 +27,7 @@ describe('Profile Custom Attributes list', () => {
       value: payload.value
     })
 
-    const customAttributes: CustomAttribute[] = await omneo.profiles.attributes.custom.list(testProfileID)
+    const customAttributes: ProfileCustomAttribute[] = await omneo.profiles.attributes.custom.list(testProfileID)
     const filterAttributes = customAttributes.filter(d => d.handle === payload.handle)
     expect(filterAttributes.length).toBeGreaterThan(0)
 

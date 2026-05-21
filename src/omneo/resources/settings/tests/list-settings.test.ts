@@ -8,11 +8,15 @@ const omneo = new Omneo({
 
 describe('Settings List', () => {
   test('SDK can list settings.', async () => {
-    const settings = await omneo.settings.list()
+    const { data: settings } = await omneo.settings.list()
     expect(settings.length).toBeGreaterThan(0)
   })
   test('SDK can list settings with filters', async () => {
-    const settings = await omneo.settings.list({ 'filter[handle]': 'currency' })
+    const { data: settings } = await omneo.settings.list({
+      filter: {
+        handle: 'currency'
+      }
+    })
     expect(settings.length).toBeGreaterThan(0)
     expect(settings[0].handle).toBe('currency')
   })

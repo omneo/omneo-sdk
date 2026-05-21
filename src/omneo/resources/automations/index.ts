@@ -1,21 +1,20 @@
-import { RequestParams, Automation, AutomationResponse } from '@types'
+import { Automation, AutomationResponse, RequestCreateAutomation, RequestUpdateAutomation, RequestQueryAutomation } from '@types'
 import Resource from '../resource.js'
 import AutomationActions from './actions/index.js'
 
 export default class Automations extends Resource {
   actions = new AutomationActions(this.client)
 
-  get (id: number, params?: RequestParams): Promise<Automation> {
+  get (id: number): Promise<Automation> {
     return this.client.call({
       method: 'get',
-      endpoint: `/automations/${id}`,
-      params
+      endpoint: `/automations/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<AutomationResponse> {
+  list (params?: RequestQueryAutomation): Promise<AutomationResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/automations',
@@ -23,7 +22,7 @@ export default class Automations extends Resource {
     })
   }
 
-  create (body: Automation): Promise<Automation> {
+  create (body: RequestCreateAutomation): Promise<Automation> {
     return this.client.call({
       method: 'post',
       endpoint: '/automations',
@@ -33,7 +32,7 @@ export default class Automations extends Resource {
     })
   }
 
-  update (id: number, body: Partial<Automation>): Promise<Automation> {
+  update (id: number, body: RequestUpdateAutomation): Promise<Automation> {
     return this.client.call({
       method: 'put',
       endpoint: `/automations/${id}`,

@@ -1,8 +1,8 @@
-import { AllocationCountResponse, AllocationResponse, RequestParams } from '@types'
+import { AllocationCountResponse, AllocationResponse, RequestQueryAllocation } from '@types'
 import Resource from '../resource.js'
 
 export default class Allocations extends Resource {
-  list (params?: RequestParams): Promise<AllocationResponse> {
+  list (params?: RequestQueryAllocation): Promise<AllocationResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/allocations',

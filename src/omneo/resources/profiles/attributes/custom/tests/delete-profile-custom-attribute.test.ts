@@ -1,6 +1,5 @@
 import { describe, test, expect, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { CustomAttribute } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -16,7 +15,7 @@ describe('Profile Delete Custom Attribute', () => {
   test('SDK Delete custom attribute', async () => {
     namespace = getRandomString('sdk_unit_test_delete_custom_attribute_namespace')
     handle = getRandomString('sdk_unit_test_delete_custom_attribute_handle')
-    const payload: CustomAttribute = {
+    const payload = {
       namespace,
       handle,
       type: 'string',

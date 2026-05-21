@@ -2,7 +2,7 @@ import { describe, expect, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { getRandomString, convertToUTC, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
-import { Reward, RewardDefinitionCreateInput } from '@types'
+import { Reward, RequestCreateRewardDefinition } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const omneo = new Omneo({
@@ -21,7 +21,7 @@ describe('ID Profile List rewards', () => {
   testWithIDData('ID SDK List rewards', async ({ IDData }) => {
     const { tokenData } = IDData
     const rewardDefinitionHandle = getRandomString('sdk_unit_test_reward_definition_handle')
-    const payload: RewardDefinitionCreateInput = {
+    const payload: RequestCreateRewardDefinition = {
       name: getRandomString('sdk_unit_test_reward_definition_name'),
       handle: rewardDefinitionHandle,
       value: 10,
@@ -46,7 +46,7 @@ describe('ID Profile List rewards', () => {
       issued_at: '2024-12-05 08:30:00',
       timezone: 'Australia/Melbourne'
     }
-    const targetReward: Reward = await omneo.rewards.create(rewardPayload).catch((err: any) => {
+    const targetReward: Reward = await omneo.rewards.create(rewardPayload as any).catch((err: any) => {
       console.error('SDK Reward definition created failed:', err)
       throw new Error('SDK Reward definition created failed')
     })

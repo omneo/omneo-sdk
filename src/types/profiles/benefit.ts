@@ -12,7 +12,7 @@ export type RequestRedeemBenefit = {
 }
 
 export type RedeemStrategyBenefitsItem = {
-  handle: string
-  id: number
+  handle?: string | null
+  id?: number | null
   quantity?: number | null
 }

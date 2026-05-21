@@ -19,8 +19,8 @@ export type RequestExtendCredit = {
 
 export type RequestCreateCredit = {
   creator_profile_id?: string | null
-  credit_definition_handle: string
-  credit_definition_id: number
+  credit_definition_handle?: string | null
+  credit_definition_id?: number | null
   credit_number?: string | null
   expires_at?: string | null
   extended_at?: string | null
@@ -117,6 +117,7 @@ export type RequestQueryCredit = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type RequestQueryCreditDefinition = {
@@ -180,13 +181,14 @@ export type RequestQueryCreditDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestCreateCreditDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   credit_number_length?: number | null
-  credit_number_range_end: string | null
-  credit_number_range_start: string | null
+  credit_number_range_end?: string | null
+  credit_number_range_start?: string | null
   credit_number_range_type?: CreditDefinitionCreditNumberRangeTypeEnum | null
   currency?: string | null
   custom_fields?: CustomFieldItem[]
@@ -220,7 +222,7 @@ export type RequestCreateCreditDefinition = {
   primary_colour?: string | null
   region_id?: number | null
   release_period?: number | null
-  release_period_absolute_expiry: string | null
+  release_period_absolute_expiry?: string | null
   release_period_type?: PeriodType | null
   release_target_id?: number | null
   remind_target_id?: number | null
@@ -239,10 +241,10 @@ export type RequestCreateCreditDefinition = {
 }
 
 export type RequestUpdateCreditDefinition = {
-  absolute_expiry: string | null
+  absolute_expiry?: string | null
   credit_number_length?: number | null
-  credit_number_range_end: string | null
-  credit_number_range_start: string | null
+  credit_number_range_end?: string | null
+  credit_number_range_start?: string | null
   credit_number_range_type?: CreditDefinitionCreditNumberRangeTypeEnum | null
   currency?: string | null
   custom_fields?: CustomFieldItem[]
@@ -275,7 +277,7 @@ export type RequestUpdateCreditDefinition = {
   primary_colour?: string | null
   region_id?: number | null
   release_period?: number | null
-  release_period_absolute_expiry: string | null
+  release_period_absolute_expiry?: string | null
   release_period_type?: PeriodType | null
   release_target_id?: number | null
   remind_target_id?: number | null

@@ -1,17 +1,17 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { BenefitDefinitionInput } from '@types'
+import { RequestCreateBenefitDefinition } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
 })
-const CREATED_BENEFIT_DEFINITION_IDS : string[] = []
+const CREATED_BENEFIT_DEFINITION_IDS : number[] = []
 
 describe('Benefit Definition created', () => {
   test('SDK created Benefit Definition', async () => {
-    const payload: BenefitDefinitionInput = {
+    const payload: RequestCreateBenefitDefinition = {
       name: getRandomString('sdk_unit_test_benefit_definition_create'),
       handle: getRandomString('sdk_unit_test_benefit_definition_create'),
       period: 30

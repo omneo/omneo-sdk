@@ -1,8 +1,8 @@
-import { RequestCreateOrganisationProfile, Profile, ProfileResponse, RequestParams } from '@types'
+import { RequestCreateOrganisationProfile, Profile, ProfileResponse, RequestQueryProfile } from '@types'
 import Resource from '../../resource.js'
 
 export default class OrganisationProfiles extends Resource {
-  list (organisationId: string, params?: RequestParams): Promise<ProfileResponse> {
+  list (organisationId: string, params?: RequestQueryProfile): Promise<ProfileResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/organisations/${organisationId}/profiles`,

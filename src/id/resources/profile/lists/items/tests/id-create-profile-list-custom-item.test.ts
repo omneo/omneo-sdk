@@ -1,5 +1,5 @@
 import { describe, expect, beforeAll, afterAll } from 'vitest'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -34,7 +34,7 @@ describe('ID Create Profile List Custom Item', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('id_sdk_list_name_for_create_list_custom_item')
     }
-    const response2: {data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: {data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     const listId = response2.data.id
     CREATED_LIST_IDS.push(listId)
 
@@ -52,7 +52,7 @@ describe('ID Create Profile List Custom Item', () => {
       IDToken: tokenData.token,
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
-    const listItem = await IDClient.profile.lists.items.custom(listId, payload3).catch((err: any) => {
+    const listItem = await IDClient.profile.lists.items.custom(listId, payload3 as any).catch((err: any) => {
       console.error('ID SDK Create profile list custom item failed:', err)
       throw new Error('ID SDK Create profile list custom item failed')
     })
@@ -64,10 +64,10 @@ describe('ID Create Profile List Custom Item', () => {
     expect(listItem.product_list_id).toBe(listId)
     expect(listItem.quantity).toBe(payload3.quantity)
     expect(listItem.position).toBe(payload3.position)
-    expect(listItem.custom_product.product_id).toBe(testProductId)
-    expect(listItem.custom_product.name).toBe(payload3.name)
-    expect(listItem.custom_product.description).toBe(payload3.description)
-    expect(listItem.custom_product.price).toBe(payload3.price)
+    expect(listItem.custom_product!.product_id).toBe(testProductId)
+    expect(listItem.custom_product!.name).toBe(payload3.name)
+    expect(listItem.custom_product!.description).toBe(payload3.description)
+    expect(listItem.custom_product!.price).toBe(payload3.price)
   })
 })
 

@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { BenefitInput } from '@types'
+import { RequestCreateBenefit } from '@types'
 import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
 
 const omneo = new Omneo({
@@ -26,7 +26,7 @@ describe('Profile Benefits', async () => {
   CREATED_BENEFIT_DEFINITION_IDS.push(definition.id)
 
   test('SDK Get a profile benefit ', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -48,7 +48,7 @@ describe('Profile Benefits', async () => {
   })
 
   test('SDK Delete a profile benefit', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -72,7 +72,7 @@ describe('Profile Benefits', async () => {
   })
 
   test('SDK Update a profile benefit', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
@@ -95,7 +95,7 @@ describe('Profile Benefits', async () => {
   })
 
   test('SDK Redeem a profile benefit', async () => {
-    const payload: BenefitInput = {
+    const payload: RequestCreateBenefit = {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),

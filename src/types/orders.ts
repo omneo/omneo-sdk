@@ -1,6 +1,6 @@
 // Route category: orders
 
-import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord, TransactionSummary } from './common'
+import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { CustomField, CustomFieldItem } from './custom-fields'
@@ -189,10 +189,16 @@ export type OrderStaff = {
   identities: Identity[]
 }
 
+export type OrderItemOrder = {
+  transacted_at: string
+  receipt_ref: string | null
+  external_id: string
+}
+
 export type OrderItemProduct = {
   title?: string | null
   department?: string | null
-  brand?: string
+  brand?: string | null
   custom_fields?: CustomField[]
 }
 
@@ -212,7 +218,7 @@ export type BatchOrderJsonItem = {
   currency?: string | null
   currency_value?: CurrencyRate
   custom_fields?: CustomFieldItem[]
-  external_id: string | null
+  external_id?: string | null
   external_order_id?: string | null
   id?: number | null
   is_void?: boolean | null
@@ -351,7 +357,7 @@ export type OrderItem = {
   is_void: boolean
   meta: AnyJsonRecord | null
   name: string | null
-  order?: TransactionSummary
+  order?: OrderItemOrder
   order_id: number
   price_current: number | null
   price_margin: number | null

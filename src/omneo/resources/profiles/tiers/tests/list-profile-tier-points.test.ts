@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { TierPointsResponse } from '@types'
+import { TierPointResponse } from '@types'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneoClient = new Omneo({
@@ -30,7 +30,7 @@ describe('Profile Tiers - List Tier Points', () => {
     const created = await simpleOmneoRequest('POST', '/tiers/points', payload)
     CREATED_TIER_POINT_IDS.push(created.data.id)
 
-    const response: TierPointsResponse = await omneoClient.profiles.tiers.points(testProfileID).catch((err) => {
+    const response: TierPointResponse = await omneoClient.profiles.tiers.points(testProfileID).catch((err) => {
       console.error('SDK List Profile Tier Points failed:', err)
       throw new Error('SDK List Profile Tier Points failed')
     })

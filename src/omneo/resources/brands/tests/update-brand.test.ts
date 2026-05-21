@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { Brand, BrandInput } from '@types'
+import { Brand, RequestCreateBrand } from '@types'
 import { simpleOmneoRequest, randomString } from '@lib'
 
 export const getName = () => { return `sdk_unit_test_brand_update_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}` }
@@ -14,7 +14,7 @@ const CREATED_BRANDS_IDS : number[] = []
 describe('Brands update', () => {
   test('SDK Brands update', async () => {
     const updatedName = getName()
-    const payload: BrandInput = {
+    const payload: RequestCreateBrand = {
       name: getName(),
       handle: randomString(10).toLowerCase()
     }

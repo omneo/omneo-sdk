@@ -1,18 +1,17 @@
-import { RequestParams, Benefit, BenefitResponse } from '@types'
+import { Benefit, BenefitResponse, RequestCreateBenefit, RequestUpdateBenefit, RequestQueryBenefit, RequestExtendBenefit, BenefitCountResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Benefits extends Resource {
-  get (id: number, params?: RequestParams): Promise<Benefit> {
+  get (id: number): Promise<Benefit> {
     return this.client.call({
       method: 'get',
-      endpoint: `/benefits/${id}`,
-      params
+      endpoint: `/benefits/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<BenefitResponse> {
+  list (params?: RequestQueryBenefit): Promise<BenefitResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits',
@@ -20,7 +19,7 @@ export default class Benefits extends Resource {
     })
   }
 
-  create (body: Benefit): Promise<Benefit> {
+  create (body: RequestCreateBenefit): Promise<Benefit> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits',
@@ -30,7 +29,7 @@ export default class Benefits extends Resource {
     })
   }
 
-  update (id: number, body: Partial<Benefit>): Promise<Benefit> {
+  update (id: number, body: RequestUpdateBenefit): Promise<Benefit> {
     return this.client.call({
       method: 'put',
       endpoint: `/benefits/${id}`,
@@ -47,15 +46,17 @@ export default class Benefits extends Resource {
     })
   }
 
-  extend (body: { ids: number[], extend_date?: string, profile_id: string, extend_days?: number }) : Promise<{ data: Benefit[]}> {
+  extend (body: RequestExtendBenefit) : Promise<BenefitResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits/extend',
       body
+    }).then((response) => {
+      return response
     })
   }
 
-  count () : Promise<{ countAll: number, countRedeemed: number }> {
+  count () : Promise<BenefitCountResponse['data']> {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits.count'

@@ -1,6 +1,6 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { Region, RegionInput, ProfileRegionInput } from '@types'
+import { RequestCreateRegion, RequestCreateProfileRegion } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
@@ -11,7 +11,7 @@ const CREATED_PROFILE_REGION_IDS : number[] = []
 describe('ID Profile List regions', () => {
   testWithIDData('ID SDK List regions', async ({ IDData }) => {
     const { tokenData } = IDData
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_id_name_list'),
       handle: getRandomString('sdk_unit_test_id_handle_list')
     }
@@ -21,7 +21,7 @@ describe('ID Profile List regions', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'
@@ -36,12 +36,12 @@ describe('ID Profile List regions', () => {
       IDToken: tokenData.token,
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
-    const regions: Region[] = await IDClient.profile.regions.list()
+    const regions = await IDClient.profile.regions.list()
     expect(regions.length).toBeGreaterThan(0)
     const region = regions.find((region) => region.id === response.data.id)
     region?.id && CREATED_PROFILE_REGION_IDS.push(region.id)
-    expect(region?.country).toBe(payload2.country)
-    expect(region?.state).toBe(payload2.state)
+    expect((region as any)?.country).toBe(payload2.country)
+    expect((region as any)?.state).toBe(payload2.state)
   })
 })
 

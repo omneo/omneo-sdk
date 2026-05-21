@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { BenefitDefinitionInput, ClaimBenefitInput, Redemption, RedemptionType } from '@types'
+import { RequestCreateBenefitDefinition, RequestClaimBenefit, Redemption, RedemptionItemTypeEnum } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -12,7 +12,7 @@ const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const CREATED_BENEFIT_IDS: number[] = []
 const CREATED_BENEFIT_DEFINITION_IDS: number[] = []
 
-const buildDefinitionPayload = (): BenefitDefinitionInput => ({
+const buildDefinitionPayload = (): RequestCreateBenefitDefinition => ({
   name: getRandomString('sdk_unit_test_profile_redemption_count_name'),
   handle: getRandomString('sdk_unit_test_profile_redemption_count_handle'),
   period: 30,
@@ -30,7 +30,7 @@ describe('Count Profile Redemptions', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/benefits/definitions', definitionPayload)
     CREATED_BENEFIT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const claimInput: ClaimBenefitInput = {
+    const claimInput: RequestClaimBenefit = {
       definition: definitionPayload.handle as string,
       timezone: 'Australia/Melbourne'
     }
@@ -47,7 +47,7 @@ describe('Count Profile Redemptions', () => {
       CREATED_BENEFIT_IDS.push(benefitItem.type_attributes.id)
     }
 
-    const redemptionType: RedemptionType = 'benefit'
+    const redemptionType: RedemptionItemTypeEnum = 'benefit'
     const countResponse = await omneoClient.profiles.redemptions.count(testProfileID, redemptionType, Number(benefitItem?.type_attributes?.id))
 
     expect(countResponse.count).toBeDefined()

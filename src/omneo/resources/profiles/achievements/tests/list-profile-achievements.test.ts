@@ -1,6 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { AchievementDefinitionInput, CreateProfileAchievementInput } from '@types'
+import { RequestCreateAchievementDefinition, RequestCreateProfileAchievement } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 
 const omneoClient = new Omneo({
@@ -11,7 +11,7 @@ const omneoClient = new Omneo({
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
 const CREATED_ACHIEVEMENT_DEFINITION_IDS: number[] = []
 
-const buildAchievementDefinitionPayload = (): AchievementDefinitionInput => ({
+const buildAchievementDefinitionPayload = (): RequestCreateAchievementDefinition => ({
   name: getRandomString('sdk_unit_test_profile_achievement_list_name'),
   handle: getRandomString('sdk_unit_test_profile_achievement_list_handle'),
   description: 'Tracks spend for SDK profile achievement list tests',
@@ -36,7 +36,7 @@ describe('List Profile Achievements', () => {
     const definitionResponse = await simpleOmneoRequest('POST', '/achievements/definitions', definitionPayload)
     CREATED_ACHIEVEMENT_DEFINITION_IDS.push(definitionResponse.data.id)
 
-    const createPayload: CreateProfileAchievementInput = {
+    const createPayload: RequestCreateProfileAchievement = {
       definition_id: definitionResponse.data.id,
       count: 200,
       meta: {
@@ -47,7 +47,7 @@ describe('List Profile Achievements', () => {
     await simpleOmneoRequest('POST', `/profiles/${testProfileID}/achievements`, createPayload)
 
     const achievements = await omneoClient.profiles.achievements.list(testProfileID, {})
-    const target = Array.isArray(achievements) ? achievements.find((achievement) => achievement.id === definitionResponse.data.id) : Object.values(achievements).find((achievement) => achievement.id === definitionResponse.data.id)
+    const target: any = Array.isArray(achievements) ? achievements.find((achievement) => achievement.id === definitionResponse.data.id) : Object.values(achievements as any).find((achievement: any) => achievement.id === definitionResponse.data.id)
     expect(target).toBeDefined()
     expect(target?.id).toBe(definitionResponse.data.id)
     expect(target?.handle).toBe(definitionPayload.handle)

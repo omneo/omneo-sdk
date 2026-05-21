@@ -31,7 +31,7 @@ describe('Systems list', () => {
       'filter[handle]': payload.handle
     }
 
-    const systems = await omneo.systems.list(params)
+    const { data: systems } = await omneo.systems.list(params)
     expect(systems.length).toBeGreaterThan(0)
 
     const arrayIsFiltered = systems.every((target) => target.handle === payload.handle)

@@ -1,18 +1,17 @@
-import { Point, PointResponse, RequestParams } from '@types'
+import { Point, PointResponse, RequestCreatePoint, RequestQueryPoint } from '@types'
 import Resource from '../resource.js'
 
 export default class Points extends Resource {
-  get (id: string, params?: RequestParams): Promise<Point> {
+  get (id: string): Promise<Point> {
     return this.client.call({
       method: 'get',
-      endpoint: `/points/${id}`,
-      params
+      endpoint: `/points/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<PointResponse> {
+  list (params?: RequestQueryPoint): Promise<PointResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/points',
@@ -20,7 +19,7 @@ export default class Points extends Resource {
     })
   }
 
-  create (body: Point): Promise<Point> {
+  create (body: RequestCreatePoint): Promise<Point> {
     return this.client.call({
       method: 'post',
       endpoint: '/points',

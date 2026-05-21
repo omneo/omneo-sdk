@@ -1,6 +1,6 @@
 import { describe, expect, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
-import { ListDefinition, List } from '@types'
+import { ListDefinition, ProductList } from '@types'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
 import { testWithIDData } from '@id-tests/test-with-id-data'
@@ -40,7 +40,7 @@ describe('ID Create Profile List Item', () => {
       list_definition_id: listDefinitionId,
       name: getRandomString('id_sdk_list_name_for_create_list_item')
     }
-    const response2: {data: List } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
+    const response2: {data: ProductList } = await simpleOmneoRequest('POST', `/profiles/${testProfileID}/lists`, payload2)
     const listId = response2.data.id
     CREATED_LIST_IDS.push(listId)
 
@@ -58,7 +58,7 @@ describe('ID Create Profile List Item', () => {
       IDToken: tokenData.token,
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
-    const listItem = await IDClient.profile.lists.items.create(listId, payload3).catch((err: any) => {
+    const listItem = await IDClient.profile.lists.items.create(listId, payload3 as any).catch((err: any) => {
       console.error('ID SDK Create profile list item failed:', err)
       throw new Error('ID SDK Create profile list item failed')
     })
@@ -69,8 +69,8 @@ describe('ID Create Profile List Item', () => {
     expect(listItem).toBeDefined()
     expect(listItem.product_list_id).toBe(listId)
     expect(listItem.product_variant.id).toBe(payload3.product_variant_id)
-    expect(listItem.product.id).toBe(payload3.product_id)
-    expect(listItem.product.external_id).toBe(payload3.external_id)
+    expect(listItem.product!.id).toBe(payload3.product_id)
+    expect(listItem.product!.external_id).toBe(payload3.external_id)
     expect(listItem.quantity).toBe(payload3.quantity)
     expect(listItem.status).toBe(payload3.status)
   })

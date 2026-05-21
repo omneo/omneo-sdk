@@ -1,8 +1,8 @@
-import { RequestClaimShare, Share, RequestParams, ShareClaim, ShareResponse } from '@types'
+import { RequestClaimShare, Share, ShareClaim, ShareResponse, RequestQueryShare, RequestCreateShare, RequestUpdateShare } from '@types'
 import Resource from '../resource.js'
 
 export default class Shares extends Resource {
-  list (params?: RequestParams): Promise<ShareResponse> {
+  list (params?: RequestQueryShare): Promise<ShareResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/shares',
@@ -21,7 +21,7 @@ export default class Shares extends Resource {
     })
   }
 
-  create (body: Share): Promise<Share> {
+  create (body: RequestCreateShare): Promise<Share> {
     return this.client.call({
       method: 'POST',
       endpoint: '/shares',
@@ -31,7 +31,7 @@ export default class Shares extends Resource {
     })
   }
 
-  update (id: number, body: Share): Promise<Share> {
+  update (id: number, body: RequestUpdateShare): Promise<Share> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/shares/${id}`,

@@ -10,7 +10,7 @@ export type QuestionnairePurposeEnum = 'booking' | 'general' | 'waitlist' | 'wal
 export type CreateQuestionnaireItem = {
   is_active?: boolean
   is_required?: boolean
-  mapping_key: string
+  mapping_key?: string | null
   question_handle?: string
   question_id?: number
   question_version_id?: number | null
@@ -40,7 +40,7 @@ export type RequestCreateQuestionnaireQuestion = {
 export type UpdateQuestionnaireItem = {
   is_active?: boolean
   is_required?: boolean
-  mapping_key: string
+  mapping_key?: string | null
   question_handle?: string
   question_id?: number
   question_version_id?: number | null

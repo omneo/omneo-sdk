@@ -1,6 +1,6 @@
 import { describe, expect, afterAll } from 'vitest'
 import { ID } from '@id'
-import { RegionInput, ProfileRegionInput } from '@types'
+import { RequestCreateRegion, RequestCreateProfileRegion } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 import { simpleOmneoRequest, getRandomString } from '@lib'
 
@@ -11,7 +11,7 @@ const FAILED_PROFILE_REGION_IDS : number[] = []
 describe('ID Profile Create region', () => {
   testWithIDData('ID SDK Create region', async ({ IDData }) => {
     const { tokenData } = IDData
-    const payload: RegionInput = {
+    const payload: RequestCreateRegion = {
       name: getRandomString('sdk_unit_test_id_name_create'),
       handle: getRandomString('sdk_unit_test_id_handle_create')
     }
@@ -21,7 +21,7 @@ describe('ID Profile Create region', () => {
     })
     CREATED_REGION_IDS.push(response.data.id)
 
-    const payload2: ProfileRegionInput = {
+    const payload2: RequestCreateProfileRegion = {
       region_id: response.data.id,
       country: 'USA',
       state: 'NY'

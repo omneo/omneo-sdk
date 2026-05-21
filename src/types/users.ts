@@ -51,7 +51,7 @@ export type RequestCreateUser = {
 export type RequestUpdateUser = {
   email?: string
   name?: string
-  old_password: string
+  old_password?: string
   password?: string
   roles?: UserRolesItem[]
   throttle?: number | null

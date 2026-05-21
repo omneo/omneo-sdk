@@ -1,5 +1,6 @@
 import { describe, test, beforeEach, expect } from 'vitest'
 import { ID } from '@id'
+// @ts-ignore
 import jwt from 'jsonwebtoken'
 import { simpleOmneoRequest } from '@lib'
 

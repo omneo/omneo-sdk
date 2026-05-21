@@ -1,12 +1,13 @@
 // Route category: transactions
 
-import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord, Timestamps, TransactionSummary } from './common'
+import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord, Timestamps } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { CustomField, CustomFieldItem } from './custom-fields'
 import type { Location } from './locations'
 import type { Organisation } from './organisations'
 import type { ProductVariant } from './products'
 import type { Redemption, RedemptionItem } from './redemptions'
+import type { Address } from './address'
 import type { Identity } from './identities'
 
 export type TierPointBasic = {
@@ -84,14 +85,21 @@ export type RequestCreateTransactionItem = {
 
 export type TriggerTransactionEventEventEnum = 'transaction.sync' | 'transaction.recalculate'
 
-export type TransactionItemsItemProductVariant = {
-  brand?: string
-  category?: string
-  price?: number
-  product_id?: number
+export type UpdateCreateTransactionItemsItem = {
+  discounts?: string[] | null
+  external_id?: string | null
+  id?: string | null
+  name?: string
+  price_current?: number
+  price_margin?: number | null
+  price_original?: number | null
+  price_sell?: number
+  product_variant?: ProductVariantRecord | null
+  product_variant_id?: number | null
+  product_variant_sku?: string | null
+  quantity?: number
   sku?: string
-  subcategory?: string | null
-  title?: string
+  variant_external_id?: string | null
 }
 
 export type RequestQueryTransaction = {
@@ -200,10 +208,28 @@ export type TransactionStaff = {
   identities: Identity[]
 }
 
+export type TransactionItemTransaction = {
+  transacted_at: string
+  receipt_ref: string | null
+  external_id: string
+  location: {
+    id: number
+    type: string | null
+    name: string | null
+    description: string | null
+    phone: unknown
+    email: string
+    external_id: string
+    is_published: boolean
+    is_permanently_closed: boolean
+    address: Address
+  } | null
+}
+
 export type TransactionItemProduct = {
   title?: string | null
   department?: string | null
-  brand?: string
+  brand?: string | null
   custom_fields?: CustomField[]
 }
 
@@ -243,7 +269,7 @@ export type BatchTransactionJsonItem = {
   currency?: string | null
   currency_value?: CurrencyRate
   custom_fields?: CustomFieldItem[]
-  external_id: string | null
+  external_id?: string | null
   external_order_id?: string | null
   id?: number | null
   is_void?: boolean | null
@@ -369,42 +395,6 @@ export type RequestTriggerTransactionEvent = {
   event: TriggerTransactionEventEventEnum
 }
 
-export type UpdateCreateTransactionItemsItem = {
-  discounts?: string[] | null
-  external_id?: string | null
-  id?: string | null
-  name?: string
-  price_current?: number
-  price_margin?: number | null
-  price_original?: number | null
-  price_sell?: number
-  product_variant?: TransactionItemsItemProductVariant | null
-  product_variant_id?: number | null
-  product_variant_sku?: string | null
-  quantity?: number
-  sku?: string
-  variant_external_id?: string | null
-}
-
-export type TransactionItemProductListItem = {
-  created_at: string
-  id: number
-  list: TransactionItemProductListItemList
-    | []
-  meta: AnyJsonRecord | null
-  pivot: Timestamps | []
-  position: number | null
-  product_list_id: number
-  quantity: number | null
-  status: string | null
-  updated_at: string
-}
-
-export type RequestBatchTransactionJson = {
-  items?: QuantityRecord[]
-  transactions: BatchTransactionJsonItem[] | null
-}
-
 export type RequestUpdateCreateTransaction = {
   currency?: string | null
   delete_existing_items?: boolean | null
@@ -435,6 +425,25 @@ export type RequestUpdateCreateTransaction = {
   transacted_at?: string
 }
 
+export type TransactionItemProductListItem = {
+  created_at: string
+  id: number
+  list: TransactionItemProductListItemList
+    | []
+  meta: AnyJsonRecord | null
+  pivot: Timestamps | []
+  position: number | null
+  product_list_id: number
+  quantity: number | null
+  status: string | null
+  updated_at: string
+}
+
+export type RequestBatchTransactionJson = {
+  items?: QuantityRecord[]
+  transactions: BatchTransactionJsonItem[] | null
+}
+
 export type TransactionItem = {
   created_at: string
   department: string | null
@@ -460,7 +469,7 @@ export type TransactionItem = {
   product_variant_id: number
   quantity: number
   sku: string | null
-  transaction?: TransactionSummary
+  transaction?: TransactionItemTransaction
   transaction_id: number
   updated_at: string
   variant_external_id: string

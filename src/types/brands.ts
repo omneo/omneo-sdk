@@ -1,6 +1,7 @@
 // Route category: brands
 
-import type { AnyJsonRecord, AnyRecord, FilterOperator } from './common'
+import type { FilterOperator, AnyRecord } from './common'
+
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { Department } from './departments'
 
@@ -12,7 +13,7 @@ export type RequestCreateBrand = {
   image_url?: string | null
   internal_note?: string | null
   is_system?: boolean | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name: string
   short_description?: string | null
   url?: string | null
@@ -25,7 +26,7 @@ export type RequestUpdateBrand = {
   image_url?: string | null
   internal_note?: string | null
   is_system?: boolean | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   name?: string
   short_description?: string | null
   url?: string | null

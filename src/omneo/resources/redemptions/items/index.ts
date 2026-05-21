@@ -1,8 +1,8 @@
-import { RedemptionItem, RedemptionItemResponse, RequestParams } from '@types'
+import { RedemptionItem, RedemptionItemResponse, RequestQueryRedemptionItem } from '@types'
 import Resource from '../../resource.js'
 
 export default class RedemptionItems extends Resource {
-  list (params?: RequestParams): Promise<RedemptionItemResponse> {
+  list (params?: RequestQueryRedemptionItem): Promise<RedemptionItemResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/redemptions/items',

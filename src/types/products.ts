@@ -154,7 +154,7 @@ export type RequestCreateProductVariant = {
   external_id?: string | null
   handle?: string | null
   images?: ProductImageItem[] | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   options?: ProductVariantOptionsItem[] | null
   position?: number | null
   price: number
@@ -179,7 +179,7 @@ export type UpdateProductVariantsItem = {
   price_comparison?: number | null
   price_cost?: number | null
   price_discounted?: number | null
-  sku: string
+  sku?: string | null
   tags?: string[]
   title?: string | null
 }
@@ -191,7 +191,7 @@ export type RequestUpdateProductVariant = {
   external_id?: string | null
   handle?: string | null
   images?: ProductImageItem[] | null
-  meta?: AnyJsonRecord | null
+  meta?: AnyRecord | null
   options?: ProductVariantOptionsItem[] | null
   position?: number | null
   price?: number

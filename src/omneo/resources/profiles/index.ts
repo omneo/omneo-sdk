@@ -1,4 +1,4 @@
-import { CommsChannel, DelegationData, Profile, ProfileCommsAttribute, ProfileResponse, RequestParams, UpdateProfileProfileTypeEnum, TransactionProductVariantResponse, RequestExistsProfileRequest, RequestTriggerCustomEvent } from '@types'
+import { CommsChannel, DelegationData, Profile, ProfileAvailabilityResponse, ProfileCommsAttribute, ProfileExistsResponse, ProfileResponse, RequestCheckAvailability, RequestCreateProfile, RequestExistsProfileRequest, RequestParams, RequestQueryProfile, RequestTriggerCustomEvent, RequestUpdateProfile, TransactionProductVariantResponse, UpdateProfileProfileTypeEnum } from '@types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
@@ -54,27 +54,26 @@ export default class Profiles extends Resource {
   transactionClaims = new ProfileTransactionClaims(this.client)
   transactions = new ProfileTransactions(this.client)
 
-  get (id: string, params?: RequestParams): Promise<Profile> {
+  get (id: string): Promise<Profile> {
     return this.client.call({
       method: 'get',
-      endpoint: `/profiles/${id}`,
-      params
+      endpoint: `/profiles/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<ProfileResponse> {
+  list (params?: RequestQueryProfile): Promise<ProfileResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles',
       params
-    }).then((response: any) => {
+    }).then((response) => {
       return response
     })
   }
 
-  update (id: string, body: any, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
+  update (id: string, body: RequestUpdateProfile, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${id}`,
@@ -118,7 +117,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  create (body: any, options: { retryMobileSecondary?: Boolean } = {}) {
+  create (body: RequestCreateProfile, options: { retryMobileSecondary?: Boolean } = {}) {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles',
@@ -182,7 +181,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  findByEmail (email: string, params?: RequestParams): Promise<Profile> {
+  findByEmail (email: string, params?: RequestQueryProfile): Promise<Profile> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles',
@@ -192,7 +191,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  checkAvailability (body: { mobile_phone?: string, email?: string }) {
+  checkAvailability (body: RequestCheckAvailability): Promise<ProfileAvailabilityResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/availability',
@@ -202,7 +201,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  exists (body: RequestExistsProfileRequest): Promise<{ data: { id: string} }> {
+  exists (body: RequestExistsProfileRequest): Promise<ProfileExistsResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/exists',
@@ -294,7 +293,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  batch (matchCriteria: { field: string, value: string, operator?: string }[], profiles: Partial<Profile>[]) {
+  batch (matchCriteria: string, profiles: Partial<Profile>[]) {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/batch',

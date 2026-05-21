@@ -2,7 +2,7 @@ import { describe, expect, beforeAll, afterAll } from 'vitest'
 import { Omneo } from '@omneo'
 import { getRandomString, simpleOmneoRequest } from '@lib'
 import { ID } from '@id'
-import { CreateOrderInput, GroupOrderResponse } from '@types'
+import { RequestCreateOrder, Order } from '@types'
 import { testWithIDData } from '@id-tests/test-with-id-data'
 
 const omneoClient = new Omneo({
@@ -23,30 +23,30 @@ describe('ID Profile List Group orders', () => {
     const { tokenData } = IDData
     const product = await omneoClient.products.get(testProductId)
     const productVariant = await omneoClient.products.variants.get(testProductId, testProductVariantId)
-    const payload: CreateOrderInput = {
+    const payload: RequestCreateOrder = {
       profile_id: testProfileID,
-      total: productVariant.price,
+      total: productVariant.price!,
       external_id: getRandomString('sdk_unit_test_list_order_external_id_'),
       order_number: getRandomString('sdk_unit_test_list_order_order_number_'),
       transacted_at: '2026-01-04 00:00:00',
       timezone: 'Australia/Melbourne',
       items: [
         {
-          name: product.title,
+          name: product.title!,
           quantity: 1,
-          price_sell: productVariant.price,
+          price_sell: productVariant.price!,
           product_variant: {
             product_id: Number(testProductId),
             sku: productVariant.sku,
-            title: productVariant.title,
+            title: productVariant.title!,
             category: 'test category',
-            brand: product.brand,
-            price: productVariant.price
+            brand: product.brand!,
+            price: productVariant.price!
           }
         }
       ]
     }
-    const response = await simpleOmneoRequest('POST', '/orders', payload).catch((err) => {
+    const response: { data: Order } = await simpleOmneoRequest('POST', '/orders', payload).catch((err) => {
       console.error('SDK List Group orders: Order created failed:', err)
       throw new Error('SDK List Group orders: Order created failed')
     })
@@ -58,12 +58,12 @@ describe('ID Profile List Group orders', () => {
       omneoAPIToken: process.env.OMNEO_TOKEN as string
     })
 
-    const listOrders: GroupOrderResponse = await IDClient.profile.orders.listGroup().catch((err: any) => {
+    const listOrders: any = await IDClient.profile.orders.listGroup().catch((err: any) => {
       console.error('ID SDK List Group orders failed:', err)
       throw new Error('ID SDK List Group orders failed')
     })
     expect(listOrders.data.length).toBeGreaterThan(0)
-    const targetOrderFromList = listOrders.data.find((order) => order.order_number === payload.order_number)
+    const targetOrderFromList = listOrders.data.find((order: any) => order.order_number === payload.order_number)
     expect(targetOrderFromList).toBeDefined()
     expect(targetOrderFromList!.order_number).toBe(payload.order_number)
     expect(targetOrderFromList!.total).toBe(payload.total)
