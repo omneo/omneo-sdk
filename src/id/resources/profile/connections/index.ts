@@ -1,4 +1,4 @@
-import { RequestParams, Connection, ConnectionResponse, ConnectionInput, Profile } from '@types'
+import { RequestParams, Connection, ConnectionResponse, Profile } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileConnections extends Resource {
@@ -10,7 +10,7 @@ export default class ProfileConnections extends Resource {
     })
   }
 
-  update (connectionID: number, body: Partial<ConnectionInput>): Promise<Connection> {
+  update (connectionID: number, body: Partial<Connection>): Promise<Connection> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/connections/${connectionID}`,

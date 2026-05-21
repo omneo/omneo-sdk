@@ -1,4 +1,4 @@
-import { CreateCustomProductInput, CustomProduct, CustomProductResponse, RequestParams, UpdateCustomProductInput } from '@types'
+import { CustomProduct, CustomProductResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class CustomProducts extends Resource {
@@ -21,7 +21,7 @@ export default class CustomProducts extends Resource {
     })
   }
 
-  create (body: CreateCustomProductInput): Promise<CustomProduct> {
+  create (body: CustomProduct): Promise<CustomProduct> {
     return this.client.call({
       method: 'POST',
       endpoint: '/customProducts',
@@ -31,7 +31,7 @@ export default class CustomProducts extends Resource {
     })
   }
 
-  update (id: number, body: UpdateCustomProductInput): Promise<CustomProduct> {
+  update (id: number, body: CustomProduct): Promise<CustomProduct> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/customProducts/${id}`,

@@ -4,7 +4,7 @@
 import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type Permission = {
-  handle: "create" | "read" | "update" | "delete" | null
+  handle: 'create' | 'read' | 'update' | 'delete' | null
   id: number
   name: string | null
 }

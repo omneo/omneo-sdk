@@ -1,4 +1,4 @@
-import { CreateManualImportInput, CreateUploadImportInput, FileUploadImportInput, Import, ImportResponse, RequestParams } from '@types'
+import { RequestCreateManualImport, RequestUploadImport, RequestFileUploadImport, Import, ImportResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 import ImportJobs from './jobs/index.js'
 
@@ -24,7 +24,7 @@ export default class Imports extends Resource {
     })
   }
 
-  create (body: CreateUploadImportInput): Promise<Import> {
+  create (body: RequestUploadImport): Promise<Import> {
     return this.client.call({
       method: 'POST',
       endpoint: '/imports',
@@ -43,7 +43,7 @@ export default class Imports extends Resource {
     })
   }
 
-  fileImport (body: FileUploadImportInput): Promise<Import> {
+  fileImport (body: RequestFileUploadImport): Promise<Import> {
     return this.client.call({
       method: 'POST',
       endpoint: '/imports/file',
@@ -53,7 +53,7 @@ export default class Imports extends Resource {
     })
   }
 
-  createManual (body: CreateManualImportInput): Promise<Import> {
+  createManual (body: RequestCreateManualImport): Promise<Import> {
     return this.client.call({
       method: 'POST',
       endpoint: '/imports/manual',

@@ -1,4 +1,4 @@
-import { CreateOrderItemInput, OrderItem, OrderItemResponse, RequestParams, UpdateOrderItemInput } from '@types'
+import { OrderItem, OrderItemResponse, RequestParams } from '@types'
 import Resource from '../../resource'
 
 export default class OrderItems extends Resource {
@@ -21,7 +21,7 @@ export default class OrderItems extends Resource {
     })
   }
 
-  create (orderId: number, body: CreateOrderItemInput): Promise<OrderItem> {
+  create (orderId: number, body: OrderItem): Promise<OrderItem> {
     return this.client.call({
       method: 'POST',
       endpoint: `/orders/${orderId}/items`,
@@ -31,7 +31,7 @@ export default class OrderItems extends Resource {
     })
   }
 
-  update (orderId: number, itemId: string, body: UpdateOrderItemInput): Promise<OrderItem> {
+  update (orderId: number, itemId: string, body: OrderItem): Promise<OrderItem> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/orders/${orderId}/items/${itemId}`,

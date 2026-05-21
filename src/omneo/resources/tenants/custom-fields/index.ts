@@ -1,4 +1,4 @@
-import { CreateCustomFieldInput, CustomField, CustomFieldResponse, RequestParams, UpdateCustomFieldInput } from '@types'
+import { CustomField, CustomFieldResponse, RequestParams } from '@types'
 import Resource from '../../resource.js'
 
 export default class TenantCustomFields extends Resource {
@@ -22,7 +22,7 @@ export default class TenantCustomFields extends Resource {
     })
   }
 
-  create (body: CreateCustomFieldInput): Promise<CustomField> {
+  create (body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'POST',
       endpoint: '/tenants/custom-fields',
@@ -32,7 +32,7 @@ export default class TenantCustomFields extends Resource {
     })
   }
 
-  update (namespace: string, handle: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+  update (namespace: string, handle: string, body: CustomField): Promise<CustomField> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'PUT',

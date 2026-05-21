@@ -1,4 +1,4 @@
-import { CreateDepartmentInput, Department, DepartmentResponse, RequestParams, UpdateDepartmentInput } from '@types'
+import { Department, DepartmentResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Departments extends Resource {
@@ -21,7 +21,7 @@ export default class Departments extends Resource {
     })
   }
 
-  create (body: CreateDepartmentInput): Promise<Department> {
+  create (body: Department): Promise<Department> {
     return this.client.call({
       method: 'POST',
       endpoint: '/departments',
@@ -31,7 +31,7 @@ export default class Departments extends Resource {
     })
   }
 
-  update (id: number, body: UpdateDepartmentInput): Promise<Department> {
+  update (id: number, body: Department): Promise<Department> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/departments/${id}`,

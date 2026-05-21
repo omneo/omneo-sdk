@@ -1,4 +1,4 @@
-import { Identity, IdentityInput, Profile, RequestParams } from '@types'
+import { Identity, Profile, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileIdentities extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  create (profileID: string, body: IdentityInput): Promise<Identity> {
+  create (profileID: string, body: Identity): Promise<Identity> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/identities`,
@@ -31,7 +31,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  update (profileID: string, handle: string, body: Partial<IdentityInput>): Promise<Identity> {
+  update (profileID: string, handle: string, body: Partial<Identity>): Promise<Identity> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/identities/${handle}`,
@@ -59,7 +59,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  updateByID (profileID: string, id: number, body: Partial<IdentityInput>): Promise<Identity> {
+  updateByID (profileID: string, id: number, body: Partial<Identity>): Promise<Identity> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/identities/id/${id}`,

@@ -1,4 +1,4 @@
-import { ProfileDatesAttribute, ProfileDatesAttributeInput, RequestParams } from '@types'
+import { ProfileDatesAttribute, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesDates extends Resource {
@@ -12,7 +12,7 @@ export default class ProfileAttributesDates extends Resource {
     })
   }
 
-  update (payload: ProfileDatesAttributeInput): Promise<ProfileDatesAttribute> {
+  update (payload: ProfileDatesAttribute): Promise<ProfileDatesAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: '/profiles/me/attributes/dates',

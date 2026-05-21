@@ -1,4 +1,4 @@
-import { CalculateRateInput, CreateRateInput, Rate, RateResponse, RequestParams, SearchRateAttribute, UpdateRateInput } from '@types'
+import { RequestCalculateRate, Rate, RateResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Rates extends Resource {
@@ -21,7 +21,7 @@ export default class Rates extends Resource {
     })
   }
 
-  create (body: CreateRateInput): Promise<Rate> {
+  create (body: Rate): Promise<Rate> {
     return this.client.call({
       method: 'POST',
       endpoint: '/rates',
@@ -31,7 +31,7 @@ export default class Rates extends Resource {
     })
   }
 
-  update (id: number, body: UpdateRateInput): Promise<Rate> {
+  update (id: number, body: Rate): Promise<Rate> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/rates/${id}`,
@@ -50,7 +50,7 @@ export default class Rates extends Resource {
     })
   }
 
-  calculate (body: CalculateRateInput): Promise<{total: number}> {
+  calculate (body: RequestCalculateRate): Promise<{total: number}> {
     return this.client.call({
       method: 'POST',
       endpoint: '/rates/calculate',
@@ -60,7 +60,7 @@ export default class Rates extends Resource {
     })
   }
 
-  searchAttributes (attribute: string, params?: RequestParams): Promise<SearchRateAttribute[]> {
+  searchAttributes (attribute: string, params?: RequestParams): Promise<any[]> {
     return this.client.call({
       method: 'GET',
       endpoint: `/rates/searchAttributes/${attribute}`,

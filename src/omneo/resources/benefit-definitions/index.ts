@@ -1,4 +1,4 @@
-import { RequestParams, BenefitDefinition, BenefitDefinitionInput, BenefitDefinitionResponse } from '@types'
+import { RequestParams, BenefitDefinition, BenefitDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class BenefitDefinitions extends Resource {
@@ -12,7 +12,7 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
-  clone (id: number, body: Partial<BenefitDefinitionInput> & { handle: string }): Promise<BenefitDefinition> {
+  clone (id: number, body: Partial<BenefitDefinition> & { handle: string }): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: `/benefits/definitions/${id}/clone`,
@@ -39,7 +39,7 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
-  create (body: BenefitDefinitionInput): Promise<BenefitDefinition> {
+  create (body: BenefitDefinition): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits/definitions',
@@ -49,7 +49,7 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: Partial<BenefitDefinitionInput>): Promise<BenefitDefinition> {
+  update (id: number, body: Partial<BenefitDefinition>): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/benefits/definitions/${id}`,

@@ -1,4 +1,4 @@
-import { CreateOrganisationInput, Organisation, OrganisationResponse, RequestParams, UpdateOrganisationInput } from '@types'
+import { Organisation, OrganisationResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 import OrganisationProfiles from './profiles/index.js'
 
@@ -24,7 +24,7 @@ export default class Organisations extends Resource {
     })
   }
 
-  create (body: CreateOrganisationInput): Promise<Organisation> {
+  create (body: Organisation): Promise<Organisation> {
     return this.client.call({
       method: 'POST',
       endpoint: '/organisations',
@@ -34,7 +34,7 @@ export default class Organisations extends Resource {
     })
   }
 
-  update (id: number, body: UpdateOrganisationInput): Promise<Organisation> {
+  update (id: number, body: Organisation): Promise<Organisation> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/organisations/${id}`,

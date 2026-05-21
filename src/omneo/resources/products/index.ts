@@ -1,4 +1,4 @@
-import { CreateProductInput, Product, ProductResponse, RequestParams, UpdateProductInput } from '@types'
+import { Product, ProductResponse, RequestParams } from '@types'
 import Resource from '../resource'
 import ProductVariants from './variants/index.js'
 
@@ -25,7 +25,7 @@ export default class Products extends Resource {
     })
   }
 
-  create (body: CreateProductInput): Promise<Product> {
+  create (body: Product): Promise<Product> {
     return this.client.call({
       method: 'POST',
       endpoint: '/products',
@@ -35,7 +35,7 @@ export default class Products extends Resource {
     })
   }
 
-  update (id: string, body: UpdateProductInput): Promise<Product> {
+  update (id: string, body: Product): Promise<Product> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/products/${id}`,
@@ -64,7 +64,7 @@ export default class Products extends Resource {
     })
   }
 
-  createOrUpdate (body: CreateProductInput | UpdateProductInput): Promise<Product> {
+  createOrUpdate (body: Product): Promise<Product> {
     return this.client.call({
       method: 'POST',
       endpoint: '/products/create-update',

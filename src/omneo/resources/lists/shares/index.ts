@@ -1,9 +1,9 @@
 
-import { ListShareNested, ListShareNoProfile } from '@types'
+import { ProductListShareNested, ProductListShareNestedNoProfile } from '@types'
 import Resource from '../../resource.js'
 
 export default class ListShares extends Resource {
-  get (handle: string): Promise<ListShareNested> {
+  get (handle: string): Promise<ProductListShareNested> {
     return this.client.call({
       method: 'GET',
       endpoint: `/lists/shares/${handle}`
@@ -12,7 +12,7 @@ export default class ListShares extends Resource {
     })
   }
 
-  getNoProfile (handle: string): Promise<ListShareNoProfile> {
+  getNoProfile (handle: string): Promise<ProductListShareNestedNoProfile> {
     return this.client.call({
       method: 'GET',
       endpoint: `/lists/shares/${handle}/no_profile`

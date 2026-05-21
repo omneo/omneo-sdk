@@ -39,12 +39,14 @@ export type Identity = {
   updated_at: string
 }
 
-export type IdentityHandlesResponse = {
-  data: string[]
-}
+export type IdentityHandlesResponse = Record<string, unknown>
 
 export type IdentityResponse = {
   data: Identity[]
   meta?: PaginationMeta
   links?: PaginationLink
+}
+
+export type IdentityHandlesResponseResponse = {
+  data: IdentityHandlesResponse[]
 }

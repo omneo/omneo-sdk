@@ -19,7 +19,7 @@ export type TierPointBasic = {
   profile_id: string
   source_id: number
   source_type: string | null
-  status: "pending" | "active" | null
+  status: 'pending' | 'active' | null
   updated_at: string
   value: number
 }

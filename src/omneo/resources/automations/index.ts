@@ -1,4 +1,4 @@
-import { RequestParams, Automation, AutomationInput, AutomationResponse } from '@types'
+import { RequestParams, Automation, AutomationResponse } from '@types'
 import Resource from '../resource.js'
 import AutomationActions from './actions/index.js'
 
@@ -23,7 +23,7 @@ export default class Automations extends Resource {
     })
   }
 
-  create (body: AutomationInput): Promise<Automation> {
+  create (body: Automation): Promise<Automation> {
     return this.client.call({
       method: 'post',
       endpoint: '/automations',
@@ -33,7 +33,7 @@ export default class Automations extends Resource {
     })
   }
 
-  update (id: number, body: Partial<AutomationInput>): Promise<Automation> {
+  update (id: number, body: Partial<Automation>): Promise<Automation> {
     return this.client.call({
       method: 'put',
       endpoint: `/automations/${id}`,

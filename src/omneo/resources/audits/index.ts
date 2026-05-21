@@ -1,4 +1,4 @@
-import { Audit, AuditResponse, CreateAuditInput, RequestParams, UpdateAuditInput } from '@types'
+import { Audit, AuditResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Audits extends Resource {
@@ -20,7 +20,7 @@ export default class Audits extends Resource {
     })
   }
 
-  create (body: CreateAuditInput): Promise<Audit> {
+  create (body: Audit): Promise<Audit> {
     return this.client.call({
       method: 'POST',
       endpoint: '/audits',
@@ -30,7 +30,7 @@ export default class Audits extends Resource {
     })
   }
 
-  update (auditId: number, body: UpdateAuditInput): Promise<Audit> {
+  update (auditId: number, body: Audit): Promise<Audit> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/audits/${auditId}`,

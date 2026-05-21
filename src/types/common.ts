@@ -1,3 +1,5 @@
+export type AnonymousResourceResponse = Record<string, unknown>
+
 export type AnyJsonRecord = { [key: string]: any }
 
 export type RequestNoBody = Record<never, never>
@@ -19,7 +21,7 @@ export type RequestRequest = Record<string, any>
 
 export type ApiResponseNoContent = void
 
-export type CommsChannel = "email" | "sms" | "post" | "push" | "phone"
+export type CommsChannel = 'email' | 'sms' | 'post' | 'push' | 'phone'
 
 export type CurrencyRate = {
   from?: string
@@ -57,13 +59,13 @@ export type FilterOperator = {
   nullable?: 0 | 1
 }
 
-export type PeriodType = | "days"
-  | "weeks"
-  | "months"
-  | "years"
-  | "absolute_date"
-  | "absolute_week"
-  | "absolute_month"
+export type PeriodType = | 'days'
+  | 'weeks'
+  | 'months'
+  | 'years'
+  | 'absolute_date'
+  | 'absolute_week'
+  | 'absolute_month'
 
 export type ProductVariantRecord = {
   brand: string
@@ -129,12 +131,10 @@ export type UserHandle = {
 
 export type AnyRecord = string | number | boolean | AnyJsonRecord | any[]
 
-export type IssuePeriodType = "hours" | PeriodType
+export type IssuePeriodType = 'hours' | PeriodType
 
 export type ActionArgumentRecord = {
   is_dynamic?: boolean | null
   name: string
   value: AnyRecord | null
 }
-
-export type AnonymousResourceResponse = Record<string, unknown>

@@ -1,4 +1,4 @@
-import { Address, AddressInput, AddressUpdateInput, RequestParams } from '@types'
+import { Address, RequestUpdateAddress, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAddresses extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileAddresses extends Resource {
     })
   }
 
-  create (body: AddressInput): Promise<Address> {
+  create (body: Address): Promise<Address> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/addresses',
@@ -31,7 +31,7 @@ export default class ProfileAddresses extends Resource {
     })
   }
 
-  update (addressID: string, body: AddressUpdateInput): Promise<Address> {
+  update (addressID: string, body: RequestUpdateAddress): Promise<Address> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/addresses/${addressID}`,

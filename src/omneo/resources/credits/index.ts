@@ -1,4 +1,4 @@
-import { RequestParams, Credit, CreditInput, UpdateCreditInput, ExtendCreditInput, CreditResponse } from '@types'
+import { RequestParams, Credit, RequestExtendCredit, CreditResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Credits extends Resource {
@@ -22,7 +22,7 @@ export default class Credits extends Resource {
     })
   }
 
-  create (body: CreditInput): Promise<Credit> {
+  create (body: Credit): Promise<Credit> {
     return this.client.call({
       method: 'post',
       endpoint: '/credits',
@@ -32,7 +32,7 @@ export default class Credits extends Resource {
     })
   }
 
-  extend (body: ExtendCreditInput): Promise<CreditResponse> {
+  extend (body: RequestExtendCredit): Promise<CreditResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/credits/extend',
@@ -42,7 +42,7 @@ export default class Credits extends Resource {
     })
   }
 
-  update (id: number, body: UpdateCreditInput): Promise<Credit> {
+  update (id: number, body: Credit): Promise<Credit> {
     return this.client.call({
       method: 'put',
       endpoint: `/credits/${id}`,

@@ -1,4 +1,4 @@
-import { RequestParams, System, SystemInput } from '@types'
+import { RequestParams, System } from '@types'
 import Resource from '../resource.js'
 
 export default class Systems extends Resource {
@@ -23,7 +23,7 @@ export default class Systems extends Resource {
     })
   }
 
-  create (body: SystemInput): Promise<System> {
+  create (body: System): Promise<System> {
     return this.client.call({
       method: 'post',
       endpoint: '/systems',

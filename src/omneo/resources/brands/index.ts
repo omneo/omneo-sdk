@@ -1,4 +1,4 @@
-import { RequestParams, Brand, BrandInput, BrandResponse } from '@types'
+import { RequestParams, Brand, BrandResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Brands extends Resource {
@@ -20,7 +20,7 @@ export default class Brands extends Resource {
     })
   }
 
-  create (body: BrandInput): Promise<Brand> {
+  create (body: Brand): Promise<Brand> {
     return this.client.call({
       method: 'post',
       endpoint: '/brands',
@@ -30,7 +30,7 @@ export default class Brands extends Resource {
     })
   }
 
-  update (id: number, body: Partial<BrandInput>): Promise<Brand> {
+  update (id: number, body: Partial<Brand>): Promise<Brand> {
     return this.client.call({
       method: 'put',
       endpoint: `/brands/${id}`,

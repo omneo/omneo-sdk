@@ -1,4 +1,4 @@
-import { RequestParams, User, UserCreateInput, UserResponse, UserUpdateInput } from '@types'
+import { RequestParams, User, RequestCreateUser, UserResponse, RequestUpdateUser } from '@types'
 import Resource from '../resource.js'
 
 export default class Users extends Resource {
@@ -27,7 +27,7 @@ export default class Users extends Resource {
     })
   }
 
-  create (body: UserCreateInput): Promise<User> {
+  create (body: RequestCreateUser): Promise<User> {
     return this.client.call({
       method: 'post',
       endpoint: '/users',
@@ -37,7 +37,7 @@ export default class Users extends Resource {
     })
   }
 
-  update (id: number, body: Partial<UserUpdateInput>): Promise<User> {
+  update (id: number, body: Partial<RequestUpdateUser>): Promise<User> {
     return this.client.call({
       method: 'put',
       endpoint: `/users/${id}`,

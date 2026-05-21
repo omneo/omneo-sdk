@@ -19,9 +19,9 @@ export type RequestListAppointmentAvailableStaff = {
   location_id: number
 }
 
-export type AppointmentDefinitionBookingTypeEnum = | "instant"
-  | "approval_required"
-  | "walk_in_only"
+export type AppointmentDefinitionBookingTypeEnum = | 'instant'
+  | 'approval_required'
+  | 'walk_in_only'
 
 export type AppointmentDefinitionBookingQuestionnaireQuestionInput = {
   question_id?: number

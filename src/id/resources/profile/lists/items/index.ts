@@ -1,8 +1,8 @@
-import { ListItem, ListItemInput, ListItemCustomInput, ListItemResponse } from '@types'
+import { ProductListItem, RequestCreateProductListItem, RequestCreateCustomProductListItem, ProductListItemResponse } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileListItems extends Resource {
-  get (listID: number, listItemID: number): Promise<ListItem> {
+  get (listID: number, listItemID: number): Promise<ProductListItem> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`
@@ -11,7 +11,7 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  list (listID: number): Promise<ListItemResponse> {
+  list (listID: number): Promise<ProductListItemResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/lists/${listID}/items`
@@ -20,7 +20,7 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  create (listID: number, body: ListItemInput): Promise<ListItem> {
+  create (listID: number, body: RequestCreateProductListItem): Promise<ProductListItem> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/me/lists/${listID}/items`,
@@ -30,7 +30,7 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  custom (listID: number, body: ListItemCustomInput): Promise<ListItem> {
+  custom (listID: number, body: RequestCreateCustomProductListItem): Promise<ProductListItem> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/me/lists/${listID}/custom`,
@@ -40,7 +40,7 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  update (listID: number, listItemID: number, body: ListItemInput): Promise<ListItem> {
+  update (listID: number, listItemID: number, body: RequestCreateProductListItem): Promise<ProductListItem> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`,
@@ -50,7 +50,7 @@ export default class ProfileListItems extends Resource {
     })
   }
 
-  delete (listID: number, listItemID: number): Promise<ListItem> {
+  delete (listID: number, listItemID: number): Promise<ProductListItem> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/lists/${listID}/items/${listItemID}`

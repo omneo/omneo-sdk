@@ -1,4 +1,4 @@
-import { TransactionClaim, TransactionClaimsResponse, RequestParams, ClaimTransactionInput } from '@types'
+import { TransactionClaim, ProfileTransactionClaimResponse, RequestParams, RequestClaimTransaction } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileTransactions extends Resource {
@@ -11,7 +11,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<TransactionClaimsResponse> {
+  list (params?: RequestParams): Promise<ProfileTransactionClaimResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/transactions/claims',
@@ -21,7 +21,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  delete (claimId: number): Promise<TransactionClaimsResponse> {
+  delete (claimId: number): Promise<ProfileTransactionClaimResponse> {
     return this.client.call({
       method: 'delete',
       endpoint: `/profiles/me/transactions/claims/${claimId}`
@@ -30,7 +30,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  create (claimInput: ClaimTransactionInput): Promise<TransactionClaim> {
+  create (claimInput: RequestClaimTransaction): Promise<TransactionClaim> {
     return this.client.call({
       method: 'POST',
       endpoint: '/profiles/me/transactions/claims',

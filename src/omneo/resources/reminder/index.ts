@@ -1,4 +1,4 @@
-import { CreateReminderInput, Reminder, ReminderResponse, RequestParams, UpdateReminderInput } from '@types'
+import { Reminder, ReminderResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Reminders extends Resource {
@@ -21,7 +21,7 @@ export default class Reminders extends Resource {
     })
   }
 
-  create (body: CreateReminderInput): Promise<Reminder> {
+  create (body: Reminder): Promise<Reminder> {
     return this.client.call({
       method: 'POST',
       endpoint: '/reminders',
@@ -31,7 +31,7 @@ export default class Reminders extends Resource {
     })
   }
 
-  update (id: number, body: UpdateReminderInput): Promise<Reminder> {
+  update (id: number, body: Reminder): Promise<Reminder> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/reminders/${id}`,

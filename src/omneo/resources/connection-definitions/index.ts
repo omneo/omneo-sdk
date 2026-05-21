@@ -1,4 +1,4 @@
-import { RequestParams, ConnectionDefinitionResponse, CreateConnectionDefinitionInput, UpdateConnectionDefinitionInput, ConnectionDefinition } from '@types'
+import { RequestParams, ConnectionDefinitionResponse, RequestCreateConnectionDefinition, RequestUpdateConnectionDefinition, ConnectionDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class ConnectionDefinitions extends Resource {
@@ -20,7 +20,7 @@ export default class ConnectionDefinitions extends Resource {
     })
   }
 
-  create (body: CreateConnectionDefinitionInput): Promise<ConnectionDefinition> {
+  create (body: RequestCreateConnectionDefinition): Promise<ConnectionDefinition> {
     return this.client.call({
       method: 'POST',
       endpoint: '/connection/definitions',
@@ -30,7 +30,7 @@ export default class ConnectionDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: UpdateConnectionDefinitionInput): Promise<ConnectionDefinition> {
+  update (id: number, body: RequestUpdateConnectionDefinition): Promise<ConnectionDefinition> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/connection/definitions/${id}`,

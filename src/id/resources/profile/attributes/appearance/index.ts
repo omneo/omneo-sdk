@@ -1,8 +1,8 @@
-import { ProfileAppearance, ProfileAppearanceInput } from '@types'
+import { ProfileAppearanceAttribute, RequestUpdateProfileAppearanceAttribute } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesAppearance extends Resource {
-  get (): Promise<ProfileAppearance> {
+  get (): Promise<ProfileAppearanceAttribute> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/attributes/appearance'
@@ -11,7 +11,7 @@ export default class ProfileAttributesAppearance extends Resource {
     })
   }
 
-  update (body: ProfileAppearanceInput): Promise<ProfileAppearance> {
+  update (body: RequestUpdateProfileAppearanceAttribute): Promise<ProfileAppearanceAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: '/profiles/me/attributes/appearance',

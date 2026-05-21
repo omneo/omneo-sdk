@@ -1,4 +1,4 @@
-import { RequestParams, Setting, SettingInput } from '@types'
+import { RequestParams, Setting } from '@types'
 import Resource from '../resource'
 
 export default class Settings extends Resource {
@@ -22,7 +22,7 @@ export default class Settings extends Resource {
     })
   }
 
-  create (body: SettingInput): Promise<Setting> {
+  create (body: Setting): Promise<Setting> {
     return this.client.call({
       method: 'POST',
       endpoint: '/settings',
@@ -32,7 +32,7 @@ export default class Settings extends Resource {
     })
   }
 
-  update (handle: string, body: SettingInput): Promise<Setting> {
+  update (handle: string, body: Setting): Promise<Setting> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/settings/${handle}`,
@@ -42,7 +42,7 @@ export default class Settings extends Resource {
     })
   }
 
-  delete (handle: string, body: SettingInput): Promise<Setting> {
+  delete (handle: string, body: Setting): Promise<Setting> {
     return this.client.call({
       method: 'DELETE',
       endpoint: `/settings/${handle}`,

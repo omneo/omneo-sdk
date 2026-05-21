@@ -1,4 +1,4 @@
-import { RequestParams, Redemption, RedemptionResponse, RedemptionType } from '@types'
+import { RequestParams, Redemption, RedemptionResponse, RedemptionItemTypeEnum } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileRedemptions extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileRedemptions extends Resource {
     })
   }
 
-  count (profileId: string, redemptionType: RedemptionType, id: number): Promise<{ count: number }> {
+  count (profileId: string, redemptionType: RedemptionItemTypeEnum, id: number): Promise<{ count: number }> {
     return this.client.call({
       method: 'GET',
       endpoint: `/profiles/${profileId}/redemptions/${redemptionType}/${id}/count`

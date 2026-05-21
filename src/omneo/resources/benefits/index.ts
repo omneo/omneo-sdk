@@ -1,4 +1,4 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput, BenefitTriggerTargetType } from '@types'
+import { RequestParams, Benefit, BenefitResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Benefits extends Resource {
@@ -20,7 +20,7 @@ export default class Benefits extends Resource {
     })
   }
 
-  create (body: BenefitInput): Promise<Benefit> {
+  create (body: Benefit): Promise<Benefit> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits',
@@ -30,7 +30,7 @@ export default class Benefits extends Resource {
     })
   }
 
-  update (id: number, body: Partial<BenefitInput>): Promise<Benefit> {
+  update (id: number, body: Partial<Benefit>): Promise<Benefit> {
     return this.client.call({
       method: 'put',
       endpoint: `/benefits/${id}`,
@@ -62,7 +62,7 @@ export default class Benefits extends Resource {
     }).then((response) => response.data)
   }
 
-  getTriggerTarget (benefitId: number, type: BenefitTriggerTargetType): Promise<void> {
+  getTriggerTarget (benefitId: number, type: string): Promise<void> {
     return this.client.call({
       method: 'get',
       endpoint: `/benefits/${benefitId}/trigger-target/${type}`

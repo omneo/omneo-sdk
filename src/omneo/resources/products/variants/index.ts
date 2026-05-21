@@ -1,9 +1,9 @@
 
-import { CreateProductVariantInput, ProductVariant, ProductVariantsResponse, RequestParams, UpdateProductVariantInput } from '@types'
+import { ProductVariant, ProductVariantResponse, RequestParams } from '@types'
 import Resource from '../../resource.js'
 
 export default class ProductVariants extends Resource {
-  list (productID: string, params?: RequestParams): Promise<ProductVariantsResponse> {
+  list (productID: string, params?: RequestParams): Promise<ProductVariantResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/products/${productID}/variants`,
@@ -23,7 +23,7 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  create (productID: string, body: CreateProductVariantInput): Promise<ProductVariant> {
+  create (productID: string, body: ProductVariant): Promise<ProductVariant> {
     return this.client.call({
       method: 'POST',
       body,
@@ -33,7 +33,7 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  update (productID: string, variantID: string, body: UpdateProductVariantInput): Promise<ProductVariant> {
+  update (productID: string, variantID: string, body: ProductVariant): Promise<ProductVariant> {
     return this.client.call({
       method: 'PUT',
       body,
@@ -52,7 +52,7 @@ export default class ProductVariants extends Resource {
     })
   }
 
-  listVariants (params?: RequestParams): Promise<ProductVariantsResponse> {
+  listVariants (params?: RequestParams): Promise<ProductVariantResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/products/variants',

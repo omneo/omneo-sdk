@@ -1,4 +1,4 @@
-import { CreateImportJobInput, ExportImportJobInput, FinalizeImportJobInput, ImportJob, ImportJobResponse, RequestParams } from '@types'
+import { ImportJob, RequestExportImportJobRequest, RequestFinalizeImportJob, ImportJobResponse, RequestParams } from '@types'
 import Resource from '../../resource.js'
 
 export default class ImportJobs extends Resource {
@@ -21,7 +21,7 @@ export default class ImportJobs extends Resource {
     })
   }
 
-  create (importId: number, body: CreateImportJobInput): Promise<ImportJob> {
+  create (importId: number, body: ImportJob): Promise<ImportJob> {
     return this.client.call({
       method: 'POST',
       endpoint: `/imports/${importId}/jobs`,
@@ -31,7 +31,7 @@ export default class ImportJobs extends Resource {
     })
   }
 
-  export (importId: number, body: ExportImportJobInput): Promise<{data: any}> {
+  export (importId: number, body: RequestExportImportJobRequest): Promise<{data: any}> {
     return this.client.call({
       method: 'POST',
       endpoint: `/imports/${importId}/jobs/export`,
@@ -41,7 +41,7 @@ export default class ImportJobs extends Resource {
     })
   }
 
-  finalize (importId: number, jobId: number, body: FinalizeImportJobInput): Promise<ImportJob> {
+  finalize (importId: number, jobId: number, body: RequestFinalizeImportJob): Promise<ImportJob> {
     return this.client.call({
       method: 'POST',
       endpoint: `/imports/${importId}/jobs/${jobId}/finalize`,

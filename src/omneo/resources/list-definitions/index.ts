@@ -1,4 +1,4 @@
-import { RequestParams, ListDefinition, ListInput, ListDefinitionResponse } from '@types'
+import { RequestParams, ListDefinition, RequestCreateProductList, ListDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class ListDefinitions extends Resource {
@@ -22,7 +22,7 @@ export default class ListDefinitions extends Resource {
     })
   }
 
-  create (body: ListInput): Promise<ListDefinition> {
+  create (body: RequestCreateProductList): Promise<ListDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/lists/definitions',
@@ -32,7 +32,7 @@ export default class ListDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: Partial<ListInput>): Promise<ListDefinition> {
+  update (id: number, body: Partial<RequestCreateProductList>): Promise<ListDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/lists/definitions/${id}`,

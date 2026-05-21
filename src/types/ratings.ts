@@ -7,12 +7,12 @@ export type RatingStatusEnum = 'offered' | 'declined' | 'received'
 
 export type RatingScoreTypeEnum = 'csat1' | 'csat2' | 'csat3' | 'csat4' | 'csat5' | 'csat6' | 'csat7' | 'csat8' | 'csat9' | 'csat10' | 'nps'
 
-export type RatingSource = | "product"
-  | "staff"
-  | "product_variant"
-  | "transaction"
-  | "interaction"
-  | "external"
+export type RatingSource = | 'product'
+  | 'staff'
+  | 'product_variant'
+  | 'transaction'
+  | 'interaction'
+  | 'external'
 
 export type RequestQueryRating = {
   offset?: number

@@ -1,4 +1,4 @@
-import { Region, ProfileRegionInput } from '@types'
+import { Region, ProfileRegion } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileRegions extends Resource {
@@ -11,7 +11,7 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  create (id: string, body: ProfileRegionInput): Promise<Region[]> {
+  create (id: string, body: ProfileRegion): Promise<Region[]> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${id}/regions`,
@@ -21,7 +21,7 @@ export default class ProfileRegions extends Resource {
     })
   }
 
-  update (id: string, regionId: number, body: Partial<ProfileRegionInput>): Promise<Region[]> {
+  update (id: string, regionId: number, body: Partial<ProfileRegion>): Promise<Region[]> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${id}/regions/${regionId}`,

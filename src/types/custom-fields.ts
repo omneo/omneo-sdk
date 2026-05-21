@@ -77,20 +77,20 @@ export type RequestCreateCustomField = {
 export type CustomField = {
   created_at: string
   custom_fieldable: AnyJsonRecord | null
-  custom_fieldable_type: | "address"
-    | "credit"
-    | "credit_definition"
-    | "location"
-    | "order"
-    | "organisation"
-    | "product"
-    | "product_list"
-    | "profile"
-    | "role_definition"
-    | "share"
-    | "status"
-    | "tenant"
-    | "transaction"
+  custom_fieldable_type: | 'address'
+    | 'credit'
+    | 'credit_definition'
+    | 'location'
+    | 'order'
+    | 'organisation'
+    | 'product'
+    | 'product_list'
+    | 'profile'
+    | 'role_definition'
+    | 'share'
+    | 'status'
+    | 'tenant'
+    | 'transaction'
     | null
   handle: string | null
   is_index: boolean

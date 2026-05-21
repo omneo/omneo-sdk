@@ -1,8 +1,8 @@
-import { CreateListItemReservationInput, ListItemReservation, UpdateListItemReservationInput } from '@types'
+import { RequestCreateProductListReservation, ProductListReservation, RequestUpdateProductListReservation } from '@types'
 import Resource from '../../resource.js'
 
 export default class ListItemReservations extends Resource {
-  create (itemId: number, body: CreateListItemReservationInput): Promise<ListItemReservation> {
+  create (itemId: number, body: RequestCreateProductListReservation): Promise<ProductListReservation> {
     return this.client.call({
       method: 'POST',
       endpoint: `/list/items/${itemId}/reservations`,
@@ -12,7 +12,7 @@ export default class ListItemReservations extends Resource {
     })
   }
 
-  update (itemId: number, reservationId: number, body: UpdateListItemReservationInput): Promise<ListItemReservation> {
+  update (itemId: number, reservationId: number, body: RequestUpdateProductListReservation): Promise<ProductListReservation> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/list/items/${itemId}/reservations/${reservationId}`,

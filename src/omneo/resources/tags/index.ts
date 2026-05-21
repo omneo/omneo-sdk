@@ -1,8 +1,8 @@
-import { RequestParams, Tag, TagInput, TagResponse } from '@types'
+import { RequestParams, TagResponse, RequestCreateTag } from '@types'
 import Resource from '../resource.js'
 
 export default class Tags extends Resource {
-  get (id: number, params?: RequestParams): Promise<Tag> {
+  get (id: number, params?: RequestParams): Promise<TagResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/tags/${id}`,
@@ -21,7 +21,7 @@ export default class Tags extends Resource {
     })
   }
 
-  create (body: TagInput): Promise<Tag> {
+  create (body: RequestCreateTag): Promise<TagResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/tags',

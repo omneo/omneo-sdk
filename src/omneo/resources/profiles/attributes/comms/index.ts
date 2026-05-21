@@ -1,8 +1,8 @@
-import { ProfileComms, ProfileCommsInput } from '@types'
+import { ProfileCommsAttribute, RequestUpdateProfileCommsAttribute } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesComms extends Resource {
-  get (profileID: string): Promise<ProfileComms> {
+  get (profileID: string): Promise<ProfileCommsAttribute> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/attributes/comms`
@@ -11,7 +11,7 @@ export default class ProfileAttributesComms extends Resource {
     })
   }
 
-  update (profileID: string, comms: ProfileCommsInput): Promise<ProfileComms> {
+  update (profileID: string, comms: RequestUpdateProfileCommsAttribute): Promise<ProfileCommsAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/attributes/comms`,

@@ -1,11 +1,11 @@
 import {
   CommsChannel,
   Profile,
-  ProfileComms,
-  Redeem,
-  ProfileType,
+  ProfileCommsAttribute,
+  
+  UpdateProfileProfileTypeEnum,
   RequestParams,
-  TransactionProductVariantsResponse
+  TransactionProductVariantResponse
 } from '@types'
 
 import ProfileAddresses from './addresses'
@@ -118,7 +118,7 @@ export default class OmneoProfile extends Resource {
     })
   }
 
-  isSubscribed (comms: ProfileComms, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
+  isSubscribed (comms: ProfileCommsAttribute, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
     if (!prefix) throw Error('No Prefix provided')
     if (comms[`${prefix}_promo`] === false) return false
     if (comms[`${prefix}_optout`] === true) return false
@@ -126,7 +126,7 @@ export default class OmneoProfile extends Resource {
     return true
   }
 
-  isUnsubscribed (comms: ProfileComms, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
+  isUnsubscribed (comms: ProfileCommsAttribute, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
     if (!prefix) throw Error('No Prefix provided')
     if (comms[`${prefix}_promo`] === false) return true
     if (comms[`${prefix}_optout`] === true) return true
@@ -134,7 +134,7 @@ export default class OmneoProfile extends Resource {
     return false
   }
 
-  subscribe (channel: CommsChannel): Promise<ProfileComms> {
+  subscribe (channel: CommsChannel): Promise<ProfileCommsAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: '/profiles/me/comms',
@@ -147,7 +147,7 @@ export default class OmneoProfile extends Resource {
     })
   }
 
-  unsubscribe (channel: CommsChannel, options: {toggleOptOut: boolean}): Promise<ProfileComms> {
+  unsubscribe (channel: CommsChannel, options: {toggleOptOut: boolean}): Promise<ProfileCommsAttribute> {
     const body = {
       [`${channel}_promo`]: false
     }
@@ -163,7 +163,7 @@ export default class OmneoProfile extends Resource {
     })
   }
 
-  redeem (amount: number): Promise<Redeem> {
+  redeem (amount: number): Promise<any> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/redeem',
@@ -173,7 +173,7 @@ export default class OmneoProfile extends Resource {
     })
   }
 
-  updateType (type: ProfileType): Promise<Profile> {
+  updateType (type: UpdateProfileProfileTypeEnum): Promise<Profile> {
     return this.client.call({
       method: 'put',
       endpoint: '/profiles/me/update-type',
@@ -183,7 +183,7 @@ export default class OmneoProfile extends Resource {
     })
   }
 
-  transactionProducts (params?: RequestParams): Promise<TransactionProductVariantsResponse> {
+  transactionProducts (params?: RequestParams): Promise<TransactionProductVariantResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/transaction-products',

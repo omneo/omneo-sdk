@@ -1,4 +1,4 @@
-import { Point, PointInput, PointResponse, RequestParams } from '@types'
+import { Point, PointResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Points extends Resource {
@@ -20,7 +20,7 @@ export default class Points extends Resource {
     })
   }
 
-  create (body: PointInput): Promise<Point> {
+  create (body: Point): Promise<Point> {
     return this.client.call({
       method: 'post',
       endpoint: '/points',

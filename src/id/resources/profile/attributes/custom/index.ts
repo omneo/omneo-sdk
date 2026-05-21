@@ -1,8 +1,8 @@
-import { Address, CustomAttribute, CustomAttributeInput, RequestParams } from '@types'
+import { Address, ProfileCustomAttribute, RequestUpdateCustomAttribute, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesCustom extends Resource {
-  get (namespace: string, handle: string): Promise<CustomAttribute> {
+  get (namespace: string, handle: string): Promise<ProfileCustomAttribute> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/attributes/custom/${namespace}:${handle}`
@@ -11,7 +11,7 @@ export default class ProfileAttributesCustom extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<CustomAttribute[]> {
+  list (params?: RequestParams): Promise<ProfileCustomAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/attributes/custom',
@@ -21,7 +21,7 @@ export default class ProfileAttributesCustom extends Resource {
     })
   }
 
-  update (namespace: string, handle: string, body: Partial<CustomAttributeInput>): Promise<CustomAttribute> {
+  update (namespace: string, handle: string, body: Partial<RequestUpdateCustomAttribute>): Promise<ProfileCustomAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/attributes/custom/${namespace}:${handle}`,

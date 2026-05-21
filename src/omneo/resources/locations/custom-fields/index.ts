@@ -1,4 +1,4 @@
-import { CreateCustomFieldInput, CustomField, CustomFieldResponse, RequestParams, UpdateCustomFieldInput } from '@types'
+import { CustomField, CustomFieldResponse, RequestParams } from '@types'
 import Resource from '../../resource.js'
 
 export default class LocationCustomFields extends Resource {
@@ -21,7 +21,7 @@ export default class LocationCustomFields extends Resource {
     })
   }
 
-  create (locationId: number, body: CreateCustomFieldInput): Promise<CustomField> {
+  create (locationId: number, body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'POST',
       endpoint: `/locations/${locationId}/custom-fields`,
@@ -31,7 +31,7 @@ export default class LocationCustomFields extends Resource {
     })
   }
 
-  update (locationId: number, customField: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+  update (locationId: number, customField: string, body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/locations/${locationId}/custom-fields/${customField}`,

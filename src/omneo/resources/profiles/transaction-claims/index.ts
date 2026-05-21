@@ -1,4 +1,4 @@
-import { RequestParams, ClaimTransactionInput, TransactionClaim, TransactionClaimsResponse } from '@types'
+import { RequestParams, RequestClaimTransaction, TransactionClaim, ProfileTransactionClaimResponse } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileTransactionsClaim extends Resource {
@@ -11,7 +11,7 @@ export default class ProfileTransactionsClaim extends Resource {
     })
   }
 
-  list (profileID: string, params?: RequestParams): Promise<TransactionClaimsResponse> {
+  list (profileID: string, params?: RequestParams): Promise<ProfileTransactionClaimResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/transactions/claims`,
@@ -30,7 +30,7 @@ export default class ProfileTransactionsClaim extends Resource {
     })
   }
 
-  create (profileId: string, claimInput: ClaimTransactionInput): Promise<TransactionClaim> {
+  create (profileId: string, claimInput: RequestClaimTransaction): Promise<TransactionClaim> {
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileId}/transactions/claims`,

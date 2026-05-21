@@ -552,13 +552,7 @@ export type Profile = {
   preferred_location_id: number
   preferred_staff: ProfilePreferredStaff
   preferred_staff_id: number
-  profile_type: | "temporary"
-    | "dependant"
-    | "incomplete"
-    | "pending"
-    | "system"
-    | "active"
-    | "deleted"
+  profile_type: ProfileTypeProfileTypeEnum
     | null
   region: ProfileRegion | null
   regions: ProfileRegion[]

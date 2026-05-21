@@ -1,4 +1,4 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput, BenefitDefinition, ClaimBenefitInput, Redemption } from '@types'
+import { RequestParams, Benefit, BenefitResponse, BenefitDefinition, RequestClaimBenefit, Redemption } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileBenefits extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileBenefits extends Resource {
     })
   }
 
-  update (profileId: string, benefitId: string, body: Partial<BenefitInput>): Promise<Benefit> {
+  update (profileId: string, benefitId: string, body: Partial<Benefit>): Promise<Benefit> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileId}/benefits/${benefitId}`,
@@ -67,7 +67,7 @@ export default class ProfileBenefits extends Resource {
     })
   }
 
-  claim (profileId: string, claimInput: ClaimBenefitInput): Promise<Benefit> {
+  claim (profileId: string, claimInput: RequestClaimBenefit): Promise<Benefit> {
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileId}/benefits/claim`,
@@ -77,7 +77,7 @@ export default class ProfileBenefits extends Resource {
     })
   }
 
-  claimRedeem (profileId: string, claimInput: ClaimBenefitInput): Promise<Redemption> {
+  claimRedeem (profileId: string, claimInput: RequestClaimBenefit): Promise<Redemption> {
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileId}/benefits/claim-redeem`,

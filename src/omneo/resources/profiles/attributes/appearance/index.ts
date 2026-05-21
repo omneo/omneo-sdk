@@ -1,8 +1,8 @@
-import { ProfileAppearance, ProfileAppearanceInput } from '@types'
+import { ProfileAppearanceAttribute, RequestUpdateProfileAppearanceAttribute } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesAppearance extends Resource {
-  get (profileID: string): Promise<ProfileAppearance> {
+  get (profileID: string): Promise<ProfileAppearanceAttribute> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/attributes/appearance`
@@ -11,7 +11,7 @@ export default class ProfileAttributesAppearance extends Resource {
     })
   }
 
-  update (profileID: string, body: ProfileAppearanceInput): Promise<ProfileAppearance> {
+  update (profileID: string, body: RequestUpdateProfileAppearanceAttribute): Promise<ProfileAppearanceAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/attributes/appearance`,

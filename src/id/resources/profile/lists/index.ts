@@ -1,4 +1,4 @@
-import { List, ListInput, RequestParams } from '@types'
+import { ProductList, RequestCreateProductList, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 import Items from './items'
 import CustomFields from './custom-fields'
@@ -11,7 +11,7 @@ export default class ProfileLists extends Resource {
   shares = new Shares(this.client)
   reservations = new Reservations(this.client)
 
-  get (listID: number): Promise<List> {
+  get (listID: number): Promise<ProductList> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/lists/${listID}`
@@ -20,7 +20,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<List[]> {
+  list (params?: RequestParams): Promise<ProductList[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/lists',
@@ -30,7 +30,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  create (listInput: ListInput): Promise<List> {
+  create (listInput: RequestCreateProductList): Promise<ProductList> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/lists',
@@ -40,7 +40,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  update (listID: number, body: Partial<ListInput>): Promise<List> {
+  update (listID: number, body: Partial<RequestCreateProductList>): Promise<ProductList> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/lists/${listID}`,

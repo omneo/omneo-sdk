@@ -1,4 +1,4 @@
-import { RequestParams, TierDefinition, TierDefinitionResponse, UpdateTierDefinitionInput, CreateTierDefinitionInput } from '@types'
+import { RequestParams, TierDefinition, TierDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class TierDefinitions extends Resource {
@@ -20,7 +20,7 @@ export default class TierDefinitions extends Resource {
     })
   }
 
-  create (body: CreateTierDefinitionInput): Promise<TierDefinition> {
+  create (body: TierDefinition): Promise<TierDefinition> {
     return this.client.call({
       method: 'POST',
       endpoint: '/tiers/definitions',
@@ -30,7 +30,7 @@ export default class TierDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: UpdateTierDefinitionInput): Promise<TierDefinition> {
+  update (id: number, body: TierDefinition): Promise<TierDefinition> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/tiers/definitions/${id}`,

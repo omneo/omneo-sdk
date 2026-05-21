@@ -1,4 +1,4 @@
-import { CreateOrganisationProfileInput, Profile, ProfileResponse, RequestParams } from '@types'
+import { RequestCreateOrganisationProfile, Profile, ProfileResponse, RequestParams } from '@types'
 import Resource from '../../resource.js'
 
 export default class OrganisationProfiles extends Resource {
@@ -12,7 +12,7 @@ export default class OrganisationProfiles extends Resource {
     })
   }
 
-  create (organisationId: string, body: CreateOrganisationProfileInput): Promise<Profile> {
+  create (organisationId: string, body: RequestCreateOrganisationProfile): Promise<Profile> {
     return this.client.call({
       method: 'POST',
       endpoint: `/organisations/${organisationId}/profiles`,

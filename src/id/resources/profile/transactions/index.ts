@@ -1,4 +1,4 @@
-import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionAssignedItemsResponse, TransactionFilters, TransactionItem, TransactionResponse, TransactionUnassignedItemsResponse } from '@types'
+import { ProfileTransactionIndexGroupResponse, RequestParams, Transaction, TransactionItemResponse, TransactionItem, TransactionResponse } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileTransactions extends Resource {
@@ -19,7 +19,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  find (filter: { field: TransactionFilters, value: string }): Promise<Transaction> {
+  find (filter: { field: string, value: string }): Promise<Transaction> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/find-transactions',
@@ -34,7 +34,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  getGrouped (params?: { pageSize?: number, pageNumber?: number }): Promise<GroupedTransactionsResponse> {
+  getGrouped (params?: { pageSize?: number, pageNumber?: number }): Promise<ProfileTransactionIndexGroupResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/group_transactions',
@@ -43,7 +43,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  getUnassignedItems (params?: { include_list_item: 1 | 0}): Promise<TransactionUnassignedItemsResponse> {
+  getUnassignedItems (params?: { include_list_item: 1 | 0}): Promise<TransactionItemResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/transactionitems/list/unassigned',
@@ -53,7 +53,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  getAssignedItems (params?: { include_list_item: 1 | 0}): Promise<TransactionAssignedItemsResponse> {
+  getAssignedItems (params?: { include_list_item: 1 | 0}): Promise<TransactionItemResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/profiles/me/transactionitems/list/assigned',

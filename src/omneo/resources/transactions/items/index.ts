@@ -1,4 +1,4 @@
-import { TransactionItemResponse, RequestParams, TransactionItem, CreateTransactionItemInput } from '@types'
+import { TransactionItemResponse, RequestParams, TransactionItem } from '@types'
 import Resource from '../../resource.js'
 
 export default class TransactionItems extends Resource {
@@ -21,7 +21,7 @@ export default class TransactionItems extends Resource {
     })
   }
 
-  create (transactionId: number, body: CreateTransactionItemInput): Promise<TransactionItem> {
+  create (transactionId: number, body: TransactionItem): Promise<TransactionItem> {
     return this.client.call({
       method: 'POST',
       endpoint: `/transactions/${transactionId}/items`,

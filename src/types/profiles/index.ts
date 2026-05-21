@@ -1,5 +1,4 @@
 export * from './achievement'
-export * from './anonymous'
 export * from './attribute'
 export * from './balance'
 export * from './benefit'

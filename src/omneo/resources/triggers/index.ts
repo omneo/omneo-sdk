@@ -1,4 +1,4 @@
-import { RequestParams, Trigger, TriggerInput, TriggerResponse, TriggerUpdateInput } from '@types'
+import { RequestParams, Trigger, TriggerResponse, RequestUpdateTrigger } from '@types'
 import Resource from '../resource.js'
 import TriggerActions from './actions/index.js'
 
@@ -23,7 +23,7 @@ export default class Triggers extends Resource {
     })
   }
 
-  create (body: TriggerInput): Promise<Trigger> {
+  create (body: Trigger): Promise<Trigger> {
     return this.client.call({
       method: 'post',
       endpoint: '/triggers',
@@ -33,7 +33,7 @@ export default class Triggers extends Resource {
     })
   }
 
-  update (id: number, body: Partial<TriggerUpdateInput>): Promise<Trigger> {
+  update (id: number, body: Partial<RequestUpdateTrigger>): Promise<Trigger> {
     return this.client.call({
       method: 'put',
       endpoint: `/triggers/${id}`,

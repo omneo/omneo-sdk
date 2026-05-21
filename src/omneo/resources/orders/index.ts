@@ -1,4 +1,4 @@
-import { CreateOrderInput, Order, OrderResponse, RequestParams, UpdateOrderInput } from '@types'
+import { Order, OrderResponse, RequestParams } from '@types'
 import Resource from '../resource'
 import OrderItems from './items'
 
@@ -25,7 +25,7 @@ export default class Orders extends Resource {
     })
   }
 
-  create (body: CreateOrderInput): Promise<Order> {
+  create (body: Order): Promise<Order> {
     return this.client.call({
       method: 'POST',
       endpoint: '/orders',
@@ -35,7 +35,7 @@ export default class Orders extends Resource {
     })
   }
 
-  update (id: string, body: UpdateOrderInput): Promise<Order> {
+  update (id: string, body: Order): Promise<Order> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/orders/${id}`,
@@ -54,7 +54,7 @@ export default class Orders extends Resource {
     })
   }
 
-  queue (body: CreateOrderInput | UpdateOrderInput) : Promise<{data: string}> {
+  queue (body: Order) : Promise<{data: string}> {
     return this.client.call({
       method: 'POST',
       endpoint: '/orders/queue',
@@ -64,7 +64,7 @@ export default class Orders extends Resource {
     })
   }
 
-  queueCreate (body: CreateOrderInput) : Promise<{data: string}> {
+  queueCreate (body: Order) : Promise<{data: string}> {
     return this.client.call({
       method: 'POST',
       endpoint: '/orders/queue/create',

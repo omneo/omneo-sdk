@@ -1,4 +1,4 @@
-import { CreateCustomFieldInput, CustomField, CustomFieldResponse, RequestParams, UpdateCustomFieldInput } from '@types'
+import { CustomField, CustomFieldResponse, RequestParams } from '@types'
 import Resource from '../../resource.js'
 
 export default class TransactionCustomFields extends Resource {
@@ -22,7 +22,7 @@ export default class TransactionCustomFields extends Resource {
     })
   }
 
-  create (transactionId: number, body: CreateCustomFieldInput): Promise<CustomField> {
+  create (transactionId: number, body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'POST',
       endpoint: `/transactions/${transactionId}/custom-fields`,
@@ -32,7 +32,7 @@ export default class TransactionCustomFields extends Resource {
     })
   }
 
-  update (transactionId: number, namespace: string, handle: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+  update (transactionId: number, namespace: string, handle: string, body: CustomField): Promise<CustomField> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'PUT',

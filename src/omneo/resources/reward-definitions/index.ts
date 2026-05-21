@@ -1,4 +1,4 @@
-import { RewardDefinitionCreateInput, RewardDefinitionUpdateInput, RequestParams, RewardDefinition, RewardDefinitionResponse } from '@types'
+import { RequestCreateRewardDefinition, RequestUpdateRewardDefinition, RequestParams, RewardDefinition, RewardDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class RewardDefinitions extends Resource {
@@ -20,7 +20,7 @@ export default class RewardDefinitions extends Resource {
     })
   }
 
-  create (body: RewardDefinitionCreateInput): Promise<RewardDefinition> {
+  create (body: RequestCreateRewardDefinition): Promise<RewardDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/rewards/definitions',
@@ -30,7 +30,7 @@ export default class RewardDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: RewardDefinitionUpdateInput): Promise<RewardDefinition> {
+  update (id: number, body: RequestUpdateRewardDefinition): Promise<RewardDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/rewards/definitions/${id}`,

@@ -1,4 +1,4 @@
-import { RequestParams, PointDefinition, PointDefinitionResponse, UpdatePointDefinitionInput, CreatePointDefinitionInput } from '@types'
+import { RequestParams, PointDefinition, PointDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class PointDefinitions extends Resource {
@@ -20,7 +20,7 @@ export default class PointDefinitions extends Resource {
     })
   }
 
-  create (body: CreatePointDefinitionInput): Promise<PointDefinition> {
+  create (body: PointDefinition): Promise<PointDefinition> {
     return this.client.call({
       method: 'POST',
       endpoint: '/points/definitions',
@@ -30,7 +30,7 @@ export default class PointDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: UpdatePointDefinitionInput): Promise<PointDefinition> {
+  update (id: number, body: PointDefinition): Promise<PointDefinition> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/points/definitions/${id}`,

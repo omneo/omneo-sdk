@@ -1,4 +1,4 @@
-import { CountryInput, RequestParams, Country, CountryResponse } from '@types'
+import { Country, RequestParams, CountryResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Countries extends Resource {
@@ -20,7 +20,7 @@ export default class Countries extends Resource {
     })
   }
 
-  create (body: CountryInput): Promise<Country> {
+  create (body: Country): Promise<Country> {
     return this.client.call({
       method: 'post',
       endpoint: '/countries',
@@ -30,7 +30,7 @@ export default class Countries extends Resource {
     })
   }
 
-  update (id: number, body: CountryInput): Promise<Country> {
+  update (id: number, body: Country): Promise<Country> {
     return this.client.call({
       method: 'put',
       endpoint: `/countries/${id}`,

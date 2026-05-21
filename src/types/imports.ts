@@ -93,7 +93,9 @@ export type ImportJob = {
   updated_at: string
 }
 
-export type ImportJobExportResponse = { data: string }
+export type ImportJobExportResponse = {
+  data: string
+}
 
 export type ImportJobBatchJsonResponse = {
   message: string
@@ -118,9 +120,9 @@ export type Import = {
   failed_count: number
   id: number
   importable_id: string | null
-  importable_type: | "benefit_definition"
-    | "credit_definition"
-    | "reward_definition"
+  importable_type: | 'benefit_definition'
+    | 'credit_definition'
+    | 'reward_definition'
     | null
   issued_at: string | null
   mapping_fields: AnyJsonRecord | null

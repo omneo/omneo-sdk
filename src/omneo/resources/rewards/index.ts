@@ -1,4 +1,4 @@
-import { RewardCreateInput, RewardUpdateInput, RequestParams, Reward, RewardResponse, ExtendRewardParams } from '@types'
+import { RequestCreateReward, RequestUpdateReward, RequestParams, Reward, RewardResponse, RequestExtendReward } from '@types'
 import Resource from '../resource.js'
 
 export default class Rewards extends Resource {
@@ -20,7 +20,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  create (body: RewardCreateInput): Promise<Reward> {
+  create (body: RequestCreateReward): Promise<Reward> {
     return this.client.call({
       method: 'post',
       endpoint: '/rewards',
@@ -30,7 +30,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  update (id: number, body: RewardUpdateInput): Promise<Reward> {
+  update (id: number, body: RequestUpdateReward): Promise<Reward> {
     return this.client.call({
       method: 'put',
       endpoint: `/rewards/${id}`,
@@ -56,7 +56,7 @@ export default class Rewards extends Resource {
     })
   }
 
-  extend (params: ExtendRewardParams): Promise<Reward[]> {
+  extend (params: RequestExtendReward): Promise<Reward[]> {
     return this.client.call({
       method: 'POST',
       endpoint: '/rewards/extend',

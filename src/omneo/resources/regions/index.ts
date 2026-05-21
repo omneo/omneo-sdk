@@ -1,4 +1,4 @@
-import { RegionInput, RequestParams, Region, RegionResponse } from '@types'
+import { Region, RequestParams, RegionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Regions extends Resource {
@@ -20,7 +20,7 @@ export default class Regions extends Resource {
     })
   }
 
-  create (body: RegionInput): Promise<Region> {
+  create (body: Region): Promise<Region> {
     return this.client.call({
       method: 'post',
       endpoint: '/regions',
@@ -30,7 +30,7 @@ export default class Regions extends Resource {
     })
   }
 
-  update (id: number, body: RegionInput): Promise<Region> {
+  update (id: number, body: Region): Promise<Region> {
     return this.client.call({
       method: 'put',
       endpoint: `/regions/${id}`,

@@ -1,8 +1,8 @@
-import { ProfileResponse, CustomAttribute, CustomAttributeInput, RequestParams } from '@types'
+import { ProfileResponse, ProfileCustomAttribute, RequestUpdateCustomAttribute, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAttributesCustom extends Resource {
-  get (profileID: string, namespace: string, handle: string): Promise<CustomAttribute> {
+  get (profileID: string, namespace: string, handle: string): Promise<ProfileCustomAttribute> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'GET',
@@ -12,7 +12,7 @@ export default class ProfileAttributesCustom extends Resource {
     })
   }
 
-  list (profileID: string, params?: RequestParams): Promise<CustomAttribute[]> {
+  list (profileID: string, params?: RequestParams): Promise<ProfileCustomAttribute[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/attributes/custom`,
@@ -22,7 +22,7 @@ export default class ProfileAttributesCustom extends Resource {
     })
   }
 
-  update (profileID: string, namespace: string, handle: string, body: Partial<CustomAttributeInput>): Promise<CustomAttribute> {
+  update (profileID: string, namespace: string, handle: string, body: Partial<RequestUpdateCustomAttribute>): Promise<ProfileCustomAttribute> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'PUT',

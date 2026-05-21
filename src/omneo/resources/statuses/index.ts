@@ -1,4 +1,4 @@
-import { RequestParams, Status, StatusInput, StatusResponse } from '@types'
+import { RequestParams, Status, StatusResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Statuses extends Resource {
@@ -20,7 +20,7 @@ export default class Statuses extends Resource {
     })
   }
 
-  create (body: StatusInput): Promise<Status> {
+  create (body: Status): Promise<Status> {
     return this.client.call({
       method: 'post',
       endpoint: '/statuses',

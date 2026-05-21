@@ -1,4 +1,4 @@
-import { RequestParams, Target, TargetInput, TargetResponse } from '@types'
+import { RequestParams, Target, TargetResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Targets extends Resource {
@@ -20,7 +20,7 @@ export default class Targets extends Resource {
     })
   }
 
-  create (body: TargetInput): Promise<Target> {
+  create (body: Target): Promise<Target> {
     return this.client.call({
       method: 'post',
       endpoint: '/targets',
@@ -30,7 +30,7 @@ export default class Targets extends Resource {
     })
   }
 
-  update (id: number, body: Partial<TargetInput>): Promise<Target> {
+  update (id: number, body: Partial<Target>): Promise<Target> {
     return this.client.call({
       method: 'put',
       endpoint: `/targets/${id}`,
