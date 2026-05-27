@@ -34,7 +34,8 @@ export default class BenefitDefinitions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 

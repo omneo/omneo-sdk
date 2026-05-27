@@ -22,6 +22,7 @@ export type RequestQueryActionHistory = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ActionHistoryItem = {

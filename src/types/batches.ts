@@ -4,12 +4,12 @@ import type { FilterOperator } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 
-export type RequestBatchStore = {
+export type RequestCreateBatch = {
   entity_type: string
   import_job_id?: number | null
 }
 
-export type BatchStoreItemsItem = {
+export type BatchItemsItem = {
   entity_id?: string | null
   error?: string | null
   external_id?: string | null
@@ -35,6 +35,7 @@ export type RequestQueryBatch = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type BatchItem = {
@@ -47,14 +48,14 @@ export type BatchItem = {
   updated_at: string
 }
 
-export type BatchStoreData = {
+export type BatchData = {
   batch_id: string
   entity_type: string
   import_job_id: number
 }
 
-export type RequestBatchStoreItems = {
-  items: BatchStoreItemsItem[] | null
+export type RequestBatchItems = {
+  items: BatchItemsItem[] | null
 }
 
 export type Batch = {
@@ -71,8 +72,8 @@ export type Batch = {
   updated_at: string
 }
 
-export type BatchStoreResponse = {
-  data: BatchStoreData
+export type CreateBatchResponse = {
+  data: BatchData
 }
 
 export type BatchResponse = {

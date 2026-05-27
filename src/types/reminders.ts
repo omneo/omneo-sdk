@@ -35,6 +35,7 @@ export type RequestQueryReminder = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type RequestCreateReminder = {

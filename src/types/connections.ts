@@ -45,6 +45,7 @@ export type RequestQueryConnection = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ConnectionConnected = {

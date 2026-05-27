@@ -6,7 +6,8 @@ export default class Identities extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/identities',
-      params
+      params,
+      flattenParams: true
     })
   }
 

@@ -49,6 +49,7 @@ export type RequestQueryProduct = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryProductVariant = {
@@ -76,6 +77,7 @@ export type RequestQueryProductVariant = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type ProductImageItem = {

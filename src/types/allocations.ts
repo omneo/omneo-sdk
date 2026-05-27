@@ -44,6 +44,7 @@ export type RequestQueryAllocation = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Allocation = {

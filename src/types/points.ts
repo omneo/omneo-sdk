@@ -71,6 +71,7 @@ export type RequestQueryPoint = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryPointDefinition = {
@@ -98,6 +99,7 @@ export type RequestQueryPointDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type PointDefinition = {

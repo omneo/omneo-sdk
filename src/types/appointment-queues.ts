@@ -45,6 +45,7 @@ export type RequestQueryAppointmentQueue = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type AppointmentQueue = {

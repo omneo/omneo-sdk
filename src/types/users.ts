@@ -26,6 +26,7 @@ export type RequestQueryUser = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type User = {

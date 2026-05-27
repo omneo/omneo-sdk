@@ -15,7 +15,8 @@ export default class Countries extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/countries',
-      params
+      params,
+      flattenParams: true
     })
   }
 

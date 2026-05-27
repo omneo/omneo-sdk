@@ -15,7 +15,8 @@ export default class Statuses extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/statuses',
-      params
+      params,
+      flattenParams: true
     })
   }
 

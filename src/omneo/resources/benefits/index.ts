@@ -15,7 +15,8 @@ export default class Benefits extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits',
-      params
+      params,
+      flattenParams: true
     })
   }
 

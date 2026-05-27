@@ -15,7 +15,8 @@ export default class Regions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/regions',
-      params
+      params,
+      flattenParams: true
     })
   }
 

@@ -15,7 +15,8 @@ export default class CreditDefinitions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/credits/definitions',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

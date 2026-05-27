@@ -6,7 +6,8 @@ export default class Ratings extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/ratings',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

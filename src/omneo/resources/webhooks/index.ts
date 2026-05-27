@@ -13,7 +13,8 @@ export default class Webhooks extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/webhooks',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

@@ -24,6 +24,7 @@ export type RequestQueryIdentity = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Identity = {

@@ -15,7 +15,8 @@ export default class Tags extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/tags',
-      params
+      params,
+      flattenParams: true
     })
   }
 

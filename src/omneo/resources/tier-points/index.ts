@@ -15,7 +15,8 @@ export default class TierPoints extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/tiers/points',
-      params
+      params,
+      flattenParams: true
     })
   }
 

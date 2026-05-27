@@ -65,6 +65,7 @@ export type RequestQueryAchievementDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type AchievementDefinitionMeta = {

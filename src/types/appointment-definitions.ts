@@ -110,6 +110,7 @@ export type RequestQueryAppointmentDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type AppointmentAvailableSlotsRangeResourceMeta = {
@@ -306,7 +307,11 @@ export type AppointmentDefinitionBookingQuestionnaireInput = {
   questions?: AppointmentDefinitionBookingQuestionnaireQuestionInput[]
 }
 
+export type RequestCreateAppointmentDefinitionNormalHour = AppointmentDefinitionNormalHoursItem
+
 export type RequestUpdateAppointmentDefinitionNormalHour = AppointmentDefinitionNormalHoursItem[]
+
+export type RequestCreateAppointmentDefinitionSpecialHour = AppointmentDefinitionSpecialHoursItem
 
 export type AppointmentAvailableSlotsRangeResource = {
   data: string[]

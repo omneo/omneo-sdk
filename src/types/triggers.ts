@@ -33,6 +33,7 @@ export type RequestQueryTrigger = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Trigger = {

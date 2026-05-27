@@ -49,6 +49,7 @@ export type RequestQueryRating = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestUpdateRating = {

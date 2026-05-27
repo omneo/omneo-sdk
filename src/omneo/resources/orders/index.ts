@@ -18,7 +18,8 @@ export default class Orders extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/orders',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

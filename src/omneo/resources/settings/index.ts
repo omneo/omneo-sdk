@@ -6,7 +6,8 @@ export default class Settings extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/settings',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
@@ -55,7 +56,7 @@ export default class Settings extends Resource {
       method: 'get',
       endpoint: '/settings/environment'
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

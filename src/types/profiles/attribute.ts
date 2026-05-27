@@ -1,7 +1,7 @@
 import type { AnyJsonRecord, AnyRecord, FilterOperator } from '../common'
-import type { PaginationLink, PaginationMeta } from '../pagination'
 import type { Profile } from './profile'
 import type { CustomFieldTypeEnum } from '../custom-fields'
+import type { PaginationLink, PaginationMeta } from '../pagination'
 
 export type ProfileAttributesComms = {
   email_consent_updated_at?: string | null
@@ -114,6 +114,7 @@ export type RequestQueryCustomAttribute = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type ProfileAppearanceAttribute = {

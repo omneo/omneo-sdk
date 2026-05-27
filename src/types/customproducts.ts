@@ -52,6 +52,7 @@ export type RequestQueryCustomProduct = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type CustomProduct = {

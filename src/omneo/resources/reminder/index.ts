@@ -6,7 +6,8 @@ export default class Reminders extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/reminders',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

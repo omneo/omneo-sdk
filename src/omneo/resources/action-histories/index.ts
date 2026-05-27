@@ -6,7 +6,8 @@ export default class ActionHistories extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/action-history',
-      params
+      params,
+      flattenParams: true
     })
   }
 

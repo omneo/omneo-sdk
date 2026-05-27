@@ -51,6 +51,7 @@ export type RequestQueryInteraction = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Interaction = {

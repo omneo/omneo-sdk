@@ -61,6 +61,7 @@ export type RequestQueryDepartment = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Department = {

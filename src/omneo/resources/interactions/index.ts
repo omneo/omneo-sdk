@@ -15,7 +15,8 @@ export default class Interactions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/interactions',
-      params
+      params,
+      flattenParams: true
     })
   }
 

@@ -15,7 +15,8 @@ export default class TierDefinitions extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/tiers/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 

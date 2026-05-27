@@ -15,7 +15,8 @@ export default class Connections extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/connections',
-      params
+      params,
+      flattenParams: true
     })
   }
 

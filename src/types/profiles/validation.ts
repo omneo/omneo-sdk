@@ -52,6 +52,7 @@ export type RequestQueryProfileValidationRule = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ProfileValidationRuleValue = {

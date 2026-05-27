@@ -151,6 +151,7 @@ export type RequestQueryTransaction = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryTransactionItem = {
@@ -185,6 +186,7 @@ export type RequestQueryTransactionItem = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type TransactionRedemption = {

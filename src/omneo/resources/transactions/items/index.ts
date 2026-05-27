@@ -6,7 +6,8 @@ export default class TransactionItems extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/transactions/:transactionsId/items',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

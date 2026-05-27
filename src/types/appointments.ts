@@ -66,6 +66,7 @@ export type RequestQueryAppointment = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type AppointmentTransactionSummary = {

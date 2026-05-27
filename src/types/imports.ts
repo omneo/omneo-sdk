@@ -57,6 +57,7 @@ export type RequestQueryImport = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryImportJob = {
@@ -79,6 +80,7 @@ export type RequestQueryImportJob = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ImportJob = {
@@ -108,7 +110,7 @@ export type BatchImportJobJsonItem = {
   status: ImportJobStatus
 }
 
-export type RequestExportImportJobRequest = {
+export type RequestExportImportJob = {
   status: ImportJobStatus
 }
 
@@ -144,6 +146,8 @@ export type ImportJobResponse = {
 export type RequestBatchImportJobJson = {
   jobs: BatchImportJobJsonItem[] | null
 }
+
+export type RequestCreateImportJob = BatchImportJobJsonItem
 
 export type ImportResponse = {
   data: Import[]

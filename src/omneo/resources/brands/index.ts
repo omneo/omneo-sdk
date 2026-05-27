@@ -15,7 +15,8 @@ export default class Brands extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/brands',
-      params
+      params,
+      flattenParams: true
     })
   }
 

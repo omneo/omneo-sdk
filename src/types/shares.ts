@@ -64,6 +64,7 @@ export type RequestQueryShare = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Share = {

@@ -15,7 +15,8 @@ export default class Targets extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/targets',
-      params
+      params,
+      flattenParams: true
     })
   }
 

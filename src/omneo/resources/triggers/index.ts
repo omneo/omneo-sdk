@@ -18,7 +18,8 @@ export default class Triggers extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/triggers',
-      params
+      params,
+      flattenParams: true
     })
   }
 

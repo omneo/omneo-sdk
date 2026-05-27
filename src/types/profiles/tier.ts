@@ -1,5 +1,5 @@
 import type { TierDefinition } from '../tiers'
-export type RequestAssignProfileTierRequest = {
+export type RequestAssignProfileTier = {
   tier: string
 }
 

@@ -29,6 +29,7 @@ export type RequestQueryProductList = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ProductListResponse = {

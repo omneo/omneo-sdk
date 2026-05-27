@@ -91,6 +91,7 @@ export type RequestQueryQuestionnaire = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type QuestionnaireQuestion = {

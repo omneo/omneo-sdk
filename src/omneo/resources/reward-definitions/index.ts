@@ -15,7 +15,8 @@ export default class RewardDefinitions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/rewards/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 

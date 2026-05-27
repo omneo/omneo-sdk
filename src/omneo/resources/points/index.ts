@@ -15,7 +15,8 @@ export default class Points extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/points',
-      params
+      params,
+      flattenParams: true
     })
   }
 

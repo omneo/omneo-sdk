@@ -1,7 +1,7 @@
 import type { AnyJsonRecord } from '../common'
-import type { PaginationLink, PaginationMeta } from '../pagination'
 import type { CustomFieldItem } from '../custom-fields'
 import type { ProductListItem, ProductListReservationNested } from '../list'
+import type { PaginationLink, PaginationMeta } from '../pagination'
 export type RequestCreateCustomProductListItem = {
   barcode?: string | null
   currency?: string | null

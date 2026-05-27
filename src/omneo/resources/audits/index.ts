@@ -15,7 +15,8 @@ export default class Audits extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/audits',
-      params
+      params,
+      flattenParams: true
     })
   }
 

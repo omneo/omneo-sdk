@@ -6,7 +6,8 @@ export default class Shares extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/shares',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

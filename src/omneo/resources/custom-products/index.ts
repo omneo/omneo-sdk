@@ -6,7 +6,8 @@ export default class CustomProducts extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/customProducts',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

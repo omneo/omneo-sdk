@@ -18,6 +18,7 @@ export type RequestQuerySystem = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type System = {

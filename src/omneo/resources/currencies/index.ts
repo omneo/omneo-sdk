@@ -6,7 +6,8 @@ export default class Currencies extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/currencies',
-      params
+      params,
+      flattenParams: true
     })
   }
 

@@ -15,7 +15,8 @@ export default class Systems extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/systems',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

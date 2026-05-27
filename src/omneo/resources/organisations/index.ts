@@ -9,7 +9,8 @@ export default class Organisations extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/organisations',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

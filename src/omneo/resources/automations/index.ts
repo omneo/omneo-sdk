@@ -18,7 +18,8 @@ export default class Automations extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/automations',
-      params
+      params,
+      flattenParams: true
     })
   }
 

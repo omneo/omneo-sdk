@@ -6,7 +6,8 @@ export default class Allocations extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/allocations',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

@@ -134,6 +134,7 @@ export type RequestQueryOrder = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryOrderItem = {
@@ -166,6 +167,7 @@ export type RequestQueryOrderItem = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type OrderRedemption = {

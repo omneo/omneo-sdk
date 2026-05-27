@@ -89,6 +89,7 @@ export type RequestQueryBenefit = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryBenefitDefinition = {
@@ -155,6 +156,7 @@ export type RequestQueryBenefitDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type BenefitBatchJsonResponse = {

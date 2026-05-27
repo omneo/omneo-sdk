@@ -6,7 +6,8 @@ export default class TenantCustomFields extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/tenants/custom-fields',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

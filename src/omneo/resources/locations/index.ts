@@ -18,7 +18,8 @@ export default class Locations extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/locations',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

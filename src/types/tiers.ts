@@ -96,6 +96,7 @@ export type RequestQueryTierDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryTierPoint = {
@@ -122,6 +123,7 @@ export type RequestQueryTierPoint = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type TierDefinition = {

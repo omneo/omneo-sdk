@@ -115,6 +115,7 @@ export type RequestQueryRate = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Rate = {
@@ -147,10 +148,6 @@ export type Rate = {
   updated_at: string
 }
 
-export type RateCalculateResponse = {
-  total: number
-}
-
 export type EstimatedRate = {
   name: string
   handle: string
@@ -160,6 +157,10 @@ export type EstimatedRate = {
   region_id: number | null
   country_iso_2: string | null
   priority: number
+}
+
+export type RateCalculateResponse = {
+  total: number
 }
 
 export type RateResponse = {

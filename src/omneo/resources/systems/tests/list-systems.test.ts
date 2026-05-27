@@ -13,7 +13,7 @@ const omneo = new Omneo({
 
 describe('Systems list', () => {
   test('SDK can list systems.', async () => {
-    const sdkSystemList = await omneo.systems.list()
+    const { data: sdkSystemList } = await omneo.systems.list()
     expect(Array.isArray(sdkSystemList)).toBe(true)
   })
 

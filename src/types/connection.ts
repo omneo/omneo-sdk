@@ -43,6 +43,7 @@ export type RequestQueryConnectionDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestCreateConnectionDefinition = {

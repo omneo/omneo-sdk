@@ -15,7 +15,8 @@ export default class ListDefinitions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/lists/definitions',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

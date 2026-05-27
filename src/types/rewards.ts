@@ -73,6 +73,7 @@ export type RequestQueryReward = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryRewardDefinition = {
@@ -122,6 +123,7 @@ export type RequestQueryRewardDefinition = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RewardBatchJsonResponse = {

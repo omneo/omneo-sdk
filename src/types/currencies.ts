@@ -34,6 +34,7 @@ export type RequestQueryCurrency = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Currency = {

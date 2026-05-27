@@ -1,6 +1,6 @@
 import type { AnyJsonRecord, FilterOperator, ImageSortItem } from '../common'
-import type { PaginationLink, PaginationMeta } from '../pagination'
 import type { ProductOption } from '../products'
+import type { PaginationLink, PaginationMeta } from '../pagination'
 
 export type RequestClaimTransaction = {
   profile_id: string
@@ -31,6 +31,7 @@ export type RequestQueryTransactionClaim = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type TransactionClaim = {

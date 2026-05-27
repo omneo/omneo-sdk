@@ -1,5 +1,5 @@
 import type { Currency } from '../currencies'
-export type RequestShowProfileBalanceRequest = {
+export type RequestShowProfileBalance = {
   currency?: string
 }
 

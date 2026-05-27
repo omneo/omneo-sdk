@@ -30,6 +30,7 @@ export type RequestQueryRegion = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Region = {

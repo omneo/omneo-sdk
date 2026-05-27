@@ -24,6 +24,7 @@ export type RequestQueryTag = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type TagOriginal = {

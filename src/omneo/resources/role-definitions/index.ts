@@ -15,7 +15,8 @@ export default class RoleDefinitions extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/roles/definitions',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

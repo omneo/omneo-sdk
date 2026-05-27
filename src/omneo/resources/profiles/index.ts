@@ -1,4 +1,4 @@
-import { CommsChannel, DelegationData, Profile, ProfileAvailabilityResponse, ProfileCommsAttribute, ProfileExistsResponse, ProfileResponse, RequestCheckAvailability, RequestCreateProfile, RequestExistsProfileRequest, RequestParams, RequestQueryProfile, RequestTriggerCustomEvent, RequestUpdateProfile, TransactionProductVariantResponse, UpdateProfileProfileTypeEnum } from '@types'
+import { CommsChannel, DelegationData, Profile, ProfileAvailabilityResponse, ProfileCommsAttribute, ProfileExistsResponse, ProfileResponse, RequestCheckAvailability, RequestCreateProfile, RequestExistsProfile, RequestParams, RequestQueryProfile, RequestTriggerCustomEvent, RequestUpdateProfile, TransactionProductVariantResponse, UpdateProfileProfileTypeEnum } from '@types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
@@ -67,7 +67,8 @@ export default class Profiles extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
@@ -201,7 +202,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  exists (body: RequestExistsProfileRequest): Promise<ProfileExistsResponse> {
+  exists (body: RequestExistsProfile): Promise<ProfileExistsResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/exists',

@@ -58,6 +58,7 @@ export type RequestQueryBrand = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type Brand = {

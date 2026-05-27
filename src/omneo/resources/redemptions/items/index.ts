@@ -6,7 +6,8 @@ export default class RedemptionItems extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/redemptions/items',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

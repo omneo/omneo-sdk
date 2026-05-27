@@ -11,7 +11,8 @@ export default class Transactions extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/transactions',
-      params
+      params,
+      flattenParams: true
     })
   }
 

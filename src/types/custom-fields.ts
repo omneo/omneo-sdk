@@ -34,6 +34,7 @@ export type RequestQueryCustomField = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type CustomFieldBatchJsonDeleteResponse = {

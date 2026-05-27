@@ -24,6 +24,7 @@ export type RequestQueryLedger = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type LedgerProfile = {

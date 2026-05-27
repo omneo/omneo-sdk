@@ -9,7 +9,8 @@ export default class Imports extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/imports',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

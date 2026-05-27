@@ -34,6 +34,7 @@ export type RequestQueryQuestion = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type QuestionVersion = {

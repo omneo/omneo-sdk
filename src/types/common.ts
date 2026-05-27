@@ -2,6 +2,8 @@ export type AnonymousResourceResponse = Record<string, unknown>
 
 export type AnyJsonRecord = { [key: string]: any }
 
+export type RequestAnyJson = Record<string, any>
+
 export type RequestNoBody = Record<never, never>
 
 export type RequestQuery = {
@@ -15,9 +17,8 @@ export type RequestQuery = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
-
-export type RequestRequest = Record<string, any>
 
 export type ApiResponseNoContent = void
 

@@ -1,5 +1,5 @@
-import type { PaginationLink, PaginationMeta } from '../pagination'
 import type { Profile } from './profile'
+import type { PaginationLink, PaginationMeta } from '../pagination'
 
 export type AchievementPointMeta = {
   user?: string

@@ -48,6 +48,7 @@ export type RequestQueryRedemption = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryRedemptionItem = {
@@ -74,6 +75,7 @@ export type RequestQueryRedemptionItem = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RedemptionLocation = {

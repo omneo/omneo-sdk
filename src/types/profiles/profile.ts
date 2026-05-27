@@ -1,5 +1,4 @@
 import type { AnyJsonRecord, CommsChannel, FilterOperator } from '../common'
-import type { PaginationLink, PaginationMeta } from '../pagination'
 import type { ProfileAchievement } from './achievement'
 import type { CreateProfileAttributes, ProfileCommsAttributes, ProfileCustomAttributesItem, CreateProfileDatesAttributesItem, ProfileAttributes, ProfileCustomAttribute, UpdateProfileAttributes, UpdateProfileDatesAttributesItem } from './attribute'
 import type { TriggerCustomEventExcluded } from './custom'
@@ -12,6 +11,7 @@ import type { Location } from '../locations'
 import type { ProfileOrganisation } from '../organisations'
 import type { Status } from '../statuses'
 import type { Tier } from '../tiers'
+import type { PaginationLink, PaginationMeta } from '../pagination'
 
 export type ProfileGenderEnum = 'male' | 'female' | 'withheld' | 'other'
 
@@ -22,17 +22,17 @@ export type RequestCheckAvailability = {
   mobile_phone?: string | null
 }
 
-export type RequestExistsProfileRequest = {
+export type RequestExistsProfile = {
   id: string
   type: string
 }
 
-export type RequestMergeProfileRequest = {
+export type RequestMergeProfile = {
   destination_profile_id: string
   source_profile_id: string
 }
 
-export type RequestSearchByIdProfileRequest = {
+export type RequestSearchByIdProfile = {
   id: string
   type: string
 }
@@ -86,7 +86,7 @@ export type RequestCreateProfileAchievement = {
   meta?: AnyJsonRecord | null
 }
 
-export type RequestSyncProfileRequest = {
+export type RequestSyncProfile = {
   since?: string
 }
 
@@ -219,6 +219,7 @@ export type RequestQueryProfile = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ProfilePreferredStaff = {

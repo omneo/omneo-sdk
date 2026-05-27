@@ -22,7 +22,8 @@ export default class Users extends Resource {
     return this.client.call({
       method: 'get',
       endpoint: '/users',
-      params
+      params,
+      flattenParams: true
     })
   }
 

@@ -19,6 +19,7 @@ export type RequestQuerySetting = {
     [key: string]: any
   }
   sort?: string
+  [key: string]: any
 }
 
 export type Setting = {

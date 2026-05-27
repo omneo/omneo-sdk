@@ -7,7 +7,7 @@ export type AutomationTypeEnum = 'date' | 'scheduled'
 
 export type AutomationFrequencyEnum = 'monthly' | 'weekly' | 'fortnightly' | 'daily'
 
-export type SampleAutomationQueryRequestArgumentsItem = {
+export type SampleAutomationQueryArgumentsItem = {
   name: string
   value: AnyJsonRecord | null
 }
@@ -58,6 +58,7 @@ export type RequestQueryAction = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type RequestQueryAutomation = {
@@ -89,6 +90,7 @@ export type RequestQueryAutomation = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type ActionArgument = {
@@ -106,8 +108,8 @@ export type AutomationQuerySampleResponse = {
   data: Record<string, any>[]
 }
 
-export type RequestSampleAutomationQueryRequest = {
-  arguments?: SampleAutomationQueryRequestArgumentsItem[]
+export type RequestSampleAutomationQuery = {
+  arguments?: SampleAutomationQueryArgumentsItem[]
   now?: string
   query: string
 }
@@ -153,7 +155,7 @@ export type Action = {
 
 export type RequestCreateAutomation = {
   actions?: CreateAutomationActionsItem[] | null
-  arguments?: SampleAutomationQueryRequestArgumentsItem[] | null
+  arguments?: SampleAutomationQueryArgumentsItem[] | null
   date?: string | null
   description?: string | null
   frequency?: AutomationFrequencyEnum | null

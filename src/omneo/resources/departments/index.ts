@@ -6,7 +6,8 @@ export default class Departments extends Resource {
     return this.client.call({
       method: 'GET',
       endpoint: '/departments',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })

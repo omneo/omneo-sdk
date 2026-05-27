@@ -39,6 +39,7 @@ export type RequestQueryWebhook = {
     size?: number
     number?: number
   }
+  [key: string]: any
 }
 
 export type WebhookBatchJsonResponse = {
