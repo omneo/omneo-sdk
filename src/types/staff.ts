@@ -38,4 +38,6 @@ export type RequestUpdateStaff = {
   staff_id?: string
   title?: string | null
 }
-export type StaffResponse = { data: Staff[]; }
+export type StaffResponse = {
+  data: Staff[]
+}

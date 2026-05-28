@@ -1,6 +1,6 @@
 // Route category: organisations
 
-import type { AnyJsonRecord, AnyRecord, FilterOperator } from './common'
+import type { AnyJsonRecord, AnyRecord, CustomFieldsGrouped, FilterOperator } from './common'
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { Location } from './locations'
 import type { CustomFieldItem } from './custom-fields'
@@ -51,23 +51,37 @@ export type RequestQueryOrganisation = {
   [key: string]: any
 }
 
-export type OrganisationCustomFields = {
-  [namespace: string]: {
-    [handle: string]:
-      | number
-      | string
-      | boolean
-      | any[]
-      | AnyJsonRecord
-      | null
-  }
-}
-
 export type ProfileOrganisationRoleDefinition = {
   id: number
   name: string | null
   handle: string | null
   description: string | null
+}
+
+export type Organisation = {
+  address: Address
+  authorised_domains: AnyJsonRecord | null
+  created_at: string | null
+  custom_fields: CustomFieldsGrouped
+  description: string | null
+  domain: string | null
+  email: string
+  handle: string | null
+  icon: string | null
+  id: number
+  image_url: string | null
+  is_active: boolean
+  is_tenant: boolean
+  locations: Location[]
+  meta: AnyRecord | null
+  name: string | null
+  notes: string | null
+  phone: string | null
+  secondary_phone: string | null
+  short_description: string | null
+  status: string | null
+  type: OrganisationTypeEnum
+  updated_at: string | null
 }
 
 export type RequestCreateOrganisation = {
@@ -113,32 +127,6 @@ export type RequestUpdateOrganisation = {
   short_description?: string | null
   status?: string | null
   type?: OrganisationTypeEnum
-}
-
-export type Organisation = {
-  address: Address
-  authorised_domains: AnyJsonRecord | null
-  created_at: string | null
-  custom_fields: OrganisationCustomFields
-  description: string | null
-  domain: string | null
-  email: string
-  handle: string | null
-  icon: string | null
-  id: number
-  image_url: string | null
-  is_active: boolean
-  is_tenant: boolean
-  locations: Location[]
-  meta: AnyRecord | null
-  name: string | null
-  notes: string | null
-  phone: string | null
-  secondary_phone: string | null
-  short_description: string | null
-  status: string | null
-  type: OrganisationTypeEnum
-  updated_at: string | null
 }
 
 export type ProfileOrganisation = {

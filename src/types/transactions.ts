@@ -1,6 +1,7 @@
 // Route category: transactions
 
-import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord, Timestamps } from './common'
+import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, ExternalIdNullableRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord, TimestampPivot } from './common'
+
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { CustomField, CustomFieldItem } from './custom-fields'
 import type { Location } from './locations'
@@ -195,11 +196,7 @@ export type TransactionRedemption = {
   total: number | null
   total_localised: number | null
   location_id: number | null
-  location: {
-    id: number
-    name: string | null
-    external_id: string | null
-  } | null
+  location: ExternalIdNullableRecord | null
   items: RedemptionItem[]
 }
 
@@ -433,7 +430,7 @@ export type TransactionItemProductListItem = {
   list: TransactionItemProductListItemList
     | []
   meta: AnyJsonRecord | null
-  pivot: Timestamps | []
+  pivot: TimestampPivot | []
   position: number | null
   product_list_id: number
   quantity: number | null
@@ -458,7 +455,7 @@ export type TransactionItem = {
   meta: AnyJsonRecord | null
   name: string | null
   order_id: number
-  pivot: Timestamps | []
+  pivot: TimestampPivot | []
   price_current: number | null
   price_margin: number | null
   price_original: number | null

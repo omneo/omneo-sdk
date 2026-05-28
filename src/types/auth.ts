@@ -18,42 +18,29 @@ export type DelegationDelegateResponse = {
   }
 }
 
-export type OauthAccessTokenForUserResponse = Array<{
-  id: string
-  user_id: number
-  client_id: number
-  name: string | null
-  scopes: string[]
-  revoked: boolean
+export type OauthAccessTokenUsage = {
+  id: number
+  access_token_id: string
+  last_used_at: string
   created_at: string | null
   updated_at: string | null
-  expires_at: string | null
-  client: {
-    id: number
-    personal_access_client: boolean
-    [key: string]: any
-  }
-  usage:
-    | {
-        id: number
-        access_token_id: string
-        last_used_at: string
-        created_at: string | null
-        updated_at: string | null
-      }
-    | never[]
-  user:
-    | {
-        id: number
-        name: string
-        email: string
-        throttle: number | null
-        deleted_at: string | null
-        created_at: string | null
-        updated_at: string | null
-      }
-    | never[]
-}>
+}
+
+export type OauthAccessTokenUser = {
+  id: number
+  name: string
+  email: string
+  throttle: number | null
+  deleted_at: string | null
+  created_at: string | null
+  updated_at: string | null
+}
+
+export type OauthAccessTokenClient = {
+  id: number
+  personal_access_client: boolean
+  [key: string]: any
+}
 
 export type DiscoveryIssueResponse = {
   data: {
@@ -73,6 +60,21 @@ export type PersonalAccessToken = {
   expires_at: string | null
 }
 
+export type OauthAccessTokenForUserResponse = {
+  id: string
+  user_id: number
+  client_id: number
+  name: string | null
+  scopes: string[]
+  revoked: boolean
+  created_at: string | null
+  updated_at: string | null
+  expires_at: string | null
+  client: OauthAccessTokenClient
+  usage: OauthAccessTokenUsage | never[]
+  user: OauthAccessTokenUser | never[]
+}[]
+
 export type PersonalAccessTokenForUserResponse = PersonalAccessToken[]
 
 export type PersonalAccessTokenWithSecret = PersonalAccessToken & {
@@ -80,7 +82,7 @@ export type PersonalAccessTokenWithSecret = PersonalAccessToken & {
   token: PersonalAccessToken
 }
 
-export type PersonalAccessTokenStoreResponse = PersonalAccessTokenWithSecret
+export type PersonalAccessTokenResponse = PersonalAccessTokenWithSecret
 
 export type APIScopes =
   | 'read-audits'

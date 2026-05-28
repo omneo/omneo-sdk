@@ -141,7 +141,7 @@ export type Rate = {
   product_conditions: AnyJsonRecord | null
   profile_conditions: AnyJsonRecord | null
   rate: number
-  region: NamedHandle | null
+  region: NamedHandle
   region_id: number
   start_time: string | null
   type: string | null
@@ -169,7 +169,7 @@ export type RateResponse = {
   links?: PaginationLink
 }
 
-export type RateSearchAttributesResponse = Array<Partial<Rate>>
+export type RateSearchAttributesResponse = Partial<Rate>[]
 
 export type RateEstimateProductRateResponse = {
   data: EstimatedRate | null

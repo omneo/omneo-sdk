@@ -51,7 +51,10 @@ export type TransactionClaim = {
   updated_at: string
 }
 
-export type TransactionProductVariantProduct = { refund_qty: number; purchase_qty: number }
+export type TransactionProductVariantProduct = {
+  refund_qty: number
+  purchase_qty: number
+}
 
 export type GroupedTransaction = {
   order_number: string | null
@@ -97,14 +100,14 @@ export type TransactionProductVariant = {
   web_url: string | null
 }
 
-export type ProfileTransactionIndexGroupResponse = {
+export type ProfileTransactionGroupResponse = {
   current_page: number
   data: GroupedTransaction[]
   first_page_url: string
   from: number | null
   last_page: number
   last_page_url: string
-  links: Array<{ url: string | null; label: string; active: boolean }>
+  links: PaginationLink[]
   next_page_url: string | null
   path: string
   per_page: number

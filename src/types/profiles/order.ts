@@ -1,4 +1,5 @@
 import type { Order } from '../orders'
+import type { PaginationLink } from '../pagination'
 export type ProfileGroupOrder = {
   order_number: string | null
   order_id: number
@@ -9,14 +10,14 @@ export type ProfileGroupOrder = {
   orders: Order[]
 }
 
-export type ProfileOrderIndexGroupResponse = {
+export type ProfileOrderGroupResponse = {
   current_page: number
   data: ProfileGroupOrder[]
   first_page_url: string
   from: number | null
   last_page: number
   last_page_url: string
-  links: Array<{ url: string | null; label: string; active: boolean }>
+  links: PaginationLink[]
   next_page_url: string | null
   path: string
   per_page: number

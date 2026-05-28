@@ -1,6 +1,6 @@
 // Route category: appointments
 
-import type { AnyJsonRecord, AnyRecord, FilterOperator, LocationWithTimezone, ProfileSummary } from './common'
+import type { AnyJsonRecord, AnyRecord, FilterOperator, LocationWithTimezone, NamedHandle, ProfileSummary } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { AppointmentDefinition } from './appointment-definitions'
@@ -92,9 +92,41 @@ export type AppointmentLinkItem = {
   target_id: string
   profile?: ProfileSummary | null
   linkable?:
-    | { id: number; name: string; handle: string; profile_id: string }
+    | {
+        id: number
+        name: string
+        handle: string
+        profile_id: string
+      }
     | { id: number }
     | null
+}
+
+export type AppointmentLocationFallbackItem = {
+  id: null
+  location_id: number
+  is_active: boolean
+}
+
+export type AppointmentBookingQuestionInfo = {
+  id: number
+  handle: string
+  name: string
+  link_type: string | null
+  link_target: string | null
+  link_write_policy: string | null
+}
+
+export type AppointmentBookingQuestionVersion = {
+  id: number
+  version: string
+  label: string
+  description: string | null
+  help_text: string
+  type: string | null
+  options: AnyJsonRecord | null
+  validation: AnyJsonRecord | null
+  default_value: AnyJsonRecord | null
 }
 
 export type QuestionnaireAnswer = {
@@ -160,6 +192,24 @@ export type RequestUpdateAppointment = {
   transaction?: AppointmentTransaction
 }
 
+export type AppointmentLocationItem = | NamedHandle
+  | AppointmentLocationFallbackItem
+
+export type AppointmentBookingQuestion = {
+  id: number
+  questionnaire_question_id: number
+  question_id: number
+  question_version_id: number
+  mapping_key: string
+  sort_order: number | null
+  is_required: boolean
+  visibility_condition: AnyJsonRecord | null
+  visibility_dependencies: string[]
+  is_active: boolean
+  question: AppointmentBookingQuestionInfo | null
+  version: AppointmentBookingQuestionVersion | null
+}
+
 export type Appointment = {
   answers: QuestionnaireAnswer[]
   appointment_definition: AppointmentDefinition | null
@@ -194,6 +244,14 @@ export type Appointment = {
   transaction: AppointmentTransactionSummary | null
   transaction_id: number | null
   updated_at: string
+}
+
+export type AppointmentBookingQuestionnaire = {
+  id: number
+  name: string | null
+  purpose: string
+  is_active: boolean
+  questions: AppointmentBookingQuestion[]
 }
 
 export type AppointmentResponse = {

@@ -1,4 +1,4 @@
-import { RequestParams, Order, OrderResponse, ProfileOrderIndexGroupResponse } from '@types'
+import { RequestParams, Order, OrderResponse, ProfileOrderGroupResponse } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileOrders extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileOrders extends Resource {
     })
   }
 
-  listGroup (): Promise<ProfileOrderIndexGroupResponse> {
+  listGroup (): Promise<ProfileOrderGroupResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/group_orders'

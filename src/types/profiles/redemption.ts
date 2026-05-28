@@ -7,7 +7,7 @@ export type RedemptionProfile = {
   statuses: string[]
 }
 
-export type ProfileRedemptionIndexLinkedResponse = {
+export type ProfileRedemptionLinkedResponse = {
   data: Redemption[]
 }
 

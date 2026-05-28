@@ -90,7 +90,7 @@ export type RequestUpdateProfileAppearanceAttribute = {
   skin_type?: string | null
 }
 
-export type ProfileCommsAttributeSmsVerificationEnum = 'not_sent' | 'sent' | 'delivered' | 'undelivered' | 'failed' | 'verified'
+export type ProfileCommsVerificationEnum = 'not_sent' | 'sent' | 'delivered' | 'undelivered' | 'failed' | 'verified'
 
 export type ProfileDatesAttributeLinksItem = {
   profile_id: string
@@ -211,7 +211,7 @@ export type CreateProfileAttributes = {
 export type UpdateProfileAttributes = {
   appearance?: AnyJsonRecord | null
   comms?: ProfileAttributesComms | null
-  dates?: string[] | null
+  dates?: AnyJsonRecord | null
 }
 
 export type RequestUpdateProfileCommsAttribute = {
@@ -227,7 +227,7 @@ export type RequestUpdateProfileCommsAttribute = {
   email_promo?: boolean
   email_reminders?: boolean
   email_service?: boolean
-  email_verification?: ProfileCommsAttributeSmsVerificationEnum
+  email_verification?: ProfileCommsVerificationEnum
   phone_account?: boolean
   phone_benefits?: boolean
   phone_bookings?: boolean
@@ -239,7 +239,7 @@ export type RequestUpdateProfileCommsAttribute = {
   phone_promo?: boolean
   phone_reminders?: boolean
   phone_service?: boolean
-  phone_verification?: ProfileCommsAttributeSmsVerificationEnum
+  phone_verification?: ProfileCommsVerificationEnum
   post_account?: boolean
   post_benefits?: boolean
   post_bookings?: boolean
@@ -251,7 +251,7 @@ export type RequestUpdateProfileCommsAttribute = {
   post_promo?: boolean
   post_reminders?: boolean
   post_service?: boolean
-  post_verification?: ProfileCommsAttributeSmsVerificationEnum
+  post_verification?: ProfileCommsVerificationEnum
   push_account?: boolean
   push_benefits?: boolean
   push_bookings?: boolean
@@ -275,7 +275,7 @@ export type RequestUpdateProfileCommsAttribute = {
   sms_promo?: boolean
   sms_reminders?: boolean
   sms_service?: boolean
-  sms_verification?: ProfileCommsAttributeSmsVerificationEnum
+  sms_verification?: ProfileCommsVerificationEnum
   terms_accepted_at?: string | null
   terms_accepted_version?: string | null
 }
@@ -305,7 +305,7 @@ export type ProfileCommsAttribute = {
   email_reminders_raw: number | null
   email_service: boolean
   email_service_raw: number | null
-  email_verification: ProfileCommsAttributeSmsVerificationEnum
+  email_verification: ProfileCommsVerificationEnum
   phone_account: boolean
   phone_account_raw: number | null
   phone_benefits: boolean
@@ -328,7 +328,7 @@ export type ProfileCommsAttribute = {
   phone_reminders_raw: number | null
   phone_service: boolean
   phone_service_raw: number | null
-  phone_verification: ProfileCommsAttributeSmsVerificationEnum
+  phone_verification: ProfileCommsVerificationEnum
   post_account: boolean
   post_account_raw: number | null
   post_benefits: boolean
@@ -351,7 +351,7 @@ export type ProfileCommsAttribute = {
   post_reminders_raw: number | null
   post_service: boolean
   post_service_raw: number | null
-  post_verification: ProfileCommsAttributeSmsVerificationEnum
+  post_verification: ProfileCommsVerificationEnum
   profile_id: string
   push_account: boolean
   push_account_raw: number | null
@@ -398,7 +398,7 @@ export type ProfileCommsAttribute = {
   sms_reminders_raw: number | null
   sms_service: boolean
   sms_service_raw: number | null
-  sms_verification: ProfileCommsAttributeSmsVerificationEnum
+  sms_verification: ProfileCommsVerificationEnum
   terms_accepted_at: string | null
   terms_accepted_version: string | null
   updated_at: string
@@ -475,12 +475,6 @@ export type ProfileDatesAttributeResponse = {
 }
 
 export type ProfileAttributes = {
-  comms: ProfileCommsAttribute
-  appearance: ProfileAppearanceAttribute
-  dates: ProfileDatesAttribute[]
-}
-
-export type ProfileWithoutIdentityAttributes = {
   comms: ProfileCommsAttribute
   appearance: ProfileAppearanceAttribute
   dates: ProfileDatesAttribute[]

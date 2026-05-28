@@ -1,6 +1,6 @@
 // Route category: connections
 
-import type { FilterOperator, AnyJsonRecord, AnyRecord } from './common'
+import type { FilterOperator, AnyJsonRecord, AnyRecord, CustomFieldsGrouped } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { ConnectionDefinition } from './connection'
@@ -62,7 +62,7 @@ export type ConnectionConnected = {
     comms?: ProfileCommsAttribute
     dates?: ProfileDatesAttribute[]
   }
-  custom_attributes?: { [namespace: string]: { [handle: string]: any } }
+  custom_attributes?: CustomFieldsGrouped
   identities?: Identity[]
 }
 
@@ -80,7 +80,7 @@ export type ConnectionConnector = {
     comms?: ProfileCommsAttribute
     dates?: ProfileDatesAttribute[]
   }
-  custom_attributes?: { [namespace: string]: { [handle: string]: any } }
+  custom_attributes?: CustomFieldsGrouped
   identities?: Identity[]
 }
 

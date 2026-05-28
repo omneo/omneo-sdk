@@ -1,4 +1,4 @@
-import { ProfileTransactionIndexGroupResponse, RequestParams, Transaction, TransactionItemResponse, TransactionItem, TransactionResponse } from '@types'
+import { ProfileTransactionGroupResponse, RequestParams, Transaction, TransactionItemResponse, TransactionItem, TransactionResponse } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileTransactions extends Resource {
@@ -34,7 +34,7 @@ export default class ProfileTransactions extends Resource {
     })
   }
 
-  getGrouped (profileID: string, params?: { pageSize?: number, pageNumber?: number }): Promise<ProfileTransactionIndexGroupResponse> {
+  getGrouped (profileID: string, params?: { pageSize?: number, pageNumber?: number }): Promise<ProfileTransactionGroupResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/group_transactions`,

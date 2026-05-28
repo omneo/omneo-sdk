@@ -112,7 +112,7 @@ export type ConnectionDefinition = {
   is_published: boolean
   meta: AnyRecord | null
   name: string | null
-  shareable_attributes: Array<keyof Profile>
+  shareable_attributes: keyof Profile[]
   short_description: string | null
   start_date_global: string | null
   tenant: string | null

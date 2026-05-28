@@ -1,6 +1,6 @@
 // Route category: roles
 
-import type { AnyRecord, FilterOperator, PeriodType } from './common'
+import type { AnyRecord, CustomFieldsGrouped, FilterOperator, PeriodType } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { Permission } from './permissions'
@@ -79,22 +79,10 @@ export type Role = {
   weight: number
 }
 
-export type RoleDefinitionCustomFields = {
-  [namespace: string]: {
-    [handle: string]: any
-  }
-}
-
-export type RoleResponse = {
-  data: Role[]
-  meta?: PaginationMeta
-  links?: PaginationLink
-}
-
 export type RoleDefinition = {
   absolute_expiry: string | null
   created_at: string | null
-  custom_fields: RoleDefinitionCustomFields
+  custom_fields: CustomFieldsGrouped
   description: string | null
   group_handle: string | null
   group_name: string | null
@@ -110,6 +98,12 @@ export type RoleDefinition = {
   short_description: string | null
   timezone: string | null
   updated_at: string | null
+}
+
+export type RoleResponse = {
+  data: Role[]
+  meta?: PaginationMeta
+  links?: PaginationLink
 }
 
 export type RoleDefinitionResponse = {

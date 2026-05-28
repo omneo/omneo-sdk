@@ -326,7 +326,7 @@ export type BenefitDefinition = {
   redeem_code_pos: string | null
   redeem_instructions_online: string | null
   redeem_instructions_store: string | null
-  region: NamedHandle | null
+  region: NamedHandle
   region_id: number
   remind_target_id: number
   same_campaign_count: number

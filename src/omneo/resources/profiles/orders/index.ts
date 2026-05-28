@@ -1,4 +1,4 @@
-import { RequestParams, Order, OrderResponse, ProfileOrderIndexGroupResponse } from '@types'
+import { RequestParams, Order, OrderResponse, ProfileOrderGroupResponse } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileOrders extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileOrders extends Resource {
     })
   }
 
-  listGroup (profileID: string, params?: RequestParams): Promise<ProfileOrderIndexGroupResponse> {
+  listGroup (profileID: string, params?: RequestParams): Promise<ProfileOrderGroupResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/group_orders`,

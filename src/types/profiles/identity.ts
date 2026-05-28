@@ -1,4 +1,4 @@
-import type { ProfileWithoutIdentityAttributes } from './attribute'
+import type { ProfileAttributes } from './attribute'
 import type { ProfileRegion } from './region'
 import type { Address } from '../address'
 import type { Location } from '../locations'
@@ -21,7 +21,7 @@ export type RequestUpdateIdentity = {
 export type ProfileWithoutIdentity = {
   address: Address
   addresses: Address[]
-  attributes: ProfileWithoutIdentityAttributes
+  attributes: ProfileAttributes
   avatar_url: string | null
   benefit_balance: string
   birth_date: string | null

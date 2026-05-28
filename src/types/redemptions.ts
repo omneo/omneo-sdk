@@ -1,6 +1,6 @@
 // Route category: redemptions
 
-import type { FilterOperator, AnyJsonRecord } from './common'
+import type { FilterOperator, AnyJsonRecord, ExternalIdNullableRecord } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { RedemptionProfile } from './profiles'
@@ -95,29 +95,21 @@ export type RedemptionTransaction = {
   receipt_ref: string | null
   transacted_at: string | null
   total: number | null
-  location: {
-    id: number
-    name: string | null
-    external_id: string | null
-  } | null
+  location: ExternalIdNullableRecord | null
 }
 
 export type RedemptionItemTypeEnum = 'reward' | 'point' | 'benefit' | 'credit'
 
-export type SuccessfulRedemption = {
-  balances: Balance
-  created_at: string
-  currency: Currency | null
+export type SuccessfulRedemptionLocation = {
   id: number
-  location: RedemptionLocation | null
-  location_id: number
-  meta: AnyJsonRecord | null
-  profile_id: string
-  total: number | null
-  total_localised: number | null
-  transaction_external_id: string
-  transaction_receipt_ref: string | null
-  updated_at: string
+  type: string | null
+  name: string | null
+  description: string | null
+  phone: string | null
+  email: string | null
+  external_id: string | null
+  is_published: boolean
+  is_permanently_closed: boolean
 }
 
 export type RedemptionItem = {
@@ -128,6 +120,22 @@ export type RedemptionItem = {
   type_attributes: Credit | Benefit | Point | Reward | null
   updated_at: string
   value: number | null
+}
+
+export type SuccessfulRedemption = {
+  balances: Balance
+  created_at: string
+  currency: Currency | null
+  id: number
+  location: SuccessfulRedemptionLocation | null
+  location_id: number
+  meta: AnyJsonRecord | null
+  profile_id: string
+  total: number | null
+  total_localised: number | null
+  transaction_external_id: string
+  transaction_receipt_ref: string | null
+  updated_at: string
 }
 
 export type RedemptionItemResponse = {
@@ -160,9 +168,15 @@ export type RedemptionResponse = {
   links?: PaginationLink
 }
 
+export type RedemptionGroupByItem = Record<string, any> & {
+  redemptions: {
+    data: Redemption[]
+  }
+}
+
 export type RedemptionGroupByResponse = {
   current_page: number
-  data: Array<Record<string, any> & { redemptions: { data: Redemption[] } }>
+  data: RedemptionGroupByItem[]
   from: number
   last_page: number
   per_page: number

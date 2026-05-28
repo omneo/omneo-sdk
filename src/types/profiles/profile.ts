@@ -322,14 +322,11 @@ export type ProfileStatus = {
   updated_at: string
 }
 
-export type ProfileAvailabilityResponse = {
-  data: {
-    email: { available: boolean; profile: { id: string } | null } | null
-    mobile_phone: {
-      available: boolean
-      profile: { id: string } | null
-    } | null
-  }
+export type ProfileAvailabilityChannel = {
+  available: boolean
+  profile: {
+    id: string
+  } | null
 }
 
 export type ProfileSyncResponse = {
@@ -357,7 +354,7 @@ export type ProfileBatchResponse = {
   }
 }
 
-export type LocationProfileIndexByProfileResponse = {
+export type LocationProfileByProfileResponse = {
   data: LocationProfileResource[]
   meta?: PaginationMeta
   links?: PaginationLink
@@ -418,6 +415,13 @@ export type BatchProfileJsonItem = {
 
 export type RequestUpdateProfileType = {
   profile_type: ProfileTypeProfileTypeEnum
+}
+
+export type ProfileAvailabilityResponse = {
+  data: {
+    email: ProfileAvailabilityChannel | null
+    mobile_phone: ProfileAvailabilityChannel | null
+  }
 }
 
 export type RequestCreateProfile = {

@@ -1,4 +1,4 @@
-// Route category: {modelType}
+// Route category: savedfilter
 
 import type { AnyJsonRecord } from './common'
 

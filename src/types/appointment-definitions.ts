@@ -3,6 +3,7 @@
 import type { AnyJsonRecord, AnyRecord, FilterOperator, LocationHandle } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
+import type { AppointmentBookingQuestionnaire, AppointmentLocationItem } from './appointments'
 import type { Profile } from './profiles'
 
 export type RequestListAppointmentAvailableSlots = {
@@ -23,7 +24,7 @@ export type AppointmentDefinitionBookingTypeEnum = | 'instant'
   | 'approval_required'
   | 'walk_in_only'
 
-export type AppointmentDefinitionBookingQuestionnaireQuestionInput = {
+export type AppointmentQuestionnaireQuestionInput = {
   question_id?: number
   question_handle?: string
   question_version_id?: number | null
@@ -165,41 +166,6 @@ export type AppointmentAvailableSlotsResourceMeta = {
   max_concurrent_bookings: number | null
 }
 
-export type AppointmentDefinitionLocationItem = | { id: number; name: string; handle: string }
-  | { id: null; location_id: number; is_active: boolean }
-
-export type AppointmentDefinitionBookingQuestionnaireQuestion = {
-  id: number
-  questionnaire_question_id: number
-  question_id: number
-  question_version_id: number
-  mapping_key: string
-  sort_order: number | null
-  is_required: boolean
-  visibility_condition: AnyJsonRecord | null
-  visibility_dependencies: string[]
-  is_active: boolean
-  question: {
-    id: number
-    handle: string
-    name: string
-    link_type: string | null
-    link_target: string | null
-    link_write_policy: string | null
-  } | null
-  version: {
-    id: number
-    version: string
-    label: string
-    description: string | null
-    help_text: string
-    type: string | null
-    options: AnyJsonRecord | null
-    validation: AnyJsonRecord | null
-    default_value: AnyJsonRecord | null
-  } | null
-}
-
 export type AppointmentDefinitionLocation = {
   appointment_definition_id: number
   created_at: string
@@ -249,7 +215,7 @@ export type AppointmentQuestionnaireInfo = {
   id: number
   name: string
   purpose: string
-} | null
+}
 
 export type AppointmentQuestionVersion = {
   id: number
@@ -261,13 +227,13 @@ export type AppointmentQuestionVersion = {
   options: AnyJsonRecord | null
   validation: AnyJsonRecord | null
   default_value: string | null
-} | null
+}
 
 export type AppointmentQuestionInfo = {
   id: number
   handle: string
   name: string
-} | null
+}
 
 export type AppointmentAvailableStaff = {
   id: number
@@ -298,13 +264,13 @@ export type RequestListAppointmentAvailableSlotsRange = {
   start_date: string
 }
 
-export type AppointmentDefinitionBookingQuestionnaireInput = {
+export type AppointmentQuestionnaireInput = {
   name: string
   handle?: string | null
   description?: string | null
   is_active?: boolean
   meta?: AnyJsonRecord | null
-  questions?: AppointmentDefinitionBookingQuestionnaireQuestionInput[]
+  questions?: AppointmentQuestionnaireQuestionInput[]
 }
 
 export type RequestCreateAppointmentDefinitionNormalHour = AppointmentDefinitionNormalHoursItem
@@ -323,14 +289,6 @@ export type AppointmentAvailableSlotsResource = {
   meta: AppointmentAvailableSlotsResourceMeta
 }
 
-export type AppointmentDefinitionBookingQuestionnaire = {
-  id: number
-  name: string | null
-  purpose: string
-  is_active: boolean
-  questions: AppointmentDefinitionBookingQuestionnaireQuestion[]
-}
-
 export type AppointmentDefinitionLocationResponse = {
   data: AppointmentDefinitionLocation[]
 }
@@ -347,6 +305,54 @@ export type AppointmentDefinitionStaffResponse = {
   data: AppointmentDefinitionStaff[]
 }
 
+export type AppointmentDefinition = {
+  allow_customer_booking: boolean
+  allow_queue: boolean
+  allow_waitlist: boolean
+  allow_walk_in: boolean
+  booking_questionnaire: AppointmentBookingQuestionnaire | undefined
+  booking_type: AppointmentDefinitionBookingTypeEnum
+  buffer_after_minutes: number | null
+  buffer_before_minutes: number | null
+  cancelled_target_id: number
+  confirmed_target_id: number
+  created_at: string
+  created_target_id: number
+  customer_must_select_staff: boolean
+  description: string | null
+  duration_minutes: number | null
+  handle: string | null
+  has_booking_questionnaire: boolean
+  id: number
+  is_archived: boolean
+  is_published: boolean
+  locations: AppointmentLocationItem[]
+  max_advance_days: number | null
+  max_concurrent_bookings: number | null
+  meta: AnyRecord | null
+  min_lead_minutes: number | null
+  name: string | null
+  normal_hours: AppointmentDefinitionNormalHour[]
+  notify_cancelled_offset_days: number | null
+  notify_cancelled_offset_hours: number | null
+  notify_confirmed_offset_days: number | null
+  notify_confirmed_offset_hours: number | null
+  notify_created_offset_days: number | null
+  notify_created_offset_hours: number | null
+  notify_rejected_offset_days: number | null
+  notify_rejected_offset_hours: number | null
+  notify_reminder_offset_days: number | null
+  notify_reminder_offset_hours: number | null
+  rejected_target_id: number
+  reminder_target_id: number
+  requires_staff: boolean
+  slot_interval_minutes: number | null
+  special_hours: AppointmentDefinitionSpecialHour[]
+  staff: AppointmentDefinitionStaff[]
+  updated_at: string
+  use_staff_from_location: boolean
+}
+
 export type AppointmentQuestionnaireQuestion = {
   id: number
   questionnaire_question_id: number
@@ -361,8 +367,8 @@ export type AppointmentQuestionnaireQuestion = {
   visibility_condition: AnyJsonRecord | null
   visibility_dependencies: string[]
   is_active: boolean
-  question: AppointmentQuestionInfo
-  version: AppointmentQuestionVersion
+  question: AppointmentQuestionInfo | null
+  version: AppointmentQuestionVersion | null
   created_at: string
   updated_at: string
 }
@@ -377,7 +383,7 @@ export type RequestCreateAppointmentDefinition = {
   allow_queue?: boolean
   allow_waitlist?: boolean
   allow_walk_in?: boolean
-  booking_questionnaire?: AppointmentDefinitionBookingQuestionnaireInput
+  booking_questionnaire?: AppointmentQuestionnaireInput
   booking_type: AppointmentDefinitionBookingTypeEnum
   buffer_after_minutes?: number
   buffer_before_minutes?: number
@@ -421,7 +427,7 @@ export type RequestUpdateAppointmentDefinition = {
   allow_queue?: boolean
   allow_waitlist?: boolean
   allow_walk_in?: boolean
-  booking_questionnaire?: AppointmentDefinitionBookingQuestionnaireInput
+  booking_questionnaire?: AppointmentQuestionnaireInput
   booking_type?: AppointmentDefinitionBookingTypeEnum
   buffer_after_minutes?: number
   buffer_before_minutes?: number
@@ -460,63 +466,15 @@ export type RequestUpdateAppointmentDefinition = {
   use_staff_from_location?: boolean
 }
 
-export type AppointmentDefinition = {
-  allow_customer_booking: boolean
-  allow_queue: boolean
-  allow_waitlist: boolean
-  allow_walk_in: boolean
-  booking_questionnaire: AppointmentDefinitionBookingQuestionnaire | undefined
-  booking_type: AppointmentDefinitionBookingTypeEnum
-  buffer_after_minutes: number | null
-  buffer_before_minutes: number | null
-  cancelled_target_id: number
-  confirmed_target_id: number
-  created_at: string
-  created_target_id: number
-  customer_must_select_staff: boolean
-  description: string | null
-  duration_minutes: number | null
-  handle: string | null
-  has_booking_questionnaire: boolean
-  id: number
-  is_archived: boolean
-  is_published: boolean
-  locations: AppointmentDefinitionLocationItem[]
-  max_advance_days: number | null
-  max_concurrent_bookings: number | null
-  meta: AnyRecord | null
-  min_lead_minutes: number | null
-  name: string | null
-  normal_hours: AppointmentDefinitionNormalHour[]
-  notify_cancelled_offset_days: number | null
-  notify_cancelled_offset_hours: number | null
-  notify_confirmed_offset_days: number | null
-  notify_confirmed_offset_hours: number | null
-  notify_created_offset_days: number | null
-  notify_created_offset_hours: number | null
-  notify_rejected_offset_days: number | null
-  notify_rejected_offset_hours: number | null
-  notify_reminder_offset_days: number | null
-  notify_reminder_offset_hours: number | null
-  rejected_target_id: number
-  reminder_target_id: number
-  requires_staff: boolean
-  slot_interval_minutes: number | null
-  special_hours: AppointmentDefinitionSpecialHour[]
-  staff: AppointmentDefinitionStaff[]
-  updated_at: string
-  use_staff_from_location: boolean
-}
-
-export type AppointmentDefinitionQuestionsResponse = {
-  data: {
-    questionnaire: AppointmentQuestionnaireInfo
-    questions: AppointmentQuestionnaireQuestion[]
-  }
-}
-
 export type AppointmentDefinitionResponse = {
   data: AppointmentDefinition[]
   meta?: PaginationMeta
   links?: PaginationLink
+}
+
+export type AppointmentDefinitionQuestionsResponse = {
+  data: {
+    questionnaire: AppointmentQuestionnaireInfo | null
+    questions: AppointmentQuestionnaireQuestion[]
+  }
 }

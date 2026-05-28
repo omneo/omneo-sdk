@@ -1,6 +1,6 @@
 // Route category: orders
 
-import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord } from './common'
+import type { AnyJsonRecord, AnyRecord, CurrencyRate, DiscountRecord, EmailRecord, ExternalIdNullableRecord, FilterOperator, ImageSortItem, ProductVariantRecord, QuantityRecord } from './common'
 
 import type { PaginationLink, PaginationMeta } from './pagination'
 import type { CustomField, CustomFieldItem } from './custom-fields'
@@ -176,11 +176,7 @@ export type OrderRedemption = {
   total: number | null
   total_localised: number | null
   location_id: number | null
-  location: {
-    id: number
-    name: string | null
-    external_id: string | null
-  } | null
+  location: ExternalIdNullableRecord | null
   items: RedemptionItem[]
 }
 
@@ -368,8 +364,7 @@ export type OrderItem = {
   price_tax: number | null
   product?: OrderItemProduct
   product_id: number
-  product_images: ImageSortItem[]
-    | null
+  product_images: ImageSortItem[] | null
   product_variant?: ProductVariant
   product_variant_id: number
   quantity: number

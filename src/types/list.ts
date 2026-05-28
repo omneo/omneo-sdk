@@ -1,6 +1,6 @@
 // Route category: list
 
-import type { AnyJsonRecord, DiscountRecord, ImageSortItem, Timestamps } from './common'
+import type { AnyJsonRecord, DiscountRecord, ProfileSummary, TimestampPivot, ImageSortItem, TransactionSummary } from './common'
 import type { CustomProduct } from './customproducts'
 import type { ProductImageItem, ProductVariant } from './products'
 import type { Profile } from './profiles'
@@ -28,16 +28,32 @@ export type RequestUpdateProductListReservation = {
   timezone?: string | null
 }
 
-export type ListItemTransactionItemTransaction = {
-  transacted_at: string
-  receipt_ref: string | null
+export type ListItemTransactionItem = {
+  created_at: string
+  department: string | null
+  discounts: DiscountRecord | DiscountRecord[] | null
   external_id: string
-  profile: {
-    id: number
-    first_name: string | null
-    last_name: string | null
-    email: string
-  } | null
+  id: number
+  is_return: boolean
+  is_void: boolean
+  meta: AnyJsonRecord | null
+  name: string | null
+  order_id: number
+  pivot: TimestampPivot | []
+  price_current: number | null
+  price_margin: number | null
+  price_original: number | null
+  price_sell: number | null
+  price_tax: number | null
+  product_id: number
+  product_images: ImageSortItem[]
+  product_variant_id: number
+  quantity: number
+  sku: string | null
+  transaction?: TransactionSummary & { profile: ProfileSummary | null }
+  transaction_id: number
+  updated_at: string
+  variant_external_id: string
 }
 
 export type ProductListItemProduct = {
@@ -86,34 +102,6 @@ export type ProductListReservation = {
   quantity: number | null
   timezone: string | null
   updated_at: string
-}
-
-export type ListItemTransactionItem = {
-  created_at: string
-  department: string | null
-  discounts: DiscountRecord | DiscountRecord[] | null
-  external_id: string
-  id: number
-  is_return: boolean
-  is_void: boolean
-  meta: AnyJsonRecord | null
-  name: string | null
-  order_id: number
-  pivot: Timestamps | []
-  price_current: number | null
-  price_margin: number | null
-  price_original: number | null
-  price_sell: number | null
-  price_tax: number | null
-  product_id: number
-  product_images: ImageSortItem[]
-  product_variant_id: number
-  quantity: number
-  sku: string | null
-  transaction?: ListItemTransactionItemTransaction
-  transaction_id: number
-  updated_at: string
-  variant_external_id: string
 }
 
 export type ProductListItem = {

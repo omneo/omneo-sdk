@@ -28,8 +28,10 @@ export type System = {
   updated_at: string
 }
 
-export type SystemResponse = { data: System[] }
+export type SystemResponse = {
+  data: System[]
+}
 
-export type SystemStoreResponse = { data: System }
-
-export type SystemShowResponse = { data: System }
+export type SystemResponseItem = {
+  data: System
+}

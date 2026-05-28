@@ -31,7 +31,9 @@ export type CurrencyRate = {
 }
 
 export type CustomFieldsGrouped = {
-  [namespace: string]: { [handle: string]: any }
+  [namespace: string]: {
+    [handle: string]: any
+  }
 }
 
 export type DiscountRecord = {
@@ -41,6 +43,12 @@ export type DiscountRecord = {
 
 export type EmailRecord = {
   email: string
+}
+
+export type ExternalIdNullableRecord = {
+  id: number
+  name: string | null
+  external_id: string | null
 }
 
 export type ExternalIdRecord = {
@@ -58,6 +66,11 @@ export type FilterOperator = {
   lte?: string
   in?: string
   nullable?: 0 | 1
+}
+
+export type ImageSortItem = {
+  url: string
+  sort_order: number
 }
 
 export type PeriodType = | 'days'
@@ -89,15 +102,15 @@ export type QuantityRecord = {
   quantity: number
 }
 
+export type TimestampPivot = {
+  created_at: string
+  updated_at: string
+}
+
 export type TransactionSummary = {
   transacted_at: string
   receipt_ref: string | null
   external_id: string
-}
-
-export type ImageSortItem = {
-  url: string
-  sort_order: number
 }
 
 export type LocationHandle = {
@@ -122,8 +135,6 @@ export type NamedHandle = {
 export type PageSize = {
   size?: number
 }
-
-export type Timestamps = { created_at: string; updated_at: string }
 
 export type UserHandle = {
   id: number
