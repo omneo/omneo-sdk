@@ -1,4 +1,4 @@
-import { RequestParams, TierPointsResponse, TierProgress } from '@types'
+import { RequestParams, TierPointResponse, TierProgress } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileTiers extends Resource {
@@ -33,7 +33,7 @@ export default class ProfileTiers extends Resource {
     })
   }
 
-  points (params?: RequestParams): Promise<TierPointsResponse> {
+  points (params?: RequestParams): Promise<TierPointResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/profiles/me/tiers/points',

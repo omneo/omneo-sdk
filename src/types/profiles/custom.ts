@@ -1,0 +1,5 @@
+export type TriggerCustomEventExcluded = | 'aggregation.updated'
+  | 'profile.created'
+  | 'profile.deleted'
+  | 'profile.merged'
+  | 'profile.updated'

@@ -1,29 +1,28 @@
-import { RequestParams, System, SystemInput } from '@types'
+import { RequestCreateSystem, RequestQuerySystem, System, SystemResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Systems extends Resource {
-  get (id: number, params?: RequestParams): Promise<System> {
+  get (id: number): Promise<System> {
     return this.client.call({
       method: 'get',
-      endpoint: `/systems/${id}`,
-      params
+      endpoint: `/systems/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  // Non paginated response
-  list (params?: RequestParams): Promise<System[]> {
+  list (params?: RequestQuerySystem): Promise<SystemResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/systems',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
-  create (body: SystemInput): Promise<System> {
+  create (body: RequestCreateSystem): Promise<System> {
     return this.client.call({
       method: 'post',
       endpoint: '/systems',

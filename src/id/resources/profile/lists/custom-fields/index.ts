@@ -1,4 +1,4 @@
-import { CustomField, CustomFieldInput, UpdateCustomFieldInput, RequestParams } from '@types'
+import { CustomField, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileListCustomFields extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileListCustomFields extends Resource {
     })
   }
 
-  create (listID: number, body: CustomFieldInput): Promise<CustomField> {
+  create (listID: number, body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/me/lists/${listID}/custom-fields`,
@@ -31,7 +31,7 @@ export default class ProfileListCustomFields extends Resource {
     })
   }
 
-  update (listID: number, namespace: string, handle: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+  update (listID: number, namespace: string, handle: string, body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/lists/${listID}/custom-fields/${namespace}:${handle}`,

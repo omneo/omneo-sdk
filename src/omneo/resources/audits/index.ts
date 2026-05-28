@@ -1,26 +1,26 @@
-import { Audit, AuditResponse, CreateAuditInput, RequestParams, UpdateAuditInput } from '@types'
+import { RequestCreateAudit, RequestUpdateAudit, Audit, AuditResponse, RequestQueryAudit } from '@types'
 import Resource from '../resource.js'
 
 export default class Audits extends Resource {
-  get (id: number, params?: RequestParams): Promise<Audit> {
+  get (id: number): Promise<Audit> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/audits/${id}`,
-      params
+      endpoint: `/audits/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<AuditResponse> {
+  list (params?: RequestQueryAudit): Promise<AuditResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/audits',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: CreateAuditInput): Promise<Audit> {
+  create (body: RequestCreateAudit): Promise<Audit> {
     return this.client.call({
       method: 'POST',
       endpoint: '/audits',
@@ -30,7 +30,7 @@ export default class Audits extends Resource {
     })
   }
 
-  update (auditId: number, body: UpdateAuditInput): Promise<Audit> {
+  update (auditId: number, body: RequestUpdateAudit): Promise<Audit> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/audits/${auditId}`,

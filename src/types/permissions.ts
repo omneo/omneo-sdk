@@ -1,13 +1,15 @@
-import { PaginationResponse } from './pagination'
+// Route category: permissions
 
-export type PermissionType = 'create' | 'read' | 'update' | 'delete'
+import type { PaginationLink, PaginationMeta } from './pagination'
 
 export type Permission = {
+  handle: 'create' | 'read' | 'update' | 'delete' | null
   id: number
   name: string | null
-  handle: PermissionType
 }
 
-export type PermissionResponse = PaginationResponse & {
+export type PermissionResponse = {
   data: Permission[]
+  meta?: PaginationMeta
+  links?: PaginationLink
 }

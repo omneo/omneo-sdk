@@ -1,4 +1,4 @@
-import { Address, AddressInput, AddressUpdateInput, RequestParams, UpsertAddressInput } from '@types'
+import { Address, RequestUpdateAddress, RequestParams, RequestUpsertAddress } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAddresses extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileAddresses extends Resource {
     })
   }
 
-  create (profileID: string, body: AddressInput): Promise<Address> {
+  create (profileID: string, body: Address): Promise<Address> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/addresses`,
@@ -31,7 +31,7 @@ export default class ProfileAddresses extends Resource {
     })
   }
 
-  update (profileID: string, addressID: string, body: AddressUpdateInput): Promise<Address> {
+  update (profileID: string, addressID: string, body: RequestUpdateAddress): Promise<Address> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/addresses/${addressID}`,
@@ -50,7 +50,7 @@ export default class ProfileAddresses extends Resource {
     })
   }
 
-  upsert (profileID: string, body: UpsertAddressInput): Promise<Address> {
+  upsert (profileID: string, body: RequestUpsertAddress): Promise<Address> {
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileID}/addresses/upsert`,

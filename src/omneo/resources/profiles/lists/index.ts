@@ -1,4 +1,4 @@
-import { List, ListInput, RequestParams } from '@types'
+import { ProductList, RequestCreateProductList, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 import Items from './items'
 import CustomFields from './custom-fields'
@@ -11,7 +11,7 @@ export default class ProfileLists extends Resource {
   reservations = new Reservations(this.client)
   shares = new Shares(this.client)
 
-  get (profileID: string, listID: number): Promise<List> {
+  get (profileID: string, listID: number): Promise<ProductList> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/lists/${listID}`
@@ -20,7 +20,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  list (profileID: string, params?: RequestParams): Promise<List[]> {
+  list (profileID: string, params?: RequestParams): Promise<ProductList[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/lists`,
@@ -30,7 +30,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  create (profileID: ListInput): Promise<List> {
+  create (profileID: RequestCreateProductList): Promise<ProductList> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/lists`
@@ -39,7 +39,7 @@ export default class ProfileLists extends Resource {
     })
   }
 
-  update (profileID: string, listID: number, body: Partial<ListInput>): Promise<List> {
+  update (profileID: string, listID: number, body: Partial<RequestCreateProductList>): Promise<ProductList> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/lists/${listID}`,

@@ -1,8 +1,8 @@
-import { ProfileComms, ProfileCommsInput } from '@types'
+import { ProfileCommsAttribute, RequestUpdateProfileCommsAttribute } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesComms extends Resource {
-  get (): Promise<ProfileComms> {
+  get (): Promise<ProfileCommsAttribute> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/attributes/comms'
@@ -11,7 +11,7 @@ export default class ProfileAttributesComms extends Resource {
     })
   }
 
-  update (body: ProfileCommsInput): Promise<ProfileComms> {
+  update (body: RequestUpdateProfileCommsAttribute): Promise<ProfileCommsAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: '/profiles/me/attributes/comms',

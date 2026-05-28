@@ -1,8 +1,8 @@
-import { OrderLedger, TransactionLedger } from '@types'
+import { Ledger, LedgerResponse } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileLedgers extends Resource {
-  get (profileID: string, ledgerID: number): Promise<(TransactionLedger | OrderLedger)> {
+  get (profileID: string, ledgerID: number): Promise<(LedgerResponse | Ledger)> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/ledgers/${ledgerID}`
@@ -11,7 +11,7 @@ export default class ProfileLedgers extends Resource {
     })
   }
 
-  list (profileID: string): Promise<(TransactionLedger | OrderLedger)[]> {
+  list (profileID: string): Promise<(LedgerResponse | Ledger)[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/ledgers`

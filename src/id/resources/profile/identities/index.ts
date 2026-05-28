@@ -1,4 +1,4 @@
-import { Identity, IdentityInput, Profile, RequestParams } from '@types'
+import { Identity, Profile, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileIdentities extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  create (body: IdentityInput): Promise<Identity> {
+  create (body: Identity): Promise<Identity> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/identities',
@@ -31,7 +31,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  update (handle: string, body: Partial<IdentityInput>): Promise<Identity> {
+  update (handle: string, body: Partial<Identity>): Promise<Identity> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/identities/${handle}`,
@@ -59,7 +59,7 @@ export default class ProfileIdentities extends Resource {
     })
   }
 
-  updateByID (id: number, body: Partial<IdentityInput>): Promise<Identity> {
+  updateByID (id: number, body: Partial<Identity>): Promise<Identity> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/me/identities/id/${id}`,

@@ -1,8 +1,8 @@
-import { RequestParams, CreateStaffInput, Staff, StaffResponse, UpdateStaffInput } from '@types'
+import { Staff, StaffResponse, RequestCreateStaff, RequestUpdateStaff, RequestQueryProfile } from '@types'
 import Resource from '../resource.js'
 
 export default class Staffs extends Resource {
-  list (handle: string, params?: RequestParams): Promise<StaffResponse> {
+  list (handle: string, params?: RequestQueryProfile): Promise<StaffResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/staff/${handle}`,
@@ -12,7 +12,7 @@ export default class Staffs extends Resource {
     })
   }
 
-  create (body: CreateStaffInput): Promise<Staff> {
+  create (body: RequestCreateStaff): Promise<Staff> {
     return this.client.call({
       method: 'POST',
       endpoint: '/staff',
@@ -22,7 +22,7 @@ export default class Staffs extends Resource {
     })
   }
 
-  update (staffId: number, body: UpdateStaffInput): Promise<Staff> {
+  update (staffId: number, body: RequestUpdateStaff): Promise<Staff> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/staff/${staffId}`,

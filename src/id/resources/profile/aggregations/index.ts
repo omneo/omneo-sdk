@@ -1,8 +1,8 @@
-import { RequestParams, Aggregations } from '@types'
+import { RequestParams, ProfileAggregation } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAggregations extends Resource {
-  list (params?: RequestParams): Promise<Aggregations> {
+  list (params?: RequestParams): Promise<ProfileAggregation> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/aggregations',
@@ -12,7 +12,7 @@ export default class ProfileAggregations extends Resource {
     })
   }
 
-  calculate (params?: RequestParams): Promise<Aggregations> {
+  calculate (params?: RequestParams): Promise<ProfileAggregation> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/aggregations/calculate',

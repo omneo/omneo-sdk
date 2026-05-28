@@ -1,8 +1,8 @@
-import { ProfileAchievementPoint, CreateProfileAchievementInput, ProfileAchievementPointsResponse, ProfileAchievementsResponse, RequestParams } from '@types'
+import { ProfileAchievementPointResponse, ProfileAchievement, RequestParams, RequestCreateProfileAchievement, AchievementPoint } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAchievements extends Resource {
-  getPoints (profileId: string, achievementDefinitionId: number): Promise<ProfileAchievementPointsResponse> {
+  getPoints (profileId: string, achievementDefinitionId: number): Promise<ProfileAchievementPointResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileId}/achievements/${achievementDefinitionId}/achievement-points`
@@ -12,7 +12,7 @@ export default class ProfileAchievements extends Resource {
     })
   }
 
-  list (profileId: string, params?: RequestParams): Promise<ProfileAchievementsResponse['data']> {
+  list (profileId: string, params?: RequestParams): Promise<ProfileAchievement[]> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileId}/achievements`,
@@ -23,7 +23,7 @@ export default class ProfileAchievements extends Resource {
     })
   }
 
-  create (profileId: string, body: CreateProfileAchievementInput): Promise<ProfileAchievementPoint> {
+  create (profileId: string, body: RequestCreateProfileAchievement): Promise<AchievementPoint> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileId}/achievements`,

@@ -1,26 +1,26 @@
-import { RequestParams, TierPoint, TierPointsResponse, CreateTierPointInput } from '@types'
+import { RequestCreateTierPoint, RequestQueryTierPoint, TierPoint, TierPointResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class TierPoints extends Resource {
-  get (id: number, params?: RequestParams): Promise<TierPoint> {
+  get (id: number): Promise<TierPoint> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/tiers/points/${id}`,
-      params
+      endpoint: `/tiers/points/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<TierPointsResponse> {
+  list (params?: RequestQueryTierPoint): Promise<TierPointResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/tiers/points',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: CreateTierPointInput): Promise<TierPoint> {
+  create (body: RequestCreateTierPoint): Promise<TierPoint> {
     return this.client.call({
       method: 'POST',
       endpoint: '/tiers/points',

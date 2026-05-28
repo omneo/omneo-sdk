@@ -1,5 +1,5 @@
 
-import { ProductList, ProductListResponse, RequestParams } from '@types'
+import { ProductList, ProductListResponse, RequestQueryProductList } from '@types'
 import Resource from '../resource.js'
 import ListItemReservations from './item-reservations/index.js'
 import ListShares from './shares/index.js'
@@ -17,7 +17,7 @@ export default class Lists extends Resource {
     })
   }
 
-  search (params: RequestParams): Promise<ProductListResponse> {
+  search (params: RequestQueryProductList): Promise<ProductListResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/product-lists/search',

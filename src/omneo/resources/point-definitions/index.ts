@@ -1,26 +1,26 @@
-import { RequestParams, PointDefinition, PointDefinitionResponse, UpdatePointDefinitionInput, CreatePointDefinitionInput } from '@types'
+import { PointDefinition, PointDefinitionResponse, RequestCreatePointDefinition, RequestQueryPointDefinition, RequestUpdatePointDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class PointDefinitions extends Resource {
-  get (id: number, params?: RequestParams): Promise<PointDefinition> {
+  get (id: number): Promise<PointDefinition> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/points/definitions/${id}`,
-      params
+      endpoint: `/points/definitions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<PointDefinitionResponse> {
+  list (params?: RequestQueryPointDefinition): Promise<PointDefinitionResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/points/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: CreatePointDefinitionInput): Promise<PointDefinition> {
+  create (body: RequestCreatePointDefinition): Promise<PointDefinition> {
     return this.client.call({
       method: 'POST',
       endpoint: '/points/definitions',
@@ -30,7 +30,7 @@ export default class PointDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: UpdatePointDefinitionInput): Promise<PointDefinition> {
+  update (id: number, body: RequestUpdatePointDefinition): Promise<PointDefinition> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/points/definitions/${id}`,

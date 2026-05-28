@@ -1,18 +1,4 @@
-import {
-  CommsChannel,
-  DelegationData,
-  Profile,
-  ProfileComms,
-  ProfileResponse,
-  Redeem,
-  RequestParams,
-  ProfileType,
-  ProfileBatchMatchCriteria,
-  ProfileInput,
-  TransactionProductVariantsResponse,
-  ExistsProfileInput,
-  TriggerProfileCustomEventInput
-} from '@types'
+import { CommsChannel, DelegationData, Profile, ProfileAvailabilityResponse, ProfileCommsAttribute, ProfileExistsResponse, ProfileResponse, RequestCheckAvailability, RequestCreateProfile, RequestExistsProfile, RequestParams, RequestQueryProfile, RequestTriggerCustomEvent, RequestUpdateProfile, TransactionProductVariantResponse, UpdateProfileProfileTypeEnum } from '@types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
@@ -68,27 +54,27 @@ export default class Profiles extends Resource {
   transactionClaims = new ProfileTransactionClaims(this.client)
   transactions = new ProfileTransactions(this.client)
 
-  get (id: string, params?: RequestParams): Promise<Profile> {
+  get (id: string): Promise<Profile> {
     return this.client.call({
       method: 'get',
-      endpoint: `/profiles/${id}`,
-      params
+      endpoint: `/profiles/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<ProfileResponse> {
+  list (params?: RequestQueryProfile): Promise<ProfileResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles',
-      params
-    }).then((response: any) => {
+      params,
+      flattenParams: true
+    }).then((response) => {
       return response
     })
   }
 
-  update (id: string, body: any, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
+  update (id: string, body: RequestUpdateProfile, options: { retryMobileSecondary?: Boolean } = {}): Promise<Profile> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${id}`,
@@ -132,7 +118,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  create (body: any, options: { retryMobileSecondary?: Boolean } = {}) {
+  create (body: RequestCreateProfile, options: { retryMobileSecondary?: Boolean } = {}) {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles',
@@ -196,7 +182,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  findByEmail (email: string, params?: RequestParams): Promise<Profile> {
+  findByEmail (email: string, params?: RequestQueryProfile): Promise<Profile> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles',
@@ -206,7 +192,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  checkAvailability (body: { mobile_phone?: string, email?: string }) {
+  checkAvailability (body: RequestCheckAvailability): Promise<ProfileAvailabilityResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/availability',
@@ -216,7 +202,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  exists (body: ExistsProfileInput): Promise<{ data: { id: string} }> {
+  exists (body: RequestExistsProfile): Promise<ProfileExistsResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/exists',
@@ -230,7 +216,7 @@ export default class Profiles extends Resource {
     return createProfileByDelegation(this.client, body, delegation, options)
   }
 
-  isSubscribed (comms: ProfileComms, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
+  isSubscribed (comms: ProfileCommsAttribute, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
     if (!prefix) throw Error('No Prefix provided')
     if (comms[`${prefix}_promo`] === false) return false
     if (comms[`${prefix}_optout`] === true) return false
@@ -238,7 +224,7 @@ export default class Profiles extends Resource {
     return true
   }
 
-  isUnsubscribed (comms: ProfileComms, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
+  isUnsubscribed (comms: ProfileCommsAttribute, prefix: 'email' | 'sms' | 'post' | 'push' | 'phone'): Boolean {
     if (!prefix) throw Error('No Prefix provided')
     if (comms[`${prefix}_promo`] === false) return true
     if (comms[`${prefix}_optout`] === true) return true
@@ -246,7 +232,7 @@ export default class Profiles extends Resource {
     return false
   }
 
-  subscribe (profileID: string, channel: CommsChannel): Promise<ProfileComms> {
+  subscribe (profileID: string, channel: CommsChannel): Promise<ProfileCommsAttribute> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/comms`,
@@ -259,7 +245,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  unsubscribe (profileID: string, channel: CommsChannel, options: {toggleOptOut: boolean}): Promise<ProfileComms> {
+  unsubscribe (profileID: string, channel: CommsChannel, options: {toggleOptOut: boolean}): Promise<ProfileCommsAttribute> {
     const body = {
       [`${channel}_promo`]: false
     }
@@ -275,7 +261,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  redeem (profileID: string, amount: number, meta?: { [key: string]: unknown }): Promise<Redeem> {
+  redeem (profileID: string, amount: number, meta?: { [key: string]: unknown }): Promise<any> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/redeem`,
@@ -298,7 +284,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  updateType (profileID: string, type: ProfileType): Promise<Profile> {
+  updateType (profileID: string, type: UpdateProfileProfileTypeEnum): Promise<Profile> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileID}/update-type`,
@@ -308,7 +294,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  batch (matchCriteria: ProfileBatchMatchCriteria, profiles: Partial<ProfileInput>[]) {
+  batch (matchCriteria: string, profiles: Partial<Profile>[]) {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/batch',
@@ -316,7 +302,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  transactionProducts (profileID: string, params?: RequestParams): Promise<TransactionProductVariantsResponse> {
+  transactionProducts (profileID: string, params?: RequestParams): Promise<TransactionProductVariantResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${profileID}/transaction-products`,
@@ -324,7 +310,7 @@ export default class Profiles extends Resource {
     })
   }
 
-  triggerCustomEvent (profileId: string, body: TriggerProfileCustomEventInput) : Promise<Profile> {
+  triggerCustomEvent (profileId: string, body: RequestTriggerCustomEvent) : Promise<Profile> {
     return this.client.call({
       method: 'POST',
       endpoint: `/profiles/${profileId}/custom-event`,

@@ -1,18 +1,17 @@
-import { RequestParams, BenefitDefinition, BenefitDefinitionInput, BenefitDefinitionResponse } from '@types'
+import { BenefitDefinition, BenefitDefinitionResponse, RequestCreateBenefitDefinition, RequestUpdateBenefitDefinition, RequestQueryBenefitDefinition, RequestCloneBenefitDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class BenefitDefinitions extends Resource {
-  get (id: number, params?: RequestParams): Promise<BenefitDefinition> {
+  get (id: number): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'get',
-      endpoint: `/benefits/definitions/${id}`,
-      params
+      endpoint: `/benefits/definitions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  clone (id: number, body: Partial<BenefitDefinitionInput> & { handle: string }): Promise<BenefitDefinition> {
+  clone (id: number, body: RequestCloneBenefitDefinition): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: `/benefits/definitions/${id}/clone`,
@@ -31,15 +30,16 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<BenefitDefinitionResponse> {
+  list (params?: RequestQueryBenefitDefinition): Promise<BenefitDefinitionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: BenefitDefinitionInput): Promise<BenefitDefinition> {
+  create (body: RequestCreateBenefitDefinition): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits/definitions',
@@ -49,7 +49,7 @@ export default class BenefitDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: Partial<BenefitDefinitionInput>): Promise<BenefitDefinition> {
+  update (id: number, body: RequestUpdateBenefitDefinition): Promise<BenefitDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/benefits/definitions/${id}`,

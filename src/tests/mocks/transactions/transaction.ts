@@ -1,10 +1,15 @@
-import { Transaction, CreateTransactionInput } from '@types'
+import { Transaction } from '@types'
 
-export const writeTransactionWithVariant: CreateTransactionInput = {
-  profile_id: process.env.OMNEO_TEST_PROFILE_ID,
+const testProfileId = process.env.OMNEO_TEST_PROFILE_ID as string
+const testLocationId = process.env.OMNEO_TEST_LOCATION_ID as string
+const testProductId = process.env.OMNEO_TEST_PRODUCT_ID as string
+const testProductVariantId = process.env.OMNEO_TEST_PRODUCT_VARIANT_ID as string
+
+export const writeTransactionWithVariant = {
+  profile_id: testProfileId,
   external_id: '9999999',
   receipt_ref: 'D172009999999',
-  location_id: process.env.OMNEO_TEST_LOCATION_ID,
+  location_id: testLocationId,
   total: 100,
   total_original: 100,
   systems: [
@@ -22,7 +27,7 @@ export const writeTransactionWithVariant: CreateTransactionInput = {
     price_tax: 10,
     price_original: 100,
     product_variant: {
-      product_id: parseInt(process.env.OMNEO_TEST_PRODUCT_ID),
+      product_id: parseInt(testProductId),
       sku: 'gh-test-action-item-1',
       barcode: 'GHT-0001',
       title: 'GH ACTION TEST ITEM 1',
@@ -40,11 +45,11 @@ export const writeTransactionWithVariant: CreateTransactionInput = {
   }
 }
 
-export const writeTransactionWithVariantID: CreateTransactionInput = {
-  profile_id: process.env.OMNEO_TEST_PROFILE_ID,
+export const writeTransactionWithVariantID = {
+  profile_id: testProfileId,
   external_id: '9999999',
   receipt_ref: 'D1729859045',
-  location_id: process.env.OMNEO_TEST_LOCATION_ID,
+  location_id: testLocationId,
   total: 100,
   total_original: 100,
   systems: [
@@ -61,7 +66,7 @@ export const writeTransactionWithVariantID: CreateTransactionInput = {
     price_sell: 100,
     price_tax: 10,
     price_original: 100,
-    product_variant_id: parseInt(process.env.OMNEO_TEST_PRODUCT_VARIANT_ID),
+    product_variant_id: parseInt(testProductVariantId),
     discounts: []
   }],
   payments: [],
@@ -76,7 +81,8 @@ export const readTransaction: Transaction = {
   id: 9999999,
   external_id: '9999999',
   redemption: null,
-  profile_id: process.env.OMNEO_TEST_PROFILE_ID,
+  reversed_redemptions: [],
+  profile_id: testProfileId,
   profile: {
     email: 'subscriptions+githubactions@arkade.com.au'
   },
@@ -86,12 +92,12 @@ export const readTransaction: Transaction = {
     name: null,
     description: null,
     phone: null,
-    email: null,
+    email: 'GH-ACTIONS@example.com',
     external_id: 'GH-ACTIONS',
     is_published: false,
     is_permanently_closed: false,
     address: null
-  },
+  } as any,
   meta: {
     web_order_number: null
   },
@@ -107,14 +113,15 @@ export const readTransaction: Transaction = {
   tags: [],
   items: [{
     id: 1,
-    external_id: null,
+    external_id: null as any,
     name: 'GH ACTION TEST ITEM',
     transaction_id: 111111111,
     product_id: 1,
     product_variant_id: 1,
     sku: null,
-    variant_external_id: null,
+    variant_external_id: null as any,
     is_void: false,
+    is_return: false,
     quantity: 1,
     price_current: 100,
     price_sell: 100,
@@ -125,7 +132,7 @@ export const readTransaction: Transaction = {
     department: null,
     meta: null,
     product_images: [],
-    order_id: null,
+    order_id: null as any,
     created_at: '2024-02-13 04:07:46',
     updated_at: '2024-02-13 04:07:46',
     pivot: [],
@@ -133,7 +140,7 @@ export const readTransaction: Transaction = {
       id: 1,
       product_id: 1,
       sku: '1299388',
-      external_id: 1111,
+      external_id: '1111',
       barcode: '',
       web_url: null,
       handle: null,
@@ -160,7 +167,8 @@ export const readTransaction: Transaction = {
     transaction: {
       transacted_at: '2024-02-13 01:09:57',
       receipt_ref: 'D17200109877',
-      external_id: '36865285'
+      external_id: '36865285',
+      location: null
     }
   }],
   payments: [{
@@ -182,11 +190,12 @@ export const readTransaction: Transaction = {
   }],
   receipt_is_email: false,
   receipt_ref: 'D17200109877',
+  linked_receipt_ref: null,
   claimed_at: null,
   receipt_email: null,
   staff: {
-    id: '9b461544-f0db-44b6-b559-0f698c881229',
-    full_name: null,
+    id: '9b461544-f0db-44b6-b559-0f698c881229' as any,
+    full_name: 'GH ACTION TEST STAFF',
     email: 'staff-profile-sqdzljthztvdvsjn@omneo.io',
     identities: [{
       id: 1,
@@ -207,14 +216,16 @@ export const readTransaction: Transaction = {
   type: null,
   status: null,
   order_number: null,
-  order_id: null,
+  order_id: null as any,
   external_order_id: null,
-  need_action: null,
+  need_action: null as any,
   custom_fields: [],
+  organisation: null,
+  fees: null,
   timezone: 'Australia/Melbourne',
   transacted_at: '2024-02-13 01:09:57',
   created_at: '2024-02-13 04:07:46',
   updated_at: '2024-02-13 04:07:46'
 }
 
-export default readTransaction
+export default readTransaction as any

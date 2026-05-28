@@ -1,15 +1,16 @@
-import { CreateOrganisationInput, Organisation, OrganisationResponse, RequestParams, UpdateOrganisationInput } from '@types'
+import { Organisation, OrganisationResponse, RequestCreateOrganisation, RequestQueryOrganisation, RequestUpdateOrganisation } from '@types'
 import Resource from '../resource.js'
 import OrganisationProfiles from './profiles/index.js'
 
 export default class Organisations extends Resource {
   profiles = new OrganisationProfiles(this.client)
 
-  list (params?: RequestParams): Promise<OrganisationResponse> {
+  list (params?: RequestQueryOrganisation): Promise<OrganisationResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/organisations',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
@@ -24,7 +25,7 @@ export default class Organisations extends Resource {
     })
   }
 
-  create (body: CreateOrganisationInput): Promise<Organisation> {
+  create (body: RequestCreateOrganisation): Promise<Organisation> {
     return this.client.call({
       method: 'POST',
       endpoint: '/organisations',
@@ -34,7 +35,7 @@ export default class Organisations extends Resource {
     })
   }
 
-  update (id: number, body: UpdateOrganisationInput): Promise<Organisation> {
+  update (id: number, body: RequestUpdateOrganisation): Promise<Organisation> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/organisations/${id}`,

@@ -1,26 +1,26 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput, BenefitTriggerTargetType } from '@types'
+import { Benefit, BenefitResponse, RequestCreateBenefit, RequestUpdateBenefit, RequestQueryBenefit, RequestExtendBenefit, BenefitCountResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Benefits extends Resource {
-  get (id: number, params?: RequestParams): Promise<Benefit> {
+  get (id: number): Promise<Benefit> {
     return this.client.call({
       method: 'get',
-      endpoint: `/benefits/${id}`,
-      params
+      endpoint: `/benefits/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<BenefitResponse> {
+  list (params?: RequestQueryBenefit): Promise<BenefitResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: BenefitInput): Promise<Benefit> {
+  create (body: RequestCreateBenefit): Promise<Benefit> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits',
@@ -30,7 +30,7 @@ export default class Benefits extends Resource {
     })
   }
 
-  update (id: number, body: Partial<BenefitInput>): Promise<Benefit> {
+  update (id: number, body: RequestUpdateBenefit): Promise<Benefit> {
     return this.client.call({
       method: 'put',
       endpoint: `/benefits/${id}`,
@@ -47,22 +47,24 @@ export default class Benefits extends Resource {
     })
   }
 
-  extend (body: { ids: number[], extend_date?: string, profile_id: string, extend_days?: number }) : Promise<{ data: Benefit[]}> {
+  extend (body: RequestExtendBenefit) : Promise<BenefitResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/benefits/extend',
       body
+    }).then((response) => {
+      return response
     })
   }
 
-  count () : Promise<{ countAll: number, countRedeemed: number }> {
+  count () : Promise<BenefitCountResponse['data']> {
     return this.client.call({
       method: 'get',
       endpoint: '/benefits.count'
     }).then((response) => response.data)
   }
 
-  getTriggerTarget (benefitId: number, type: BenefitTriggerTargetType): Promise<void> {
+  getTriggerTarget (benefitId: number, type: string): Promise<void> {
     return this.client.call({
       method: 'get',
       endpoint: `/benefits/${benefitId}/trigger-target/${type}`

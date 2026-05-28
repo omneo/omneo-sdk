@@ -1,26 +1,26 @@
-import { RequestParams, Target, TargetInput, TargetResponse } from '@types'
+import { RequestCreateTarget, RequestQueryTarget, RequestUpdateTarget, Target, TargetResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Targets extends Resource {
-  get (id: number, params?: RequestParams): Promise<Target> {
+  get (id: number): Promise<Target> {
     return this.client.call({
       method: 'get',
-      endpoint: `/targets/${id}`,
-      params
+      endpoint: `/targets/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<TargetResponse> {
+  list (params?: RequestQueryTarget): Promise<TargetResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/targets',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: TargetInput): Promise<Target> {
+  create (body: RequestCreateTarget): Promise<Target> {
     return this.client.call({
       method: 'post',
       endpoint: '/targets',
@@ -30,7 +30,7 @@ export default class Targets extends Resource {
     })
   }
 
-  update (id: number, body: Partial<TargetInput>): Promise<Target> {
+  update (id: number, body: RequestUpdateTarget): Promise<Target> {
     return this.client.call({
       method: 'put',
       endpoint: `/targets/${id}`,

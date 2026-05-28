@@ -1,8 +1,8 @@
-import { ProfileAchievementPoint, CreateProfileAchievementInput, ProfileAchievementPointsResponse, ProfileAchievementsResponse, RequestParams } from '@types'
+import { ProfileAchievementPointResponse, ProfileAchievement, RequestCreateProfileAchievement, AchievementPoint, RequestParams } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileAchievements extends Resource {
-  getPoints (achievementDefinitionId: number): Promise<ProfileAchievementPointsResponse> {
+  getPoints (achievementDefinitionId: number): Promise<ProfileAchievementPointResponse> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/me/achievements/${achievementDefinitionId}/achievement-points`
@@ -11,7 +11,7 @@ export default class ProfileAchievements extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<ProfileAchievementsResponse['data']> {
+  list (params?: RequestParams): Promise<ProfileAchievement[]> {
     return this.client.call({
       method: 'get',
       endpoint: '/profiles/me/achievements',
@@ -21,7 +21,7 @@ export default class ProfileAchievements extends Resource {
     })
   }
 
-  create (body: CreateProfileAchievementInput): Promise<ProfileAchievementPoint> {
+  create (body: RequestCreateProfileAchievement): Promise<AchievementPoint> {
     return this.client.call({
       method: 'post',
       endpoint: '/profiles/me/achievements',

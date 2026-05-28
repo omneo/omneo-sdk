@@ -1,8 +1,8 @@
-import { RequestParams, Aggregations, UpdateAggregationInput } from '@types'
+import { RequestParams, ProfileAggregation, RequestUpdateProfileAggregation } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileAggregations extends Resource {
-  list (id: string, params?: RequestParams): Promise<Aggregations> {
+  list (id: string, params?: RequestParams): Promise<ProfileAggregation> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${id}/aggregations`,
@@ -12,7 +12,7 @@ export default class ProfileAggregations extends Resource {
     })
   }
 
-  calculate (id: string, params?: RequestParams): Promise<Aggregations> {
+  calculate (id: string, params?: RequestParams): Promise<ProfileAggregation> {
     return this.client.call({
       method: 'get',
       endpoint: `/profiles/${id}/aggregations/calculate`,
@@ -22,7 +22,7 @@ export default class ProfileAggregations extends Resource {
     })
   }
 
-  update (profileId: string, body: UpdateAggregationInput) : Promise<Aggregations> {
+  update (profileId: string, body: RequestUpdateProfileAggregation) : Promise<ProfileAggregation> {
     return this.client.call({
       method: 'put',
       endpoint: `/profiles/${profileId}/aggregations`,

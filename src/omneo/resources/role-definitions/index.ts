@@ -1,4 +1,4 @@
-import { RequestParams, RoleDefinition, RoleDefinitionResponse, CreateRoleDefinitionInput, UpdateRoleDefinitionInput } from '@types'
+import { RequestCreateRoleDefinition, RequestQueryRoleDefinition, RequestUpdateRoleDefinition, RoleDefinition, RoleDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class RoleDefinitions extends Resource {
@@ -11,17 +11,18 @@ export default class RoleDefinitions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<RoleDefinitionResponse> {
+  list (params?: RequestQueryRoleDefinition): Promise<RoleDefinitionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/roles/definitions',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
   }
 
-  create (body: CreateRoleDefinitionInput): Promise<RoleDefinition> {
+  create (body: RequestCreateRoleDefinition): Promise<RoleDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/roles/definitions',
@@ -31,7 +32,7 @@ export default class RoleDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: UpdateRoleDefinitionInput): Promise<RoleDefinition> {
+  update (id: number, body: RequestUpdateRoleDefinition): Promise<RoleDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/roles/definitions/${id}`,

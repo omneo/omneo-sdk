@@ -1,12 +1,13 @@
-import { CreateCustomFieldInput, CustomField, CustomFieldResponse, RequestParams, UpdateCustomFieldInput } from '@types'
+import { CustomField, CustomFieldResponse, RequestQueryCustomField } from '@types'
 import Resource from '../../resource.js'
 
 export default class TenantCustomFields extends Resource {
-  list (params?: RequestParams): Promise<CustomFieldResponse> {
+  list (params?: RequestQueryCustomField): Promise<CustomFieldResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/tenants/custom-fields',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
@@ -22,7 +23,7 @@ export default class TenantCustomFields extends Resource {
     })
   }
 
-  create (body: CreateCustomFieldInput): Promise<CustomField> {
+  create (body: CustomField): Promise<CustomField> {
     return this.client.call({
       method: 'POST',
       endpoint: '/tenants/custom-fields',
@@ -32,7 +33,7 @@ export default class TenantCustomFields extends Resource {
     })
   }
 
-  update (namespace: string, handle: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+  update (namespace: string, handle: string, body: CustomField): Promise<CustomField> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'PUT',
@@ -53,13 +54,13 @@ export default class TenantCustomFields extends Resource {
     })
   }
 
-  versions (namespace: string, handle: string): Promise<CustomField[]> {
+  versions (namespace: string, handle: string): Promise<CustomFieldResponse> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'GET',
       endpoint: `/tenants/custom-fields/${attribute}/versions`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

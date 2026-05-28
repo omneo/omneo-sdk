@@ -1,28 +1,28 @@
-import { RequestParams, Credit, CreditInput, UpdateCreditInput, ExtendCreditInput, CreditResponse } from '@types'
+import { Credit, RequestExtendCredit, CreditResponse, RequestCreateCredit, RequestUpdateCredit, RequestQueryCredit } from '@types'
 import Resource from '../resource.js'
 
 export default class Credits extends Resource {
-  get (id: number, params?: RequestParams): Promise<Credit> {
+  get (id: number): Promise<Credit> {
     return this.client.call({
       method: 'get',
-      endpoint: `/credits/${id}`,
-      params
+      endpoint: `/credits/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<CreditResponse> {
+  list (params?: RequestQueryCredit): Promise<CreditResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/credits',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
   }
 
-  create (body: CreditInput): Promise<Credit> {
+  create (body: RequestCreateCredit): Promise<Credit> {
     return this.client.call({
       method: 'post',
       endpoint: '/credits',
@@ -32,7 +32,7 @@ export default class Credits extends Resource {
     })
   }
 
-  extend (body: ExtendCreditInput): Promise<CreditResponse> {
+  extend (body: RequestExtendCredit): Promise<CreditResponse> {
     return this.client.call({
       method: 'post',
       endpoint: '/credits/extend',
@@ -42,7 +42,7 @@ export default class Credits extends Resource {
     })
   }
 
-  update (id: number, body: UpdateCreditInput): Promise<Credit> {
+  update (id: number, body: RequestUpdateCredit): Promise<Credit> {
     return this.client.call({
       method: 'put',
       endpoint: `/credits/${id}`,

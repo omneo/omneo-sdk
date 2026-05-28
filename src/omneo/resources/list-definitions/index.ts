@@ -1,28 +1,28 @@
-import { RequestParams, ListDefinition, ListInput, ListDefinitionResponse } from '@types'
+import { ListDefinition, ListDefinitionResponse, RequestQueryListDefinition, RequestCreateListDefinition, RequestUpdateListDefinition } from '@types'
 import Resource from '../resource.js'
 
 export default class ListDefinitions extends Resource {
-  get (id: number, params?: RequestParams): Promise<ListDefinition> {
+  get (id: number): Promise<ListDefinition> {
     return this.client.call({
       method: 'get',
-      endpoint: `/lists/definitions/${id}`,
-      params
+      endpoint: `/lists/definitions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<ListDefinitionResponse> {
+  list (params?: RequestQueryListDefinition): Promise<ListDefinitionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/lists/definitions',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
   }
 
-  create (body: ListInput): Promise<ListDefinition> {
+  create (body: RequestCreateListDefinition): Promise<ListDefinition> {
     return this.client.call({
       method: 'post',
       endpoint: '/lists/definitions',
@@ -32,7 +32,7 @@ export default class ListDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: Partial<ListInput>): Promise<ListDefinition> {
+  update (id: number, body: RequestUpdateListDefinition): Promise<ListDefinition> {
     return this.client.call({
       method: 'put',
       endpoint: `/lists/definitions/${id}`,

@@ -1,4 +1,4 @@
-import { RequestParams, Permission, PermissionResponse } from '@types'
+import { Permission, PermissionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Permissions extends Resource {
@@ -11,11 +11,10 @@ export default class Permissions extends Resource {
     })
   }
 
-  list (params?: RequestParams): Promise<PermissionResponse> {
+  list (): Promise<PermissionResponse> {
     return this.client.call({
       method: 'get',
-      endpoint: '/permissions',
-      params
+      endpoint: '/permissions'
     })
   }
 }

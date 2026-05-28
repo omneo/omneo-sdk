@@ -1,8 +1,8 @@
-import { RequestParams, TriggerAction, TriggerActionInput, TriggerActionResponse } from '@types'
+import { RequestQueryAction, TriggerActionResponse, TriggerActionsItem } from '@types'
 import Resource from '../../resource.js'
 
 export default class TriggerActions extends Resource {
-  list (triggerId: number, params?: RequestParams): Promise<TriggerActionResponse> {
+  list (triggerId: number, params?: RequestQueryAction): Promise<TriggerActionResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/triggers/${triggerId}/actions`,
@@ -10,17 +10,16 @@ export default class TriggerActions extends Resource {
     })
   }
 
-  get (triggerId: number, actionId: number, params?: RequestParams): Promise<TriggerAction> {
+  get (triggerId: number, actionId: number): Promise<TriggerActionResponse> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/triggers/${triggerId}/actions/${actionId}`,
-      params
+      endpoint: `/triggers/${triggerId}/actions/${actionId}`
     }).then((response) => {
       return response.data
     })
   }
 
-  create (triggerId: number, body: TriggerActionInput): Promise<TriggerAction> {
+  create (triggerId: number, body: TriggerActionsItem): Promise<TriggerActionResponse> {
     return this.client.call({
       method: 'POST',
       endpoint: `/triggers/${triggerId}/actions`,
@@ -30,7 +29,7 @@ export default class TriggerActions extends Resource {
     })
   }
 
-  update (triggerId: number, actionId: number, body: Partial<TriggerActionInput>): Promise<TriggerAction> {
+  update (triggerId: number, actionId: number, body: TriggerActionsItem): Promise<TriggerActionResponse> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/triggers/${triggerId}/actions/${actionId}`,

@@ -1,11 +1,11 @@
-import { Redemption, RedemptionResponse, RequestParams, SuccessfulRedemption } from '@types'
+import { Redemption, RedemptionGroupByResponse, RedemptionResponse, RequestQueryRedemption, SuccessfulRedemption } from '@types'
 import Resource from '../resource'
 import RedemptionItems from './items'
 
 export default class Redemptions extends Resource {
   items = new RedemptionItems(this.client)
 
-  list (params: RequestParams): Promise<RedemptionResponse> {
+  list (params: RequestQueryRedemption): Promise<RedemptionResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/redemptions',
@@ -15,11 +15,10 @@ export default class Redemptions extends Resource {
     })
   }
 
-  get (redemptionId: number, params?: RequestParams): Promise<Redemption> {
+  get (redemptionId: number): Promise<Redemption> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/redemptions/${redemptionId}`,
-      params
+      endpoint: `/redemptions/${redemptionId}`
     }).then((response) => {
       return response.data
     })
@@ -52,7 +51,7 @@ export default class Redemptions extends Resource {
     })
   }
 
-  groupBy (attribute: string): Promise<any> {
+  groupBy (attribute: string): Promise<RedemptionGroupByResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: `/redemptions/group/${attribute}`

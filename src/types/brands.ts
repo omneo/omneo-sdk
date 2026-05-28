@@ -1,27 +1,91 @@
-import { PaginationResponse } from './pagination'
+// Route category: brands
+
+import type { FilterOperator, AnyRecord } from './common'
+
+import type { PaginationLink, PaginationMeta } from './pagination'
+import type { Department } from './departments'
+
+export type RequestCreateBrand = {
+  description?: string | null
+  external_code?: string | null
+  external_id?: string | null
+  handle: string
+  image_url?: string | null
+  internal_note?: string | null
+  is_system?: boolean | null
+  meta?: AnyRecord | null
+  name: string
+  short_description?: string | null
+  url?: string | null
+}
+
+export type RequestUpdateBrand = {
+  description?: string | null
+  external_code?: string | null
+  external_id?: string | null
+  image_url?: string | null
+  internal_note?: string | null
+  is_system?: boolean | null
+  meta?: AnyRecord | null
+  name?: string
+  short_description?: string | null
+  url?: string | null
+}
+
+export type RequestQueryBrand = {
+  offset?: number
+  limit?: number
+  filter?: {
+    name?: string | FilterOperator
+    handle?: string | FilterOperator
+    external_id?: string | FilterOperator
+    external_code?: string | FilterOperator
+    is_system?: string | FilterOperator
+    description?: string | FilterOperator
+    short_description?: string | FilterOperator
+    url?: string | FilterOperator
+    image_url?: string | FilterOperator
+    internal_note?: string | FilterOperator
+    meta?: string | FilterOperator
+    search?: string
+    search_with?: Record<string, string>
+    custom_field?: Record<string, Record<string, string>>
+    json_contains?: string
+    [key: string]: any
+  }
+  sort?: string
+  page?: {
+    size?: number
+    number?: number
+  }
+  [key: string]: any
+}
 
 export type Brand = {
-  id: number
-  name: string
-  handle: string
-  external_id: string | null
-  external_code: string | null
-  is_system: boolean
+  created_at: string
+  departments: Department[]
   description: string | null
-  short_description: string | null
-  url: string | null
+  external_code: string | null
+  external_id: string
+  handle: string | null
+  id: number
   image_url: string | null
   internal_note: string | null
-  meta: any | null
-  departments: any[]
-  created_at: string
+  is_system: boolean
+  meta: AnyRecord | null
+  name: string | null
+  short_description: string | null
   updated_at: string
+  url: string | null
 }
 
-export type BrandInput = Partial<Omit<Brand, 'id' | 'created_at' | 'updated_at'>> & {
-  handle: Brand['handle']
+export type DepartmentBrand = {
+  name: string | null
+  handle: string | null
 }
 
-export type BrandResponse = PaginationResponse & {
+export type BrandResponse = {
   data: Brand[]
+  meta?: PaginationMeta
+  links?: PaginationLink
 }

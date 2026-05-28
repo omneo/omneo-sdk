@@ -1,12 +1,13 @@
-import { CreateRatingInput, Rating, RatingResponse, RequestParams, UpdateRatingInput } from '@types'
+import { Rating, RatingResponse, RequestCreateRating, RequestQueryRating, RequestUpdateRating } from '@types'
 import Resource from '../resource.js'
 
 export default class Ratings extends Resource {
-  list (params?: RequestParams): Promise<RatingResponse> {
+  list (params?: RequestQueryRating): Promise<RatingResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/ratings',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
@@ -21,7 +22,7 @@ export default class Ratings extends Resource {
     })
   }
 
-  create (body: CreateRatingInput): Promise<Rating> {
+  create (body: RequestCreateRating): Promise<Rating> {
     return this.client.call({
       method: 'POST',
       endpoint: '/ratings',
@@ -31,7 +32,7 @@ export default class Ratings extends Resource {
     })
   }
 
-  update (id: number, body: UpdateRatingInput): Promise<Rating> {
+  update (id: number, body: RequestUpdateRating): Promise<Rating> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/ratings/${id}`,

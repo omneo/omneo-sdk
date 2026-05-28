@@ -1,31 +1,31 @@
-import { CreateOrderInput, Order, OrderResponse, RequestParams, UpdateOrderInput } from '@types'
+import { Order, OrderQueueCreateResponse, OrderQueueResponse, OrderResponse, RequestCreateOrder, RequestQueryOrder, RequestUpdateOrder } from '@types'
 import Resource from '../resource'
 import OrderItems from './items'
 
 export default class Orders extends Resource {
   items = new OrderItems(this.client)
 
-  get (id: string, params?: RequestParams): Promise<Order> {
+  get (id: string): Promise<Order> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/orders/${id}`,
-      params
+      endpoint: `/orders/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<OrderResponse> {
+  list (params?: RequestQueryOrder): Promise<OrderResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/orders',
-      params
+      params,
+      flattenParams: true
     }).then((response) => {
       return response
     })
   }
 
-  create (body: CreateOrderInput): Promise<Order> {
+  create (body: RequestCreateOrder): Promise<Order> {
     return this.client.call({
       method: 'POST',
       endpoint: '/orders',
@@ -35,7 +35,7 @@ export default class Orders extends Resource {
     })
   }
 
-  update (id: string, body: UpdateOrderInput): Promise<Order> {
+  update (id: string, body: RequestUpdateOrder): Promise<Order> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/orders/${id}`,
@@ -54,7 +54,7 @@ export default class Orders extends Resource {
     })
   }
 
-  queue (body: CreateOrderInput | UpdateOrderInput) : Promise<{data: string}> {
+  queue (body: RequestCreateOrder) : Promise<OrderQueueResponse> {
     return this.client.call({
       method: 'POST',
       endpoint: '/orders/queue',
@@ -64,7 +64,7 @@ export default class Orders extends Resource {
     })
   }
 
-  queueCreate (body: CreateOrderInput) : Promise<{data: string}> {
+  queueCreate (body: RequestCreateOrder) : Promise<OrderQueueCreateResponse> {
     return this.client.call({
       method: 'POST',
       endpoint: '/orders/queue/create',

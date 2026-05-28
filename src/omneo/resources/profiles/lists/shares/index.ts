@@ -1,8 +1,8 @@
-import { ListShare } from '@types'
+import { ProductListShare } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileListShares extends Resource {
-  create (profileID: string, listID: number): Promise<ListShare> {
+  create (profileID: string, listID: number): Promise<ProductListShare> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/lists/${listID}/shares`

@@ -1,4 +1,4 @@
-import { Redemption, RequestParams, RedemptionResponse, RedemptionType } from '@types'
+import { Redemption, RequestParams, RedemptionResponse, RedemptionItemTypeEnum } from '@types'
 import Resource from '@id/resources/resource'
 
 export default class ProfileRedemptions extends Resource {
@@ -21,7 +21,7 @@ export default class ProfileRedemptions extends Resource {
     })
   }
 
-  count (redemptionType: RedemptionType, id: number): Promise<{ count: number }> {
+  count (redemptionType: RedemptionItemTypeEnum, id: number): Promise<{ count: number }> {
     return this.client.call({
       method: 'GET',
       endpoint: `/profiles/me/redemptions/${redemptionType}/${id}/count`

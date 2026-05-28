@@ -1,26 +1,26 @@
-import { Connection, ConnectionInput, ConnectionResponse, RequestParams, UpdateConnectionInput } from '@types'
+import { Connection, ConnectionResponse, RequestCreateConnection, RequestQueryConnection, RequestUpdateConnection } from '@types'
 import Resource from '../resource.js'
 
 export default class Connections extends Resource {
-  get (id: number, params?: RequestParams): Promise<Connection> {
+  get (id: number): Promise<Connection> {
     return this.client.call({
       method: 'get',
-      endpoint: `/connections/${id}`,
-      params
+      endpoint: `/connections/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<ConnectionResponse> {
+  list (params?: RequestQueryConnection): Promise<ConnectionResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/connections',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: ConnectionInput): Promise<Connection> {
+  create (body: RequestCreateConnection): Promise<Connection> {
     return this.client.call({
       method: 'post',
       endpoint: '/connections',
@@ -30,7 +30,7 @@ export default class Connections extends Resource {
     })
   }
 
-  update (id: number, body: UpdateConnectionInput): Promise<Connection> {
+  update (id: number, body: RequestUpdateConnection): Promise<Connection> {
     return this.client.call({
       method: 'put',
       endpoint: `/connections/${id}`,

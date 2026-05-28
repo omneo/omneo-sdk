@@ -1,26 +1,26 @@
-import { RequestParams, TierDefinition, TierDefinitionResponse, UpdateTierDefinitionInput, CreateTierDefinitionInput } from '@types'
+import { RequestCreateTierDefinition, RequestQueryTierDefinition, RequestUpdateTierDefinition, TierDefinition, TierDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class TierDefinitions extends Resource {
-  get (id: number, params?: RequestParams): Promise<TierDefinition> {
+  get (id: number): Promise<TierDefinition> {
     return this.client.call({
       method: 'GET',
-      endpoint: `/tiers/definitions/${id}`,
-      params
+      endpoint: `/tiers/definitions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<TierDefinitionResponse> {
+  list (params?: RequestQueryTierDefinition): Promise<TierDefinitionResponse> {
     return this.client.call({
       method: 'GET',
       endpoint: '/tiers/definitions',
-      params
+      params,
+      flattenParams: true
     })
   }
 
-  create (body: CreateTierDefinitionInput): Promise<TierDefinition> {
+  create (body: RequestCreateTierDefinition): Promise<TierDefinition> {
     return this.client.call({
       method: 'POST',
       endpoint: '/tiers/definitions',
@@ -30,7 +30,7 @@ export default class TierDefinitions extends Resource {
     })
   }
 
-  update (id: number, body: UpdateTierDefinitionInput): Promise<TierDefinition> {
+  update (id: number, body: RequestUpdateTierDefinition): Promise<TierDefinition> {
     return this.client.call({
       method: 'PUT',
       endpoint: `/tiers/definitions/${id}`,

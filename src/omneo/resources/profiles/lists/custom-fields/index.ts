@@ -1,4 +1,4 @@
-import { CustomField, CustomFieldInput, UpdateCustomFieldInput, RequestParams } from '@types'
+import { CustomField, RequestCreateCustomField, RequestParams } from '@types'
 import Resource from '@omneo/resources/resource'
 
 export default class ProfileListCustomFields extends Resource {
@@ -22,7 +22,7 @@ export default class ProfileListCustomFields extends Resource {
     })
   }
 
-  create (profileID: string, listID: number, body: CustomFieldInput): Promise<CustomField> {
+  create (profileID: string, listID: number, body: RequestCreateCustomField): Promise<CustomField> {
     return this.client.call({
       method: 'post',
       endpoint: `/profiles/${profileID}/lists/${listID}/custom-fields`,
@@ -32,7 +32,7 @@ export default class ProfileListCustomFields extends Resource {
     })
   }
 
-  update (profileID: string, listID: number, namespace: string, handle: string, body: UpdateCustomFieldInput): Promise<CustomField> {
+  update (profileID: string, listID: number, namespace: string, handle: string, body: Partial<RequestCreateCustomField>): Promise<CustomField> {
     const attribute = `${namespace}:${handle}`
     return this.client.call({
       method: 'PUT',
