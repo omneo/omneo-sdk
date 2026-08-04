@@ -1,5 +1,5 @@
-import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionFilters, TransactionResponse, TransactionUnassignedItemsResponse } from '../../../../types'
-import Resource from '../../resource'
+import { GroupedTransactionsResponse, RequestParams, Transaction, TransactionAssignedItemsResponse, TransactionFilters, TransactionItem, TransactionResponse, TransactionUnassignedItemsResponse } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileTransactions extends Resource {
   get (profileID: string, transactionID: number): Promise<Transaction> {
@@ -48,6 +48,54 @@ export default class ProfileTransactions extends Resource {
       method: 'get',
       endpoint: `/profiles/${profileID}/transactionitems/list/unassigned`,
       params
+    }).then((response) => {
+      return response
+    })
+  }
+
+  getAssignedItems (profileID: string, params?: { include_list_item: 1 | 0}): Promise<TransactionAssignedItemsResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/profiles/${profileID}/transactionitems/list/assigned`,
+      params
+    }).then((response) => {
+      return response
+    })
+  }
+
+  linkListItem (profileId: string, transactionItemId: number, profileListId: number): Promise<TransactionItem> {
+    const body = {
+      product_list_item_id: profileListId,
+      type: 'link'
+    }
+    return this.client.call({
+      method: 'POST',
+      endpoint: `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  unlinkListItem (profileId: string, transactionItemId: number, profileListId: number): Promise<TransactionItem> {
+    const body = {
+      product_list_item_id: profileListId,
+      type: 'unlink'
+    }
+    const endpoint = `/profiles/${profileId}/transactions/items/${transactionItemId}/list-item`
+    return this.client.call({
+      method: 'POST',
+      endpoint,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  unattach (profileId: string, transactionId: number): Promise<Transaction> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/profiles/${profileId}/transactions/${transactionId}/unattach`
     }).then((response) => {
       return response.data
     })

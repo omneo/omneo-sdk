@@ -5,7 +5,7 @@ This module provides methods to interact with the webhooks API. It allows you to
 ## Importing
 
 ```javascript
-import { RequestParams, Webhook, WebhookResponse } from '../../../types';
+import { RequestParams, Webhook, WebhookResponse } from '@types';
 import Resource from '../resource.js';
 ```
 

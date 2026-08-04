@@ -1,0 +1,23 @@
+import { AllocationCountResponse, AllocationResponse, RequestParams } from '@types'
+import Resource from '../resource.js'
+
+export default class Allocations extends Resource {
+  list (params?: RequestParams): Promise<AllocationResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: '/allocations',
+      params
+    }).then((response) => {
+      return response
+    })
+  }
+
+  count (benefitDefinitionId: number): Promise<AllocationCountResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/allocations/${benefitDefinitionId}/count`
+    }).then((response) => {
+      return response.data
+    })
+  }
+}

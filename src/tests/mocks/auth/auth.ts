@@ -1,4 +1,4 @@
-import { APIScopes } from '../../../types'
+import { APIScopes } from '@types'
 
 export const allOmneoScopes : APIScopes[] = [
   'read-audits',

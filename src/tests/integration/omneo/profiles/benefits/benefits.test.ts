@@ -1,9 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../../omneo'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import { BenefitInput } from '../../../../../types'
-import { getRandomString } from '../../../../lib/string/util'
-import randomString from '../../../../lib/string/random'
+import { Omneo } from '@omneo'
+import { BenefitInput } from '@types'
+import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -64,9 +62,11 @@ describe('Profile Benefits', async () => {
       throw new Error('SDK list benefits created failed')
     })
 
-    CREATED_BENEFITS_IDS.push(benefit.id)
-
-    await omneo.profiles.benefits.delete(testProfileID, benefit.id)
+    await omneo.profiles.benefits.delete(testProfileID, benefit.id).catch((err) => {
+      console.error('SDK Delete profile benefit failed:', err)
+      CREATED_BENEFITS_IDS.push(benefit.id)
+      throw new Error('SDK Delete profile benefit failed')
+    })
     const fetchedBenefit = await simpleOmneoRequest('GET', `/benefits/${benefit.id}`)
     expect(fetchedBenefit).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })

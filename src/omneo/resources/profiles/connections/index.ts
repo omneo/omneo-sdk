@@ -1,5 +1,5 @@
-import { RequestParams, Connection, ConnectionResponse, ConnectionInput, Profile } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Connection, ConnectionResponse, ConnectionInput, Profile } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileConnections extends Resource {
   list (profileID: string, params?: RequestParams): Promise<ConnectionResponse> {

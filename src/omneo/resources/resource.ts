@@ -1,4 +1,4 @@
-import { Omneo } from '../..'
+import { Omneo } from '@omneo'
 
 export default class Resource {
   client: Omneo

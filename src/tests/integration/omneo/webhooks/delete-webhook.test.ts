@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import { afterAll, describe, expect, test } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import { WebhookInput } from '../../../../types'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { Omneo } from '@omneo'
+import { WebhookInput } from '@types'
+import { simpleOmneoRequest } from '@lib'
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string
@@ -37,9 +37,12 @@ describe('SDK Webhooks Delete', () => {
     const { data: webhook } = await simpleOmneoRequest('POST', '/webhooks', webhookPayload)
 
     if (!webhook.id) throw new Error('Failed to create webhook')
-    CREATED_WEBHOOKS.push(webhook.id)
 
-    await omneo.webhooks.delete(webhook.id)
+    await omneo.webhooks.delete(webhook.id).catch((err) => {
+      console.error('SDK Delete webhook failed:', err)
+      CREATED_WEBHOOKS.push(webhook.id)
+      throw new Error('SDK Delete webhook failed')
+    })
     const fetchedWebhook = await simpleOmneoRequest('GET', `/webhooks/${webhook.id}`)
     expect(fetchedWebhook).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })

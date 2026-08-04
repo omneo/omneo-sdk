@@ -1,7 +1,6 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import randomString from '../../../lib/string/random'
+import { Omneo } from '@omneo'
+import { simpleOmneoRequest, randomString } from '@lib'
 
 const CREATED_PROFILE_IDS : string[] = []
 

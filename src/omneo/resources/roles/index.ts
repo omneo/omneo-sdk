@@ -1,4 +1,4 @@
-import { Role, RoleResponse } from '../../../types'
+import { Role, RoleResponse } from '@types'
 import Resource from '../resource'
 
 export default class Roles extends Resource {

@@ -5,11 +5,12 @@ export type Region = {
   id: number
   name: string
   handle: string
-  countries: Country[]
-  is_active?: boolean
+  countries?: Country[]
+  is_active?: number | boolean
   country?: string | null
   state?: string | null
-  is_default: boolean
+  is_default?: boolean
+  currency?: string | null
   created_at: string
   updated_at: string
 }

@@ -1,8 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { IdentityResponse, RequestParams } from '../../../../types'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import randomString from '../../../lib/string/random'
+import { IdentityResponse, RequestParams } from '@types'
+import { Omneo } from '@omneo'
+import { simpleOmneoRequest, randomString } from '@lib'
 
 const CREATED_IDENTITY_HANDLES : string[] = []
 const getHandle = () => `sdk_unit_test_identity_${randomString(5).toLowerCase()}_${Math.floor(Date.now() / 1000)}`

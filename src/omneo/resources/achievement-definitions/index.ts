@@ -1,13 +1,11 @@
-import { AchievementDefinition, AchievementDefinitionInput, AchievementDefinitionResponse } from '../../../types'
-import { RequestParams } from '../../../types/index.js'
+import { RequestParams, AchievementDefinition, AchievementDefinitionInput, AchievementDefinitionResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class AchievementDefinitions extends Resource {
-  get (id: number, params?: RequestParams): Promise<AchievementDefinition> {
+  get (id: number): Promise<AchievementDefinition> {
     return this.client.call({
       method: 'get',
-      endpoint: `/achievements/definitions/${id}`,
-      params
+      endpoint: `/achievements/definitions/${id}`
     }).then((response) => {
       return response.data
     })

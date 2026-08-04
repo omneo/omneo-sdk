@@ -1,25 +1,7 @@
 import { PaginationResponse } from './pagination'
+import { ActionBase } from './action'
 
-export type TriggerActionArgument = {
-  name: string
-  value: {
-    var: string
-  }
-  is_dynamic: boolean | null
-}
-
-export type TriggerAction = {
-  id: number
-  uuid: string
-  references_id: number | null
-  name: string
-  sort_order: number | null
-  description: string | null
-  notes: string | null
-  arguments: TriggerActionArgument[]
-  created_at: string
-  updated_at: string
-}
+export type TriggerAction = ActionBase
 
 export type Trigger = {
   id: number

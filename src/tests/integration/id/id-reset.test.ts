@@ -1,5 +1,5 @@
 import { describe, test, beforeEach, expect } from 'vitest'
-import { ID } from '../../../id'
+import { ID } from '@id'
 
 const IDClient = new ID({
   tenant: process.env.OMNEO_TENANT as string,

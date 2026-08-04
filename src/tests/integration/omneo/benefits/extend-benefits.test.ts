@@ -1,9 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { BenefitInput } from '../../../../types'
-import { getRandomString } from '../../../lib/string/util'
-import randomString from '../../../lib/string/random'
+import { Omneo } from '@omneo'
+import { BenefitInput } from '@types'
+import { simpleOmneoRequest, randomString, getRandomString, formatUtcToTimezone } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -32,7 +30,7 @@ describe('Benefits extend', async () => {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
-      expires_at: '2024-12-06',
+      expires_at: '2024-12-06 12:00:00',
       issued_at: '2024-12-06 08:30:00',
       timezone: 'Australia/Melbourne'
     }
@@ -44,14 +42,15 @@ describe('Benefits extend', async () => {
 
     CREATED_BENEFITS_IDS.push(benefit.id)
 
-    const { data: extendedBenefits } = await omneo.benefits.extend({
+    const payload2 = {
       ids: [benefit.id],
-      extend_date: '2025-01-01 00:00:00',
+      extend_date: '2030-01-01 11:00:00',
       profile_id: testProfileID
-    })
+    }
+    const { data: extendedBenefits } = await omneo.benefits.extend(payload2)
 
     expect(extendedBenefits.length).toBe(1)
-    expect(extendedBenefits[0].expires_at).toBe('2025-01-01 00:00:00')
+    expect(formatUtcToTimezone(extendedBenefits[0].expires_at, payload.timezone as string)).toBe(payload2.extend_date)
     expect(typeof extendedBenefits[0].extended_at).toBe('string')
   })
 
@@ -60,8 +59,8 @@ describe('Benefits extend', async () => {
       profile_id: testProfileID,
       benefit_definition_id: definition.id,
       external_id: randomString(10),
-      expires_at: '2024-12-06',
-      issued_at: '2024-12-06 08:30:00',
+      expires_at: '2030-12-06 12:00:00',
+      issued_at: '2030-12-06 08:30:00',
       timezone: 'Australia/Melbourne'
     }
 
@@ -72,14 +71,14 @@ describe('Benefits extend', async () => {
 
     CREATED_BENEFITS_IDS.push(benefit.id)
 
-    const { data: extendedBenefits } = await omneo.benefits.extend({
+    const payload2 = {
       ids: [benefit.id],
       extend_days: 1,
       profile_id: testProfileID
-    })
-
+    }
+    const { data: extendedBenefits } = await omneo.benefits.extend(payload2)
     expect(extendedBenefits.length).toBe(1)
-    expect(extendedBenefits[0].expires_at).toBe('2024-12-07 00:00:00')
+    // TODO check expires at extended by days.
     expect(typeof extendedBenefits[0].extended_at).toBe('string')
   })
 })

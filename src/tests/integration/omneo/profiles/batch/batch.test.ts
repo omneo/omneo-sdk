@@ -1,8 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../../omneo'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import randomString from '../../../../lib/string/random'
-import { ProfileType } from '../../../../../types'
+import { Omneo } from '@omneo'
+import { ProfileType } from '@types'
+import { simpleOmneoRequest, randomString } from '@lib'
 
 const BATCHED_PROFILE_IDENTIFIER = randomString(10)
 

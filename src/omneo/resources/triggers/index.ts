@@ -1,8 +1,10 @@
-import { RequestParams } from '../../../types/omneo.js'
-import { Trigger, TriggerAction, TriggerActionInput, TriggerActionResponse, TriggerInput, TriggerResponse, TriggerUpdateInput } from '../../../types'
+import { RequestParams, Trigger, TriggerInput, TriggerResponse, TriggerUpdateInput } from '@types'
 import Resource from '../resource.js'
+import TriggerActions from './actions/index.js'
 
 export default class Triggers extends Resource {
+  actions = new TriggerActions(this.client)
+
   get (id: number, params?: RequestParams): Promise<Trigger> {
     return this.client.call({
       method: 'get',
@@ -45,20 +47,6 @@ export default class Triggers extends Resource {
     return this.client.call({
       method: 'delete',
       endpoint: `/triggers/${id}`
-    })
-  }
-
-  listActions (triggerID: number): Promise<TriggerActionResponse> {
-    return this.client.call({
-      method: 'get',
-      endpoint: `/triggers/${triggerID}/actions`
-    })
-  }
-
-  createAction (triggerID: number, payload: TriggerActionInput): Promise<TriggerAction> {
-    return this.client.call({
-      method: 'get',
-      endpoint: `/triggers/${triggerID}/actions`
     })
   }
 }

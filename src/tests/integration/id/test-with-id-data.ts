@@ -1,8 +1,7 @@
 // my-test.ts
 import { test } from 'vitest'
-import { Profile } from '../../../types'
-import simpleOmneoRequest from '../../lib/simple-omneo-request'
-import simpleIDRequest from '../../lib/simple-id-request'
+import { Profile } from '@types'
+import { simpleOmneoRequest, simpleIDRequest } from '@lib'
 
 let profile
 let tokenData

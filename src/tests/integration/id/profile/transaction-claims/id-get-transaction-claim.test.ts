@@ -1,8 +1,7 @@
 import { describe, expect, afterAll } from 'vitest'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import { TransactionInput, TransactionClaim } from '../../../../../types'
-
-import { ID } from '../../../../../id'
+import { CreateTransactionInput, TransactionClaim } from '@types'
+import { simpleOmneoRequest } from '@lib'
+import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
 const CREATED_TRANSACTION_IDS : number[] = []
 const CREATED_TRANSACTION_CLAIM_IDS : number[] = []
@@ -20,7 +19,7 @@ describe('ID Profile Transaction claims get', () => {
     })
 
     const nowDateString = new Date().toISOString().replace('T', ' ').slice(0, 19)
-    const payload: TransactionInput = {
+    const payload: CreateTransactionInput = {
       profile_id: profile.id,
       total: 49.99,
       items: [

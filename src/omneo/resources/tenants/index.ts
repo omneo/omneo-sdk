@@ -1,42 +1,17 @@
-import { RequestParams } from '../../../types'
-import { TenantCustomFieldRequest } from '../../../types/tenant.js'
+import { TriggerCustomEvent } from '@types'
 import Resource from '../resource.js'
+import TenantCustomFields from './custom-fields/index.js'
 
 export default class Tenants extends Resource {
-  getCustomFields (params?: RequestParams): Promise<any> {
-    return this.client.call({
-      method: 'get',
-      endpoint: '/tenants/custom-fields',
-      params
-    }).then((response) => {
-      return response.data
-    })
-  }
+  customFields = new TenantCustomFields(this.client)
 
-  createCustomField (body: TenantCustomFieldRequest): Promise<any> {
+  customEvent (body: TriggerCustomEvent): Promise<{data: TriggerCustomEvent['context']}> {
     return this.client.call({
-      method: 'post',
-      endpoint: '/tenants/custom-fields',
+      method: 'POST',
+      endpoint: '/tenants/custom-event',
       body
     }).then((response) => {
-      return response.data
-    })
-  }
-
-  deleteCustomField (namespace: string, handle: string): Promise<void> {
-    return this.client.call({
-      method: 'delete',
-      endpoint: `/tenants/custom-fields/${namespace}:${handle}`
-    })
-  }
-
-  updateCustomField (namespace: string, handle: string, body: { value: any }): Promise<any> {
-    return this.client.call({
-      method: 'put',
-      endpoint: `/tenants/custom-fields/${namespace}:${handle}`,
-      body
-    }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

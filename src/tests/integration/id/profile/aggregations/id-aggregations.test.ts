@@ -1,5 +1,5 @@
 import { describe, expect } from 'vitest'
-import { ID } from '../../../../../id'
+import { ID } from '@id'
 import jwt from 'jsonwebtoken'
 import { testWithIDData } from '../../test-with-id-data'
 

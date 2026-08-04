@@ -1,4 +1,4 @@
-import { RewardCreateInput, RewardUpdateInput, RequestParams, Reward, RewardResponse } from '../../../types'
+import { RewardCreateInput, RewardUpdateInput, RequestParams, Reward, RewardResponse, ExtendRewardParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Rewards extends Resource {
@@ -44,6 +44,25 @@ export default class Rewards extends Resource {
     return this.client.call({
       method: 'delete',
       endpoint: `/rewards/${id}`
+    })
+  }
+
+  triggerTarget (rewardId: number, type: string): Promise<void> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/rewards/${rewardId}/trigger-target/${type}`
+    }).then((response) => {
+      return response
+    })
+  }
+
+  extend (params: ExtendRewardParams): Promise<Reward[]> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: '/rewards/extend',
+      params
+    }).then((response) => {
+      return response.data
     })
   }
 }

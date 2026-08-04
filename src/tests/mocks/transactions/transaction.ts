@@ -1,6 +1,6 @@
-import { Transaction, TransactionInput } from '../../../types'
+import { Transaction, CreateTransactionInput } from '@types'
 
-export const writeTransactionWithVariant: TransactionInput = {
+export const writeTransactionWithVariant: CreateTransactionInput = {
   profile_id: process.env.OMNEO_TEST_PROFILE_ID,
   external_id: '9999999',
   receipt_ref: 'D172009999999',
@@ -40,7 +40,7 @@ export const writeTransactionWithVariant: TransactionInput = {
   }
 }
 
-export const writeTransactionWithVariantID: TransactionInput = {
+export const writeTransactionWithVariantID: CreateTransactionInput = {
   profile_id: process.env.OMNEO_TEST_PROFILE_ID,
   external_id: '9999999',
   receipt_ref: 'D1729859045',

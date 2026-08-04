@@ -1,5 +1,5 @@
-import { RequestParams, Connection, ConnectionResponse, ConnectionInput, Profile } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, Connection, ConnectionResponse, ConnectionInput, Profile } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileConnections extends Resource {
   list (params?: RequestParams): Promise<ConnectionResponse> {

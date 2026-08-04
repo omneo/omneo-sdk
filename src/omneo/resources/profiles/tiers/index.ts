@@ -1,5 +1,5 @@
-import { RequestParams, TierProgress } from '../../../../types'
-import Resource from '../../resource'
+import { RequestParams, TierProgress, TierPointsResponse } from '@types'
+import Resource from '@omneo/resources/resource'
 
 export default class ProfileTiers extends Resource {
   list (profileID: string, params?: RequestParams): Promise<TierProgress> {
@@ -30,6 +30,16 @@ export default class ProfileTiers extends Resource {
       }
     }).then((response) => {
       return response.data
+    })
+  }
+
+  points (profileID: string, params?: RequestParams): Promise<TierPointsResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: `/profiles/${profileID}/tiers/points`,
+      params
+    }).then((response) => {
+      return response
     })
   }
 }

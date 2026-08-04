@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { Omneo } from '../../../../omneo'
+import { Omneo } from '@omneo'
 
 describe('Verify Token', () => {
   test('SDK can verify valid token', async () => {

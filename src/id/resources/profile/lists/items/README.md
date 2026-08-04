@@ -65,6 +65,29 @@ IDClient.profile.lists.items.create(listID, itemID, itemData)
   })
 ```
 
+### Create List with Custom Item
+
+Adds a new custom item to a specific list.
+```javascript
+const listID = 123;
+const itemID = 456;
+const itemData = {
+    // list item properties
+    quantity: 1,
+    // other required fields
+};
+const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
+IDClient.profile.lists.items.custom(listID, itemID, itemData)
+  .then((data) => {
+    // handle response data
+    console.log('Response data:', data)
+  })
+  .catch((error) => {
+    // handle error
+    console.error('Error:', error)
+  })
+```
+
 ### Update List Item
 
 Updates an existing item in a specific list.
@@ -97,8 +120,7 @@ const itemID = 456;
 const IDClient = new ID({ tenant: 'your-tenant', IDToken: 'your-id-token', config: {} })
 IDClient.profile.lists.items.delete(listID, itemID)
   .then((data) => {
-    // handle response data
-    console.log('Response data:', data)
+    // handle response
   })
   .catch((error) => {
     // handle error

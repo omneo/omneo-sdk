@@ -4,7 +4,7 @@
 To retrieve a list of currencies, use the `list` method:
 
 ```javascript
-import { CurrencyResponse, RequestParams } from '../../../types';
+import { CurrencyResponse, RequestParams } from '@types';
 import Resource from '../resource.js';
 
 export default class Currencies extends Resource {

@@ -1,10 +1,23 @@
-import { RequestParams, Transaction, TransactionInput, TransactionResponse } from '../../../types'
+import { RequestParams, Transaction, CreateTransactionInput, UpdateTransactionInput, TransactionResponse, TriggerTransactionEventInput, MockTransactionInput } from '@types'
 import Resource from '../resource'
+import TransactionCustomFields from './custom-fields'
+import TransactionItems from './items'
 
 export default class Transactions extends Resource {
+  customFields = new TransactionCustomFields(this.client)
+  items = new TransactionItems(this.client)
+
+  list (params?: RequestParams): Promise<TransactionResponse> {
+    return this.client.call({
+      method: 'GET',
+      endpoint: '/transactions',
+      params
+    })
+  }
+
   get (id: string, params?: RequestParams): Promise<Transaction> {
     return this.client.call({
-      method: 'get',
+      method: 'GET',
       endpoint: `/transactions/${id}`,
       params
     }).then((response) => {
@@ -14,7 +27,7 @@ export default class Transactions extends Resource {
 
   getByExternalID (externalID: string, params?: RequestParams): Promise<Transaction> {
     return this.client.call({
-      method: 'get',
+      method: 'GET',
       endpoint: `/transactions/external/${externalID}`,
       params
     }).then((response) => {
@@ -22,9 +35,9 @@ export default class Transactions extends Resource {
     })
   }
 
-  create (body: any): Promise<Transaction> {
+  create (body: CreateTransactionInput): Promise<Transaction> {
     return this.client.call({
-      method: 'post',
+      method: 'POST',
       endpoint: '/transactions',
       body
     }).then((response) => {
@@ -32,9 +45,9 @@ export default class Transactions extends Resource {
     })
   }
 
-  update (id: string, body: any): Promise<Transaction> {
+  update (id: string, body: UpdateTransactionInput): Promise<Transaction> {
     return this.client.call({
-      method: 'put',
+      method: 'PUT',
       endpoint: `/transactions/${id}`,
       body
     }).then((response) => {
@@ -42,12 +55,12 @@ export default class Transactions extends Resource {
     })
   }
 
-  updateCreate (body: TransactionInput): Promise<Transaction> {
+  updateCreate (body: CreateTransactionInput): Promise<Transaction> {
     if (body.receipt_is_email === null) delete body.receipt_is_email // Omneo API bug cannot accept null
     if (body.is_void === null) delete body.is_void // Omneo API bug cannot accept null
 
     return this.client.call({
-      method: 'post',
+      method: 'POST',
       endpoint: '/transactions/update-create',
       body
     }).then((response) => {
@@ -57,25 +70,27 @@ export default class Transactions extends Resource {
 
   delete (id: string): Promise<Transaction> {
     return this.client.call({
-      method: 'delete',
+      method: 'DELETE',
       endpoint: `/transactions/${id}`
     }).then((response) => {
       return response.data
     })
   }
 
-  list (params?: RequestParams): Promise<TransactionResponse> {
+  queue (body: any): Promise<{data: string}> {
     return this.client.call({
-      method: 'get',
-      endpoint: '/transactions',
-      params
+      method: 'POST',
+      endpoint: '/transactions/queue',
+      body
+    }).then((response) => {
+      return response.data
     })
   }
 
-  queue (body: any): Promise<{data: string}> {
+  queueCreate (body: CreateTransactionInput): Promise<{data: string}> {
     return this.client.call({
-      method: 'post',
-      endpoint: '/transactions/queue',
+      method: 'POST',
+      endpoint: '/transactions/queue/create',
       body
     }).then((response) => {
       return response.data
@@ -84,17 +99,28 @@ export default class Transactions extends Resource {
 
   resend (id: string) {
     return this.client.call({
-      method: 'post',
-      endpoint: `/transactions/${id}resend`
+      method: 'POST',
+      endpoint: `/transactions/${id}/resend`
     }).then((response) => {
       return response.data
     })
   }
 
-  resendItem (transactionItemID: string) {
+  eventTrigger (transactionId: string, body: TriggerTransactionEventInput) {
     return this.client.call({
-      method: 'post',
-      endpoint: `transactions/items/${transactionItemID}/resend`
+      method: 'POST',
+      endpoint: `/transactions/${transactionId}/event-trigger`,
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
+  incentiveEstimate (body: MockTransactionInput): Promise<{data: any}> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: '/transactions/incentive-estimate',
+      body
     }).then((response) => {
       return response.data
     })

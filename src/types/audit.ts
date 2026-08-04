@@ -5,12 +5,26 @@ export type Audit = {
   user_id: number | null
   event: string
   auditable_type: string
-  auditable_id: number
-  old_values: string // Stringified JSON
-  new_values: string // Stringified JSON
+  auditable_id: number | null
+  old_values: { [key: string]: any } | null
+  new_values: { [key: string]: any } | null
   url: string | null
   ip_address: string | null
-  profile_id: string
+  profile_id: string | null
+  location_id: number | null
+  location: {
+    id: number
+    name: string | null
+    handle: string | null
+    external_id: string | null
+  } | null
+  staff_id: string | null
+  staff: {
+    id: string
+    first_name: string
+    last_name: string
+    email: string
+  } | null
   token_name: string | null
   user_agent: string | null
   created_at: string
@@ -20,3 +34,19 @@ export type Audit = {
 export type AuditResponse = PaginationResponse & {
   data: Audit[]
 }
+
+export type CreateAuditInput = {
+  event: string
+  auditable_type: string
+  auditable_id?: number | null
+  old_values?: { [key: string]: any } | null
+  new_values?: { [key: string]: any } | null
+  url?: string | null
+  ip_address?: string | null
+  user_agent?: string | null
+  profile_id?: string | null
+  location_id?: number | null
+  staff_id?: string | null
+}
+
+export type UpdateAuditInput = Partial<CreateAuditInput>

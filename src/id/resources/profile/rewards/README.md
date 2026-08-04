@@ -1,7 +1,7 @@
 ## Rewards
 
 Customer reward management functionality.
-This allows customers to retrieve, create, update, and delete rewards in their profile.
+This allows customers to retrieve rewards in their profile.
 
 ### Get Reward
 Retrieves a specific reward by ID.

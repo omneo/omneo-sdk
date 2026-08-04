@@ -1,10 +1,13 @@
-import { OrderResponse, RequestParams } from '../../../types'
+import { CreateOrderInput, Order, OrderResponse, RequestParams, UpdateOrderInput } from '@types'
 import Resource from '../resource'
+import OrderItems from './items'
 
 export default class Orders extends Resource {
-  get (id: string, params?: RequestParams): Promise<any> {
+  items = new OrderItems(this.client)
+
+  get (id: string, params?: RequestParams): Promise<Order> {
     return this.client.call({
-      method: 'get',
+      method: 'GET',
       endpoint: `/orders/${id}`,
       params
     }).then((response) => {
@@ -14,7 +17,7 @@ export default class Orders extends Resource {
 
   list (params?: RequestParams): Promise<OrderResponse> {
     return this.client.call({
-      method: 'get',
+      method: 'GET',
       endpoint: '/orders',
       params
     }).then((response) => {
@@ -22,9 +25,9 @@ export default class Orders extends Resource {
     })
   }
 
-  create (body: any): Promise<any> {
+  create (body: CreateOrderInput): Promise<Order> {
     return this.client.call({
-      method: 'post',
+      method: 'POST',
       endpoint: '/orders',
       body
     }).then((response) => {
@@ -32,9 +35,9 @@ export default class Orders extends Resource {
     })
   }
 
-  update (id: string, body: any): Promise<any> {
+  update (id: string, body: UpdateOrderInput): Promise<Order> {
     return this.client.call({
-      method: 'put',
+      method: 'PUT',
       endpoint: `/orders/${id}`,
       body
     }).then((response) => {
@@ -42,12 +45,41 @@ export default class Orders extends Resource {
     })
   }
 
-  delete (id: string): Promise<any> {
+  delete (id: string): Promise<void> {
     return this.client.call({
-      method: 'delete',
+      method: 'DELETE',
       endpoint: `/orders/${id}`
     }).then((response) => {
-      return response.data
+      return response
+    })
+  }
+
+  queue (body: CreateOrderInput | UpdateOrderInput) : Promise<{data: string}> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: '/orders/queue',
+      body
+    }).then((response) => {
+      return response
+    })
+  }
+
+  queueCreate (body: CreateOrderInput) : Promise<{data: string}> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: '/orders/queue/create',
+      body
+    }).then((response) => {
+      return response
+    })
+  }
+
+  resend (orderId: string): Promise<void> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: `/orders/${orderId}/resend`
+    }).then((response) => {
+      return response
     })
   }
 }

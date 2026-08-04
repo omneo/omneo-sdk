@@ -1,4 +1,4 @@
-import { ID } from '../..'
+import { ID } from '@id'
 
 export default class IDResource {
   constructor (public client: ID) {

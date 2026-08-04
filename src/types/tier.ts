@@ -1,3 +1,6 @@
+import { PaginationResponse } from './pagination'
+import { Region } from './region'
+import { Transaction, TransactionItem } from './transaction'
 
 export type Tier = {
   id: number
@@ -26,19 +29,35 @@ export type TierDefinition = {
   icon: string | null
   image_url: string | null
   earn_instructions: string | null
-  disable_credit: boolean
+  disable_credit: boolean | null
   tags: Array<string> | []
   meta: { [key: string]: any } | null
+  region_id: number | null
+  region: Region | null
   created_at: string
   updated_at: string
 }
+export type TierDefinitionResponse = PaginationResponse & {
+  data: TierDefinition[]
+}
+
+type TierDefinitionEditable = Omit<TierDefinition, 'id' | 'created_at' | 'updated_at'>
+type TierDefinitionCreateRequiredField = 'name' | 'handle' | 'value_min'
+
+export type CreateTierDefinitionInput =
+  Required<Pick<TierDefinitionEditable, TierDefinitionCreateRequiredField>> &
+  Partial<Omit<TierDefinitionEditable, TierDefinitionCreateRequiredField>> & {
+    region_id?: number | null
+  }
+
+export type UpdateTierDefinitionInput = Partial<Omit<CreateTierDefinitionInput, 'handle'>>
 
 export type TierProgress = {
   id: number
   profile_id: string
-  current_tier: Tier | null
-  next_tier: Tier | null
-  prev_tier: Tier | null
+  current_tier: TierDefinition | null
+  next_tier: TierDefinition | null
+  prev_tier: TierDefinition | null
   is_floor: boolean
   current_credit: number
   current_progress: number
@@ -54,4 +73,33 @@ export type TierProgress = {
   achieved_at: string
   created_at: string
   updated_at: string
+}
+
+export type TierPoint = {
+  id: number
+  profile_id: string
+  point_definition_id: number
+  value: number
+  issued_at: string
+  accrued_at: string
+  status: string | null
+  source_id: number | null
+  source_type: string | null
+  source: TransactionItem | Transaction | null
+  meta: { [key: string]: any } | null
+  created_at: string
+  updated_at: string
+}
+
+export type CreateTierPointInput = {
+  profile_id: string
+  point_definition_id: number
+  value: number
+  issued_at?: string | null
+  accrued_at?: string | null
+  meta?: { [key: string]: any } | null
+}
+
+export type TierPointsResponse = PaginationResponse & {
+  data: TierPoint[]
 }

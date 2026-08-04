@@ -1,6 +1,6 @@
 // Tests can be re-added once omneo bugs with calculating tiers bugs are fixed, can delete tier definitions
 import { describe, expect, test } from 'vitest'
-import { Omneo } from '../../../../..'
+import { Omneo } from '@omneo'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,

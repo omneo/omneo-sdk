@@ -1,5 +1,5 @@
-import { Address, CustomAttribute, CustomAttributeInput, RequestParams } from '../../../../../types'
-import Resource from '../../../resource'
+import { Address, CustomAttribute, CustomAttributeInput, RequestParams } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileAttributesCustom extends Resource {
   get (namespace: string, handle: string): Promise<CustomAttribute> {
@@ -32,9 +32,10 @@ export default class ProfileAttributesCustom extends Resource {
   }
 
   delete (namespace: string, handle: string): Promise<Address> {
+    const attribute = `${namespace}:${handle}`
     return this.client.call({
-      method: 'delete',
-      endpoint: `/profiles/me/attributes/custom/${namespace}:${handle}`
+      method: 'DELETE',
+      endpoint: `/profiles/me/attributes/custom/${attribute}`
     }).then((response) => {
       return response.data
     })

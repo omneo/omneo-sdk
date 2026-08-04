@@ -1,3 +1,13 @@
+export type ProfileDatesAttributeLink = {
+  id: number
+  attributes_date_id: number
+  profile_id: string
+  relationship: string
+  role: string
+  created_at: string
+  updated_at: string
+}
+
 export type ProfileDatesAttribute = {
   id: number
   profile_id?: string
@@ -8,9 +18,11 @@ export type ProfileDatesAttribute = {
   name: string
   handle: string
   relationship: string
+  role: string
   description: string
   meta?: any
   note?: string
+  links?: ProfileDatesAttributeLink[]
   created_at?: string
   updated_at?: string
 }

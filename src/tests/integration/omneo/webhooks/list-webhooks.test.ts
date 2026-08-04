@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import { afterAll, describe, expect, test } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import { WebhookInput } from '../../../../types'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
+import { Omneo } from '@omneo'
+import { WebhookInput } from '@types'
+import { simpleOmneoRequest } from '@lib'
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
   token: process.env.OMNEO_TOKEN as string

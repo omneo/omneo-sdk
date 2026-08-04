@@ -1,7 +1,7 @@
 import { describe, test, afterAll, expect } from 'vitest'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { Omneo } from '../../../../omneo'
-import { APIToken } from '../../../../types'
+import { getRandomString, simpleOmneoRequest } from '@lib'
+import { Omneo } from '@omneo'
+import { APITokenResponse } from '@types'
 
 const FAILED_DELETE_API_TOKENS : string[] = []
 
@@ -10,7 +10,9 @@ const omneo = new Omneo({
   token: process.env.OMNEO_TOKEN as string
 })
 
-const tokenName = 'SDK Tokens Delete Test API Token'
+// /auth/access-tokens is paginated, so absence is checked against a
+// name-filtered lookup rather than the first page of every token on the tenant.
+const tokenName = getRandomString('sdk_unit_test_tokens_delete')
 
 describe('API Tokens delete', () => {
   test('SDK can delete an API Token', async () => {
@@ -28,9 +30,9 @@ describe('API Tokens delete', () => {
     })
 
     // Cannot fetch API token by ID
-    const tokens: APIToken[] = await simpleOmneoRequest('GET', '/auth/access-tokens?type=current')
+    const tokens: APITokenResponse = await simpleOmneoRequest('GET', `/auth/access-tokens?type=current&filter[name]=${tokenName}`)
 
-    const matchedToken = tokens.find((tkn) => tkn.id === tokenID)
+    const matchedToken = tokens.data.find((tkn) => tkn.id === tokenID)
 
     if (matchedToken) FAILED_DELETE_API_TOKENS.push(tokenID)
 

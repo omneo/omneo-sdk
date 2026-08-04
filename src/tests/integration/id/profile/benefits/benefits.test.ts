@@ -1,10 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import simpleOmneoRequest from '../../../../lib/simple-omneo-request'
-import { BenefitInput } from '../../../../../types'
-import { getRandomString } from '../../../../lib/string/util'
-import randomString from '../../../../lib/string/random'
+import { BenefitInput } from '@types'
 import { testWithIDData } from '../../test-with-id-data'
-import { ID } from '../../../../../id'
+import { ID } from '@id'
+import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
 
 const CREATED_BENEFIT_DEFINITION_IDS : number[] = []
 const CREATED_BENEFITS_IDS : number[] = []
@@ -75,9 +73,11 @@ describe('Profile Benefits', async () => {
       throw new Error('SDK list benefits created failed')
     })
 
-    CREATED_BENEFITS_IDS.push(benefit.id)
-
-    await IDClient.profile.benefits.delete(benefit.id)
+    await IDClient.profile.benefits.delete(benefit.id).catch((err) => {
+      console.error('SDK Delete profile benefit failed:', err)
+      CREATED_BENEFITS_IDS.push(benefit.id)
+      throw new Error('SDK Delete profile benefit failed')
+    })
     const fetchedBenefit = await simpleOmneoRequest('GET', `/benefits/${benefit.id}`)
     expect(fetchedBenefit).toEqual(expect.objectContaining({ status: 404, statusText: 'Not Found' }))
   })

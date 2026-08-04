@@ -1,8 +1,8 @@
 import { describe } from 'vitest'
-// import { ID } from '../../../id'
+// import { ID } from '@id'
 import { testWithIDData } from '../../test-with-id-data'
 // import { tier as mockTier } from '../../mocks/tier/tier'
-// import simpleOmneoRequest from '../../lib/simple-omneo-request'
+// import { simpleOmneoRequest } from '@lib'
 // const CREATED_TIER_DEFINITIONS = [] as number[]
 
 // const definitionPayload = {

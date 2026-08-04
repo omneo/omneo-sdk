@@ -1,4 +1,4 @@
-import { RequestParams, Benefit, BenefitResponse, BenefitInput } from '../../../types'
+import { RequestParams, Benefit, BenefitResponse, BenefitInput, BenefitTriggerTargetType } from '@types'
 import Resource from '../resource.js'
 
 export default class Benefits extends Resource {
@@ -60,5 +60,14 @@ export default class Benefits extends Resource {
       method: 'get',
       endpoint: '/benefits.count'
     }).then((response) => response.data)
+  }
+
+  getTriggerTarget (benefitId: number, type: BenefitTriggerTargetType): Promise<void> {
+    return this.client.call({
+      method: 'get',
+      endpoint: `/benefits/${benefitId}/trigger-target/${type}`
+    }).then((response) => {
+      return response.data
+    })
   }
 }

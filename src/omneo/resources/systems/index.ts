@@ -1,4 +1,4 @@
-import { RequestParams, System, SystemInput } from '../../../types'
+import { RequestParams, System, SystemInput } from '@types'
 import Resource from '../resource.js'
 
 export default class Systems extends Resource {

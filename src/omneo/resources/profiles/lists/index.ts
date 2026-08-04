@@ -1,9 +1,15 @@
-import { List, ListInput, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { List, ListInput, RequestParams } from '@types'
+import Resource from '@omneo/resources/resource'
 import Items from './items'
+import CustomFields from './custom-fields'
+import Shares from './shares'
+import Reservations from './reservations'
 
 export default class ProfileLists extends Resource {
+  customFields = new CustomFields(this.client)
   items = new Items(this.client)
+  reservations = new Reservations(this.client)
+  shares = new Shares(this.client)
 
   get (profileID: string, listID: number): Promise<List> {
     return this.client.call({
@@ -20,7 +26,7 @@ export default class ProfileLists extends Resource {
       endpoint: `/profiles/${profileID}/lists`,
       params
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 
@@ -48,7 +54,7 @@ export default class ProfileLists extends Resource {
       method: 'delete',
       endpoint: `/profiles/${profileID}/lists/${listID}`
     }).then((response) => {
-      return response.data
+      return response
     })
   }
 }

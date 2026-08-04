@@ -1,4 +1,4 @@
-import { RequestParams, User, UserCreateInput, UserResponse, UserUpdateInput } from '../../../types'
+import { RequestParams, User, UserCreateInput, UserResponse, UserUpdateInput } from '@types'
 import Resource from '../resource.js'
 
 export default class Users extends Resource {

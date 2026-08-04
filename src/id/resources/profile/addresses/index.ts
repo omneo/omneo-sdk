@@ -1,5 +1,5 @@
-import { Address, AddressInput, AddressUpdateInput, RequestParams } from '../../../../types'
-import Resource from '../../resource'
+import { Address, AddressInput, AddressUpdateInput, RequestParams } from '@types'
+import Resource from '@id/resources/resource'
 
 export default class ProfileAddresses extends Resource {
   get (addressID: string): Promise<Address> {

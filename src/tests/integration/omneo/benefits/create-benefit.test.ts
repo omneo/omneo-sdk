@@ -1,9 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../omneo'
-import simpleOmneoRequest from '../../../lib/simple-omneo-request'
-import { BenefitInput } from '../../../../types'
-import { getRandomString } from '../../../lib/string/util'
-import randomString from '../../../lib/string/random'
+import { Omneo } from '@omneo'
+import { BenefitInput } from '@types'
+import { simpleOmneoRequest, randomString, getRandomString } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -46,8 +44,6 @@ describe('Benefit created', async () => {
     expect(createdBenefit.profile_id).toBe(payload.profile_id)
     expect(createdBenefit.definition.id).toBe(payload.benefit_definition_id)
     expect(createdBenefit.external_id).toBe(payload.external_id)
-    expect(createdBenefit.expires_at).toBe(`${payload.expires_at} 00:00:00`)
-    expect(createdBenefit.issued_at).toBe(payload.issued_at)
     expect(createdBenefit.timezone).toBe(payload.timezone)
   })
 

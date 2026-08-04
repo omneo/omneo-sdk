@@ -6,14 +6,16 @@ import {
   ProfileType,
   RequestParams,
   TransactionProductVariantsResponse
-} from '../../../types'
+} from '@types'
 
 import ProfileAddresses from './addresses'
 import ProfileAggregations from './aggregations'
+import ProfileAppointments from './appointments'
 import ProfileAttributesAppearance from './attributes/appearance'
 import ProfileAttributesComms from './attributes/comms'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
+import ProfileAchievements from './achievements'
 import ProfileBalances from './balances'
 import ProfileBenefits from './benefits'
 import ProfileConnections from './connections'
@@ -24,6 +26,9 @@ import ProfileLists from './lists'
 import ProfilePoints from './points'
 import ProfileRegions from './regions'
 import ProfileRewards from './rewards'
+import ProfileRedemptions from './redemptions'
+import ProfileCredits from './credits'
+import ProfileOrders from './orders'
 import ProfileTiers from './tiers'
 import ProfileTransactions from './transactions'
 import ProfileTransactionClaims from './transaction-claims'
@@ -31,6 +36,7 @@ import Resource from '../resource'
 export default class OmneoProfile extends Resource {
   addresses = new ProfileAddresses(this.client)
   aggregations = new ProfileAggregations(this.client)
+  appointments = new ProfileAppointments(this.client)
   attributes = {
     custom: new ProfileAttributesCustom(this.client),
     dates: new ProfileAttributesDates(this.client),
@@ -38,6 +44,7 @@ export default class OmneoProfile extends Resource {
     appearance: new ProfileAttributesAppearance(this.client)
   }
 
+  achievements = new ProfileAchievements(this.client)
   balances = new ProfileBalances(this.client)
   benefits = new ProfileBenefits(this.client)
   connections = new ProfileConnections(this.client)
@@ -48,6 +55,9 @@ export default class OmneoProfile extends Resource {
   points = new ProfilePoints(this.client)
   regions = new ProfileRegions(this.client)
   rewards = new ProfileRewards(this.client)
+  redemptions = new ProfileRedemptions(this.client)
+  credits = new ProfileCredits(this.client)
+  orders = new ProfileOrders(this.client)
   tiers = new ProfileTiers(this.client)
   transactionClaims = new ProfileTransactionClaims(this.client)
   transactions = new ProfileTransactions(this.client)

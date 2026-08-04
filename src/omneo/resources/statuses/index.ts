@@ -1,4 +1,4 @@
-import { RequestParams, Status, StatusInput, StatusResponse } from '../../../types'
+import { RequestParams, Status, StatusInput, StatusResponse } from '@types'
 import Resource from '../resource.js'
 
 export default class Statuses extends Resource {

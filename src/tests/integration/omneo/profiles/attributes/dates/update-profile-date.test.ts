@@ -1,8 +1,7 @@
 import { describe, expect, test, afterAll } from 'vitest'
-import { Omneo } from '../../../../../../omneo'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '../../../../../../types'
-import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
-import { getRandomString } from '../../../../../lib/string/util'
+import { Omneo } from '@omneo'
+import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const omneo = new Omneo({
   tenant: process.env.OMNEO_TENANT as string,
@@ -50,6 +49,7 @@ describe('Profile Date Update', () => {
     const updatedDate: ProfileDatesAttribute = await omneo.profiles.attributes.dates.update(testProfileID, updatedPayload)
     expect(updatedDate.name).toBe(updatedPayload.name)
     expect(updatedDate.note).toBe(updatedPayload.note)
+    // TODO need to support to update description by core api
     // expect(updatedDate.description).toBe(updatedPayload.description)
   })
 })
@@ -57,9 +57,13 @@ describe('Profile Date Update', () => {
 afterAll(async () => {
   if (CREATED_DATES_IDS.length > 0) {
     for (const id of CREATED_DATES_IDS) {
-      const deleteResponse = await simpleOmneoRequest('DELETE', `profiles/${testProfileID}/attributes/dates/${id}`)
-      if (deleteResponse.status === 200) {
-        console.log(`Omneo Profile Date ID ${id} deleted`)
+      console.log('Cleaning up Profile Date with ID', id)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/dates/${id}`)
+      const findDate = deleteResponse?.data?.find((v: any) => v.id === id)
+      if (!findDate) {
+        console.log(`SDK Profile Dates ID ${id} deleted`)
+      } else {
+        console.log(`Failed to delete Profile Dates ID ${id}`)
       }
     }
   }

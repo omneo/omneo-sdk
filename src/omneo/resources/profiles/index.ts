@@ -9,8 +9,10 @@ import {
   ProfileType,
   ProfileBatchMatchCriteria,
   ProfileInput,
-  TransactionProductVariantsResponse
-} from '../../../types'
+  TransactionProductVariantsResponse,
+  ExistsProfileInput,
+  TriggerProfileCustomEventInput
+} from '@types'
 import ProfileIdentities from './identities'
 import ProfileAttributesCustom from './attributes/custom'
 import ProfileAttributesDates from './attributes/dates'
@@ -21,36 +23,56 @@ import ProfileAddresses from './addresses'
 import ProfileConnections from './connections'
 import ProfileInteractions from './interactions'
 import ProfileRewards from './rewards'
+import ProfileRedemptions from './redemptions'
+import ProfileOrders from './orders'
 import ProfileTransactions from './transactions'
 import ProfileTransactionClaims from './transaction-claims'
+import ProfileAchievements from './achievements'
 import ProfileBalances from './balances'
 import ProfileRegions from './regions'
 import ProfileLists from './lists'
 import ProfileTiers from './tiers'
 import ProfileBenefits from './benefits'
+import ProfileCredits from './credits'
 
 import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
+import ProfilePoints from './points'
+import ProfileLedgers from './ledgers'
+import ProfileAppointments from './appointments'
+import ProfileNormalHours from './normal-hours'
+import ProfileSpecialHours from './special-hours'
 export default class Profiles extends Resource {
-  identities = new ProfileIdentities(this.client)
-  aggregations = new ProfileAggregations(this.client)
+  achievements = new ProfileAchievements(this.client)
   addresses = new ProfileAddresses(this.client)
-  connections = new ProfileConnections(this.client)
-  interactions = new ProfileInteractions(this.client)
-  transactions = new ProfileTransactions(this.client)
-  transactionClaims = new ProfileTransactionClaims(this.client)
-  rewards = new ProfileRewards(this.client)
-  benefits = new ProfileBenefits(this.client)
-  balances = new ProfileBalances(this.client)
-  regions = new ProfileRegions(this.client)
-  lists = new ProfileLists(this.client)
-  tiers = new ProfileTiers(this.client)
+  aggregations = new ProfileAggregations(this.client)
+  appointments = new ProfileAppointments(this.client)
   attributes = {
-    custom: new ProfileAttributesCustom(this.client),
-    dates: new ProfileAttributesDates(this.client),
+    appearance: new ProfileAttributesAppearance(this.client),
     comms: new ProfileAttributesComms(this.client),
-    appearance: new ProfileAttributesAppearance(this.client)
+    custom: new ProfileAttributesCustom(this.client),
+    dates: new ProfileAttributesDates(this.client)
   }
+
+  balances = new ProfileBalances(this.client)
+  benefits = new ProfileBenefits(this.client)
+  connections = new ProfileConnections(this.client)
+  credits = new ProfileCredits(this.client)
+  identities = new ProfileIdentities(this.client)
+  interactions = new ProfileInteractions(this.client)
+  ledgers = new ProfileLedgers(this.client)
+  lists = new ProfileLists(this.client)
+  normalHours = new ProfileNormalHours(this.client)
+
+  orders = new ProfileOrders(this.client)
+  points = new ProfilePoints(this.client)
+  redemptions = new ProfileRedemptions(this.client)
+  regions = new ProfileRegions(this.client)
+  rewards = new ProfileRewards(this.client)
+  specialHours = new ProfileSpecialHours(this.client)
+  tiers = new ProfileTiers(this.client)
+  transactionClaims = new ProfileTransactionClaims(this.client)
+  transactions = new ProfileTransactions(this.client)
 
   get (id: string, params?: RequestParams): Promise<Profile> {
     return this.client.call({
@@ -200,6 +222,16 @@ export default class Profiles extends Resource {
     })
   }
 
+  exists (body: ExistsProfileInput): Promise<{ data: { id: string} }> {
+    return this.client.call({
+      method: 'post',
+      endpoint: '/profiles/exists',
+      body
+    }).then((response) => {
+      return response.data
+    })
+  }
+
   createByDelegation (body: any, delegation: DelegationData, options: { retryMobileSecondary?: Boolean } = {}) {
     return createProfileByDelegation(this.client, body, delegation, options)
   }
@@ -295,6 +327,16 @@ export default class Profiles extends Resource {
       method: 'get',
       endpoint: `/profiles/${profileID}/transaction-products`,
       params
+    })
+  }
+
+  triggerCustomEvent (profileId: string, body: TriggerProfileCustomEventInput) : Promise<Profile> {
+    return this.client.call({
+      method: 'POST',
+      endpoint: `/profiles/${profileId}/custom-event`,
+      body
+    }).then((response) => {
+      return response.data
     })
   }
 }

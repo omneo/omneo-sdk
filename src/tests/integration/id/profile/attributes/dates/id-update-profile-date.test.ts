@@ -1,9 +1,8 @@
 import { describe, expect, afterAll } from 'vitest'
-import { ID } from '../../../../../../id'
+import { ID } from '@id'
 import { testWithIDData } from '../../../test-with-id-data'
-import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '../../../../../../types'
-import simpleOmneoRequest from '../../../../../lib/simple-omneo-request'
-import { getRandomString } from '../../../../../lib/string/util'
+import { ProfileDatesAttribute, ProfileDatesAttributeInput } from '@types'
+import { simpleOmneoRequest, getRandomString } from '@lib'
 
 const CREATED_DATES_IDS : number[] = []
 const testProfileID = process.env.OMNEO_TEST_PROFILE_ID as string
@@ -61,9 +60,12 @@ afterAll(async () => {
   if (CREATED_DATES_IDS.length > 0) {
     for (const id of CREATED_DATES_IDS) {
       console.log('ID Cleaning up Profile Date with ID', id)
-      const deleteResponse = await simpleOmneoRequest('DELETE', `profiles/${testProfileID}/attributes/dates/${id}`)
-      if (deleteResponse.status === 200) {
-        console.log(`ID Profile Date ID ${id} deleted`)
+      const deleteResponse = await simpleOmneoRequest('DELETE', `/profiles/${testProfileID}/attributes/dates/${id}`)
+      const findDate = deleteResponse?.data?.find((v: any) => v.id === id)
+      if (!findDate) {
+        console.log(`ID SDK Profile Dates ID ${id} deleted`)
+      } else {
+        console.log(`Failed to delete Profile Dates ID ${id}`)
       }
     }
   }

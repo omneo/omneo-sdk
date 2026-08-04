@@ -1,5 +1,4 @@
-import { PaginationResponse } from '.'
-
+import { PaginationResponse, Profile } from '.'
 export type DisplayOptionType = 'visible' | 'hidden' | 'mystery' | 'internal'
 
 export type AchievementLevel = {
@@ -16,11 +15,48 @@ export type AchievementLevel = {
   computed_trigger?: number
   meta?: {
       unlocks?: {
+        id?: string,
         type?: string,
         id_type?: string
       } []
       [key: string]: any
   }
+}
+
+export type AchievementProgressLevel = {
+  id: number
+  achievement_definition_id: number
+  name: string
+  display_number: number
+  description: string | null
+  trigger: number
+  repeats: boolean
+  repeat_interval: number | null
+  created_at: string
+  updated_at: string
+  meta: AchievementLevel['meta'] | null
+  allow_multiple_earn: boolean | null
+}
+
+export type ProfileAchievementProgress = {
+  id: number
+  profile_id: string
+  definition_id: number
+  current_level_id: number | null
+  next_level_id: number | null
+  next_level_remain: number | null
+  current_score: number
+  created_at: string
+  updated_at: string
+  used_score: number | null
+  prev_level_id: number | null
+  current_credit: number
+  prev_credit: number
+  achieved_at: string | null
+  anniversary_at: string | null
+  current_level: AchievementProgressLevel | null
+  next_level: AchievementProgressLevel | null
+  prev_level: AchievementProgressLevel | null
 }
 
 export type AchievementDefinition = {
@@ -63,4 +99,61 @@ export type AchievementDefinitionResponse = PaginationResponse & {
 export type AchievementDefinitionInput = Partial<Omit<AchievementDefinition, 'id' | 'created_at' | 'updated_at'>> & {
   name: AchievementDefinition['name']
   handle: AchievementDefinition['handle']
+}
+
+export type ProfileAchievement = Omit<AchievementDefinition, 'levels' | 'tags' | 'created_at' | 'updated_at' | 'meta' | 'timezone' | 'period' | 'enable_annual_earn_cycle'> & {
+    deleted_at: string | null
+    created_at: string
+    updated_at: string
+    meta: AchievementDefinition['meta']
+    enable_annual_earn_cycle: boolean
+    timezone: AchievementDefinition['timezone']
+    period: AchievementDefinition['period']
+    region_id: number | null
+    currency: string | null
+    levels: AchievementProgressLevel[]
+    tags?: string[]
+    progress: ProfileAchievementProgress | null
+}
+
+export type ProfileAchievementsResponse = {
+  data: ProfileAchievement[] | { [key: string]: ProfileAchievement }
+}
+
+export type ProfileAchievementPoint = {
+    id: number
+    profile_id: string
+    profile: Profile
+    count: number
+    source_id: string | null
+    source_type: string | null
+    meta: {
+        user?: string
+        manual?: boolean
+        [key: string]: any
+    } | null
+    issued_at: string
+    expires_at: string | null
+    created_at: string
+    updated_at: string
+}
+
+export type ProfileAchievementPointsResponse = PaginationResponse & {
+    data: ProfileAchievementPoint[]
+}
+
+export type ProfileCreateAchievementResponse = {
+    data: ProfileAchievementPoint
+}
+
+export type CreateProfileAchievementInput = {
+  definition_id: number
+  count: number
+  meta?: {
+    manual?: boolean
+    user?: string
+    [key: string]: any
+  } | null
+  expires_at?: string | null
+  issued_at?: string | null
 }
