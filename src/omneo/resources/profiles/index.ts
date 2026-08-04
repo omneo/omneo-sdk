@@ -39,10 +39,14 @@ import createProfileByDelegation from '../profiles/createProfileByDelegation.js'
 import Resource from '../resource'
 import ProfilePoints from './points'
 import ProfileLedgers from './ledgers'
+import ProfileAppointments from './appointments'
+import ProfileNormalHours from './normal-hours'
+import ProfileSpecialHours from './special-hours'
 export default class Profiles extends Resource {
   achievements = new ProfileAchievements(this.client)
   addresses = new ProfileAddresses(this.client)
   aggregations = new ProfileAggregations(this.client)
+  appointments = new ProfileAppointments(this.client)
   attributes = {
     appearance: new ProfileAttributesAppearance(this.client),
     comms: new ProfileAttributesComms(this.client),
@@ -58,12 +62,14 @@ export default class Profiles extends Resource {
   interactions = new ProfileInteractions(this.client)
   ledgers = new ProfileLedgers(this.client)
   lists = new ProfileLists(this.client)
+  normalHours = new ProfileNormalHours(this.client)
 
   orders = new ProfileOrders(this.client)
   points = new ProfilePoints(this.client)
   redemptions = new ProfileRedemptions(this.client)
   regions = new ProfileRegions(this.client)
   rewards = new ProfileRewards(this.client)
+  specialHours = new ProfileSpecialHours(this.client)
   tiers = new ProfileTiers(this.client)
   transactionClaims = new ProfileTransactionClaims(this.client)
   transactions = new ProfileTransactions(this.client)

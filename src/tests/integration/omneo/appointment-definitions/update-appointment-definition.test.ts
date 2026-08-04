@@ -1,0 +1,54 @@
+import { describe, expect, test, afterAll } from 'vitest'
+import { Omneo } from '@omneo'
+import { AppointmentDefinition } from '@types'
+import { simpleOmneoRequest, getRandomString, seedAppointmentDefinition } from '@lib'
+
+const omneoClient = new Omneo({
+  tenant: process.env.OMNEO_TENANT as string,
+  token: process.env.OMNEO_TOKEN as string
+})
+const CREATED_APPOINTMENT_DEFINITION_IDS: number[] = []
+
+describe('Update Appointment Definition', () => {
+  test('SDK Update Appointment Definition', async () => {
+    const seeded = await seedAppointmentDefinition({
+      handle: getRandomString('sdk_unit_test_update_appointment_definition_handle'),
+      name: getRandomString('sdk_unit_test_update_appointment_definition_name'),
+      duration_minutes: 30,
+      booking_type: 'instant',
+      normal_hours: [
+        { day_of_week: 'MON', available_from: '09:00', available_until: '17:00' }
+      ],
+      is_published: false
+    }).then(({ data }) => data)
+    CREATED_APPOINTMENT_DEFINITION_IDS.push(seeded.id)
+
+    const payload = {
+      name: getRandomString('sdk_unit_test_update_appointment_definition_new_name'),
+      duration_minutes: 45,
+      is_published: true
+    }
+
+    const definition: AppointmentDefinition = await omneoClient.appointmentDefinitions.update(seeded.id, payload).catch((err) => {
+      console.error('SDK Update Appointment Definition failed:', err)
+      throw new Error('SDK Update Appointment Definition failed')
+    })
+
+    expect(definition).toBeDefined()
+    expect(definition.id).toBe(seeded.id)
+    expect(definition.name).toBe(payload.name)
+    expect(definition.duration_minutes).toBe(payload.duration_minutes)
+    expect(definition.is_published).toBe(payload.is_published)
+  })
+})
+
+afterAll(async () => {
+  for (const id of CREATED_APPOINTMENT_DEFINITION_IDS) {
+    const response = await simpleOmneoRequest('DELETE', `/appointment-definitions/${id}`)
+    if (response.status === 204) {
+      console.log(`SDK Appointment Definition ID ${id} deleted`)
+    } else {
+      console.log(`Failed to delete Appointment Definition ID ${id}`, response)
+    }
+  }
+})
