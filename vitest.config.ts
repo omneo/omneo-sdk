@@ -18,7 +18,10 @@ export default defineConfig(({ command, mode }) => {
     },
     test: {
       env,
-      testTimeout: 40000
+      testTimeout: 40000,
+      // afterAll teardown fires a serial run of live DELETEs, which can exceed
+      // the 10s default when the whole suite is running in parallel
+      hookTimeout: 40000
     }
   }
 })

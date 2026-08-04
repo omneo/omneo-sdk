@@ -10,6 +10,7 @@ import {
 
 import ProfileAddresses from './addresses'
 import ProfileAggregations from './aggregations'
+import ProfileAppointments from './appointments'
 import ProfileAttributesAppearance from './attributes/appearance'
 import ProfileAttributesComms from './attributes/comms'
 import ProfileAttributesCustom from './attributes/custom'
@@ -35,6 +36,7 @@ import Resource from '../resource'
 export default class OmneoProfile extends Resource {
   addresses = new ProfileAddresses(this.client)
   aggregations = new ProfileAggregations(this.client)
+  appointments = new ProfileAppointments(this.client)
   attributes = {
     custom: new ProfileAttributesCustom(this.client),
     dates: new ProfileAttributesDates(this.client),

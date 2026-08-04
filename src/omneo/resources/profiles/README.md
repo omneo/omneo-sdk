@@ -2,14 +2,17 @@
 
 - [Addresses](./addresses/README.md)
 - [Aggregations](./aggregations/README.md)
+- [Appointments](./appointments/README.md)
 - [Balances](./balances/README.md)
 - [Connections](./connections/README.md)
 - [Identities](./identities/README.md)
 - [Interactions](./interactions/README.md)
 - [Ledgers](./ledgers/README.md)
+- [Normal Hours](./normal-hours/README.md)
 - [Points](./points/README.md)
 - [Regions](./regions/README.md)
 - [Rewards](./rewards/README.md)
+- [Special Hours](./special-hours/README.md)
 - [Tiers](./tiers/README.md)
 - [Transactions](./transactions/README.md)
 

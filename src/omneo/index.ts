@@ -57,6 +57,10 @@ import Batches from './resources/batches'
 import Automations from './resources/automations'
 import Allocations from './resources/allocations'
 import ActionHistories from './resources/action-histories'
+import Appointments from './resources/appointments'
+import AppointmentDefinitions from './resources/appointment-definitions'
+import AppointmentQueues from './resources/appointment-queues'
+import AppointmentWaitlists from './resources/appointment-waitlists'
 export class Omneo {
   tenant: string
   token: string
@@ -75,6 +79,10 @@ export class Omneo {
   public achievementDefinitions = new AchievementDefinitions(this)
   public actionHistories = new ActionHistories(this)
   public allocations = new Allocations(this)
+  public appointmentDefinitions = new AppointmentDefinitions(this)
+  public appointmentQueues = new AppointmentQueues(this)
+  public appointmentWaitlists = new AppointmentWaitlists(this)
+  public appointments = new Appointments(this)
   public audits = new Audits(this)
   public auth = new Auth(this)
   public automations = new Automations(this)
