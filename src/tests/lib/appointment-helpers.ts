@@ -30,13 +30,17 @@ export const futureDate = (daysAhead: number): string => {
 }
 
 // Concurrent appointment-definition creates intermittently return 500 from
-// the live API, so seeding retries before failing the suite
+// the live API, so seeding retries with exponential back-off before failing
 export const seedAppointmentDefinition = async (payload: { [key: string]: any }) => {
   let response
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 5; attempt++) {
     response = await simpleOmneoRequest('POST', '/appointment-definitions', payload)
     if (response?.data?.id) return response
     console.log(`Appointment definition seed attempt ${attempt} failed`, response)
+    if (attempt < 5) {
+      const delay = Math.min(1000 * 2 ** (attempt - 1) + Math.random() * 500, 10000)
+      await new Promise((resolve) => setTimeout(resolve, delay))
+    }
   }
   throw Error('Failed to seed appointment definition')
 }
