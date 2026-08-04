@@ -1,3 +1,4 @@
+import { PaginationResponse } from './pagination'
 import { User } from './user'
 
 export type APIScopes =
@@ -7,6 +8,22 @@ export type APIScopes =
   | 'read-achievement-definitions'
   | 'update-achievement-definitions'
   | 'delete-achievement-definitions'
+  | 'create-appointments'
+  | 'read-appointments'
+  | 'update-appointments'
+  | 'delete-appointments'
+  | 'create-appointment-definitions'
+  | 'read-appointment-definitions'
+  | 'update-appointment-definitions'
+  | 'delete-appointment-definitions'
+  | 'create-appointment-queues'
+  | 'read-appointment-queues'
+  | 'update-appointment-queues'
+  | 'delete-appointment-queues'
+  | 'create-appointment-waitlists'
+  | 'read-appointment-waitlists'
+  | 'update-appointment-waitlists'
+  | 'delete-appointment-waitlists'
   | 'read-benefits'
   | 'create-benefits'
   | 'delete-benefits'
@@ -184,4 +201,8 @@ export type APIToken = {
   client: Client
   usage: Array<any>
   user: User
+}
+
+export type APITokenResponse = PaginationResponse & {
+  data: APIToken[]
 }

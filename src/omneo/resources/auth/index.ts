@@ -1,4 +1,4 @@
-import { APIToken, APITokenInput } from '@types'
+import { APIToken, APITokenInput, APITokenResponse, RequestParams } from '@types'
 import Resource from '../resource.js'
 
 export default class Auth extends Resource {
@@ -13,13 +13,11 @@ export default class Auth extends Resource {
     })
   }
 
-  getAPITokens (params: object): Promise<APIToken[]> {
+  getAPITokens (params?: RequestParams): Promise<APITokenResponse> {
     return this.client.call({
       method: 'get',
       endpoint: '/auth/access-tokens',
       params
-    }).then((response) => {
-      return response
     })
   }
 

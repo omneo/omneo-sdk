@@ -45,13 +45,15 @@ beforeAll(async () => {
   staffProfileID = staffProfile.id
   CREATED_PROFILE_IDS.push(staffProfile.id)
 
-  for (const day of ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']) {
-    await simpleOmneoRequest('POST', `/profiles/${staffProfileID}/normal-hours`, {
+  // Seeded in parallel — seven serial round trips push this hook past the
+  // hook timeout when the full suite is running
+  await Promise.all(['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'].map((day) => {
+    return simpleOmneoRequest('POST', `/profiles/${staffProfileID}/normal-hours`, {
       day_of_week: day,
       available_from: '09:00',
       available_until: '17:00'
     })
-  }
+  }))
 
   const staffSeeded = await seedAppointmentDefinition({
     handle: getRandomString('sdk_unit_test_availability_staff_handle'),

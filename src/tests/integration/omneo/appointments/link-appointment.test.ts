@@ -20,27 +20,29 @@ const futureDate = (daysAhead: number): string => {
 }
 
 beforeAll(async () => {
-  const locations = await simpleOmneoRequest('GET', '/locations?page[size]=1').then(({ data }) => data)
-  const profile = await simpleOmneoRequest('POST', '/profiles', {
-    first_name: 'SDK',
-    last_name: 'Appointment Test',
-    email: `${getRandomString('sdk_unit_test_link_appointment')}@omneodemo.com`
-  }).then(({ data }) => data)
+  // Seeded in parallel — six serial round trips push this hook past the hook
+  // timeout when the full suite is running
+  const [locations, profile, secondProfile, thirdProfile] = await Promise.all([
+    simpleOmneoRequest('GET', '/locations?page[size]=1').then(({ data }) => data),
+    simpleOmneoRequest('POST', '/profiles', {
+      first_name: 'SDK',
+      last_name: 'Appointment Test',
+      email: `${getRandomString('sdk_unit_test_link_appointment')}@omneodemo.com`
+    }).then(({ data }) => data),
+    simpleOmneoRequest('POST', '/profiles', {
+      first_name: 'SDK',
+      last_name: 'Linked Attendee',
+      email: `${getRandomString('sdk_unit_test_link_appointment_attendee')}@omneodemo.com`
+    }).then(({ data }) => data),
+    simpleOmneoRequest('POST', '/profiles', {
+      first_name: 'SDK',
+      last_name: 'Second Attendee',
+      email: `${getRandomString('sdk_unit_test_link_appointment_attendee_two')}@omneodemo.com`
+    }).then(({ data }) => data)
+  ])
   CREATED_PROFILE_IDS.push(profile.id)
-
-  const secondProfile = await simpleOmneoRequest('POST', '/profiles', {
-    first_name: 'SDK',
-    last_name: 'Linked Attendee',
-    email: `${getRandomString('sdk_unit_test_link_appointment_attendee')}@omneodemo.com`
-  }).then(({ data }) => data)
   linkedProfileID = secondProfile.id
   CREATED_PROFILE_IDS.push(secondProfile.id)
-
-  const thirdProfile = await simpleOmneoRequest('POST', '/profiles', {
-    first_name: 'SDK',
-    last_name: 'Second Attendee',
-    email: `${getRandomString('sdk_unit_test_link_appointment_attendee_two')}@omneodemo.com`
-  }).then(({ data }) => data)
   secondLinkedProfileID = thirdProfile.id
   CREATED_PROFILE_IDS.push(thirdProfile.id)
 
