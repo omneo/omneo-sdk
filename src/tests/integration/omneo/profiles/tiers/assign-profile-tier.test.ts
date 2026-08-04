@@ -15,11 +15,13 @@ describe('Profile Tiers - Assign', () => {
   test('SDK can assign a tier to a profile', async () => {
     let tierDefinition: any
 
-    // First, try to get existing tier definitions
+    // First, try to get existing tier definitions. The assign endpoint only
+    // resolves assignable definitions, so a non-assignable one (e.g. the floor
+    // tier) 404s with "No query results for model [App\Models\TierDefinition]"
     const existingDefinitions = await simpleOmneoRequest('GET', '/tiers/definitions')
-    if (existingDefinitions.data && existingDefinitions.data.length > 0) {
-      // Use the first existing tier definition
-      tierDefinition = { data: existingDefinitions.data[0] }
+    const assignableDefinition = existingDefinitions.data?.find((definition: any) => definition.is_assignable)
+    if (assignableDefinition) {
+      tierDefinition = { data: assignableDefinition }
     } else {
       // Create a new tier definition if none exist
       const tierDefinitionPayload = {
